@@ -176,15 +176,6 @@ export const ThemeConfigurator = ({
 					}
 				/>
 			</div>
-			<div className="mb-5">
-				<h4 className="mb-3 font-weight-bold">Locale</h4>
-				<ListOption 
-					name="Language:"
-					selector={
-						<NavLanguage configDisplay/>
-					}
-				/>
-			</div>
 			<div>
 				<CopyToClipboard
 					text={genCopySettingJson({ navType, sideNavTheme, navCollapsed, topNavColor, headerNavColor, locale, currentTheme, direction})}
