@@ -1,6 +1,6 @@
 {
-  "name": "emilus",
-  "version": "2.1.4",
+  "name": "inponsel-dash-react",
+  "version": "0.1.4",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",
