@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: inponsel-dash-react
 spec:
-  replicas: 3
+  replicas: 2
   selector:
     matchLabels:
       name: inponsel-dash-react
@@ -19,11 +19,11 @@ spec:
           image: inponsel/inponsel-dash-react:latest
           resources:
             limits:
-              memory: 512Mi
-              cpu: "1"
+              memory: 2Gi
+              cpu: "2"
             requests:
-              memory: 256Mi
-              cpu: "0.5"
+              memory: 1Gi
+              cpu: "1"
           imagePullPolicy: Always
           ports:
             - containerPort: 3000
