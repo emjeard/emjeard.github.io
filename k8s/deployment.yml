@@ -17,6 +17,13 @@ spec:
       containers:
         - name: inponsel-dash-react
           image: inponsel/inponsel-dash-react:latest
+          resources:
+            limits:
+              memory: 512Mi
+              cpu: "1"
+            requests:
+              memory: 256Mi
+              cpu: "0.5"
           imagePullPolicy: Always
           ports:
             - containerPort: 3000
