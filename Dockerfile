@@ -1,10 +1,12 @@
-FROM node:latest
+FROM node:lts-alpine3.14
 
 ENV PORT 3000
 
 # Create app directory
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
+
+RUN apt-get update && apt-get install python
 
 # Installing dependencies
 COPY package*.json /usr/src/app/
