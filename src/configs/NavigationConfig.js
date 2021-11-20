@@ -134,7 +134,7 @@ const componentsNavTree = [
     breadcrumb: true,
     submenu: [
       {
-        key: "components-general",
+        key: "data_source-hp_populer",
         path: `${APP_PREFIX_PATH}/components/general`,
         title: "sidenav.data_source.hp_populer",
         icon: InfoCircleOutlined,
@@ -149,7 +149,7 @@ const componentsNavTree = [
             submenu: [],
           },
           {
-            key: "components-general-icon",
+            key: "data_source-hp_populer-shopee",
             path: `${APP_PREFIX_PATH}/components/general/icon`,
             title: "sidenav.data_source.hp_populer.shopee",
             icon: "",
@@ -159,7 +159,7 @@ const componentsNavTree = [
         ],
       },
       {
-        key: "hp-terlaris",
+        key: "data_source-hp_terlaris",
         path: `${APP_PREFIX_PATH}/components/general`,
         title: "sidenav.data_source.hp_terlaris",
         icon: InfoCircleOutlined,
