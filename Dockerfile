@@ -1,4 +1,4 @@
-FROM node:lts-alpine3.14
+FROM node:lts-buster-slim
 
 ENV PORT 3000
 
