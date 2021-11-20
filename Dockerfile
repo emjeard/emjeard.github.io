@@ -1,4 +1,4 @@
-FROM node:16.13.0
+FROM node:16-buster-slim
 
 ENV PORT 3000
 
@@ -8,7 +8,7 @@ WORKDIR /usr/src/app
 
 # Installing dependencies
 COPY package*.json /usr/src/app/
-RUN npm i --force
+RUN npm install
 
 # Copying source files
 COPY . /usr/src/app
