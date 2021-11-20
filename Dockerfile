@@ -1,4 +1,4 @@
-FROM node:17.1.0-buster-slim
+FROM node:16.13.0-buster-slim
 
 ENV PORT 3000
 
