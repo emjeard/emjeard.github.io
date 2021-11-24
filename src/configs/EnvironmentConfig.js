@@ -1,5 +1,5 @@
 const dev = {
-  API_ENDPOINT_URL: 'http://localhost:4000/'
+  API_ENDPOINT_URL: 'https://api-my.inponsel.com/'
 };
 
 const prod = {

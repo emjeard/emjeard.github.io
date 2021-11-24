@@ -1,7 +1,7 @@
 /* eslint-disable no-use-before-define */
 import axios from "axios";
 import { AUTH_TOKEN } from "redux/constants/Auth";
-const BASE_URL = "http://localhost:4000/";
+const BASE_URL = "https://api-my.inponsel.com/";
 const BASE_URL_SVC = "https://services.inponsel.com";
 
 const BASE_URL_PLACES =
