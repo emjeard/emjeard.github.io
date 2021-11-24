@@ -12,7 +12,7 @@ exampleService.getPost = function (params) {
 
 exampleService.setPost = function (data) {
   return fetch({
-    url: '/posts',
+    url: '/admin/user/login',
     method: 'post',
     data: data
   })

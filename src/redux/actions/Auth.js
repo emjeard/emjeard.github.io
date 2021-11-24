@@ -14,7 +14,7 @@ import {
   SIGNIN_WITH_FACEBOOK_AUTHENTICATED
 } from '../constants/Auth';
 
-export const signIn = (user) => {
+export const signInWithEmail = (user) => {
   return {
     type: SIGNIN,
     payload: user

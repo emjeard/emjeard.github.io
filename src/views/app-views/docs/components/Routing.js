@@ -78,7 +78,7 @@ const Routing = () => {
 	return (
 		<div>
 			<h2>Routing</h2>
-			<p>Emilus use <a href="https://reactrouter.com/" target="_blank" rel="noopener noreferrer">react-router</a> as base routing system. To add a new route in the template, you can follow the steps below.</p>
+			<p>InPonsel use <a href="https://reactrouter.com/" target="_blank" rel="noopener noreferrer">react-router</a> as base routing system. To add a new route in the template, you can follow the steps below.</p>
 			<div className="mt-4">
 				<h4 className="font-weight-bold">Create new route</h4>
 				<p>We place all our post login page components in 

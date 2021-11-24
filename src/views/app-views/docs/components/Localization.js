@@ -66,7 +66,7 @@ const Localization = () => {
 	return (
 		<div>
 			<h2>Localization</h2>
-			<p>Emilus implement localization through <code>react-intl</code>, 
+			<p>InPonsel implement localization through <code>react-intl</code>, 
 			corresponding files can be found in <code>src/lang/</code>, folder structure as below</p>
 			<div className="mb-4">
 				<DirectoryTree

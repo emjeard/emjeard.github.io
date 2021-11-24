@@ -60,7 +60,7 @@ const jwt = () => {
 	return (
 		<div>
 			<h2>JWT</h2>
-			<p>Emilus provide a set of code to let you work with JWT authentication & API with the server application, integration process is described below.</p>
+			<p>InPonsel provide a set of code to let you work with JWT authentication & API with the server application, integration process is described below.</p>
 			<div className="mt-4">
 				<h4>Setup Base URL</h4>
 				<p>Setup your API endpoint URL at <code>src/configs/EnvironmentConfig.js</code> depends on your project environment.</p>
