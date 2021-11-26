@@ -1,5 +1,7 @@
+import { API_BASE_URL } from "constants/ApiConstant";
+
 const dev = {
-  API_ENDPOINT_URL: 'https://api-my.inponsel.com/'
+  API_ENDPOINT_URL: API_BASE_URL
 };
 
 const prod = {

@@ -38,13 +38,13 @@ export const LoginForm = (props) => {
   } = props;
 
   const initialCredential = {
-    email: "jevrieasay10@gmail.com",
-    password: "08568862327",
+    email: "",
+    password: "",
   };
 
   const onLogin = (values) => {
     showLoading();
-    console.log(values);
+    //console.log(values);
     //postLogin(values);
     signInWithEmail(values);
   };

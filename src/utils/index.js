@@ -255,6 +255,7 @@ class Utils {
       // If the item is expired, delete the item from storage
       // and return null
       localStorage.removeItem(key);
+      sessionStorage.removeItem(key);
       return null;
     }
     return item.value;

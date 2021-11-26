@@ -24,10 +24,11 @@ function App() {
     new Promise((resolve) => {
       getMeProfile()
         .then((response) => {
-          console.log(response);
+          //console.log(response);
           is_sessions_exp = response.status;
           if (is_sessions_exp === false) {
             localStorage.removeItem(AUTH_TOKEN);
+            sessionStorage.removeItem(AUTH_TOKEN);
           }
         })
         .then(() => resolve());

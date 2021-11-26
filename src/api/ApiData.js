@@ -1,7 +1,8 @@
 /* eslint-disable no-use-before-define */
 import axios from "axios";
+import { API_BASE_URL } from "constants/ApiConstant";
 import { AUTH_TOKEN } from "redux/constants/Auth";
-const BASE_URL = "https://api-my.inponsel.com/";
+const BASE_URL = API_BASE_URL;
 const BASE_URL_SVC = "https://services.inponsel.com";
 
 const BASE_URL_PLACES =
@@ -10,7 +11,13 @@ const btoa = function (str) {
   return Buffer.from(str).toString("base64");
 };
 
-export { postLogin, getMeProfile };
+export {
+  postLogin,
+  getMeProfile,
+  getListHpEdChoice,
+  getSearchHp,
+  putUpdateHpEditorChoice,
+};
 
 const getToken = function () {
   let isToken = "";
@@ -24,7 +31,7 @@ const getToken = function () {
 const headerRequest = {
   headers: {
     Authorization: "Basic " + btoa("inps2jtd0ll5ru5:222m1lSSSu5"),
-    "ADM-Token": getToken(),
+    "ADM-Token": sessionStorage.getItem(AUTH_TOKEN),
   },
 };
 
@@ -39,4 +46,27 @@ let postLogin = (email, password) => {
 let getMeProfile = () => {
   const url = `${BASE_URL}admin/me`;
   return axios.get(url, headerRequest).then((response) => response.data);
+};
+
+let getListHpEdChoice = (id) => {
+  const url = `${BASE_URL}hp/editor/list?id=${id}`;
+  return axios.get(url, headerRequest).then((response) => response.data);
+};
+
+let getSearchHp = (keyword) => {
+  const url = `${BASE_URL}hp/search/list?key=${keyword}`;
+  return axios.get(url, headerRequest).then((response) => response.data);
+};
+
+let putUpdateHpEditorChoice = (id, title, desc, image, data_hp) => {
+  const url = `${BASE_URL}hp/editor/update`;
+  const formData = new FormData();
+  formData.append("id", id);
+  formData.append("title", title);
+  formData.append("desc", desc);
+  formData.append("image", image);
+  formData.append("data", data_hp);
+  return axios
+    .put(url, formData, headerRequest)
+    .then((response) => response.data);
 };

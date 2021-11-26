@@ -40,6 +40,7 @@ export function* signInWithFBEmail() {
         yield put(showAuthMessage(user.message));
       } else {
         localStorage.setItem(AUTH_TOKEN, user.token);
+        sessionStorage.setItem(AUTH_TOKEN, user.token);
         //utils.setWithExpiry(AUTH_TOKEN, user.token, 60000 * 1 * 10);
         yield put(authenticated(user.token));
       }
@@ -55,6 +56,7 @@ export function* signOut() {
       const signOutUser = yield call(FirebaseService.signOutRequest);
       if (signOutUser === undefined) {
         localStorage.removeItem(AUTH_TOKEN);
+        sessionStorage.removeItem(AUTH_TOKEN);
         yield put(signOutSuccess(signOutUser));
       } else {
         yield put(showAuthMessage(signOutUser.message));
