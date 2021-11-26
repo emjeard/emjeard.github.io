@@ -42,6 +42,7 @@ const PopulerData = (props) => {
           fontSize: "18px",
           display: "flex",
           flexBasis: "5%",
+          padding: "5px 0px 0px 10px",
         }}
       >
         {props.number}
