@@ -80,6 +80,8 @@ export function* signUpWithFBEmail() {
         yield put(showAuthMessage(user.message));
       } else {
         localStorage.setItem(AUTH_TOKEN, user.user.uid);
+        sessionStorage.setItem(AUTH_TOKEN, user.user.uid);
+
         yield put(signUpSuccess(user.user.uid));
       }
     } catch (error) {
