@@ -31,7 +31,7 @@ const getToken = function () {
 const headerRequest = {
   headers: {
     Authorization: "Basic " + btoa("inps2jtd0ll5ru5:222m1lSSSu5"),
-    "ADM-Token": sessionStorage.getItem(AUTH_TOKEN),
+    "ADM-Token": getToken(),
   },
 };
 

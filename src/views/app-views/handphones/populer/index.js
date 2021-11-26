@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { Select, Button } from "antd";
+import { Select, Button, Spin } from "antd";
 import PopulerData from "./PopulerData";
 import { Card } from "antd";
 import { getListHpEdChoice, putUpdateHpEditorChoice } from "api/ApiData";
@@ -11,9 +11,9 @@ const HandphonePopulerApp = () => {
   const [dataHp, setDatahp] = useState([]);
   const [updDataHp, setUpdDataHp] = useState([]);
   const [name, setName] = useState("i'm Grand Parent");
-  const [isSending, setIsSending] = useState(false);
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
+  const [firstLoading, setFirstLoading] = useState(true);
 
   useEffect(() => {
     retrieveDatahp();
@@ -21,9 +21,8 @@ const HandphonePopulerApp = () => {
 
   const sendRequest = useCallback(async () => {
     // don't send again while we are sending
-    if (isSending) return;
+    if (loading) return;
     // update state
-    setIsSending(true);
     setLoading(true);
     // send the actual request
     let data_hp = "";
@@ -36,11 +35,9 @@ const HandphonePopulerApp = () => {
         setMessage(response.message);
       })
       .catch((e) => {
-        setIsSending(false);
         setLoading(false);
       });
     // once the request is sent, update state again
-    setIsSending(false);
     setLoading(false);
   }, []); // update the callback if the state changes
 
@@ -51,6 +48,7 @@ const HandphonePopulerApp = () => {
         for (let i = 0; i < response.data.data_hp.length; i++) {
           setUpdDataHp(updDataHp.push(response.data.data_hp[i].id));
         }
+        setFirstLoading(false);
       })
       .catch((e) => {
         console.log(e);
@@ -70,6 +68,9 @@ const HandphonePopulerApp = () => {
   return (
     <div>
       <Card>
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          {firstLoading && <Spin size="large" />}
+        </div>
         {dataHp &&
           dataHp.map((items, index) => (
             <div style={{ margin: "10px 0px" }}>

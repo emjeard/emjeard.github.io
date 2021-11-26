@@ -23,7 +23,7 @@ const auth = (state = initState, action) => {
 		case AUTHENTICATED:
 			return {
 				...state,
-				loading: false,
+				loading: true,
 				redirect: '/',
 				token: action.token
 			}
