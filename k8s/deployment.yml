@@ -12,7 +12,7 @@ spec:
       name: inponsel-dash-react
       labels:
         name: inponsel-dash-react
-        version: 0.1.1
+        version: 0.1.0
     spec:
       containers:
         - name: inponsel-dash-react
@@ -30,7 +30,7 @@ metadata:
   name: inponsel-dash-react-service
   labels:
     name: inponsel-dash-react
-    version: 0.1.1
+    version: 0.1.0
 spec:
   type: LoadBalancer
   selector:
