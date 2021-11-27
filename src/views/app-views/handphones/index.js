@@ -8,6 +8,7 @@ const Handphones = ({ match }) => (
       <Route
         path={`${match.url}/populer`}
         component={lazy(() => import(`./populer`))}
+        key={Date.now()}
       />
       <Redirect from={`${match.url}`} to={`${match.url}/mail`} />
     </Switch>

@@ -86,14 +86,18 @@ const HandphonePopulerApp = () => {
         <div style={{ display: "flex", justifyContent: "space-between" }}>
           <div>{message}</div>
           <div>
-            <Button
-              type="primary"
-              icon={<EditOutlined />}
-              onClick={sendRequest}
-              loading={loading}
-            >
-              Simpan
-            </Button>
+            {firstLoading === true ? (
+              ""
+            ) : (
+              <Button
+                type="primary"
+                icon={<EditOutlined />}
+                onClick={sendRequest}
+                loading={loading}
+              >
+                Simpan
+              </Button>
+            )}
           </div>
         </div>
       </Card>
