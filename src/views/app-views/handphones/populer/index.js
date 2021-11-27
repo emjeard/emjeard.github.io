@@ -69,7 +69,7 @@ const HandphonePopulerApp = () => {
     <div>
       <Card>
         <div style={{ display: "flex", justifyContent: "center" }}>
-          {firstLoading && <Spin size="large" />}
+          <Spin size="large" />
         </div>
         {dataHp &&
           dataHp.map((items, index) => (
