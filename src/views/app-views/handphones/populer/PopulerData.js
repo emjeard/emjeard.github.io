@@ -8,6 +8,7 @@ const { Option } = AutoComplete;
 const PopulerData = (props) => {
   const [result, setResult] = useState([]);
   const [value, setValue] = useState("");
+  const [image, setImage] = useState("");
 
   const handleSearch = (value) => {
     getSearchHp(value)
@@ -23,7 +24,8 @@ const PopulerData = (props) => {
     const key = option.key;
     const idHp = key.split("-image-")[0];
     const image = key.split("-image-")[1];
-    setValue(image);
+    setImage(image);
+    setValue(value);
     props.parentCallback(props.number + "-" + idHp);
   };
   const onChange = (data) => {
@@ -35,6 +37,7 @@ const PopulerData = (props) => {
       {items.nama_hp}
     </Option>
   ));
+  console.log("nama_hp", props.nama_hp);
   return (
     <div style={{ display: "flex" }}>
       <div
@@ -43,25 +46,31 @@ const PopulerData = (props) => {
           display: "flex",
           flexBasis: "5%",
           padding: "5px 0px 0px 10px",
+          alignItems: "center",
         }}
       >
         {props.number}
       </div>
       <AutoComplete
+        allowClear={true}
         style={{
+          display: "flex",
+          alignItems: "center",
           flexBasis: "85%",
           padding: "0px 40px 0px 0px",
         }}
         onSearch={handleSearch}
         onSelect={onSelect}
+        onChange={onChange}
         placeholder={"Cari hp"}
         defaultValue={props.nama_hp}
+        value={value !== "" ? value : props.nama_hp}
       >
         {children}
       </AutoComplete>
       <img
         src={`https://ik.imagekit.io/inponsel/images/hape/${
-          value === "" ? props.image : value
+          image === "" ? props.image : image
         }`}
         alt={props.nama_hp}
         width={"75px"}

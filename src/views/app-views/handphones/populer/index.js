@@ -6,6 +6,8 @@ import { getListHpEdChoice, putUpdateHpEditorChoice } from "api/ApiData";
 import { EditOutlined, LoginOutlined } from "@ant-design/icons";
 
 const { Option } = Select;
+const init_data = { id: 0, nama_hp: "", image: "" };
+const reset_data = [];
 
 const HandphonePopulerApp = () => {
   const [dataHp, setDatahp] = useState([]);
@@ -14,6 +16,7 @@ const HandphonePopulerApp = () => {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
   const [firstLoading, setFirstLoading] = useState(true);
+  const [emptyData, setEmptyData] = useState([init_data]);
 
   useEffect(() => {
     retrieveDatahp();
@@ -55,8 +58,13 @@ const HandphonePopulerApp = () => {
       });
   };
 
-  const refreshList = () => {
-    retrieveDatahp();
+  const resetData = () => {
+    for (let i = 0; i < 9; i++) {
+      setEmptyData(emptyData.push(init_data));
+    }
+    setDatahp(emptyData)
+    setEmptyData([])
+    console.log("resetData", emptyData);
   };
   const callback = useCallback((value) => {
     console.log("name", value);
@@ -85,19 +93,35 @@ const HandphonePopulerApp = () => {
           ))}
         <div style={{ display: "flex", justifyContent: "space-between" }}>
           <div>{message}</div>
-          <div>
-            {firstLoading === true ? (
-              ""
-            ) : (
-              <Button
-                type="primary"
-                icon={<EditOutlined />}
-                onClick={sendRequest}
-                loading={loading}
-              >
-                Simpan
-              </Button>
-            )}
+          <div style={{ display: "flex" }}>
+            <div>
+              {firstLoading === true ? (
+                ""
+              ) : (
+                <Button
+                  type="primary"
+                  icon={<EditOutlined />}
+                  onClick={sendRequest}
+                  loading={loading}
+                >
+                  Simpan
+                </Button>
+              )}
+            </div>
+            <div style={{ margin: "0px 0px 0px 10px" }}>
+              {firstLoading === true ? (
+                ""
+              ) : (
+                <Button
+                  type="danger"
+                  icon={<EditOutlined />}
+                  onClick={resetData}
+                  loading={loading}
+                >
+                  Reset
+                </Button>
+              )}
+            </div>
           </div>
         </div>
       </Card>
