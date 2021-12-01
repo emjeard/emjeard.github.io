@@ -61,7 +61,9 @@ export const LoginForm = (props) => {
 
   useEffect(() => {
     if (token !== null && allowRedirect) {
-      history.push(redirect);
+      console.log("useEffect", redirect);
+      history.push({ pathname: '/empty' });
+      history.replace({ pathname: redirect });
     }
     if (showMessage) {
       setTimeout(() => {

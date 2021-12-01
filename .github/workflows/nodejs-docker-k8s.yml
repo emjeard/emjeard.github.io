@@ -1,62 +1,38 @@
-# This workflow will do a clean install of node dependencies, cache/restore them, build the source code and run tests across different versions of node
-# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+# This is a basic workflow to help you get started with Actions
 
-name: Next JS Push to DockerHub and DO K8s
+name: CD
 
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the master branch
 on:
   push:
     branches: [master]
-  pull_request:
-    branches: [master]
 
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  docker:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
     runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+
+      # Runs a set of commands using the runners shell
+      - name: InPonsel SSH
+        uses: appleboy/ssh-action@master
         with:
-          ref: master
-      - name: Set up QEMU
-        uses: docker/setup-qemu-action@v1
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1
-      - name: Login to DockerHub
-        uses: docker/login-action@v1
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
-      - name: Build and push
-        uses: docker/build-push-action@v2
-        with:
-          context: .
-          push: true
-          tags: inponsel/inponsel-dash-react:latest
-
-  deploy:
-    runs-on: ubuntu-latest
-    needs: docker
-    steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it.
-      - name: Checkout master
-        uses: actions/checkout@v2
-        with:
-          ref: master
-
-      # Install doctl.
-      - name: Install doctl
-        uses: digitalocean/action-doctl@v2
-        with:
-          token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
-
-      - name: Update deployment file
-        run: TAG=$(echo $GITHUB_SHA | head -c7) && sed -i 's|<IMAGE>|${{ secrets.REGISTRY_NAME }}/inponsel-dash-react:'${TAG}'|' $GITHUB_WORKSPACE/k8s/deployment.yml
-
-      - name: Save DigitalOcean kubeconfig
-        run: doctl kubernetes cluster kubeconfig save ${{ secrets.CLUSTER_NAME }}
-
-      - name: Deploy to DigitalOcean Kubernetes
-        run: kubectl apply -f $GITHUB_WORKSPACE/k8s/deployment.yml
-
-      - name: Verify deployment
-        run: kubectl rollout status deployment/inponsel-dash-react
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.SERVER_PASSWORD }}
+          port: 22
+          script: |
+            cd ..
+            cd /mnt/volume_sgp1_01/inponsel/dashboard/inponsel-dash-react
+            sudo rm -rf package-lock.json
+            git stash
+            git pull https://${{ secrets.GIT_TOKEN }}:x-oauth-basic@github.com/emjeard/inponsel-dash-react.git master
+            npm i -d postcss
+            npm run build
