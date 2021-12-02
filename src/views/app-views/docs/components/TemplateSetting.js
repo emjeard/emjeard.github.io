@@ -23,7 +23,7 @@ export const THEME_CONFIG = {
 };
 `
 
-const lessConfigStr = `@blue-base:          #3e79f7;
+const lessConfigStr = `@blue-base:          #C10000;
 @purple-base:        #a461d8;
 @cyan-base:          #04d182;
 @green-base:         #21B573;
