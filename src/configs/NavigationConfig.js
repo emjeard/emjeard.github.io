@@ -37,24 +37,24 @@ const dashBoardNavTree = [
     breadcrumb: false,
     submenu: [
       {
-        key: "dashboards-default",
-        path: `${APP_PREFIX_PATH}/dashboards/default`,
+        key: "dashboards-rss",
+        path: `${APP_PREFIX_PATH}/dashboards/rss`,
         title: "sidenav.dashboard.rss_feed",
         icon: DashboardOutlined,
         breadcrumb: false,
         submenu: [],
       },
       {
-        key: "dashboards-analytic",
-        path: `${APP_PREFIX_PATH}/dashboards/analytic`,
+        key: "dashboards-brand",
+        path: `${APP_PREFIX_PATH}/dashboards/brand`,
         title: "sidenav.dashboard.brand",
         icon: DotChartOutlined,
         breadcrumb: false,
         submenu: [],
       },
       {
-        key: "dashboards-sales",
-        path: `${APP_PREFIX_PATH}/dashboards/sales`,
+        key: "dashboards-service-center",
+        path: `${APP_PREFIX_PATH}/dashboards/service-center`,
         title: "sidenav.dashboard.service_center",
         icon: FundOutlined,
         breadcrumb: false,
@@ -74,7 +74,7 @@ const appsNavTree = [
     submenu: [
       {
         key: "handphones-product-list",
-        path: `${APP_PREFIX_PATH}/handphones/product-list`,
+        path: `${APP_PREFIX_PATH}/handphones/list`,
         title: "sidenav.handphones.product_list",
         icon: MailOutlined,
         breadcrumb: false,
@@ -82,7 +82,7 @@ const appsNavTree = [
       },
       {
         key: "handphones-post-product",
-        path: `${APP_PREFIX_PATH}/handphones/post-product`,
+        path: `${APP_PREFIX_PATH}/handphones/post`,
         title: "sidenav.handphones.post_product",
         icon: MessageOutlined,
         breadcrumb: false,
@@ -127,22 +127,22 @@ const appsNavTree = [
 
 const componentsNavTree = [
   {
-    key: "components",
-    path: `${APP_PREFIX_PATH}/components`,
+    key: "data_source",
+    path: `${APP_PREFIX_PATH}/data-source`,
     title: "sidenav.data_source",
     icon: AntDesignOutlined,
     breadcrumb: true,
     submenu: [
       {
         key: "data_source-hp_populer",
-        path: `${APP_PREFIX_PATH}/components/general`,
+        path: `${APP_PREFIX_PATH}/data-source/hp-populer`,
         title: "sidenav.data_source.hp_populer",
         icon: InfoCircleOutlined,
         breadcrumb: true,
         submenu: [
           {
             key: "data_source-hp_populer-google_trend",
-            path: `${APP_PREFIX_PATH}/components/general/button`,
+            path: `${APP_PREFIX_PATH}/data-source/hp-populer/google-trend`,
             title: "sidenav.data_source.hp_populer.google_trend",
             icon: "",
             breadcrumb: true,
@@ -150,7 +150,7 @@ const componentsNavTree = [
           },
           {
             key: "data_source-hp_populer-shopee",
-            path: `${APP_PREFIX_PATH}/components/general/icon`,
+            path: `${APP_PREFIX_PATH}/data-source/hp-populer/shopee`,
             title: "sidenav.data_source.hp_populer.shopee",
             icon: "",
             breadcrumb: true,
@@ -160,14 +160,14 @@ const componentsNavTree = [
       },
       {
         key: "data_source-hp_terlaris",
-        path: `${APP_PREFIX_PATH}/components/general`,
+        path: `${APP_PREFIX_PATH}/data-source/hp-terlaris`,
         title: "sidenav.data_source.hp_terlaris",
         icon: InfoCircleOutlined,
         breadcrumb: true,
         submenu: [
           {
             key: "data_source-hp_terlaris-shopee",
-            path: `${APP_PREFIX_PATH}/components/general/button`,
+            path: `${APP_PREFIX_PATH}/data-source/hp-terlaris/shopee`,
             title: "sidenav.data_source.hp_terlaris.shopee",
             icon: "",
             breadcrumb: true,

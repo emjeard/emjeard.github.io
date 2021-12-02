@@ -56,8 +56,8 @@ const PopulerData = (props) => {
         style={{
           display: "flex",
           alignItems: "center",
-          flexBasis: "85%",
-          padding: "0px 40px 0px 0px",
+          flexBasis: "90%",
+          padding: "0px 20px 0px 0px",
         }}
         onSearch={handleSearch}
         onSelect={onSelect}
@@ -73,7 +73,12 @@ const PopulerData = (props) => {
           image === "" ? props.image : image
         }`}
         alt={props.nama_hp}
-        width={"75px"}
+        width={"35px"}
+        style={{
+          padding: "3px",
+          backgroundColor: "#f1f1f1",
+          borderRadius: "3px",
+        }}
       />
     </div>
   );

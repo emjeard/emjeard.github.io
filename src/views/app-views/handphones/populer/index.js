@@ -3,7 +3,8 @@ import { Select, Button, Spin } from "antd";
 import PopulerData from "./PopulerData";
 import { Card } from "antd";
 import { getListHpEdChoice, putUpdateHpEditorChoice } from "api/ApiData";
-import { EditOutlined, LoginOutlined } from "@ant-design/icons";
+import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
+import moment from "moment";
 
 const { Option } = Select;
 const init_data = { id: 0, nama_hp: "", image: "" };
@@ -17,6 +18,8 @@ const HandphonePopulerApp = () => {
   const [message, setMessage] = useState("");
   const [firstLoading, setFirstLoading] = useState(true);
   const [emptyData, setEmptyData] = useState([init_data]);
+  const [lastUpdate, setLastUpdate] = useState("");
+  const [isSuccess, setIsSuccess] = useState(true);
 
   useEffect(() => {
     retrieveDatahp();
@@ -48,6 +51,8 @@ const HandphonePopulerApp = () => {
     getListHpEdChoice(1)
       .then((response) => {
         setDatahp(response.data.data_hp);
+        setLastUpdate(response.data.last_update);
+        setIsSuccess(response.data.status);
         for (let i = 0; i < response.data.data_hp.length; i++) {
           setUpdDataHp(updDataHp.push(response.data.data_hp[i].id));
         }
@@ -55,15 +60,20 @@ const HandphonePopulerApp = () => {
       })
       .catch((e) => {
         console.log(e);
+        setFirstLoading(false);
       });
+  };
+
+  const reloadPage = () => {
+    window.location.reload();
   };
 
   const resetData = () => {
     for (let i = 0; i < 9; i++) {
       setEmptyData(emptyData.push(init_data));
     }
-    setDatahp(emptyData)
-    setEmptyData([])
+    setDatahp(emptyData);
+    setEmptyData([]);
     console.log("resetData", emptyData);
   };
   const callback = useCallback((value) => {
@@ -76,6 +86,24 @@ const HandphonePopulerApp = () => {
   return (
     <div>
       <Card>
+        {isSuccess === false ? (
+          <div style={{ display: "flex", justifyContent: "center" }}>
+            <Button
+              type="primary"
+              icon={<EditOutlined />}
+              onClick={reloadPage}
+              style={{
+                width: 180,
+                backgroundColor: "#219653",
+                border: "none",
+              }}
+            >
+              Reload
+            </Button>
+          </div>
+        ) : (
+          ""
+        )}
         <div style={{ display: "flex", justifyContent: "center" }}>
           {firstLoading && <Spin size="large" />}
         </div>
@@ -91,39 +119,74 @@ const HandphonePopulerApp = () => {
               />
             </div>
           ))}
-        <div style={{ display: "flex", justifyContent: "space-between" }}>
-          <div>{message}</div>
-          <div style={{ display: "flex" }}>
-            <div>
-              {firstLoading === true ? (
-                ""
-              ) : (
-                <Button
-                  type="primary"
-                  icon={<EditOutlined />}
-                  onClick={sendRequest}
-                  loading={loading}
-                >
-                  Simpan
-                </Button>
-              )}
-            </div>
-            <div style={{ margin: "0px 0px 0px 10px" }}>
-              {firstLoading === true ? (
-                ""
-              ) : (
-                <Button
-                  type="danger"
-                  icon={<EditOutlined />}
-                  onClick={resetData}
-                  loading={loading}
-                >
-                  Reset
-                </Button>
-              )}
+        <div style={{ margin: "0px 0px 0px 13px" }}>
+          {lastUpdate === ""
+            ? ""
+            : `Last updated: ${moment(lastUpdate).format(
+                "MMMM Do YYYY, HH:mm"
+              )}`}
+        </div>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            padding: "10px 0px 0px 0px",
+          }}
+        >
+          {message}
+        </div>
+        {isSuccess === false ? (
+          ""
+        ) : (
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              padding: "30px 0px",
+            }}
+          >
+            <div style={{ display: "flex" }}>
+              <div>
+                {firstLoading === true ? (
+                  ""
+                ) : (
+                  <Button
+                    type="primary"
+                    icon={<EditOutlined />}
+                    onClick={sendRequest}
+                    loading={loading}
+                    style={{
+                      width: 180,
+                      backgroundColor: "#219653",
+                      border: "none",
+                    }}
+                  >
+                    Simpan
+                  </Button>
+                )}
+              </div>
+              <div style={{ margin: "0px 0px 0px 10px" }}>
+                {firstLoading === true ? (
+                  ""
+                ) : (
+                  <Button
+                    type="danger"
+                    icon={<DeleteOutlined />}
+                    onClick={resetData}
+                    loading={loading}
+                    style={{
+                      width: 180,
+                      backgroundColor: "#dd3030",
+                      border: "none",
+                    }}
+                  >
+                    Reset
+                  </Button>
+                )}
+              </div>
             </div>
           </div>
-        </div>
+        )}
       </Card>
     </div>
   );

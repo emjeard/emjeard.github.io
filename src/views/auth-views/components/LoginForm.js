@@ -62,8 +62,9 @@ export const LoginForm = (props) => {
   useEffect(() => {
     if (token !== null && allowRedirect) {
       console.log("useEffect", redirect);
-      history.push({ pathname: '/empty' });
-      history.replace({ pathname: redirect });
+      //history.push({ pathname: '/empty' });
+      //history.replace({ pathname: redirect });
+      window.location.href = "/";
     }
     if (showMessage) {
       setTimeout(() => {

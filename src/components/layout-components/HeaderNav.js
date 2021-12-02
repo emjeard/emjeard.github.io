@@ -135,7 +135,6 @@ export const HeaderNav = (props) => {
                 Post Article
               </Button>
             </div>
-            <NavNotification />
             <NavProfile />
             <NavPanel direction={direction} />
           </div>
