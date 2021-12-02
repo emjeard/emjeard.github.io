@@ -47,7 +47,7 @@ const LoginTwo = (props) => {
                   src="/img/others/img-18.png"
                   alt=""
                 />
-                <h1 className="text-white">Welcome to emilus</h1>
+                <h1 className="text-white">Welcome to InPonsel</h1>
                 <p className="text-white">
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                   Vivamus ullamcorper nisl erat, vel convallis elit fermentum

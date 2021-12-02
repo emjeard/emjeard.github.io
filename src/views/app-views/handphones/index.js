@@ -8,9 +8,16 @@ const Handphones = ({ match }) => (
       <Route
         path={`${match.url}/populer`}
         component={lazy(() => import(`./populer`))}
-        key={Date.now()}
       />
-      <Redirect from={`${match.url}`} to={`${match.url}/mail`} />
+      <Route
+        path={`${match.url}/list`}
+        component={lazy(() => import(`./list`))}
+      />
+      <Route
+        path={`${match.url}/post`}
+        component={lazy(() => import(`./post`))}
+      />
+      <Redirect from={`${match.url}`} to={`${match.url}/default`} />
     </Switch>
   </Suspense>
 );

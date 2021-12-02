@@ -36,6 +36,10 @@ export const AppViews = () => {
           component={lazy(() => import(`./docs`))}
         />
         <Route
+          path={`${APP_PREFIX_PATH}/data-source`}
+          component={lazy(() => import(`./data-source`))}
+        />
+        <Route
           path={`${APP_PREFIX_PATH}/handphones`}
           component={lazy(() => import(`./handphones`))}
           forceRefresh={true}
