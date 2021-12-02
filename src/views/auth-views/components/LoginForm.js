@@ -64,7 +64,7 @@ export const LoginForm = (props) => {
       console.log("useEffect", redirect);
       //history.push({ pathname: '/empty' });
       //history.replace({ pathname: redirect });
-      window.location.href = "/";
+      window.location.href = "/app/dashboards/default";
     }
     if (showMessage) {
       setTimeout(() => {
