@@ -18,11 +18,12 @@ const RSSApp = () => {
   useEffect(() => {
     const urlPath = new URL(window.location.href);
     const page = urlPath.searchParams.get("page");
-    setCurrentPage(parseInt(page));
+    setCurrentPage(parseInt(page === null ? 1 : page));
     retrieveDatahp(page, 10, "");
   }, []);
 
   const retrieveDatahp = (page, many, filter) => {
+    page = page === null ? 1 : page;
     getListNews(page, many, filter)
       .then((response) => {
         setDataNews(response.data);
