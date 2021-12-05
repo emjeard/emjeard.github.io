@@ -1,66 +1,8 @@
-import React, { useState, useRef } from "react";
-import {
-  DashboardOutlined,
-  AppstoreOutlined,
-  AntDesignOutlined,
-  FileTextOutlined,
-  SearchOutlined,
-} from "@ant-design/icons";
-import { Link } from "react-router-dom";
+import React, { useState, useRef, useCallback } from "react";
+import { SearchOutlined } from "@ant-design/icons";
 import { AutoComplete, Input } from "antd";
-import IntlMessage from "components/util-components/IntlMessage";
-import navigationConfig from "configs/NavigationConfig";
-
-function getOptionList(navigationTree, optionTree) {
-  optionTree = optionTree ? optionTree : [];
-  for (const navItem of navigationTree) {
-    if (navItem.submenu.length === 0) {
-      optionTree.push(navItem);
-    }
-    if (navItem.submenu.length > 0) {
-      getOptionList(navItem.submenu, optionTree);
-    }
-  }
-  return optionTree;
-}
-
-const optionList = getOptionList(navigationConfig);
-
-const getCategoryIcon = (category) => {
-  switch (category) {
-    case "dashboards":
-      return <DashboardOutlined className="text-success" />;
-    case "apps":
-      return <AppstoreOutlined className="text-danger" />;
-    case "components":
-      return <AntDesignOutlined className="text-primary" />;
-    case "extra":
-      return <FileTextOutlined className="text-warning" />;
-    default:
-      return null;
-  }
-};
-
-const searchResult = () =>
-  optionList.map((item) => {
-    const category = item.key.split("-")[0];
-    return {
-      value: item.path,
-      label: (
-        <Link to={item.path}>
-          <div className="search-list-item">
-            <div className="icon">{getCategoryIcon(category)}</div>
-            <div>
-              <div className="font-weight-semibold">
-                <IntlMessage id={item.title} />
-              </div>
-              <div className="font-size-sm text-muted">{category} </div>
-            </div>
-          </div>
-        </Link>
-      ),
-    };
-  });
+import { getSearchMore } from "api/ApiData";
+import debounce from "lodash/debounce";
 
 const SearchInput = (props) => {
   const { active, close, isMobile, mode } = props;
@@ -68,17 +10,78 @@ const SearchInput = (props) => {
   const [options, setOptions] = useState([]);
   const inputRef = useRef(null);
 
-  const onSelect = () => {
-    setValue("");
-    setOptions([]);
-    if (close) {
-      close();
+  const onChange = (data) => {
+    setValue(data);
+  };
+  const onSearch = (data) => {
+    if (data.length >= 4) {
+      console.log("onSearch", data);
+      retrieveData(data);
     }
   };
 
-  const onSearch = (searchText) => {
-    setValue(searchText);
-    setOptions(!searchText ? [] : searchResult(searchText));
+  const renderTitle = (title) => (
+    <span>
+      {title}
+      <a
+        style={{
+          float: "right",
+        }}
+        href="https://www.google.com/search?q=antd"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        more
+      </a>
+    </span>
+  );
+
+  const renderItem = (title, count) => ({
+    value: title,
+    label: (
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+        }}
+      >
+        {title}
+        <span></span>
+      </div>
+    ),
+  });
+
+  const retrieveData = (keyword) => {
+    getSearchMore(keyword)
+      .then((response) => {
+        let optionsHp = [];
+        let optionsArticle = [];
+
+        const dataHp = response.data.data_hp;
+        const dataArticle = response.data.data_article;
+
+        for (let i = 0; i < dataHp.length; i++) {
+          optionsHp.push(renderItem(dataHp[i].nama_hp, 100000));
+        }
+
+        for (let i = 0; i < dataArticle.length; i++) {
+          optionsArticle.push(renderItem(dataArticle[i].judul, 100000));
+        }
+
+        setOptions([
+          {
+            label: renderTitle("Handphones"),
+            options: optionsHp,
+          },
+          {
+            label: renderTitle("Articles"),
+            options: optionsArticle,
+          },
+        ]);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
   };
 
   const autofocus = () => {
@@ -95,17 +98,15 @@ const SearchInput = (props) => {
       className={`nav-search-input ${isMobile ? "is-mobile" : ""} ${
         mode === "light" ? "light" : ""
       }`}
-      dropdownClassName="nav-search-dropdown"
-      options={options}
-      onSelect={onSelect}
+      dropdownClassName="certain-category-search-dropdown"
+      dropdownMatchSelectWidth={500}
+      onChange={onChange}
       onSearch={onSearch}
+      options={options}
       value={value}
-      filterOption={(inputValue, option) =>
-        option.value.toUpperCase().indexOf(inputValue.toUpperCase()) !== -1
-      }
     >
       <Input
-        placeholder="Cari Hp..."
+        placeholder="Cari Hp dan Artikel..."
         prefix={<SearchOutlined className="mr-0" />}
       />
     </AutoComplete>

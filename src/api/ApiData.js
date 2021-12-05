@@ -17,6 +17,8 @@ export {
   getListHpEdChoice,
   getSearchHp,
   putUpdateHpEditorChoice,
+  getSearchMore,
+  getListNews,
 };
 
 const getToken = function () {
@@ -69,4 +71,14 @@ let putUpdateHpEditorChoice = (id, title, desc, image, data_hp) => {
   return axios
     .put(url, formData, headerRequest)
     .then((response) => response.data);
+};
+
+let getSearchMore = (keyword) => {
+  const url = `${BASE_URL}search/list?key=${keyword}`;
+  return axios.get(url, headerRequest).then((response) => response.data);
+};
+
+let getListNews = (page, many, filter) => {
+  const url = `${BASE_URL}article/list?page=${page}&many=${many}`;
+  return axios.get(url, headerRequest).then((response) => response.data);
 };
