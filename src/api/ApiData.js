@@ -79,6 +79,6 @@ let getSearchMore = (keyword) => {
 };
 
 let getListNews = (page, many, filter) => {
-  const url = `${BASE_URL}article/list?page=${page}&many=${many}`;
+  const url = `${BASE_URL}article/list?page=${page}&many=${many}${filter}`;
   return axios.get(url, headerRequest).then((response) => response.data);
 };

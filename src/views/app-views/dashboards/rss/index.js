@@ -1,16 +1,17 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { Card, Pagination } from "antd";
+import { Card, Pagination, Input } from "antd";
 import ListNews from "./ListNews";
 import { getListNews } from "api/ApiData";
 import { Select, Button, Spin } from "antd";
 import moment from "moment";
 
-const { Option } = Select;
+const { Search } = Input;
 const init_data = { id: 0, nama_hp: "", image: "" };
 const reset_data = [];
 
 const RSSApp = () => {
   const [dataNews, setDataNews] = useState([]);
+  const [keysearch, setKeysearch] = useState("");
   const [totalData, setTotalData] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
   const [firstLoading, setFirstLoading] = useState(true);
@@ -18,11 +19,19 @@ const RSSApp = () => {
   useEffect(() => {
     const urlPath = new URL(window.location.href);
     const page = urlPath.searchParams.get("page");
+    let keyword = urlPath.searchParams.get("key");
+    if (keyword !== null) {
+      setKeysearch(keyword);
+      keyword = "&key=" + keyword;
+    } else {
+      keyword = "";
+    }
     setCurrentPage(parseInt(page === null ? 1 : page));
-    retrieveDatahp(page, 10, "");
+    retrieveDatahp(page, 10, keyword);
   }, []);
 
   const retrieveDatahp = (page, many, filter) => {
+    setFirstLoading(true);
     page = page === null ? 1 : page;
     getListNews(page, many, filter)
       .then((response) => {
@@ -41,12 +50,31 @@ const RSSApp = () => {
     setCurrentPage(pageNumber);
     window.history.replaceState(null, "", "?page=" + pageNumber);
   };
+
+  const searchArticle = (value) => {
+    console.log(value);
+    retrieveDatahp(1, 10, "&key=" + value);
+    setCurrentPage(1);
+    window.history.replaceState(null, "", "?page=1&key=" + value);
+  };
+
+  const onChangeSearch = (data) => {
+    console.log("onChangeSearch", data.target.value);
+    setKeysearch(data.target.value);
+  };
   return (
     <div>
       <Card>
-        <div style={{ display: "flex", justifyContent: "center" }}>
-          {firstLoading && <Spin size="large" />}
+        <div style={{ margin: "10px 0px 20px" }}>
+          <Search
+            value={keysearch}
+            placeholder="Cari artikel..."
+            onSearch={(value) => searchArticle(value)}
+            onChange={onChangeSearch}
+            enterButton
+          />
         </div>
+
         <div style={{ display: "flex", backgroundColor: "#c10000" }}>
           <div
             className="rss-head-text"
@@ -94,6 +122,18 @@ const RSSApp = () => {
             Action
           </div>
         </div>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
+          {firstLoading && (
+            <span style={{ padding: "50px 0px" }}>
+              <Spin size="large" />
+            </span>
+          )}
+        </div>
         {dataNews &&
           dataNews.map((items, index) => (
             <div
@@ -126,6 +166,7 @@ const RSSApp = () => {
         >
           <Pagination
             showQuickJumper
+            showSizeChanger={false}
             defaultCurrent={currentPage}
             current={currentPage}
             total={totalData}
