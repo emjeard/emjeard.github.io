@@ -34,7 +34,13 @@ const GoogleTrendApp = () => {
       data_hp += updDataHp[i] + ",";
     }
     data_hp = data_hp.slice(0, -1);
-    await putUpdateHpEditorChoice(2, "title", "desc", "image", data_hp)
+    await putUpdateHpEditorChoice(
+      2,
+      "Hp Populer - Google Trend",
+      "desc",
+      "image",
+      data_hp
+    )
       .then((response) => {
         setMessage(response.message);
       })
