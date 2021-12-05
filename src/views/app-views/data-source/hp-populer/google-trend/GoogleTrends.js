@@ -7,7 +7,9 @@ export default function GoogleTrends({
   url,
   geo,
   time,
-  widget,category
+  widget,
+  category,
+  property,
 }) {
   const handleScriptLoad = (_) => {
     window.trends.embed.renderExploreWidgetTo(
@@ -16,10 +18,12 @@ export default function GoogleTrends({
       {
         comparisonItem: [{ keyword, geo: geo, time: time }],
         category: category,
-        property: "",
+        property: property,
       },
       {
-        exploreQuery: `q=${encodeURI(keyword)}&cat=${category}&geo=${geo}&date=now ${time}`,
+        exploreQuery: `q=${encodeURI(
+          keyword
+        )}&cat=${category}&geo=${geo}&gprop=${property}&date=${time}`,
         guestPath: "https://trends.google.com:443/trends/embed/",
       }
     );
