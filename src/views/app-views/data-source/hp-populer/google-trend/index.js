@@ -92,7 +92,12 @@ const GoogleTrendApp = () => {
     <div>
       <Card>
         <div
-          style={{ fontSize: 18, color: "red", padding: "0px 0px 0px 10px" }}
+          style={{
+            fontSize: "0.95rem",
+            fontWeight: 500,
+            color: "red",
+            padding: "0px 0px 0px 10px",
+          }}
         >
           WEB SEARCH
         </div>
@@ -153,7 +158,12 @@ const GoogleTrendApp = () => {
           </div>
         </div>
         <div
-          style={{ fontSize: 18, color: "red", padding: "30px 0px 0px 10px" }}
+          style={{
+            fontSize: "0.95rem",
+            fontWeight: 500,
+            color: "red",
+            padding: "30px 0px 0px 10px",
+          }}
         >
           GOOGLE SHOPPING
         </div>
@@ -215,7 +225,12 @@ const GoogleTrendApp = () => {
         </div>
 
         <div
-          style={{ fontSize: 18, color: "red", padding: "30px 0px 0px 10px" }}
+          style={{
+            fontSize: "0.95rem",
+            fontWeight: 500,
+            color: "red",
+            padding: "30px 0px 0px 10px",
+          }}
         >
           IMAGE SEARCH
         </div>
@@ -276,7 +291,12 @@ const GoogleTrendApp = () => {
           </div>
         </div>
         <div
-          style={{ fontSize: 18, color: "red", padding: "30px 0px 0px 10px" }}
+          style={{
+            fontSize: "0.95rem",
+            fontWeight: 500,
+            color: "red",
+            padding: "30px 0px 0px 10px",
+          }}
         >
           YOUTUBE
         </div>
@@ -327,7 +347,17 @@ const GoogleTrendApp = () => {
         ) : (
           ""
         )}
-        <div style={{ margin: "30px 0px 0px 10px" }}>Rekapitulasi</div>
+        <div
+          style={{
+            margin: "30px 0px 10px 0px",
+            backgroundColor: "#f1f1f1",
+            padding: "5px 10px",
+            fontWeight: 600,
+            fontSize: "0.95rem",
+          }}
+        >
+          Rekapitulasi
+        </div>
         <div style={{ display: "flex", justifyContent: "center" }}>
           {firstLoading && <Spin size="large" />}
         </div>
