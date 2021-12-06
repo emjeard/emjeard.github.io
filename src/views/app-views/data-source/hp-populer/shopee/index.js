@@ -36,7 +36,13 @@ const ShopeePopulerApp = () => {
       data_hp += updDataHp[i] + ",";
     }
     data_hp = data_hp.slice(0, -1);
-    await putUpdateHpEditorChoice(3, "Hp Populer - Shopee", "desc", "image", data_hp)
+    await putUpdateHpEditorChoice(
+      3,
+      "Hp Populer - Shopee",
+      "desc",
+      "image",
+      data_hp
+    )
       .then((response) => {
         setMessage(response.message);
       })
@@ -85,6 +91,22 @@ const ShopeePopulerApp = () => {
   }, []);
   return (
     <div>
+      <div
+        style={{
+          fontSize: "0.95rem",
+          fontWeight: 500,
+          color: "red",
+          padding: "0px 0px 0px 10px",
+          textDecoration: "underline",
+        }}
+      >
+        <a
+          href="https://shopee.co.id/Handphone-cat.11044458.11044476?brands=1695278%2C1695289%2C1058171%2C1695303%2C1051679%2C1147183%2C1016272%2C1189223%2C1695285%2C1043105%2C1026444%2C1062070%2C1695266%2C1695294%2C1145522%2C1695293%2C1034416&filters=7%2C6&minPrice=650000&pLabelIds=1000953&page=0"
+          target="_blank"
+        >
+          Cek di Shopee
+        </a>
+      </div>
       <Card>
         {isSuccess === false ? (
           <div style={{ display: "flex", justifyContent: "center" }}>
