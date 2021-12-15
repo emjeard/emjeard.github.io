@@ -4,6 +4,7 @@ import ListNews from "./ListNews";
 import { getListNews } from "api/ApiData";
 import { Select, Button, Spin } from "antd";
 import moment from "moment";
+import Sticky from "react-stickynode";
 
 const { Search } = Input;
 const init_data = { id: 0, nama_hp: "", image: "" };
@@ -45,10 +46,18 @@ const RSSApp = () => {
       });
   };
   const onChange = (pageNumber) => {
-    retrieveDatahp(pageNumber, 10, "");
-    console.log("Page: ", pageNumber);
+    const urlPath = new URL(window.location.href);
+    let keyword = urlPath.searchParams.get("key");
+
+    if (keyword !== null) {
+      setKeysearch(keyword);
+      keyword = "&key=" + keyword;
+    } else {
+      keyword = "";
+    }
+    retrieveDatahp(pageNumber, 10, keyword);
     setCurrentPage(pageNumber);
-    window.history.replaceState(null, "", "?page=" + pageNumber);
+    window.history.replaceState(null, "", "?page=" + pageNumber + keyword);
   };
 
   const searchArticle = (value) => {
@@ -74,54 +83,56 @@ const RSSApp = () => {
             enterButton
           />
         </div>
+        <Sticky enabled={true} top={70} innerZ={1}>
+          <div style={{ display: "flex", backgroundColor: "#c10000" }}>
+            <div
+              className="rss-head-text"
+              style={{ padding: "5px 0px", maxWidth: 50, width: 50 }}
+            >
+              id
+            </div>
+            <div
+              className="rss-head-text"
+              style={{ padding: "5px 15px", maxWidth: 100, width: 100 }}
+            >
+              Published
+            </div>
+            <div
+              className="rss-head-text"
+              style={{ padding: "5px 15px", maxWidth: 400, width: 400 }}
+            >
+              Title
+            </div>
+            <div
+              className="rss-head-text"
+              style={{ padding: "5px 15px", maxWidth: 120, width: 120 }}
+            >
+              Media Portal
+            </div>
+            <div
+              className="rss-head-text"
+              style={{ padding: "5px 15px", maxWidth: 70, width: 70 }}
+            >
+              Headline
+            </div>
+            <div
+              className="rss-head-text"
+              style={{ padding: "5px 15px", maxWidth: 80, width: 80 }}
+            >
+              Status
+            </div>
+            <div
+              className="rss-head-text"
+              style={{ padding: "5px 15px", maxWidth: 100, width: 100 }}
+            >
+              Updated
+            </div>
+            <div className="rss-head-text" style={{ padding: "5px 15px" }}>
+              Action
+            </div>
+          </div>
+        </Sticky>
 
-        <div style={{ display: "flex", backgroundColor: "#c10000" }}>
-          <div
-            className="rss-head-text"
-            style={{ padding: "5px 0px", maxWidth: 50, width: 50 }}
-          >
-            id
-          </div>
-          <div
-            className="rss-head-text"
-            style={{ padding: "5px 15px", maxWidth: 100, width: 100 }}
-          >
-            Published at
-          </div>
-          <div
-            className="rss-head-text"
-            style={{ padding: "5px 15px", maxWidth: 400, width: 400 }}
-          >
-            Title
-          </div>
-          <div
-            className="rss-head-text"
-            style={{ padding: "5px 15px", maxWidth: 120, width: 120 }}
-          >
-            Media Portal
-          </div>
-          <div
-            className="rss-head-text"
-            style={{ padding: "5px 15px", maxWidth: 70, width: 70 }}
-          >
-            Headline
-          </div>
-          <div
-            className="rss-head-text"
-            style={{ padding: "5px 15px", maxWidth: 80, width: 80 }}
-          >
-            Status
-          </div>
-          <div
-            className="rss-head-text"
-            style={{ padding: "5px 15px", maxWidth: 100, width: 100 }}
-          >
-            Updated at
-          </div>
-          <div className="rss-head-text" style={{ padding: "5px 15px" }}>
-            Action
-          </div>
-        </div>
         <div
           style={{
             display: "flex",
