@@ -46,7 +46,9 @@ const ListNews = (props) => {
         <span
           style={{ padding: "5px", background: "#ff7600", borderRadius: "5px" }}
         >
-          <EditOutlined style={{ color: "#fff" }} />
+          <a href={`/dashboards/rss/edit/${props.id}`}>
+            <EditOutlined style={{ color: "#fff" }} />
+          </a>
         </span>
       </div>
     </div>

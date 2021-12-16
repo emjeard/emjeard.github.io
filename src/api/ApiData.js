@@ -19,7 +19,8 @@ export {
   putUpdateHpEditorChoice,
   getSearchMore,
   getListNews,
-  getListHp
+  getListHp,
+  getDetailRSS
 };
 
 const getToken = function () {
@@ -86,5 +87,10 @@ let getListNews = (page, many, filter) => {
 
 let getListHp = (page, many, filter) => {
   const url = `${BASE_URL}hp/list?page=${page}&many=${many}${filter}`;
+  return axios.get(url, headerRequest).then((response) => response.data);
+};
+
+let getDetailRSS = (id) => {
+  const url = `${BASE_URL}article/detail?id=${id}`;
   return axios.get(url, headerRequest).then((response) => response.data);
 };

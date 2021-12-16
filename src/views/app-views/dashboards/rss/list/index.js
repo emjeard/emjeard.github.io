@@ -1,17 +1,16 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { Card, Pagination, Input } from "antd";
-import ListHandphone from "./ListHandphone";
-import { getListHp } from "api/ApiData";
+import ListNews from "./ListNews";
+import { getListNews } from "api/ApiData";
 import { Select, Button, Spin } from "antd";
 import moment from "moment";
-import utils from "utils";
 import Sticky from "react-stickynode";
 
 const { Search } = Input;
 const init_data = { id: 0, nama_hp: "", image: "" };
 const reset_data = [];
 
-const ListHandphoneApp = () => {
+const RSSListApp = () => {
   const [dataNews, setDataNews] = useState([]);
   const [keysearch, setKeysearch] = useState("");
   const [totalData, setTotalData] = useState(0);
@@ -35,7 +34,7 @@ const ListHandphoneApp = () => {
   const retrieveDatahp = (page, many, filter) => {
     setFirstLoading(true);
     page = page === null ? 1 : page;
-    getListHp(page, many, filter)
+    getListNews(page, many, filter)
       .then((response) => {
         setDataNews(response.data);
         setTotalData(response.total_data);
@@ -78,7 +77,7 @@ const ListHandphoneApp = () => {
         <div style={{ margin: "10px 0px 20px" }}>
           <Search
             value={keysearch}
-            placeholder="Cari hp..."
+            placeholder="Cari artikel..."
             onSearch={(value) => searchArticle(value)}
             onChange={onChangeSearch}
             enterButton
@@ -86,21 +85,51 @@ const ListHandphoneApp = () => {
         </div>
         <Sticky enabled={true} top={70} innerZ={1}>
           <div style={{ display: "flex", backgroundColor: "#F44336" }}>
-            <div className="rss-head-text lay-hp-id">id</div>
-            <div className="rss-head-text lay-hp-name">Name</div>
-            <div className="rss-head-text lay-hp-status">Status</div>
-            <div className="rss-head-text lay-hp-complete">Lengkap</div>
-            <div className="rss-head-text lay-hp-new-price">New Price</div>
-            <div className="rss-head-text lay-hp-second-price">
-              Second Price
+            <div
+              className="rss-head-text"
+              style={{ padding: "5px 0px", maxWidth: 50, width: 50 }}
+            >
+              id
             </div>
-            <div className="rss-head-text lay-hp-shopee">Shopee</div>
-            <div className="rss-head-text lay-hp-antutu">Antutu</div>
-            <div className="rss-head-text lay-hp-update-shops">
-              Update Shops
+            <div
+              className="rss-head-text"
+              style={{ padding: "5px 15px", maxWidth: 100, width: 100 }}
+            >
+              Published
             </div>
-            <div className="rss-head-text lay-hp-act-hp">Action Handphone</div>
-            <div className="rss-head-text lay-hp-act-pict">Action Picture</div>
+            <div
+              className="rss-head-text"
+              style={{ padding: "5px 15px", maxWidth: 400, width: 400 }}
+            >
+              Title
+            </div>
+            <div
+              className="rss-head-text"
+              style={{ padding: "5px 15px", maxWidth: 120, width: 120 }}
+            >
+              Media Portal
+            </div>
+            <div
+              className="rss-head-text"
+              style={{ padding: "5px 15px", maxWidth: 70, width: 70 }}
+            >
+              Headline
+            </div>
+            <div
+              className="rss-head-text"
+              style={{ padding: "5px 15px", maxWidth: 80, width: 80 }}
+            >
+              Status
+            </div>
+            <div
+              className="rss-head-text"
+              style={{ padding: "5px 15px", maxWidth: 100, width: 100 }}
+            >
+              Updated
+            </div>
+            <div className="rss-head-text" style={{ padding: "5px 15px" }}>
+              Action
+            </div>
           </div>
         </Sticky>
 
@@ -124,31 +153,18 @@ const ListHandphoneApp = () => {
                 backgroundColor: index % 2 ? "#f7f7f7" : "white",
               }}
             >
-              <ListHandphone
+              <ListNews
                 id={items.id}
-                nama_hp={items.nama_hp}
+                published_at={moment(items.published_at).format(
+                  "MMMM Do YYYY, HH:mm"
+                )}
+                title={items.title}
+                media_portal={items.media_portal}
+                headline={items.headline}
                 status={items.status}
-                notes={items.notes}
-                completeness={items.completeness}
-                new_price={
-                  items.new_price > 0
-                    ? utils.formatRupiah(items.new_price, "Rp.")
-                    : 0
-                }
-                second_price={
-                  items.second_price > 0
-                    ? utils.formatRupiah(items.second_price, "Rp.")
-                    : 0
-                }
-                shopee={items.shopee}
-                antutu={
-                  items.antutu > 0 ? utils.formatRupiah(items.antutu, "") : 0
-                }
-                update_shops={
-                  items.update_shops === ""
-                    ? "-"
-                    : moment(items.update_shops).format("MMM Do YYYY, HH:mm")
-                }
+                updated_at={moment(items.updated_at).format(
+                  "MMMM Do YYYY, HH:mm"
+                )}
               />
             </div>
           ))}
@@ -173,4 +189,4 @@ const ListHandphoneApp = () => {
   );
 };
 
-export default ListHandphoneApp;
+export default RSSListApp;
