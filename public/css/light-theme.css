@@ -33196,7 +33196,10 @@ button.bg-dark:hover {
   color: white;
 }
 .ql-editor p, .ql-editor ol, .ql-editor ul, .ql-editor pre, .ql-editor blockquote, .ql-editor h1, .ql-editor h2, .ql-editor h3, .ql-editor h4, .ql-editor h5, .ql-editor h6 {
-    margin: 0px 0px 15px 0px !important;
+    margin: 0px 0px 1rem 0px !important;
+    letter-spacing: -0.2px !important;
+    line-height: 30px !important;
+    font-size: 0.95rem !important;
 }
 @media (min-width: 576px) {
   .m-sm-0 {

@@ -15,7 +15,7 @@ const ENTRY_ROUTE = "/auth/login";
 
 const themes = {
   dark: `${process.env.PUBLIC_URL}/css/dark-theme.css`,
-  light: `${process.env.PUBLIC_URL}/css/light-theme.css`,
+  light: `${process.env.PUBLIC_URL}/css/light-theme-min.css`,
 };
 
 function App() {

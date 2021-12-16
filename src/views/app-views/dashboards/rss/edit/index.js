@@ -34,7 +34,7 @@ const RSSApp = (props) => {
       <Card>
         <div>Edit rss {props.match.params.id}</div>
         <RichTextInput
-          content={dataNews.content === undefined ? "-" : dataNews.content}
+          content={dataNews.description === undefined ? "-" : dataNews.description}
         />
       </Card>
     </div>
