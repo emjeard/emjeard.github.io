@@ -5055,7 +5055,7 @@ a.ant-btn-sm {
   margin-left: 0;
 }
 .ant-card-body {
-  padding: 20px;
+  padding: 10px 15px;
 }
 .ant-card-body::before {
   display: table;
@@ -5953,6 +5953,7 @@ a.ant-btn-sm {
 .ant-checkbox + span {
   padding-right: 8px;
   padding-left: 8px;
+  font-size: 12px;
 }
 .ant-checkbox-group {
   line-height: 1.5;

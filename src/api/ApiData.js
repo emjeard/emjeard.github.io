@@ -20,7 +20,10 @@ export {
   getSearchMore,
   getListNews,
   getListHp,
-  getDetailRSS
+  getDetailRSS,
+  getListTagGeneral,
+  getListTagOs,
+  getListTagBrand,
 };
 
 const getToken = function () {
@@ -77,6 +80,21 @@ let putUpdateHpEditorChoice = (id, title, desc, image, data_hp) => {
 
 let getSearchMore = (keyword) => {
   const url = `${BASE_URL}search/list?key=${keyword}`;
+  return axios.get(url, headerRequest).then((response) => response.data);
+};
+
+let getListTagGeneral = () => {
+  const url = `${BASE_URL}article/tag/general`;
+  return axios.get(url, headerRequest).then((response) => response.data);
+};
+
+let getListTagOs = () => {
+  const url = `${BASE_URL}article/tag/os`;
+  return axios.get(url, headerRequest).then((response) => response.data);
+};
+
+let getListTagBrand = (key) => {
+  const url = `${BASE_URL}article/tag/brand?key=${key}`;
   return axios.get(url, headerRequest).then((response) => response.data);
 };
 
