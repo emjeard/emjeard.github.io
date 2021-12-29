@@ -162,6 +162,7 @@ const RSSApp = (props) => {
         setPortalName(response.data.portal_name);
         setHadPushed(response.data.had_pushed);
         setHideImage(response.data.hide_images);
+        setImageUrl(response.data.meta_image)
         const tag_general = response.data.tags_general;
         const tag_os = response.data.tags_os;
         const tag_op = response.data.tags_op;
