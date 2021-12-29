@@ -26743,9 +26743,8 @@ div.ant-typography-edit-content.ant-typography-rtl {
 }
 .ant-upload-list-picture-card-container {
   display: inline-block;
-  width: 104px;
-  height: 104px;
-  margin: 0 8px 8px 0;
+  width: -webkit-fill-available;
+  height: 150px;
   vertical-align: top;
 }
 .ant-upload-list-picture-card .ant-upload-list-item {
@@ -26810,7 +26809,10 @@ div.ant-typography-edit-content.ant-typography-rtl {
   display: block;
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: none;
+}
+.ql-editor {
+max-height: 500px;
 }
 .ant-upload-list-picture-card .ant-upload-list-item-name {
   display: none;
@@ -27009,7 +27011,7 @@ div.ant-typography-edit-content.ant-typography-rtl {
   left: 8px;
 }
 .ant-upload-list-rtl .ant-upload-list-picture-card-container {
-  margin: 0 0 8px 8px;
+  margin: 0 0 0 0;
 }
 .ant-upload-list-rtl.ant-upload-list-picture-card
   .ant-upload-list-item-actions {
@@ -27543,13 +27545,11 @@ tr > .ant-picker-cell-in-view.ant-picker-cell-range-hover:first-child::after {
   border-radius: 0.25rem;
 }
 .ant-upload.ant-upload-select-picture-card {
-  width: 110px;
-  height: 110px;
+  width: -webkit-fill-available;
+  height: 150px;
   border: 2px dashed #e6ebf1;
   border-radius: 10px;
   background-color: transparent;
-  margin-right: 10px;
-  margin-bottom: 10px;
 }
 .ant-upload.ant-upload-drag {
   border: 2px dashed #e6ebf1;

@@ -23,7 +23,10 @@ export {
   getDetailRSS,
   getListTagGeneral,
   getListTagOs,
+  getListTagOp,
   getListTagBrand,
+  postUploadAvatar,
+  putUpdateArticle,
 };
 
 const getToken = function () {
@@ -39,6 +42,13 @@ const headerRequest = {
   headers: {
     Authorization: "Basic " + btoa("inps2jtd0ll5ru5:222m1lSSSu5"),
     "ADM-Token": getToken(),
+  },
+};
+
+const headerImgKitRequest = {
+  auth: {
+    username: "jgjRPRWKM03LoK8DyFpF2kwfOFA=",
+    password: "",
   },
 };
 
@@ -93,6 +103,11 @@ let getListTagOs = () => {
   return axios.get(url, headerRequest).then((response) => response.data);
 };
 
+let getListTagOp = () => {
+  const url = `${BASE_URL}article/tag/op`;
+  return axios.get(url, headerRequest).then((response) => response.data);
+};
+
 let getListTagBrand = (key) => {
   const url = `${BASE_URL}article/tag/brand?key=${key}`;
   return axios.get(url, headerRequest).then((response) => response.data);
@@ -111,4 +126,58 @@ let getListHp = (page, many, filter) => {
 let getDetailRSS = (id) => {
   const url = `${BASE_URL}article/detail?id=${id}`;
   return axios.get(url, headerRequest).then((response) => response.data);
+};
+
+let postUploadAvatar = (file, fileName) => {
+  const url = `https://api.imagekit.io/v1/files/upload`;
+
+  const formData = new FormData();
+  formData.append("file", file);
+  formData.append("fileName", fileName);
+  formData.append("folder", "article/content");
+
+  return axios
+    .post(url, formData, headerImgKitRequest)
+    .then((response) => response);
+};
+
+let putUpdateArticle = (
+  id,
+  title,
+  desc,
+  content,
+  tag_general,
+  tag_os,
+  tag_brands,
+  tag_devices,
+  tag_devices_id,
+  tag_op,
+  status,
+  had_pushed,
+  hide_images,
+  meta_title,
+  meta_desc,
+  meta_image
+) => {
+  const url = `${BASE_URL}article/edit`;
+
+  const formData = new FormData();
+  formData.append("id", id);
+  formData.append("title", title);
+  formData.append("desc", desc);
+  formData.append("content", content);
+  formData.append("tag_general", tag_general);
+  formData.append("tag_os", tag_os);
+  formData.append("tag_brands", tag_brands);
+  formData.append("tag_devices", tag_devices);
+  formData.append("tag_devices_id", tag_devices_id);
+  formData.append("tag_op", tag_op);
+  formData.append("status", status);
+  formData.append("had_pushed", had_pushed);
+  formData.append("hide_images", hide_images);
+  formData.append("meta_title", meta_title);
+  formData.append("meta_desc", meta_desc);
+  formData.append("meta_image", meta_image);
+
+  return axios.put(url, formData, headerRequest).then((response) => response);
 };

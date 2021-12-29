@@ -168,22 +168,26 @@ const RSSListApp = () => {
               />
             </div>
           ))}
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            margin: "20px 0px 0px 0px",
-          }}
-        >
-          <Pagination
-            showQuickJumper
-            showSizeChanger={false}
-            defaultCurrent={currentPage}
-            current={currentPage}
-            total={totalData}
-            onChange={onChange}
-          />
-        </div>
+        {firstLoading === false ? (
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              margin: "20px 0px 0px 0px",
+            }}
+          >
+            <Pagination
+              showQuickJumper
+              showSizeChanger={false}
+              defaultCurrent={currentPage}
+              current={currentPage}
+              total={totalData}
+              onChange={onChange}
+            />
+          </div>
+        ) : (
+          ""
+        )}
       </Card>
     </div>
   );
