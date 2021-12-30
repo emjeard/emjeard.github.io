@@ -26811,9 +26811,6 @@ div.ant-typography-edit-content.ant-typography-rtl {
   height: 100%;
   object-fit: none;
 }
-.ql-editor {
-max-height: 500px;
-}
 .ant-upload-list-picture-card .ant-upload-list-item-name {
   display: none;
   margin: 8px 0 0;
@@ -27234,7 +27231,7 @@ h4.ant-typography {
 .ant-typography p,
 p,
 p.ant-typography {
-  color: #72849a;
+  color: #515151;
 }
 .ant-typography strong {
   font-weight: 700;

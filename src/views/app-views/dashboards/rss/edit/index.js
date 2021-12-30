@@ -29,6 +29,7 @@ import store from "redux/store";
 import ADD_DATA from "redux/actions";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Editor from "views/app-views/components/data-entry/input/Editor";
 
 const { Option } = Select;
 const { TextArea } = Input;
@@ -162,7 +163,7 @@ const RSSApp = (props) => {
         setPortalName(response.data.portal_name);
         setHadPushed(response.data.had_pushed);
         setHideImage(response.data.hide_images);
-        setImageUrl(response.data.meta_image)
+        setImageUrl(response.data.meta_image);
         const tag_general = response.data.tags_general;
         const tag_os = response.data.tags_os;
         const tag_op = response.data.tags_op;
@@ -402,19 +403,26 @@ const RSSApp = (props) => {
             : ""}
         </div>
         <div>Media: {portalName}</div>
-        <Card>
+        <Card style={{ margin: "15px 0px 0px" }}>
           <div
-            style={{ fontSize: 24, padding: "10px 0px 20px", fontWeight: 500 }}
+            style={{
+              color: "#414141",
+              fontSize: 24,
+              padding: "10px 0px 20px",
+              fontWeight: 500,
+            }}
           >
             {Parser(title)}
           </div>
-          <RichTextInput />
+          <Editor />
           <div style={{ margin: "15px 0px" }}>
-            <div style={{ margin: "0px 0px 10px 0px" }}>Header Image *</div>
+            <div style={{ margin: "25px 0px 5px", fontWeight: 500 }}>
+              Header Image *
+            </div>
             <Drag parentCallback={callback} image={dataNews.meta_image} />
           </div>
           <div>
-            <div style={{ margin: "15px 0px 10px 0px" }}>
+            <div style={{ margin: "25px 0px 5px", fontWeight: 500 }}>
               Meta Title / Head Title*
             </div>
             <Input
@@ -423,18 +431,29 @@ const RSSApp = (props) => {
               onChange={onChangeTitle}
               value={metaTitle}
             />
-            <div style={{ margin: "15px 0px 10px 0px" }}>Meta Description</div>
+            <div style={{ margin: "25px 0px 5px", fontWeight: 500 }}>
+              Meta Description*
+            </div>
             <TextArea
               placeholder="Meta description"
               allowClear
               onChange={onChangeDesc}
               value={metaDesc}
-              style={{minHeight: "150px"}}
+              style={{ minHeight: "150px" }}
             />
           </div>
         </Card>
       </div>
-      <div style={{ minWidth: 355, maxWidth: 355, margin: "63px 0px 0px 0px" }}>
+      <div
+        style={{
+          minWidth: 355,
+          maxWidth: 355,
+          margin: "78px 0px 0px 0px",
+          position: "sticky",
+          alignSelf: "flex-start",
+          top: "78px",
+        }}
+      >
         <Card>
           <div>Category</div>
           <Checkbox.Group
@@ -466,7 +485,7 @@ const RSSApp = (props) => {
               </Option>
             ))}
           </Select>
-          <div style={{ marginTop: 10 }}>Brand</div>
+          <div style={{ margin: "10px 0px 15px 0px" }}>Brand</div>
           <Select
             mode="multiple"
             labelInValue
@@ -482,7 +501,7 @@ const RSSApp = (props) => {
               <Option key={item.value}>{item.text}</Option>
             ))}
           </Select>
-          <div style={{ marginTop: 10 }}>Operator</div>
+          <div style={{ margin: "10px 0px 15px 0px" }}>Operator</div>
           <Select
             mode="multiple"
             style={{ width: "100%" }}
@@ -498,7 +517,7 @@ const RSSApp = (props) => {
               </Option>
             ))}
           </Select>
-          <div style={{ marginTop: 10 }}>Device</div>
+          <div style={{ margin: "10px 0px 15px 0px" }}>Device</div>
           <Select
             mode="multiple"
             labelInValue
@@ -514,19 +533,19 @@ const RSSApp = (props) => {
               <Option key={item.value}>{item.text}</Option>
             ))}
           </Select>
-          <div style={{ marginTop: 15 }}>Last updated</div>
+          <div style={{ marginTop: 25, fontWeight: 500 }}>Last updated</div>
           <div style={{ marginTop: 5 }}>
             {lastUpdate === ""
               ? ""
               : moment(lastUpdate).format("MMMM Do YYYY, HH:mm")}
           </div>
-          <div style={{ marginTop: 15 }}>Source Link</div>
+          <div style={{ marginTop: 25, fontWeight: 500 }}>Source Link</div>
           <div style={{ marginTop: 5 }}>
             <a href={"https://www.inponsel.com/news?url=" + sourceLink}>
               {sourceLink}
             </a>
           </div>
-          <div style={{ marginTop: 15 }}>Status</div>
+          <div style={{ marginTop: 25, fontWeight: 500 }}>Status</div>
           <div>
             <Radio.Group onChange={onChangeRssStatus} value={rssStatus}>
               <Radio value={"publish"}>Publish</Radio>
