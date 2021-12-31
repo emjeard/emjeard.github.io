@@ -347,6 +347,8 @@ const RSSApp = (props) => {
             progress: undefined,
             theme: "colored",
           });
+          window.location.href = "/dashboards/rss/list";
+
         } else {
           toast.error(resp.data.message, {
             position: "top-right",
