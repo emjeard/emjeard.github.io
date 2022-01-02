@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import MyCustomUploadAdapterPlugin from "./MyCustomUploadAdapterPlugin";
-import Editor from "ckeditor5-custom-build/build/ckeditor";
+import Editor from "ckeditor-inponsel";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import store from "redux/store";
 import ADD_DATA from "redux/actions";
