@@ -29756,6 +29756,10 @@ ul.anticons-list li.copied::after {
   box-sizing: border-box;
   font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
   padding: 8px;
+  top: 70px;
+    position: sticky;
+    z-index: 2;
+    background: #fff;
 }
 .ql-toolbar.ql-snow .ql-formats {
   margin-right: 15px;

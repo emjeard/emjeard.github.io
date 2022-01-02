@@ -20,7 +20,6 @@ import {
   putUpdateArticle,
 } from "api/ApiData";
 import Parser from "html-react-parser";
-import RichTextInput from "views/app-views/components/data-entry/input/RichTextInput";
 import debounce from "lodash/debounce";
 import Drag from "./Drag";
 import moment from "moment";
@@ -30,6 +29,7 @@ import ADD_DATA from "redux/actions";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Editor from "views/app-views/components/data-entry/input/Editor";
+import CKEditorCustom from "views/app-views/components/data-entry/input/CKEditorCustom";
 
 const { Option } = Select;
 const { TextArea } = Input;
@@ -348,7 +348,6 @@ const RSSApp = (props) => {
             theme: "colored",
           });
           window.location.href = "/dashboards/rss/list";
-
         } else {
           toast.error(resp.data.message, {
             position: "top-right",
@@ -416,7 +415,7 @@ const RSSApp = (props) => {
           >
             {Parser(title)}
           </div>
-          <Editor />
+          <CKEditorCustom />
           <div style={{ margin: "15px 0px" }}>
             <div style={{ margin: "25px 0px 5px", fontWeight: 500 }}>
               Header Image *
@@ -474,7 +473,7 @@ const RSSApp = (props) => {
           <div style={{ marginTop: 10 }}>OS</div>
           <Select
             mode="multiple"
-            style={{ width: "100%" }}
+            style={{ width: "100%", height: "auto !important" }}
             placeholder="select operating system"
             defaultValue={dataDefTagOS}
             value={dataDefTagOS}
@@ -497,7 +496,7 @@ const RSSApp = (props) => {
             filterOption={false}
             onSearch={debounce(handleSearchBrand, 1000)}
             onChange={handleChangeBrand}
-            style={{ width: "100%" }}
+            style={{ width: "100%", height: "auto !important" }}
           >
             {dataTagBrand.map((item) => (
               <Option key={item.value}>{item.text}</Option>
@@ -506,7 +505,7 @@ const RSSApp = (props) => {
           <div style={{ margin: "10px 0px 15px 0px" }}>Operator</div>
           <Select
             mode="multiple"
-            style={{ width: "100%" }}
+            style={{ width: "100%", height: "auto !important" }}
             placeholder="select operator"
             defaultValue={dataDefTagOp}
             value={dataDefTagOp}
@@ -529,7 +528,7 @@ const RSSApp = (props) => {
             filterOption={false}
             onSearch={debounce(handleSearchHp, 1000)}
             onChange={handleChangeHp}
-            style={{ width: "100%" }}
+            style={{ width: "100%", height: "auto !important" }}
           >
             {dataTagHp.map((item) => (
               <Option key={item.value}>{item.text}</Option>
