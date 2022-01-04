@@ -1,7 +1,7 @@
 import { ADD_DATA } from "../constants/Auth";
 
 const initState = {
-  description: "",
+  content: "",
 };
 
 const articles = (state = initState, action) => {
@@ -9,7 +9,7 @@ const articles = (state = initState, action) => {
     case ADD_DATA:
       return {
         ...state,
-        description: action.data,
+        content: action.data,
       };
 
     default:

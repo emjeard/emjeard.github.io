@@ -73,7 +73,7 @@ class CKEditorCustom extends Component {
         <CKEditor
           editor={Editor}
           config={editorConfiguration}
-          data={store.getState().articles.description}
+          data={store.getState().articles.content}
           onReady={(editor) => {
             // You can store the "editor" and use when it is needed.
             console.log("Editor is ready to use!", editor);

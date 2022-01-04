@@ -28,7 +28,6 @@ import store from "redux/store";
 import ADD_DATA from "redux/actions";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Editor from "views/app-views/components/data-entry/input/Editor";
 import CKEditorCustom from "views/app-views/components/data-entry/input/CKEditorCustom";
 
 const { Option } = Select;
@@ -148,7 +147,7 @@ const RSSApp = (props) => {
     setFirstLoading(true);
     getDetailRSS(props.match.params.id)
       .then((response) => {
-        store.dispatch(ADD_DATA(response.data.description));
+        store.dispatch(ADD_DATA(response.data.content));
         setDataNews(response.data);
         setDescription(response.data.description);
         setTitle(response.data.title);
@@ -268,9 +267,9 @@ const RSSApp = (props) => {
   const onSubmitRss = (e) => {
     setUpdateLoading(true);
     console.log("title", title);
-    //console.log("desc", store.getState().articles.description);
+    //console.log("desc", store.getState().articles.content);
 
-    let desc = store.getState().articles.description;
+    let content = store.getState().articles.content;
     let tagGeneral = "";
     let tagOs = "";
     let tagBrand = "";
@@ -319,7 +318,7 @@ const RSSApp = (props) => {
     putUpdateArticle(
       props.match.params.id,
       title,
-      desc,
+      description,
       content,
       tagGeneral,
       tagOs,

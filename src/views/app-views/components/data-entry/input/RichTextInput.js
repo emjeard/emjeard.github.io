@@ -43,8 +43,8 @@ const RichTextInput = (props) => {
           quillObj = el;
         }}
         onChange={debounce(onChangeDesc, 2000)}
-        defaultValue={store.getState().articles.description}
-        value={store.getState().articles.description}
+        defaultValue={store.getState().articles.content}
+        value={store.getState().articles.content}
         modules={{
           htmlEditButton: {},
           toolbar: {

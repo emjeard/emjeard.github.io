@@ -29751,6 +29751,9 @@ ul.anticons-list li.copied::after {
 .ql-snow .ql-color-picker.ql-color .ql-picker-item {
   background-color: #000;
 }
+.Toastify__toast-container--top-right{
+top: 5em !important;
+}
 .ql-toolbar.ql-snow {
   border: 1px solid #e6ebf1;
   box-sizing: border-box;

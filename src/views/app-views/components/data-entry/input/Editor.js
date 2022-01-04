@@ -26,8 +26,8 @@ export const Editor = () => {
         }}
         theme="snow"
         onChange={debounce(onChangeDesc, 2000)}
-        defaultValue={store.getState().articles.description}
-        value={store.getState().articles.description}
+        defaultValue={store.getState().articles.content}
+        value={store.getState().articles.content}
         placeholder={"Write something awesome..."}
         modules={modules}
         formats={formats}

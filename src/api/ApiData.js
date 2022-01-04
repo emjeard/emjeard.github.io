@@ -164,8 +164,8 @@ let putUpdateArticle = (
   const formData = new FormData();
   formData.append("id", id);
   formData.append("title", title);
-  formData.append("desc", desc);
-  formData.append("content", content);
+  formData.append("desc", desc.replace(/\r\n/g, ""));
+  formData.append("content", content.replace(/\r\n/g, ""));
   formData.append("tag_general", tag_general);
   formData.append("tag_os", tag_os);
   formData.append("tag_brands", tag_brands);
