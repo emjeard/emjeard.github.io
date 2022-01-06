@@ -49,7 +49,7 @@ const SideNavContent = (props) => {
       mode="inline"
       style={{ height: "100%", borderRight: 0 }}
       defaultSelectedKeys={[routeInfo?.key]}
-      defaultOpenKeys={["data_source-hp_populer", "data_source-hp_terlaris"]}
+      defaultOpenKeys={["data_source-hp_populer", "data_source-hp_terlaris", "handphones-populer"]}
       className={hideGroupTitle ? "hide-group-title" : ""}
     >
       {navigationConfig.map((menu) =>

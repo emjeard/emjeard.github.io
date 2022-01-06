@@ -94,7 +94,24 @@ const appsNavTree = [
         title: "sidenav.handphones.populer",
         icon: CalendarOutlined,
         breadcrumb: true,
-        submenu: [],
+        submenu: [
+          {
+            key: "handphones-populer-hp",
+            path: `${APP_PREFIX_PATH}/handphones/populer/hp`,
+            title: "sidenav.handphones.populer.hp",
+            icon: "",
+            breadcrumb: true,
+            submenu: [],
+          },
+          {
+            key: "handphones-populer-komparasi",
+            path: `${APP_PREFIX_PATH}/handphones/populer/komparasi`,
+            title: "sidenav.handphones.populer.komparasi",
+            icon: "",
+            breadcrumb: true,
+            submenu: [],
+          },
+        ],
       },
       {
         key: "handphones-master-data",
