@@ -38,6 +38,7 @@ const GoogleTrendApp = () => {
       2,
       "Hp Populer - Google Trend",
       "desc",
+      "content",
       "image",
       data_hp
     )

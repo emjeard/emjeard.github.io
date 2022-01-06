@@ -75,12 +75,13 @@ let getSearchHp = (keyword) => {
   return axios.get(url, headerRequest).then((response) => response.data);
 };
 
-let putUpdateHpEditorChoice = (id, title, desc, image, data_hp) => {
+let putUpdateHpEditorChoice = (id, title, desc, content, image, data_hp) => {
   const url = `${BASE_URL}hp/editor/update`;
   const formData = new FormData();
   formData.append("id", id);
   formData.append("title", title);
   formData.append("desc", desc);
+  formData.append("content", content);
   formData.append("image", image);
   formData.append("data", data_hp);
   return axios

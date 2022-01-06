@@ -36,7 +36,14 @@ const HandphonePopulerApp = () => {
       data_hp += updDataHp[i] + ",";
     }
     data_hp = data_hp.slice(0, -1);
-    await putUpdateHpEditorChoice(1, "title", "desc", "image", data_hp)
+    await putUpdateHpEditorChoice(
+      1,
+      "title",
+      "desc",
+      "content",
+      "image",
+      data_hp
+    )
       .then((response) => {
         setMessage(response.message);
       })
