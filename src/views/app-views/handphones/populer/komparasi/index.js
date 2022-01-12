@@ -186,7 +186,7 @@ const KomparasiHandphoneApp = () => {
             allowClear
             onChange={onChangeDesc}
             value={metaDesc}
-            style={{ minHeight: "150px", margin: "5px 0px 25px" }}
+            style={{ minHeight: "60px", margin: "5px 0px 25px" }}
           />
           <CKEditorCustom />
         </div>

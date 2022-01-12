@@ -25,8 +25,10 @@ export {
   getListTagOs,
   getListTagOp,
   getListTagBrand,
+  getDetailHp,
   postUploadAvatar,
   putUpdateArticle,
+  putUpdateHandphone,
 };
 
 const getToken = function () {
@@ -72,6 +74,11 @@ let getListHpEdChoice = (id) => {
 
 let getSearchHp = (keyword) => {
   const url = `${BASE_URL}hp/search/list?key=${keyword}`;
+  return axios.get(url, headerRequest).then((response) => response.data);
+};
+
+let getDetailHp = (id) => {
+  const url = `${BASE_URL}hp/detail?id=${id}`;
   return axios.get(url, headerRequest).then((response) => response.data);
 };
 
@@ -179,6 +186,35 @@ let putUpdateArticle = (
   formData.append("meta_title", meta_title);
   formData.append("meta_desc", meta_desc);
   formData.append("meta_image", meta_image);
+
+  return axios.put(url, formData, headerRequest).then((response) => response);
+};
+
+let putUpdateHandphone = (
+  id,
+  hp_pros,
+  hp_cons,
+  hp_compare,
+  hp_release_date,
+  hp_negative_word,
+  shopee_hp_url,
+  shopee_acc_url,
+  laz_hp_url,
+  laz_acc_url
+) => {
+  const url = `${BASE_URL}hp/edit`;
+
+  const formData = new FormData();
+  formData.append("id_hp", id);
+  formData.append("hp_pros", hp_pros === "" ? " " : hp_pros.replace(/\r\n/g, ""));
+  formData.append("hp_cons", hp_cons === "" ? " " :  hp_cons.replace(/\r\n/g, ""));
+  formData.append("hp_compare", hp_compare === "" ? " " :  hp_compare);
+  formData.append("hp_release_date", hp_release_date === "" ? " " :  hp_release_date);
+  formData.append("hp_negative_word", hp_negative_word === "" ? " " :  hp_negative_word);
+  formData.append("shopee_hp_url", shopee_hp_url === "" ? " " :  shopee_hp_url);
+  formData.append("shopee_acc_url", shopee_acc_url === "" ? " " :  shopee_acc_url);
+  formData.append("laz_hp_url", laz_hp_url === "" ? " " :  laz_hp_url);
+  formData.append("laz_acc_url", laz_acc_url === "" ? " " :  laz_acc_url);
 
   return axios.put(url, formData, headerRequest).then((response) => response);
 };

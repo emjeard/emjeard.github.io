@@ -346,7 +346,10 @@ const RSSApp = (props) => {
             progress: undefined,
             theme: "colored",
           });
-          window.location.href = "/dashboards/rss/list";
+          setTimeout(
+            () => (window.location.href = "/dashboards/rss/list"),
+            3000
+          );
         } else {
           toast.error(resp.data.message, {
             position: "top-right",

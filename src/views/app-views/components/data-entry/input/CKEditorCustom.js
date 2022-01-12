@@ -4,6 +4,7 @@ import Editor from "ckeditor-inponsel";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import store from "redux/store";
 import ADD_DATA from "redux/actions";
+import { HP_PROS, HP_CONS } from "redux/actions/Handphone";
 
 const editorConfiguration = {
   extraPlugins: [MyCustomUploadAdapterPlugin],
@@ -73,7 +74,13 @@ class CKEditorCustom extends Component {
         <CKEditor
           editor={Editor}
           config={editorConfiguration}
-          data={store.getState().articles.content}
+          data={
+            this.props.editor_type === undefined
+              ? store.getState().articles.content
+              : this.props.editor_type === "hp_pros"
+              ? store.getState().hpproscons.pros_data
+              : store.getState().hpproscons.cons_data
+          }
           onReady={(editor) => {
             // You can store the "editor" and use when it is needed.
             console.log("Editor is ready to use!", editor);
@@ -82,7 +89,13 @@ class CKEditorCustom extends Component {
             //console.log(Array.from(editor.ui.componentFactory.names()));
             const data = editor.getData();
             //console.log({ event, editor, data });
-            store.dispatch(ADD_DATA(data));
+            store.dispatch(
+              this.props.editor_type === undefined
+                ? ADD_DATA(data)
+                : this.props.editor_type === "hp_pros"
+                ? HP_PROS(data)
+                : HP_CONS(data)
+            );
           }}
           onBlur={(event, editor) => {
             console.log("Blur.", editor);
