@@ -13,7 +13,11 @@ const PopulerData = (props) => {
   const handleSearch = (value) => {
     getSearchHp(value)
       .then((response) => {
-        setResult(response.data);
+        if (response.status === true) {
+          setResult(response.data);
+        } else {
+          setResult([]);
+        }
       })
       .catch((e) => {
         console.log(e);
@@ -59,6 +63,7 @@ const PopulerData = (props) => {
           flexBasis: "90%",
           padding: "0px 20px 0px 0px",
         }}
+        notFoundContent={"Data tidak ditemukan"}
         onSearch={handleSearch}
         onSelect={onSelect}
         onChange={onChange}

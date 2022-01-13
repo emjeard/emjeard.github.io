@@ -17,8 +17,8 @@ class CKEditorCustom extends Component {
               this.props.editor_type === undefined
                 ? ""
                 : this.props.editor_type === "hp_pros"
-                ? "Desain dan Display Semakin Beragam"
-                : "Masih Mempertahankan Produk Tanpa Charger",
+                ? ""
+                : "",
             extraPlugins: [MyCustomUploadAdapterPlugin],
             toolbar: {
               items: [

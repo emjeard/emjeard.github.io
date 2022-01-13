@@ -13,14 +13,18 @@ const PopulerData = (props) => {
   const handleSearch = (value) => {
     getSearchHp(value)
       .then((response) => {
-        setResult(response.data);
+        if (response.status === true) {
+          setResult(response.data);
+        } else {
+          setResult([]);
+        }
       })
       .catch((e) => {
         console.log(e);
       });
   };
   const onSelect = (value, option) => {
-    console.log("onSelect", props.number + "-" + option.key);
+    //console.log("onSelect", props.number + "-" + option.key);
     const key = option.key;
     const idHp = key.split("-image-")[0];
     const image = key.split("-image-")[1];
@@ -37,7 +41,7 @@ const PopulerData = (props) => {
       {items.nama_hp}
     </Option>
   ));
-  console.log("nama_hp", props.nama_hp);
+  //console.log("nama_hp", props.nama_hp);
   return (
     <div style={{ display: "flex" }}>
       <div
@@ -59,6 +63,7 @@ const PopulerData = (props) => {
           flexBasis: "90%",
           padding: "0px 20px 0px 0px",
         }}
+        notFoundContent={"Data tidak ditemukan"}
         onSearch={handleSearch}
         onSelect={onSelect}
         onChange={onChange}

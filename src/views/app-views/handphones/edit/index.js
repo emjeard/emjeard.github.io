@@ -285,11 +285,14 @@ const EditHpApp = (props) => {
   ) : (
     <div>
       <Card>
-        <div>Edit {namaHp}</div>
+        <div style={{ fontSize: "30px", padding: "10px", fontWeight: 500 }}>
+          {namaHp}
+        </div>
         <div
           style={{
             background: "#999999",
             padding: "5px 10px",
+            borderRadius: "10px",
             color: "white",
             fontWeight: 500,
           }}
@@ -398,6 +401,7 @@ const EditHpApp = (props) => {
             margin: "25px 0px 0px 0px",
             background: "#D47227",
             padding: "5px 10px",
+            borderRadius: "10px",
             color: "white",
             fontWeight: 500,
           }}
@@ -418,6 +422,7 @@ const EditHpApp = (props) => {
             margin: "25px 0px 0px 0px",
             background: "#D47227",
             padding: "5px 10px",
+            borderRadius: "10px",
             color: "white",
             fontWeight: 500,
           }}
@@ -471,6 +476,7 @@ const EditHpApp = (props) => {
             padding: "5px 10px",
             color: "white",
             fontWeight: 500,
+            borderRadius: "10px",
           }}
         >
           Lazada
@@ -522,6 +528,7 @@ const EditHpApp = (props) => {
             padding: "5px 10px",
             color: "white",
             fontWeight: 500,
+            borderRadius: "10px",
           }}
         >
           Komparasi Populer
@@ -552,6 +559,7 @@ const EditHpApp = (props) => {
             padding: "5px 10px",
             color: "white",
             fontWeight: 500,
+            borderRadius: "10px",
           }}
         >
           Kelebihan dan Kekurangan
@@ -561,12 +569,19 @@ const EditHpApp = (props) => {
             fontWeight: 500,
             color: "#313131",
             padding: "0px 0px 5px",
-            margin: "10px 0px 0px 0px",
+            margin: "20px 0px 0px 0px",
           }}
         >
           <div>{`Kelebihan ${namaHp}`}</div>
-          <div style={{ margin: "20px 0px 0px" }}>
+          <div style={{ margin: "5px 0px 0px" }}>
             <CKEditorCustom editor_type={"hp_pros"} />
+            <div>Contoh :</div>
+            <div>
+              <ul>
+                <li>Daya tahan baterai cukup lama</li>
+                <li>Desain ringkas dengan Invinity V Display</li>
+              </ul>
+            </div>
           </div>
           <div
             style={{
@@ -576,8 +591,13 @@ const EditHpApp = (props) => {
               margin: "20px 0px 0px 0px",
             }}
           >{`Kekurangan ${namaHp}`}</div>
-          <div style={{ margin: "20px 0px 0px" }}>
+          <div style={{ margin: "5px 0px 0px" }}>
             <CKEditorCustom editor_type={"hp_cons"} />
+            <div>Contoh:</div>
+            <ul>
+              <li>Kinerja kurang gesit</li>
+              <li>Memori internal hanya 16GB&nbsp;</li>
+            </ul>
           </div>
         </div>
         <Button

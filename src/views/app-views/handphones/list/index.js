@@ -37,8 +37,14 @@ const ListHandphoneApp = () => {
     page = page === null ? 1 : page;
     getListHp(page, many, filter)
       .then((response) => {
-        setDataNews(response.data);
-        setTotalData(response.total_data);
+        if (response.status === true) {
+          setDataNews(response.data);
+          setTotalData(response.total_data);
+        } else {
+          setDataNews([]);
+          setTotalData(0);
+        }
+
         setFirstLoading(false);
       })
       .catch((e) => {
@@ -69,8 +75,12 @@ const ListHandphoneApp = () => {
   };
 
   const onChangeSearch = (data) => {
-    console.log("onChangeSearch", data.target.value);
-    setKeysearch(data.target.value);
+    const keyword = data.target.value;
+    console.log("onChangeSearch", keyword);
+    setKeysearch(keyword);
+    if(keyword.length >= 2){
+      searchArticle(keyword);
+    }
   };
   return (
     <div>

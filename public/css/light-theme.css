@@ -35530,3 +35530,6 @@ a.text-dark:hover {
 .ck-editor__editable {
   min-height: 120px;
 }
+.ck-placeholder{
+  font-weight: 400;
+}
