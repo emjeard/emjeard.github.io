@@ -1820,6 +1820,10 @@ mark {
 .clearfix::after {
   display: table;
 }
+.link-edit{
+  text-decoration: none;
+  color:#455560 !important;
+}
 .anticon {
   display: inline-block;
   color: inherit;
@@ -35522,4 +35526,7 @@ a.text-dark:hover {
 }
 .invisible {
   visibility: hidden !important;
+}
+.ck-editor__editable {
+  min-height: 120px;
 }

@@ -14,7 +14,7 @@ const SearchInput = (props) => {
     setValue(data);
   };
   const onSearch = (data) => {
-    if (data.length >= 4) {
+    if (data.length >= 2) {
       console.log("onSearch", data);
       retrieveData(data);
     }
@@ -36,18 +36,27 @@ const SearchInput = (props) => {
     </span>
   );
 
-  const renderItem = (title, count) => ({
+  const renderItem = (type, title, id, count) => ({
     value: title,
     label: (
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-        }}
+      <a
+        className="link-edit"
+        href={
+          type === "hp"
+            ? `/handphones/edit/${id}`
+            : `/dashboards/rss/edit/${id}`
+        }
       >
-        {title}
-        <span></span>
-      </div>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+          }}
+        >
+          {title}
+          <span></span>
+        </div>
+      </a>
     ),
   });
 
@@ -61,11 +70,15 @@ const SearchInput = (props) => {
         const dataArticle = response.data.data_article;
 
         for (let i = 0; i < dataHp.length; i++) {
-          optionsHp.push(renderItem(dataHp[i].nama_hp, 100000));
+          optionsHp.push(
+            renderItem("hp", dataHp[i].nama_hp, dataHp[i].id, 100000)
+          );
         }
 
         for (let i = 0; i < dataArticle.length; i++) {
-          optionsArticle.push(renderItem(dataArticle[i].judul, 100000));
+          optionsArticle.push(
+            renderItem("rss", dataArticle[i].judul, dataArticle[i].id, 100000)
+          );
         }
 
         setOptions([
@@ -92,6 +105,8 @@ const SearchInput = (props) => {
     autofocus();
   }
 
+  const onSelect = (value, option) => {};
+
   return (
     <AutoComplete
       ref={inputRef}
@@ -102,6 +117,7 @@ const SearchInput = (props) => {
       dropdownMatchSelectWidth={500}
       onChange={onChange}
       onSearch={onSearch}
+      onSelect={onSelect}
       options={options}
       value={value}
     >

@@ -24,6 +24,7 @@ const reset_data = [];
 
 const EditHpApp = (props) => {
   const id_hp = props.match.params.id;
+  const [namaHp, setNamaHp] = useState("");
   const [firstLoading, setFirstLoading] = useState(true);
   const [dataDefTagHp, setDefDataTagHp] = useState([]);
   const [hpLoading, setHpLoading] = useState(false);
@@ -57,6 +58,7 @@ const EditHpApp = (props) => {
     getDetailHp(id_hp)
       .then((response) => {
         const dataHp = response.data;
+        setNamaHp(dataHp.namalengkap);
         setPriceNewFromHp(dataHp.price_new_from);
         setPriceNewEndHp(dataHp.price_new_end);
         setPriceSecondFromHp(dataHp.price_second_from);
@@ -283,7 +285,7 @@ const EditHpApp = (props) => {
   ) : (
     <div>
       <Card>
-        <div>Edit {id_hp}</div>
+        <div>Edit {namaHp}</div>
         <div
           style={{
             background: "#999999",
@@ -364,8 +366,16 @@ const EditHpApp = (props) => {
                 onChange={onChangeUpdatedAt}
                 format="YYYY-MM-DD HH:mm:ss"
                 showTime={{ defaultValue: moment("00:00:00", "HH:mm:ss") }}
-                defaultValue={moment(updatedAt, "YYYY-MM-DD HH:mm:ss")}
-                value={moment(updatedAt, "YYYY-MM-DD HH:mm:ss")}
+                defaultValue={
+                  updatedAt === ""
+                    ? ""
+                    : moment(updatedAt, "YYYY-MM-DD HH:mm:ss")
+                }
+                value={
+                  updatedAt === ""
+                    ? ""
+                    : moment(updatedAt, "YYYY-MM-DD HH:mm:ss")
+                }
                 style={{ minWidth: "225px" }}
               />
             </div>
@@ -508,7 +518,7 @@ const EditHpApp = (props) => {
         <div
           style={{
             margin: "25px 0px 0px 0px",
-            background: "#5DC1C7",
+            background: "#cf3939",
             padding: "5px 10px",
             color: "white",
             fontWeight: 500,
@@ -546,13 +556,29 @@ const EditHpApp = (props) => {
         >
           Kelebihan dan Kekurangan
         </div>
-        <div style={{ padding: "0px 10px", margin: "10px 0px 0px 0px" }}>
-          <div>{`Kelebihan ${id_hp}`}</div>
-          <CKEditorCustom editor_type={"hp_pros"} />
+        <div
+          style={{
+            fontWeight: 500,
+            color: "#313131",
+            padding: "0px 0px 5px",
+            margin: "10px 0px 0px 0px",
+          }}
+        >
+          <div>{`Kelebihan ${namaHp}`}</div>
+          <div style={{ margin: "20px 0px 0px" }}>
+            <CKEditorCustom editor_type={"hp_pros"} />
+          </div>
           <div
-            style={{ margin: "20px 0px 0px 0px" }}
-          >{`Kekurangan ${id_hp}`}</div>
-          <CKEditorCustom editor_type={"hp_cons"} />
+            style={{
+              fontWeight: 500,
+              color: "#313131",
+              padding: "0px 0px 5px",
+              margin: "20px 0px 0px 0px",
+            }}
+          >{`Kekurangan ${namaHp}`}</div>
+          <div style={{ margin: "20px 0px 0px" }}>
+            <CKEditorCustom editor_type={"hp_cons"} />
+          </div>
         </div>
         <Button
           onClick={onSubmitHp}

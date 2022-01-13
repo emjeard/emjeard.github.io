@@ -6,74 +6,78 @@ import store from "redux/store";
 import ADD_DATA from "redux/actions";
 import { HP_PROS, HP_CONS } from "redux/actions/Handphone";
 
-const editorConfiguration = {
-  extraPlugins: [MyCustomUploadAdapterPlugin],
-  toolbar: {
-    items: [
-      "alignment",
-      "undo",
-      "redo",
-      "blockQuote",
-      "bold",
-      "link",
-      "ckfinder",
-      "code",
-      "codeBlock",
-      "selectAll",
-      "fontBackgroundColor",
-      "fontColor",
-      "fontFamily",
-      "fontSize",
-      "heading",
-      "htmlEmbed",
-      "imageTextAlternative",
-      "toggleImageCaption",
-      "insertImage",
-      "resizeImage",
-      "imageStyle:inline",
-      "imageStyle:alignLeft",
-      "imageStyle:alignRight",
-      "imageStyle:alignCenter",
-      "imageStyle:alignBlockLeft",
-      "imageStyle:alignBlockRight",
-      "imageStyle:block",
-      "imageStyle:side",
-      "imageStyle:wrapText",
-      "imageStyle:breakText",
-      "indent",
-      "outdent",
-      "italic",
-      "linkImage",
-      "numberedList",
-      "bulletedList",
-      "mediaEmbed",
-      "pageBreak",
-      "specialCharacters",
-      "restrictedEditingException",
-      "strikethrough",
-      "subscript",
-      "superscript",
-      "insertTable",
-      "tableColumn",
-      "tableRow",
-      "mergeTableCells",
-      "toggleTableCaption",
-      "tableCellProperties",
-      "tableProperties",
-      "underline",
-      "sourceEditing",
-    ],
-    shouldNotGroupWhenFull: true,
-  },
-};
-
 class CKEditorCustom extends Component {
   render() {
     return (
       <div className="App">
         <CKEditor
           editor={Editor}
-          config={editorConfiguration}
+          config={{
+            placeholder:
+              this.props.editor_type === undefined
+                ? ""
+                : this.props.editor_type === "hp_pros"
+                ? "Desain dan Display Semakin Beragam"
+                : "Masih Mempertahankan Produk Tanpa Charger",
+            extraPlugins: [MyCustomUploadAdapterPlugin],
+            toolbar: {
+              items: [
+                "alignment",
+                "undo",
+                "redo",
+                "blockQuote",
+                "bold",
+                "link",
+                "ckfinder",
+                "code",
+                "codeBlock",
+                "selectAll",
+                "fontBackgroundColor",
+                "fontColor",
+                "fontFamily",
+                "fontSize",
+                "heading",
+                "htmlEmbed",
+                "imageTextAlternative",
+                "toggleImageCaption",
+                "insertImage",
+                "resizeImage",
+                "imageStyle:inline",
+                "imageStyle:alignLeft",
+                "imageStyle:alignRight",
+                "imageStyle:alignCenter",
+                "imageStyle:alignBlockLeft",
+                "imageStyle:alignBlockRight",
+                "imageStyle:block",
+                "imageStyle:side",
+                "imageStyle:wrapText",
+                "imageStyle:breakText",
+                "indent",
+                "outdent",
+                "italic",
+                "linkImage",
+                "numberedList",
+                "bulletedList",
+                "mediaEmbed",
+                "pageBreak",
+                "specialCharacters",
+                "restrictedEditingException",
+                "strikethrough",
+                "subscript",
+                "superscript",
+                "insertTable",
+                "tableColumn",
+                "tableRow",
+                "mergeTableCells",
+                "toggleTableCaption",
+                "tableCellProperties",
+                "tableProperties",
+                "underline",
+                "sourceEditing",
+              ],
+              shouldNotGroupWhenFull: true,
+            },
+          }}
           data={
             this.props.editor_type === undefined
               ? store.getState().articles.content
