@@ -30,7 +30,7 @@ class MyUploadAdapter {
               if (resp.status) {
                 this.loader.uploaded = true;
                 resolve({
-                  default: resp.data.url,
+                  default: resp.data.url+"?tr=f-webp",
                 });
               } else {
                 reject(`Couldn't upload file: ${file.name}.`);
