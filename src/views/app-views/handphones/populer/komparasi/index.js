@@ -8,6 +8,8 @@ import moment from "moment";
 import CKEditorCustom from "views/app-views/components/data-entry/input/CKEditorCustom";
 import store from "redux/store";
 import ADD_DATA from "redux/actions";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const { Option } = Select;
 const init_data = { id: 0, nama_hp: "", image: "" };
@@ -45,8 +47,46 @@ const KomparasiHandphoneApp = () => {
     putUpdateHpEditorChoice(4, metaTitle, metaDesc, content, "image", data_hp)
       .then((response) => {
         setMessage(response.message);
+        if (response.status === true) {
+          toast.success(response.message, {
+            position: "top-right",
+            autoClose: true,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+          });
+          /* setTimeout(
+            () => (window.location.href = "/dashboards/rss/list"),
+            3000
+          ); */
+        } else {
+          toast.error("Gagal update data", {
+            position: "top-right",
+            autoClose: true,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+          });
+        }
+        setLoading(false);
       })
       .catch((e) => {
+        toast.error("Gagal update data", {
+          position: "top-right",
+          autoClose: true,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
         setLoading(false);
       });
     // once the request is sent, update state again
@@ -251,6 +291,7 @@ const KomparasiHandphoneApp = () => {
             </div>
           </div>
         )}
+        <ToastContainer />
       </Card>
     </div>
   );

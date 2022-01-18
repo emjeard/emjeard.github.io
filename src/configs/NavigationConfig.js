@@ -81,6 +81,14 @@ const appsNavTree = [
         submenu: [],
       },
       {
+        key: "compare-product-list",
+        path: `${APP_PREFIX_PATH}/handphones/compare/list`,
+        title: "sidenav.handphones.compare_hp_list",
+        icon: MailOutlined,
+        breadcrumb: false,
+        submenu: [],
+      },
+      {
         key: "handphones-post-product",
         path: `${APP_PREFIX_PATH}/handphones/post`,
         title: "sidenav.handphones.post_product",

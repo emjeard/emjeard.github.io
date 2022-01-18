@@ -14,6 +14,14 @@ const Handphones = ({ match }) => (
         component={lazy(() => import(`./list`))}
       />
       <Route
+        path={`${match.url}/compare/list`}
+        component={lazy(() => import(`./compare`))}
+      />
+      <Route
+        path={`${match.url}/compare/edit/:id/:id2`}
+        component={lazy(() => import(`./compare-edit`))}
+      />
+      <Route
         path={`${match.url}/post`}
         component={lazy(() => import(`./post`))}
       />

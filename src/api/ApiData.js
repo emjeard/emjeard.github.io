@@ -4,6 +4,7 @@ import { API_BASE_URL } from "constants/ApiConstant";
 import { AUTH_TOKEN } from "redux/constants/Auth";
 const BASE_URL = API_BASE_URL;
 const BASE_URL_SVC = "https://services.inponsel.com";
+const BASE_URL2 = "https://api-v2.inponsel.com";
 
 const BASE_URL_PLACES =
   "https://maps.googleapis.com/maps/api/place/details/json?";
@@ -17,9 +18,11 @@ export {
   getListHpEdChoice,
   getSearchHp,
   putUpdateHpEditorChoice,
+  putUpdateCompareHp,
   getSearchMore,
   getListNews,
   getListHp,
+  getListCompareHp,
   getDetailRSS,
   getListTagGeneral,
   getListTagOs,
@@ -29,6 +32,8 @@ export {
   postUploadAvatar,
   putUpdateArticle,
   putUpdateHandphone,
+  getCompareHp,
+  getGenerateCompareHp,
 };
 
 const getToken = function () {
@@ -82,6 +87,11 @@ let getDetailHp = (id) => {
   return axios.get(url, headerRequest).then((response) => response.data);
 };
 
+let getGenerateCompareHp = (idhp, idhp2) => {
+  const url = `${BASE_URL2}/hp/compare/short?id=${idhp}&id2=${idhp2}`;
+  return axios.get(url).then((response) => response.data);
+};
+
 let putUpdateHpEditorChoice = (id, title, desc, content, image, data_hp) => {
   const url = `${BASE_URL}hp/editor/update`;
   const formData = new FormData();
@@ -91,6 +101,17 @@ let putUpdateHpEditorChoice = (id, title, desc, content, image, data_hp) => {
   formData.append("content", content);
   formData.append("image", image);
   formData.append("data", data_hp);
+  return axios
+    .put(url, formData, headerRequest)
+    .then((response) => response.data);
+};
+
+let putUpdateCompareHp = (id, meta_desc, desc) => {
+  const url = `${BASE_URL}hp/compare/edit`;
+  const formData = new FormData();
+  formData.append("id", id);
+  formData.append("meta_desc", meta_desc);
+  formData.append("desc", desc);
   return axios
     .put(url, formData, headerRequest)
     .then((response) => response.data);
@@ -131,8 +152,18 @@ let getListHp = (page, many, filter) => {
   return axios.get(url, headerRequest).then((response) => response.data);
 };
 
+let getListCompareHp = (page, many, filter) => {
+  const url = `${BASE_URL}hp/compare/list?page=${page}&many=${many}${filter}`;
+  return axios.get(url, headerRequest).then((response) => response.data);
+};
+
 let getDetailRSS = (id) => {
   const url = `${BASE_URL}article/detail?id=${id}`;
+  return axios.get(url, headerRequest).then((response) => response.data);
+};
+
+let getCompareHp = (id_hp1, id_hp2) => {
+  const url = `${BASE_URL}hp/compare/detail?id_hp1=${id_hp1}&id_hp2=${id_hp2}`;
   return axios.get(url, headerRequest).then((response) => response.data);
 };
 
@@ -206,15 +237,30 @@ let putUpdateHandphone = (
 
   const formData = new FormData();
   formData.append("id_hp", id);
-  formData.append("hp_pros", hp_pros === "" ? " " : hp_pros.replace(/\r\n/g, ""));
-  formData.append("hp_cons", hp_cons === "" ? " " :  hp_cons.replace(/\r\n/g, ""));
-  formData.append("hp_compare", hp_compare === "" ? " " :  hp_compare);
-  formData.append("hp_release_date", hp_release_date === "" ? " " :  hp_release_date);
-  formData.append("hp_negative_word", hp_negative_word === "" ? " " :  hp_negative_word);
-  formData.append("shopee_hp_url", shopee_hp_url === "" ? " " :  shopee_hp_url);
-  formData.append("shopee_acc_url", shopee_acc_url === "" ? " " :  shopee_acc_url);
-  formData.append("laz_hp_url", laz_hp_url === "" ? " " :  laz_hp_url);
-  formData.append("laz_acc_url", laz_acc_url === "" ? " " :  laz_acc_url);
+  formData.append(
+    "hp_pros",
+    hp_pros === "" ? " " : hp_pros.replace(/\r\n/g, "")
+  );
+  formData.append(
+    "hp_cons",
+    hp_cons === "" ? " " : hp_cons.replace(/\r\n/g, "")
+  );
+  formData.append("hp_compare", hp_compare === "" ? " " : hp_compare);
+  formData.append(
+    "hp_release_date",
+    hp_release_date === "" ? " " : hp_release_date
+  );
+  formData.append(
+    "hp_negative_word",
+    hp_negative_word === "" ? " " : hp_negative_word
+  );
+  formData.append("shopee_hp_url", shopee_hp_url === "" ? " " : shopee_hp_url);
+  formData.append(
+    "shopee_acc_url",
+    shopee_acc_url === "" ? " " : shopee_acc_url
+  );
+  formData.append("laz_hp_url", laz_hp_url === "" ? " " : laz_hp_url);
+  formData.append("laz_acc_url", laz_acc_url === "" ? " " : laz_acc_url);
 
   return axios.put(url, formData, headerRequest).then((response) => response);
 };

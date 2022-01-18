@@ -77,6 +77,55 @@ class CKEditorCustom extends Component {
               ],
               shouldNotGroupWhenFull: true,
             },
+            heading: {
+              options: [
+                {
+                  model: "paragraph",
+                  view: "p",
+                  title: "Paragraph",
+                  class: "ck-heading_paragraph",
+                },
+                {
+                  model: "heading1",
+                  view: "h1",
+                  title: "Heading 1",
+                  class: "ck-heading_heading1",
+                },
+                {
+                  model: "heading2",
+                  view: "h2",
+                  title: "Heading 2",
+                  class: "ck-heading_heading2",
+                },
+                {
+                  model: "heading3",
+                  view: "h3",
+                  title: "Heading 3",
+                  class: "ck-heading_heading3",
+                },
+              ],
+            },
+            fontSize: {
+              options: [
+                12,
+                13,
+                14,
+                15,
+                16,
+                17,
+                18,
+                19,
+                20,
+                21,
+                23,
+                25,
+                27,
+                29,
+                31,
+                33,
+                35,
+              ],
+            },
           }}
           data={
             this.props.editor_type === undefined
