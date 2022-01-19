@@ -127,7 +127,7 @@ const CompareEditHp = (props) => {
     setLoading(true);
     // send the actual request
     let content = store.getState().articles.content;
-    putUpdateCompareHp(idCompare, metaDesc, content)
+    putUpdateCompareHp(idCompare, id_hp1, id_hp2, metaDesc, content)
       .then((response) => {
         setMessage(response.message);
         if (response.status === true) {
@@ -172,8 +172,6 @@ const CompareEditHp = (props) => {
           theme: "colored",
         });
       });
-    // once the request is sent, update state again
-    setLoading(false);
   }; // update the callback if the state changes
 
   return firstLoading === true ? (
@@ -212,6 +210,17 @@ const CompareEditHp = (props) => {
                   "MMMM Do YYYY, HH:mm"
                 )}`}
           </div>
+          {loading && (
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <Spin size="large" />
+            </div>
+          )}
           <div
             style={{
               display: "flex",

@@ -106,10 +106,12 @@ let putUpdateHpEditorChoice = (id, title, desc, content, image, data_hp) => {
     .then((response) => response.data);
 };
 
-let putUpdateCompareHp = (id, meta_desc, desc) => {
+let putUpdateCompareHp = (id, id_hp1, id_hp2, meta_desc, desc) => {
   const url = `${BASE_URL}hp/compare/edit`;
   const formData = new FormData();
   formData.append("id", id);
+  formData.append("id_hp1", id_hp1);
+  formData.append("id_hp2", id_hp2);
   formData.append("meta_desc", meta_desc);
   formData.append("desc", desc);
   return axios
