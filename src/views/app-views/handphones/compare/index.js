@@ -6,6 +6,7 @@ import { Select, Button, Spin } from "antd";
 import moment from "moment";
 import utils from "utils";
 import Sticky from "react-stickynode";
+import SearchInput from "components/layout-components//NavSearch/SearchInput.js";
 
 const { Search } = Input;
 const init_data = { id: 0, nama_hp: "", image: "" };
@@ -85,14 +86,21 @@ const CompareHandphoneApp = () => {
   return (
     <div>
       <Card>
-        <div style={{ margin: "10px 0px 20px" }}>
-          <Search
-            value={keysearch}
-            placeholder="Cari hp..."
-            onSearch={(value) => searchArticle(value)}
-            onChange={onChangeSearch}
-            enterButton
-          />
+        <div
+          style={{
+            margin: "10px 0px 20px",
+            display: "flex",
+            width: "-webkit-fill-available",
+            justifyContent: "center",
+          }}
+        >
+          <div style={{ margin: "0px 30px" }}>
+            <SearchInput isMobile={false} hpOnly={true} hp_select={1} />
+          </div>
+          <div style={{ margin: "0px 30px" }}>
+            <SearchInput isMobile={false} hpOnly={true} hp_select={2} />
+          </div>
+          <div></div>
         </div>
         <Sticky enabled={true} top={70} innerZ={1}>
           <div style={{ display: "flex", backgroundColor: "#F44336" }}>
@@ -142,22 +150,26 @@ const CompareHandphoneApp = () => {
               />
             </div>
           ))}
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            margin: "20px 0px 0px 0px",
-          }}
-        >
-          <Pagination
-            showQuickJumper
-            showSizeChanger={false}
-            defaultCurrent={currentPage}
-            current={currentPage}
-            total={totalData}
-            onChange={onChange}
-          />
-        </div>
+        {firstLoading === true ? (
+          ""
+        ) : (
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              margin: "20px 0px 0px 0px",
+            }}
+          >
+            <Pagination
+              showQuickJumper
+              showSizeChanger={false}
+              defaultCurrent={currentPage}
+              current={currentPage}
+              total={totalData}
+              onChange={onChange}
+            />
+          </div>
+        )}
       </Card>
     </div>
   );

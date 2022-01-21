@@ -19,25 +19,28 @@ const init_data = { id: 0, nama_hp: "", image: "" };
 const reset_data = [];
 
 const CompareEditHp = (props) => {
+  let hasData = false;
   const id_hp1 = props.match.params.id;
   const id_hp2 = props.match.params.id2;
   const [idCompare, setIdCompare] = useState(0);
   const [message, setMessage] = useState("");
   const [dataHpName, setDataHpName] = useState([]);
   const [dataHpName2, setDataHpName2] = useState([]);
+  const [modelHpName, setModelHpName] = useState([]);
+  const [modelHpName2, setModelHpName2] = useState([]);
   const [lastUpdate, setLastUpdate] = useState("");
   const [firstLoading, setFirstLoading] = useState(true);
   const [metaDesc, setMetaDesc] = useState("");
+  const [createdBy, setCreatedBy] = useState("");
   const [content, setContent] = useState("");
   const [loading, setLoading] = useState(false);
-  const [hasData, setHasData] = useState(false);
 
   useEffect(() => {
     retrieveDatahp();
   }, []);
 
-  const getCompareData = () => {
-    getCompareHp(id_hp1, id_hp2)
+  const getCompareData = async () => {
+    await getCompareHp(id_hp1, id_hp2)
       .then((response) => {
         if (response.status === true) {
           const dataPage = response.data;
@@ -46,6 +49,7 @@ const CompareEditHp = (props) => {
           const slug = dataPage.slug_hp_1;
           const slug2 = dataPage.slug_hp_2;
           setIdCompare(dataPage.id);
+          setCreatedBy(dataPage.created_by);
           let desc = dataPage.description;
           desc = desc
             .replace(/font-size:0/g, "font-size:0px;display:none;")
@@ -85,16 +89,24 @@ const CompareEditHp = (props) => {
               "Berikut detil spesifikasi kamera keduanya",
               `Berikut detil <a style='font-weight:500;' href="https://www.inponsel.com/komparasi">perbandingan spesifikasi hp</a> kamera keduanya`
             );
+          if (dataPage.created_by === 0) {
+            desc = desc.replace(/<br \/> <br \/>/g, "</p><p>");
+          }
           setDataHpName(dataPage.nama_hp_1);
           setDataHpName2(dataPage.nama_hp_2);
-          setMetaDesc(dataPage.meta_desc);
+          setModelHpName(dataPage.model_1);
+          setModelHpName2(dataPage.model_2);
+          let final_meta_desc =
+            dataPage.created_by === 0
+              ? `Perbandingan ${dataPage.nama_hp_1} vs ${dataPage.nama_hp_2} pada spesifikasi dan harga serta kelebihan dan kekurangan ${dataPage.model_1} dan ${dataPage.model_2}.`
+              : dataPage.meta_desc;
+          setMetaDesc(final_meta_desc);
           setContent(dataPage.description);
           setLastUpdate(dataPage.updated_at);
           store.dispatch(ADD_DATA(desc));
           setFirstLoading(false);
-          setHasData(true);
+          hasData = true;
         } else {
-          setHasData(false);
         }
       })
       .catch((e) => {
@@ -103,19 +115,20 @@ const CompareEditHp = (props) => {
       });
   };
 
-  const generateData = () => {
-    getGenerateCompareHp(id_hp1, id_hp2).then((response) => {
+  const generateData = async () => {
+    await getGenerateCompareHp(id_hp1, id_hp2).then((response) => {
       console.log(response.status);
     });
   };
 
   const retrieveDatahp = async () => {
     setFirstLoading(true);
-    getCompareData();
+    await getCompareData();
+    console.log("hasData", hasData);
     if (hasData === false) {
-      generateData();
+      await generateData();
+      await getCompareData();
     }
-    getCompareData();
   };
   const onChangeDesc = (e) => {
     setMetaDesc(e.target.value);
