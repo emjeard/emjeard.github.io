@@ -1,4 +1,8 @@
-import { HP_PROS_DATA, HP_CONS_DATA, HP_1_DATA, HP_2_DATA } from "../constants/Handphone";
+import { HP_PROS_DATA, HP_CONS_DATA, HP_1_DATA, HP_2_DATA, ADD_IMAGE_DATA } from "../constants/Handphone";
+
+export const ADD_IMAGE_ACT = (newData) => {
+  return { type: ADD_IMAGE_DATA, data: newData };
+};
 
 export const HP_PROS = (newData) => {
   return { type: HP_PROS_DATA, data: newData };

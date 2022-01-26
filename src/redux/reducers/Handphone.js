@@ -1,4 +1,10 @@
-import { HP_PROS_DATA, HP_CONS_DATA, HP_1_DATA, HP_2_DATA } from "../constants/Handphone";
+import {
+  HP_PROS_DATA,
+  HP_CONS_DATA,
+  HP_1_DATA,
+  HP_2_DATA,
+  ADD_IMAGE_DATA,
+} from "../constants/Handphone";
 
 const initState = {
   content: "",
@@ -6,6 +12,11 @@ const initState = {
 
 const hpproscons = (state = initState, action) => {
   switch (action.type) {
+    case ADD_IMAGE_DATA:
+      return {
+        ...state,
+        image_data: action.data,
+      };
     case HP_PROS_DATA:
       return {
         ...state,

@@ -24,8 +24,10 @@ export {
   getListHp,
   getListCompareHp,
   getDetailRSS,
+  getDetailBrand,
   getListTagGeneral,
   getListTagOs,
+  getListCountry,
   getListTagOp,
   getListTagBrand,
   getDetailHp,
@@ -34,6 +36,9 @@ export {
   putUpdateHandphone,
   getCompareHp,
   getGenerateCompareHp,
+  getListBrands,
+  putUpdateBrand,
+  postCreateBrand,
 };
 
 const getToken = function () {
@@ -134,6 +139,11 @@ let getListTagOs = () => {
   return axios.get(url, headerRequest).then((response) => response.data);
 };
 
+let getListCountry = () => {
+  const url = `${BASE_URL}country/list`;
+  return axios.get(url, headerRequest).then((response) => response.data);
+};
+
 let getListTagOp = () => {
   const url = `${BASE_URL}article/tag/op`;
   return axios.get(url, headerRequest).then((response) => response.data);
@@ -154,6 +164,11 @@ let getListHp = (page, many, filter) => {
   return axios.get(url, headerRequest).then((response) => response.data);
 };
 
+let getListBrands = (page, many, filter) => {
+  const url = `${BASE_URL}brand/list?page=${page}&many=${many}${filter}`;
+  return axios.get(url, headerRequest).then((response) => response.data);
+};
+
 let getListCompareHp = (page, many, filter) => {
   const url = `${BASE_URL}hp/compare/list?page=${page}&many=${many}${filter}`;
   return axios.get(url, headerRequest).then((response) => response.data);
@@ -161,6 +176,11 @@ let getListCompareHp = (page, many, filter) => {
 
 let getDetailRSS = (id) => {
   const url = `${BASE_URL}article/detail?id=${id}`;
+  return axios.get(url, headerRequest).then((response) => response.data);
+};
+
+let getDetailBrand = (id) => {
+  const url = `${BASE_URL}brand/detail?id=${id}`;
   return axios.get(url, headerRequest).then((response) => response.data);
 };
 
@@ -265,4 +285,104 @@ let putUpdateHandphone = (
   formData.append("laz_acc_url", laz_acc_url === "" ? " " : laz_acc_url);
 
   return axios.put(url, formData, headerRequest).then((response) => response);
+};
+
+let putUpdateBrand = (
+  id,
+  merk,
+  logo,
+  meta_title,
+  meta_desc,
+  desc_html,
+  urutan,
+  grup_kategori,
+  desc_company,
+  alamat,
+  id_negara,
+  c_center,
+  em,
+  url_website,
+  fb,
+  fb_id,
+  tw,
+  ytube,
+  ch,
+  instagram
+) => {
+  const url = `${BASE_URL}brand/edit`;
+
+  const formData = new FormData();
+  formData.append("id", id);
+  formData.append("merk", merk);
+  formData.append("logo", logo);
+  formData.append("meta_title", meta_title);
+  formData.append("meta_desc", meta_desc);
+  formData.append("desc_html", desc_html);
+  formData.append("urutan", urutan);
+  formData.append("grup_kategori", grup_kategori);
+  formData.append("desc_company", desc_company);
+  formData.append("alamat", alamat);
+  formData.append("id_negara", id_negara);
+  formData.append("c_center", c_center);
+  formData.append("em", em);
+  formData.append("url", url_website);
+  formData.append("fb", fb);
+  formData.append("fb_id", fb_id);
+  formData.append("tw", tw);
+  formData.append("ytube", ytube);
+  formData.append("ch", ch);
+  formData.append("instagram", instagram);
+
+  return axios
+    .put(url, formData, headerRequest)
+    .then((response) => response.data);
+};
+
+let postCreateBrand = (
+  merk,
+  logo,
+  meta_title,
+  meta_desc,
+  desc_html,
+  urutan,
+  grup_kategori,
+  desc_company,
+  alamat,
+  id_negara,
+  c_center,
+  em,
+  url_website,
+  fb,
+  fb_id,
+  tw,
+  ytube,
+  ch,
+  instagram
+) => {
+  const url = `${BASE_URL}brand/create`;
+
+  const formData = new FormData();
+  formData.append("merk", merk);
+  formData.append("logo", logo);
+  formData.append("meta_title", meta_title);
+  formData.append("meta_desc", meta_desc);
+  formData.append("desc_html", desc_html);
+  formData.append("urutan", urutan);
+  formData.append("grup_kategori", grup_kategori);
+  formData.append("desc_company", desc_company);
+  formData.append("alamat", alamat);
+  formData.append("id_negara", id_negara);
+  formData.append("c_center", c_center);
+  formData.append("em", em);
+  formData.append("url", url_website);
+  formData.append("fb", fb);
+  formData.append("fb_id", fb_id);
+  formData.append("tw", tw);
+  formData.append("ytube", ytube);
+  formData.append("ch", ch);
+  formData.append("instagram", instagram);
+
+  return axios
+    .post(url, formData, headerRequest)
+    .then((response) => response.data);
 };

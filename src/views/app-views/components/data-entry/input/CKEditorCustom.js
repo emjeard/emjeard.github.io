@@ -5,6 +5,7 @@ import { CKEditor } from "@ckeditor/ckeditor5-react";
 import store from "redux/store";
 import ADD_DATA from "redux/actions";
 import { HP_PROS, HP_CONS } from "redux/actions/Handphone";
+import { INPUT_1_ACT } from "redux/actions/FormInput";
 
 class CKEditorCustom extends Component {
   render() {
@@ -132,6 +133,8 @@ class CKEditorCustom extends Component {
               ? store.getState().articles.content
               : this.props.editor_type === "hp_pros"
               ? store.getState().hpproscons.pros_data
+              : this.props.editor_type === "brand"
+              ? store.getState().form_input.form_1_data
               : store.getState().hpproscons.cons_data
           }
           onReady={(editor) => {
@@ -147,6 +150,8 @@ class CKEditorCustom extends Component {
                 ? ADD_DATA(data)
                 : this.props.editor_type === "hp_pros"
                 ? HP_PROS(data)
+                : this.props.editor_type === "brand"
+                ? INPUT_1_ACT(data)
                 : HP_CONS(data)
             );
           }}

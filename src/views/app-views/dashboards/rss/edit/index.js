@@ -147,7 +147,13 @@ const RSSApp = (props) => {
     setFirstLoading(true);
     getDetailRSS(props.match.params.id)
       .then((response) => {
-        store.dispatch(ADD_DATA(response.data.content));
+        store.dispatch(
+          ADD_DATA(
+            response.data.content === ""
+              ? response.data.description
+              : response.data.content
+          )
+        );
         setDataNews(response.data);
         setDescription(response.data.description);
         setTitle(response.data.title);
@@ -481,6 +487,15 @@ const RSSApp = (props) => {
             value={dataDefTagOS}
             onChange={handleChangeOs}
             optionLabelProp="label"
+            optionFilterProp="children"
+            filterOption={(input, option) =>
+              option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+            }
+            filterSort={(optionA, optionB) =>
+              optionA.children
+                .toLowerCase()
+                .localeCompare(optionB.children.toLowerCase())
+            }
           >
             {dataTagOS.map((items) => (
               <Option value={items.value} label={items.label}>
@@ -513,6 +528,15 @@ const RSSApp = (props) => {
             value={dataDefTagOp}
             onChange={handleChangeOp}
             optionLabelProp="label"
+            optionFilterProp="children"
+            filterOption={(input, option) =>
+              option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+            }
+            filterSort={(optionA, optionB) =>
+              optionA.children
+                .toLowerCase()
+                .localeCompare(optionB.children.toLowerCase())
+            }
           >
             {dataTagOp.map((items) => (
               <Option value={items.value} label={items.label}>
