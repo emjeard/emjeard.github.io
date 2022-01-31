@@ -8,9 +8,10 @@ import moment from "moment";
 import CKEditorCustom from "views/app-views/components/data-entry/input/CKEditorCustom";
 import store from "redux/store";
 import ADD_DATA from "redux/actions";
+import { HP_SELECT_1, HP_SELECT_2 } from "redux/actions/Handphone";
+
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
 const { Option } = Select;
 const init_data = { id: 0, nama_hp: "", image: "" };
 const reset_data = [];
@@ -39,8 +40,9 @@ const KomparasiHandphoneApp = () => {
     setLoading(true);
     // send the actual request
     let data_hp = "";
-    for (let i = 0; i < updDataHp.length; i++) {
-      data_hp += updDataHp[i] + ",";
+    const finalDataHp = store.getState().hpproscons.hp_1;
+    for (let i = 0; i < finalDataHp.length; i++) {
+      data_hp += finalDataHp[i] + ",";
     }
     data_hp = data_hp.slice(0, -1);
     let content = store.getState().articles.content;
@@ -112,6 +114,7 @@ const KomparasiHandphoneApp = () => {
             )
           );
         }
+        store.dispatch(HP_SELECT_1(updDataHp));
         console.log(updDataHp);
         setFirstLoading(false);
       })
@@ -150,6 +153,7 @@ const KomparasiHandphoneApp = () => {
       idHpVs = id_hp + "|" + id_hp2;
     }
     setUpdDataHp((updDataHp[index] = idHpVs));
+    store.dispatch(HP_SELECT_1(updDataHp));
     console.log("updDataHp", updDataHp);
   }, []);
 
