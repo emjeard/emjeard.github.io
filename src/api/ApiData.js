@@ -32,6 +32,7 @@ export {
   getListTagBrand,
   getDetailHp,
   postUploadAvatar,
+  postCreateArticle,
   putUpdateArticle,
   putUpdateHandphone,
   getCompareHp,
@@ -39,6 +40,7 @@ export {
   getListBrands,
   putUpdateBrand,
   postCreateBrand,
+  getRootPathSitePage,
 };
 
 const getToken = function () {
@@ -124,6 +126,10 @@ let putUpdateCompareHp = (id, id_hp1, id_hp2, meta_desc, desc) => {
     .then((response) => response.data);
 };
 
+let getRootPathSitePage = () => {
+  const url = `${BASE_URL}site/page/root-path`;
+  return axios.get(url, headerRequest).then((response) => response.data);
+};
 let getSearchMore = (keyword) => {
   const url = `${BASE_URL}search/list?key=${keyword}`;
   return axios.get(url, headerRequest).then((response) => response.data);
@@ -200,6 +206,47 @@ let postUploadAvatar = (file, fileName) => {
   return axios
     .post(url, formData, headerImgKitRequest)
     .then((response) => response);
+};
+
+let postCreateArticle = (
+  portal_id,
+  title,
+  desc,
+  content,
+  tag_general,
+  tag_os,
+  tag_brands,
+  tag_devices,
+  tag_devices_id,
+  tag_op,
+  status,
+  had_pushed,
+  hide_images,
+  meta_title,
+  meta_desc,
+  meta_image
+) => {
+  const url = `${BASE_URL}article/create`;
+
+  const formData = new FormData();
+  formData.append("portal_id", portal_id);
+  formData.append("title", title);
+  formData.append("desc", desc.replace(/\r\n/g, ""));
+  formData.append("content", content.replace(/\r\n/g, ""));
+  formData.append("tag_general", tag_general);
+  formData.append("tag_os", tag_os);
+  formData.append("tag_brands", tag_brands);
+  formData.append("tag_devices", tag_devices);
+  formData.append("tag_devices_id", tag_devices_id);
+  formData.append("tag_op", tag_op);
+  formData.append("status", status);
+  formData.append("had_pushed", had_pushed);
+  formData.append("hide_images", hide_images);
+  formData.append("meta_title", meta_title);
+  formData.append("meta_desc", meta_desc);
+  formData.append("meta_image", meta_image);
+
+  return axios.post(url, formData, headerRequest).then((response) => response);
 };
 
 let putUpdateArticle = (

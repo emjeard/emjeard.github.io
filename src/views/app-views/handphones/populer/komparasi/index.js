@@ -251,6 +251,17 @@ const KomparasiHandphoneApp = () => {
         >
           {message}
         </div>
+        {loading && (
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <Spin size="large" />
+          </div>
+        )}
         {isSuccess === false ? (
           ""
         ) : (

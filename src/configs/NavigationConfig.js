@@ -60,6 +60,14 @@ const dashBoardNavTree = [
         breadcrumb: false,
         submenu: [],
       },
+      {
+        key: "dashboards-custom-page",
+        path: `${APP_PREFIX_PATH}/dashboards/custom-page`,
+        title: "sidenav.dashboard.custom_page",
+        icon: FundOutlined,
+        breadcrumb: false,
+        submenu: [],
+      },
     ],
   },
 ];

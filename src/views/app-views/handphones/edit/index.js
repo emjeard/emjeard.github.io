@@ -89,7 +89,7 @@ const EditHpApp = (props) => {
         setFirstLoading(false);
       })
       .catch((e) => {
-        console.log(e);
+        //console.log(e);
         setFirstLoading(false);
       });
   };
@@ -122,40 +122,40 @@ const EditHpApp = (props) => {
   };
 
   const handleSearchHp = (value) => {
-    console.log(value);
+    //console.log(value);
     if (value.length > 0) {
       getTagHp(value);
     }
   };
   const handleChangeHp = (selectedItems) => {
-    console.log(selectedItems);
+    //console.log(selectedItems);
     setDefDataTagHp(selectedItems);
   };
 
   const onChangePriceNewFrom = (value) => {
     //const price_int = parseInt(value.replace("Rp. ", "").replace(/\./g, ""));
-    console.log(value);
+    //console.log(value);
     //const priceRp = utils.formatRupiah(value, "Rp. ")
     setPriceNewFromHp(value);
   };
 
   const onChangePriceNewEnd = (value) => {
     //const price_int = parseInt(value.replace("Rp. ", "").replace(/\./g, ""));
-    console.log(value);
+    //console.log(value);
     //const priceRp = utils.formatRupiah(value, "Rp. ")
     setPriceNewEndHp(value);
   };
 
   const onChangePriceSecondFrom = (value) => {
     //const price_int = parseInt(value.replace("Rp. ", "").replace(/\./g, ""));
-    console.log(value);
+    //console.log(value);
     //const priceRp = utils.formatRupiah(value, "Rp. ")
     setPriceSecondFromHp(value);
   };
 
   const onChangePriceSecondEnd = (value) => {
     //const price_int = parseInt(value.replace("Rp. ", "").replace(/\./g, ""));
-    console.log(value);
+    //console.log(value);
     //const priceRp = utils.formatRupiah(value, "Rp. ")
     setPriceSecondEndHp(value);
   };
@@ -202,20 +202,20 @@ const EditHpApp = (props) => {
       tagDevices += dataDefTagHp[i].key + ",";
     }
     tagDevices = tagDevices.slice(0, -1);
-    console.log("price_new_from", price_new_from);
-    console.log("price_new_end", price_new_end);
-    console.log("price_second_from", price_second_from);
-    console.log("price_second_end", price_second_end);
-    console.log("last_update", last_update);
-    console.log("rilis_idn", rilis_idn);
-    console.log("negative_keywords", negative_keywords);
-    console.log("shopee_prod_url", shopee_prod_url);
-    console.log("shopee_acc_url", shopee_acc_url);
-    console.log("laz_prod_url", laz_prod_url);
-    console.log("laz_acc_url", laz_acc_url);
-    console.log("tagDevices", tagDevices);
-    console.log("hp_pros", hp_pros);
-    console.log("hp_cons", hp_cons);
+    //console.log("price_new_from", price_new_from);
+    //console.log("price_new_end", price_new_end);
+    //console.log("price_second_from", price_second_from);
+    //console.log("price_second_end", price_second_end);
+    //console.log("last_update", last_update);
+    //console.log("rilis_idn", rilis_idn);
+    //console.log("negative_keywords", negative_keywords);
+    //console.log("shopee_prod_url", shopee_prod_url);
+    //console.log("shopee_acc_url", shopee_acc_url);
+    //console.log("laz_prod_url", laz_prod_url);
+    //console.log("laz_acc_url", laz_acc_url);
+    //console.log("tagDevices", tagDevices);
+    //console.log("hp_pros", hp_pros);
+    //console.log("hp_cons", hp_cons);
     putUpdateHandphone(
       id_hp,
       hp_pros,
@@ -229,7 +229,7 @@ const EditHpApp = (props) => {
       laz_acc_url
     )
       .then((resp) => {
-        console.log("update", resp.data.status);
+        //console.log("update", resp.data.status);
         if (resp.data.status === true) {
           toast.success(resp.data.message, {
             position: "top-right",

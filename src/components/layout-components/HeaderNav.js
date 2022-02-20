@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import { connect } from "react-redux";
 import { Layout, Button } from "antd";
 import {
@@ -36,6 +37,11 @@ export const HeaderNav = (props) => {
     currentTheme,
     direction,
   } = props;
+  const history = useHistory();
+
+  const routeChange = (newpath) => {
+    history.push(newpath);
+  };
   const [searchActive, setSearchActive] = useState(false);
 
   const onSearchActive = () => {
@@ -131,7 +137,11 @@ export const HeaderNav = (props) => {
               </Button>
             </div>
             <div className="ant-menu-item ant-menu-item-only-child">
-              <Button type="primary" icon={<PlusOutlined />}>
+              <Button
+                type="primary"
+                icon={<PlusOutlined />}
+                onClick={() => routeChange("/dashboards/rss/create")}
+              >
                 Post Article
               </Button>
             </div>

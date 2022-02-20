@@ -29,6 +29,10 @@ const Dashboards = ({ match }) => {
         <Route
           path={`${match.url}/service-center`}
           component={lazy(() => import(`./service-center`))}
+        />{" "}
+        <Route
+          path={`${match.url}/custom-page`}
+          component={lazy(() => import(`./custom-page`))}
         />
         <Redirect from={`${match.url}`} to={`${match.url}/default`} />
       </Switch>
