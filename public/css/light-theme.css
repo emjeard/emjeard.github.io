@@ -15199,7 +15199,7 @@ _:-ms-fullscreen
 }
 .ant-input-group-addon {
   position: relative;
-  padding: 0 11px;
+  padding: 0px;
   color: #455560;
   font-weight: 400;
   font-size: 14px;

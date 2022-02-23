@@ -19,9 +19,26 @@
 .loading .ant-spin {
   color: #c10000;
 }
-.layout-input-data{
+.lay-segment{
+  margin: 20px 0px 0px 0px;
+  padding: 5px 10px;
+  border-radius: 10px;
+  color: white;
+  font-weight: 500;
+}
+.lay-subsegment{
+  padding: 20px 0px 0px 0px;
+}
+.layout-input-data-col {
   margin: 0px 10px;
 }
-.lbl-input-data{
-    margin: 5px;
+.lbl-input-data {
+  margin: 5px;
+  font-size: 14px;
+  font-weight: 500;
+}
+.lay-group-label {
+  background: #f7f7f8 !important;
+  font-size: 12px !important;
+  padding: 0px 10px !important;
 }
