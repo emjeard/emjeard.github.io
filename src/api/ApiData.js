@@ -22,6 +22,7 @@ export {
   getSearchMore,
   getListNews,
   getListHp,
+  getListHpModel,
   getListCompareHp,
   getDetailRSS,
   getDetailBrand,
@@ -66,7 +67,7 @@ const headerImgKitRequest = {
   },
 };
 
-let postLogin = (email, password) => {
+const postLogin = (email, password) => {
   const url = `${BASE_URL}admin/user/login`;
   const formData = new FormData();
   formData.append("email", email);
@@ -74,32 +75,32 @@ let postLogin = (email, password) => {
   return axios.post(url, formData).then((response) => response.data);
 };
 
-let getMeProfile = () => {
+const getMeProfile = () => {
   const url = `${BASE_URL}admin/me`;
   return axios.get(url, headerRequest).then((response) => response.data);
 };
 
-let getListHpEdChoice = (id) => {
+const getListHpEdChoice = (id) => {
   const url = `${BASE_URL}hp/editor/list?id=${id}`;
   return axios.get(url, headerRequest).then((response) => response.data);
 };
 
-let getSearchHp = (keyword) => {
+const getSearchHp = (keyword) => {
   const url = `${BASE_URL}hp/search/list?key=${keyword}`;
   return axios.get(url, headerRequest).then((response) => response.data);
 };
 
-let getDetailHp = (id) => {
+const getDetailHp = (id) => {
   const url = `${BASE_URL}hp/detail?id=${id}`;
   return axios.get(url, headerRequest).then((response) => response.data);
 };
 
-let getGenerateCompareHp = (idhp, idhp2) => {
+const getGenerateCompareHp = (idhp, idhp2) => {
   const url = `${BASE_URL2}/hp/compare/short?id=${idhp}&id2=${idhp2}`;
   return axios.get(url).then((response) => response.data);
 };
 
-let putUpdateHpEditorChoice = (id, title, desc, content, image, data_hp) => {
+const putUpdateHpEditorChoice = (id, title, desc, content, image, data_hp) => {
   const url = `${BASE_URL}hp/editor/update`;
   const formData = new FormData();
   formData.append("id", id);
@@ -113,7 +114,7 @@ let putUpdateHpEditorChoice = (id, title, desc, content, image, data_hp) => {
     .then((response) => response.data);
 };
 
-let putUpdateCompareHp = (id, id_hp1, id_hp2, meta_desc, desc) => {
+const putUpdateCompareHp = (id, id_hp1, id_hp2, meta_desc, desc) => {
   const url = `${BASE_URL}hp/compare/edit`;
   const formData = new FormData();
   formData.append("id", id);
@@ -126,76 +127,79 @@ let putUpdateCompareHp = (id, id_hp1, id_hp2, meta_desc, desc) => {
     .then((response) => response.data);
 };
 
-let getRootPathSitePage = () => {
+const getRootPathSitePage = () => {
   const url = `${BASE_URL}site/page/root-path`;
   return axios.get(url, headerRequest).then((response) => response.data);
 };
-let getSearchMore = (keyword) => {
+const getSearchMore = (keyword) => {
   const url = `${BASE_URL}search/list?key=${keyword}`;
   return axios.get(url, headerRequest).then((response) => response.data);
 };
 
-let getListTagGeneral = () => {
+const getListTagGeneral = () => {
   const url = `${BASE_URL}article/tag/general`;
   return axios.get(url, headerRequest).then((response) => response.data);
 };
 
-let getListTagOs = () => {
+const getListTagOs = () => {
   const url = `${BASE_URL}article/tag/os`;
   return axios.get(url, headerRequest).then((response) => response.data);
 };
 
-let getListCountry = () => {
+const getListCountry = () => {
   const url = `${BASE_URL}country/list`;
   return axios.get(url, headerRequest).then((response) => response.data);
 };
 
-let getListTagOp = () => {
+const getListTagOp = () => {
   const url = `${BASE_URL}article/tag/op`;
   return axios.get(url, headerRequest).then((response) => response.data);
 };
 
-let getListTagBrand = (key) => {
+const getListTagBrand = (key) => {
   const url = `${BASE_URL}article/tag/brand?key=${key}`;
   return axios.get(url, headerRequest).then((response) => response.data);
 };
 
-let getListNews = (page, many, filter) => {
+const getListNews = (page, many, filter) => {
   const url = `${BASE_URL}article/list?page=${page}&many=${many}${filter}`;
   return axios.get(url, headerRequest).then((response) => response.data);
 };
 
-let getListHp = (page, many, filter) => {
+const getListHp = (page, many, filter) => {
   const url = `${BASE_URL}hp/list?page=${page}&many=${many}${filter}`;
   return axios.get(url, headerRequest).then((response) => response.data);
 };
-
-let getListBrands = (page, many, filter) => {
-  const url = `${BASE_URL}brand/list?page=${page}&many=${many}${filter}`;
+const getListHpModel = (page, many, filter) => {
+  const url = `${BASE_URL}hp/model`;
+  return axios.get(url, headerRequest).then((response) => response.data);
+};
+const getListBrands = (page, many, filter) => {
+  const url = `${BASE_URL}brand/list?page=${page}&many=${many}&order=${filter}`;
   return axios.get(url, headerRequest).then((response) => response.data);
 };
 
-let getListCompareHp = (page, many, filter) => {
+const getListCompareHp = (page, many, filter) => {
   const url = `${BASE_URL}hp/compare/list?page=${page}&many=${many}${filter}`;
   return axios.get(url, headerRequest).then((response) => response.data);
 };
 
-let getDetailRSS = (id) => {
+const getDetailRSS = (id) => {
   const url = `${BASE_URL}article/detail?id=${id}`;
   return axios.get(url, headerRequest).then((response) => response.data);
 };
 
-let getDetailBrand = (id) => {
+const getDetailBrand = (id) => {
   const url = `${BASE_URL}brand/detail?id=${id}`;
   return axios.get(url, headerRequest).then((response) => response.data);
 };
 
-let getCompareHp = (id_hp1, id_hp2) => {
+const getCompareHp = (id_hp1, id_hp2) => {
   const url = `${BASE_URL}hp/compare/detail?id_hp1=${id_hp1}&id_hp2=${id_hp2}`;
   return axios.get(url, headerRequest).then((response) => response.data);
 };
 
-let postUploadAvatar = (file, fileName) => {
+const postUploadAvatar = (file, fileName) => {
   const url = `https://api.imagekit.io/v1/files/upload`;
 
   const formData = new FormData();
@@ -208,7 +212,7 @@ let postUploadAvatar = (file, fileName) => {
     .then((response) => response);
 };
 
-let postCreateArticle = (
+const postCreateArticle = (
   portal_id,
   title,
   desc,
@@ -249,7 +253,7 @@ let postCreateArticle = (
   return axios.post(url, formData, headerRequest).then((response) => response);
 };
 
-let putUpdateArticle = (
+const putUpdateArticle = (
   id,
   title,
   desc,
@@ -290,7 +294,7 @@ let putUpdateArticle = (
   return axios.put(url, formData, headerRequest).then((response) => response);
 };
 
-let putUpdateHandphone = (
+const putUpdateHandphone = (
   id,
   hp_pros,
   hp_cons,
@@ -334,7 +338,7 @@ let putUpdateHandphone = (
   return axios.put(url, formData, headerRequest).then((response) => response);
 };
 
-let putUpdateBrand = (
+const putUpdateBrand = (
   id,
   merk,
   logo,
@@ -385,7 +389,7 @@ let putUpdateBrand = (
     .then((response) => response.data);
 };
 
-let postCreateBrand = (
+const postCreateBrand = (
   merk,
   logo,
   meta_title,

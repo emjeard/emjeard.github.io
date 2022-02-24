@@ -4,6 +4,10 @@ import {
   HP_1_DATA,
   HP_2_DATA,
   ADD_IMAGE_DATA,
+  GEN_MEREK,
+  GEN_TIPE,
+  GEN_ADD_INFO,
+  GEN_INPUT,
 } from "../constants/Handphone";
 
 const initState = {
@@ -11,6 +15,7 @@ const initState = {
 };
 
 const hpproscons = (state = initState, action) => {
+  const stateName = action.type;
   switch (action.type) {
     case ADD_IMAGE_DATA:
       return {
@@ -37,8 +42,31 @@ const hpproscons = (state = initState, action) => {
         ...state,
         hp_2: action.data,
       };
+    case GEN_MEREK:
+      return {
+        ...state,
+        gen_merek: action.data,
+      };
+    case GEN_TIPE:
+      return {
+        ...state,
+        gen_tipe: action.data,
+      };
+    case GEN_ADD_INFO:
+      return {
+        ...state,
+        gen_add_info: action.data,
+      };
+    case GEN_INPUT:
+      return {
+        ...state,
+        [stateName]: action.data,
+      };
     default:
-      return state;
+      return {
+        ...state,
+        [stateName]: action.data,
+      };
   }
 };
 
