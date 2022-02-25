@@ -29,6 +29,10 @@ const Handphones = ({ match }) => (
         path={`${match.url}/edit/:id`}
         component={lazy(() => import(`./edit`))}
       />
+      <Route
+        path={`${match.url}/full/:id`}
+        component={lazy(() => import(`./full`))}
+      />
       <Redirect from={`${match.url}`} to={`${match.url}/default`} />
     </Switch>
   </Suspense>

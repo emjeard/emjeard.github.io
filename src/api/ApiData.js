@@ -23,6 +23,8 @@ export {
   getListNews,
   getListHp,
   getListHpModel,
+  getListHpStatus,
+  getListHpSimCard,
   getListCompareHp,
   getDetailRSS,
   getDetailBrand,
@@ -170,10 +172,21 @@ const getListHp = (page, many, filter) => {
   const url = `${BASE_URL}hp/list?page=${page}&many=${many}${filter}`;
   return axios.get(url, headerRequest).then((response) => response.data);
 };
-const getListHpModel = (page, many, filter) => {
+const getListHpModel = () => {
   const url = `${BASE_URL}hp/model`;
   return axios.get(url, headerRequest).then((response) => response.data);
 };
+
+const getListHpStatus = () => {
+  const url = `${BASE_URL}hp/status`;
+  return axios.get(url, headerRequest).then((response) => response.data);
+};
+
+const getListHpSimCard = () => {
+  const url = `${BASE_URL}hp/simcard`;
+  return axios.get(url, headerRequest).then((response) => response.data);
+};
+
 const getListBrands = (page, many, filter) => {
   const url = `${BASE_URL}brand/list?page=${page}&many=${many}&order=${filter}`;
   return axios.get(url, headerRequest).then((response) => response.data);

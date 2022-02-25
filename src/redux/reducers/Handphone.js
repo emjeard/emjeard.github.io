@@ -1,4 +1,5 @@
 import {
+  HP_DATA_FULL,
   HP_PROS_DATA,
   HP_CONS_DATA,
   HP_1_DATA,
@@ -8,6 +9,7 @@ import {
   GEN_TIPE,
   GEN_ADD_INFO,
   GEN_INPUT,
+  HP_DATA,
 } from "../constants/Handphone";
 
 const initState = {
@@ -26,6 +28,11 @@ const hpproscons = (state = initState, action) => {
       return {
         ...state,
         pros_data: action.data,
+      };
+    case HP_DATA_FULL:
+      return {
+        ...state,
+        gen_hp_data: action.data,
       };
     case HP_CONS_DATA:
       return {
@@ -62,11 +69,13 @@ const hpproscons = (state = initState, action) => {
         ...state,
         [stateName]: action.data,
       };
-    default:
+    case HP_DATA:
       return {
         ...state,
-        [stateName]: action.data,
+        gen_hp_data: action.data,
       };
+    default:
+      return state;
   }
 };
 

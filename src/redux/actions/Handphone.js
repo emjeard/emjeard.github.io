@@ -18,6 +18,9 @@ import {
   GEN_WARNA,
   GEN_DIUMUMKAN,
   GEN_STATUS,
+  HP_DATA,
+  HP_DATA_FULL,
+  HP_DATA_UPDATE,
 } from "../constants/Handphone";
 
 export const ADD_IMAGE_ACT = (newData) => {
@@ -50,6 +53,14 @@ export const GEN_ADD_INFO_ACT = (newData) => {
   return { type: GEN_ADD_INFO, data: newData };
 };
 
+export const HP_DATA_FULL_ACT = (newData) => {
+  return { type: HP_DATA_FULL, data: newData };
+};
+
 export const GEN_INPUT_ACT = (stateName, newData) => {
   return { type: stateName, data: newData };
+};
+
+export const HP_DATA_ACT = (stateName, newData) => {
+  return { type: HP_DATA_UPDATE + stateName, data: newData };
 };

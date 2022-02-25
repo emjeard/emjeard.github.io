@@ -1,6 +1,7 @@
 export const ADD_IMAGE_DATA = "ADD_IMAGE_DATA";
 export const HP_PROS_DATA = "HP_PROS_DATA";
 export const HP_CONS_DATA = "HP_CONS_DATA";
+export const HP_DATA = "HP_DATA";
 export const HP_1_DATA = "HP_1_DATA";
 export const HP_2_DATA = "HP_2_DATA";
 export const GEN_MEREK = "GEN_MEREK";
@@ -18,3 +19,5 @@ export const GEN_IMAGE = "GEN_IMAGE";
 export const GEN_WARNA = "GEN_WARNA";
 export const GEN_DIUMUMKAN = "GEN_DIUMUMKAN";
 export const GEN_STATUS = "GEN_STATUS";
+export const HP_DATA_FULL = "HP_DATA_FULL";
+export const HP_DATA_UPDATE = "data.";

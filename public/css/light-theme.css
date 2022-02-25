@@ -27552,6 +27552,9 @@ tr > .ant-picker-cell-in-view.ant-picker-cell-range-hover:first-child::after {
   border-radius: 10px;
   background-color: transparent;
 }
+#upload_hp{
+  height: 195px !important;
+}
 .ant-upload.ant-upload-drag {
   border: 2px dashed #e6ebf1;
   border-radius: 0.625rem;

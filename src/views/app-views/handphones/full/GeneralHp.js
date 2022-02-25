@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
+import moment from "moment";
 import {
   Input,
   Select,
@@ -13,12 +14,15 @@ import { InfoCircleOutlined, SaveOutlined } from "@ant-design/icons";
 import Drag from "./Drag";
 import store from "redux/store";
 import { GEN_INPUT_ACT } from "redux/actions/General";
+import { HP_DATA_ACT } from "redux/actions/Handphone";
+
 import { getListBrands, getListHpModel, getListHpStatus } from "api/ApiData";
 
 const { Option } = Select;
 const { TextArea } = Input;
 
 const GeneralHp = () => {
+  const monthFormat = "YYYY-MM";
   const [dataTagBrand, setDataTagBrand] = useState([]);
   const [dataHpModel, setDataHpModel] = useState([]);
   const [dataHpStatus, setDataHpStatus] = useState([]);
@@ -46,29 +50,29 @@ const GeneralHp = () => {
     if (stateName.includes("__cb")) {
       stateValue = e.target.checked;
     }
-    store.dispatch(GEN_INPUT_ACT(stateName, stateValue));
+    store.dispatch(HP_DATA_ACT(stateName, stateValue));
   };
 
   const onChangeGenDiumumkan = (date, dateString) => {
-    store.dispatch(GEN_INPUT_ACT("gen_diumumkan", dateString + "-01"));
+    store.dispatch(GEN_INPUT_ACT("umu_diumumkan", dateString + "-01"));
   };
 
   const onChangeSelectGeneral = (selectedItems, option) => {
-    const splitOptions = option.key.split("--");
+    const splitOptions = option.value.split("--");
     const stateName = splitOptions[1];
     const valueSelect = splitOptions[0];
     store.dispatch(GEN_INPUT_ACT(stateName, valueSelect));
   };
 
   const onChangeTagsGeneral = (selectedItems, option) => {
-    store.dispatch(GEN_INPUT_ACT("gen_tags", selectedItems));
+    store.dispatch(GEN_INPUT_ACT("umu_tags", selectedItems));
   };
 
   const getTagBrand = () => {
     getListBrands(1, 1000, "merk:asc").then((response) => {
       const data = response.data.map((item) => ({
         text: item.merk,
-        value: item.id + "--gen_merk",
+        value: item.id + "--id_merk",
       }));
       setDataTagBrand(data);
     });
@@ -77,7 +81,7 @@ const GeneralHp = () => {
     getListHpModel().then((response) => {
       const data = response.data.map((item) => ({
         text: item.model,
-        value: item.id + "--gen_model",
+        value: item.id + "--umu_model",
       }));
       setDataHpModel(data);
     });
@@ -87,11 +91,20 @@ const GeneralHp = () => {
     getListHpStatus().then((response) => {
       const data = response.data.map((item) => ({
         text: item.status,
-        value: item.id + "--gen_hpstatus",
+        value: item.id + "--umu_status",
       }));
       setDataHpStatus(data);
     });
   };
+
+  const tagsRepl = store
+    .getState()
+    .gen_hp_data.data.umu_tags.replace(/, /g, ",");
+  const tags = tagsRepl.split(",");
+  let tagsArr = [];
+  for (let i = 0; i < tags.length; i++) {
+    tagsArr.push(tags[i]);
+  }
 
   return (
     <div>
@@ -118,11 +131,14 @@ const GeneralHp = () => {
               <Select
                 style={{ minWidth: 200 }}
                 showSearch
-                name="gen_merk"
+                name="id_merk"
                 placeholder="Pilih merek"
                 optionFilterProp="children"
                 onChange={onChangeSelectGeneral}
                 onSearch={onSearchSelect}
+                defaultValue={
+                  store.getState().gen_hp_data.data.id_merk + "--id_merk"
+                }
                 filterOption={(input, option) =>
                   option.children.toLowerCase().indexOf(input.toLowerCase()) >=
                   0
@@ -151,9 +167,9 @@ const GeneralHp = () => {
               <Input
                 placeholder="Contoh: Galaxy S22"
                 style={{ minWidth: 230 }}
-                name="gen_tipe"
+                name="model"
                 onChange={onChangeInputGeneral}
-                value={store.getState().hpproscons.gen_tipe}
+                defaultValue={store.getState().gen_hp_data.data.model}
               />
             </div>
           </div>
@@ -164,7 +180,7 @@ const GeneralHp = () => {
               size={size}
               name="gen_tags"
               placeholder=""
-              defaultValue={[]}
+              defaultValue={tagsArr}
               onChange={onChangeTagsGeneral}
               style={{ width: "100%" }}
             ></Select>
@@ -173,15 +189,22 @@ const GeneralHp = () => {
             <div className="lbl-input-data">Keterangan Tambahan</div>
             <TextArea
               rows={4}
-              name="gen_add_info"
+              name="ketamb"
               placeholder=""
               onChange={onChangeInputGeneral}
-              value={store.getState().hpproscons.gen_add_info}
+              defaultValue={store
+                .getState()
+                .gen_hp_data.data.ketamb.replace(/; /g, "\n")}
             />
           </div>
           <div className="lay-subsegment">
             <div className="lbl-input-data">Gambar</div>
-            <Drag image={""} />
+            <Drag
+              image={
+                "https://static.inponsel.com/images/hape/" +
+                store.getState().gen_hp_data.data.gambar
+              }
+            />
           </div>
         </div>
         <div
@@ -195,12 +218,15 @@ const GeneralHp = () => {
           <div className="lay-subsegment">
             <div className="lbl-input-data">Model</div>
             <Select
-              name="gen_model"
+              name="umu_model"
               style={{ minWidth: 230 }}
               showSearch
               placeholder="Pilih model"
               optionFilterProp="children"
               onChange={onChangeSelectGeneral}
+              defaultValue={
+                store.getState().gen_hp_data.data.umu_model + "--umu_model"
+              }
               onSearch={onSearchSelect}
               filterOption={(input, option) =>
                 option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
@@ -218,23 +244,23 @@ const GeneralHp = () => {
                 addonAfter={
                   <span className="lay-group-label">mm (panjang)</span>
                 }
-                defaultValue=""
+                defaultValue={store.getState().gen_hp_data.data.umu_dim_panjang}
                 onChange={onChangeInputGeneral}
-                name="gen_panjang"
+                name="umu_dim_panjang"
                 style={{ width: 170 }}
               />
               <Input
                 addonAfter={<span className="lay-group-label">mm (lebar)</span>}
-                defaultValue=""
+                defaultValue={store.getState().gen_hp_data.data.umu_dim_lebar}
                 onChange={onChangeInputGeneral}
-                name="gen_lebar"
+                name="umu_dim_lebar"
                 style={{ width: 150, margin: "0px 0px 0px 20px" }}
               />
               <Input
                 addonAfter={<span className="lay-group-label">mm (tebal)</span>}
-                defaultValue=""
+                defaultValue={store.getState().gen_hp_data.data.umu_dim_tebal}
                 onChange={onChangeInputGeneral}
-                name="gen_tebal"
+                name="umu_dim_tebal"
                 style={{ width: 150, margin: "10px 0px 0px 0px" }}
               />
             </div>
@@ -244,15 +270,15 @@ const GeneralHp = () => {
             <div style={{ display: "flex", flexWrap: "wrap" }}>
               <Input
                 addonAfter={<span className="lay-group-label">gram</span>}
-                defaultValue=""
+                defaultValue={store.getState().gen_hp_data.data.umu_bobot}
                 onChange={onChangeInputGeneral}
                 style={{ width: 120 }}
-                name="gen_bobot"
+                name="umu_bobot"
               />
               <Input
-                defaultValue=""
+                defaultValue={store.getState().gen_hp_data.data.umu_bobot_ket}
                 onChange={onChangeInputGeneral}
-                name="gen_bobot_info"
+                name="umu_bobot_ket"
                 style={{ width: 250, margin: "0px 0px 0px 20px" }}
               />
             </div>
@@ -261,9 +287,11 @@ const GeneralHp = () => {
             <div className="lbl-input-data">Warna</div>
             <div style={{ display: "flex", flexWrap: "wrap" }}>
               <Input
-                defaultValue=""
+                defaultValue={
+                  store.getState().gen_hp_data.data.umu_warna_ponsel
+                }
                 onChange={onChangeInputGeneral}
-                name="gen_warna"
+                name="umu_warna_ponsel"
                 style={{ width: "100%", margin: "0px 0px 0px 0px" }}
               />
             </div>
@@ -277,8 +305,13 @@ const GeneralHp = () => {
                     <DatePicker
                       style={{ width: 130 }}
                       onChange={onChangeGenDiumumkan}
-                      name="gen_diumumkan"
+                      name="umu_diumumkan"
                       picker="month"
+                      defaultValue={moment(
+                        store.getState().gen_hp_data.data.umu_diumumkan,
+                        monthFormat
+                      )}
+                      format={monthFormat}
                     />
                     <Button
                       style={{ width: 80, padding: "5px 0px 0px 0px" }}
@@ -310,13 +343,17 @@ const GeneralHp = () => {
                 <div className="lbl-input-data">Status</div>
                 <div style={{ display: "flex", flexWrap: "wrap" }}>
                   <Select
-                    name="gen_status"
+                    name="umu_status"
                     style={{ minWidth: 230 }}
                     showSearch
                     placeholder="Pilih status"
                     optionFilterProp="children"
                     onChange={onChangeSelectGeneral}
                     onSearch={onSearchSelect}
+                    defaultValue={
+                      store.getState().gen_hp_data.data.umu_status +
+                      "--umu_status"
+                    }
                     filterOption={(input, option) =>
                       option.children
                         .toLowerCase()
