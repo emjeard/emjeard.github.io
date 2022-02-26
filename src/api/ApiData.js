@@ -23,6 +23,8 @@ export {
   getListNews,
   getListHp,
   getListHpModel,
+  getListHpLayarWarna,
+  getListHpLayarSensor,
   getListHpStatus,
   getListHpSimCard,
   getListCompareHp,
@@ -177,6 +179,14 @@ const getListHpModel = () => {
   return axios.get(url, headerRequest).then((response) => response.data);
 };
 
+const getListHpLayarWarna = () => {
+  const url = `${BASE_URL}hp/layar/warna`;
+  return axios.get(url, headerRequest).then((response) => response.data);
+};
+const getListHpLayarSensor = () => {
+  const url = `${BASE_URL}hp/layar/sensor`;
+  return axios.get(url, headerRequest).then((response) => response.data);
+};
 const getListHpStatus = () => {
   const url = `${BASE_URL}hp/status`;
   return axios.get(url, headerRequest).then((response) => response.data);

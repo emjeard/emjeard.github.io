@@ -13,7 +13,6 @@ import {
 import { InfoCircleOutlined, SaveOutlined } from "@ant-design/icons";
 import Drag from "./Drag";
 import store from "redux/store";
-import { GEN_INPUT_ACT } from "redux/actions/General";
 import { HP_DATA_ACT } from "redux/actions/Handphone";
 
 import { getListBrands, getListHpModel, getListHpStatus } from "api/ApiData";
@@ -54,18 +53,18 @@ const GeneralHp = () => {
   };
 
   const onChangeGenDiumumkan = (date, dateString) => {
-    store.dispatch(GEN_INPUT_ACT("umu_diumumkan", dateString + "-01"));
+    store.dispatch(HP_DATA_ACT("umu_diumumkan", dateString + "-01"));
   };
 
   const onChangeSelectGeneral = (selectedItems, option) => {
     const splitOptions = option.value.split("--");
     const stateName = splitOptions[1];
     const valueSelect = splitOptions[0];
-    store.dispatch(GEN_INPUT_ACT(stateName, valueSelect));
+    store.dispatch(HP_DATA_ACT(stateName, valueSelect));
   };
 
   const onChangeTagsGeneral = (selectedItems, option) => {
-    store.dispatch(GEN_INPUT_ACT("umu_tags", selectedItems));
+    store.dispatch(HP_DATA_ACT("umu_tags", selectedItems));
   };
 
   const getTagBrand = () => {

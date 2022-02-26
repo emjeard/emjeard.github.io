@@ -20,6 +20,7 @@ import store from "redux/store";
 import { GEN_INPUT_ACT } from "redux/actions/General";
 import GeneralHp from "./GeneralHp";
 import NetworkHp from "./NetworkHp";
+import ScreenHp from "./ScreenHp";
 
 const { Option } = Select;
 const init_data = { id: 0, nama_hp: "", image: "" };
@@ -297,6 +298,7 @@ const EditHpFullApp = (props) => {
         </div>
         <GeneralHp />
         <NetworkHp />
+        <ScreenHp />
         <div
           style={{
             background: "#999999",

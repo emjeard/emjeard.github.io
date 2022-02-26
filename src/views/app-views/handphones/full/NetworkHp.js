@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Input, Select, Button } from "antd";
 import store from "redux/store";
-import { GEN_INPUT_ACT, GEN_INPUT_DATA_ACT } from "redux/actions/General";
 import { getListHpSimCard, getListHpModel, getListHpStatus } from "api/ApiData";
 import { HP_DATA_ACT } from "redux/actions/Handphone";
 
@@ -26,6 +25,13 @@ const NetworkHp = () => {
     getHpStatus();
   };
 
+  const getStateValue = (e) => {
+    let stateName = e.target.name;
+    console.log("getStateValue", stateName);
+    let stateValue = store.getState().gen_hp_data.data[stateName];
+    return stateValue;
+  };
+
   const onChangeInputGeneral = (e) => {
     const stateName = e.target.name;
     let stateValue = e.target.value;
@@ -33,7 +39,7 @@ const NetworkHp = () => {
     if (stateName.includes("__cb")) {
       stateValue = e.target.checked;
     }
-    store.dispatch(GEN_INPUT_ACT(stateName, stateValue));
+    store.dispatch(HP_DATA_ACT(stateName, stateValue));
   };
 
   const onChangeSelectGeneral = (selectedItems, option) => {
@@ -47,7 +53,7 @@ const NetworkHp = () => {
     getListHpSimCard().then((response) => {
       const data = response.data.map((item) => ({
         text: item.model,
-        value: item.id + "--net_sc",
+        value: item.id + "--jar_sc",
       }));
       setDataSimcard(data);
     });
@@ -124,22 +130,26 @@ const NetworkHp = () => {
                     GSM
                   </Button>
                   <Select
-                    defaultValue=""
+                    defaultValue={
+                      store.getState().gen_hp_data.data.jar_2g_status +
+                      "--jar_2g_gsm_status"
+                    }
                     style={{ width: 80 }}
                     onChange={onChangeSelectGeneral}
                   >
-                    <Option value="yes--net_gsm">Yes</Option>
-                    <Option value="no--net_gsm">No</Option>
-                    <Option value="na--net_gsm">N/A</Option>
+                    <Option value="1--jar_2g_gsm_status">Yes</Option>
+                    <Option value="2--jar_2g_gsm_status">No</Option>
+                    <Option value="3--jar_2g_gsm_status">N/A</Option>
+                    <Option value="0--jar_2g_gsm_status">N/A</Option>
                   </Select>
                 </Input.Group>
               </div>
               <div style={{ margin: "30px 0px 0px 20px" }}>
                 <Input.Group compact>
                   <Input
-                    name="net_gsm_info"
+                    name="jar_2g_gsm"
                     onChange={onChangeInputGeneral}
-                    defaultValue=""
+                    defaultValue={store.getState().gen_hp_data.data.jar_2g_gsm}
                     style={{ width: 176, margin: "0px 0px 0px 0px" }}
                   />
                   <Button className="lay-group-label">MHz</Button>
@@ -151,22 +161,26 @@ const NetworkHp = () => {
                 <Input.Group compact>
                   <Button className="lay-group-label">CDMA</Button>
                   <Select
-                    defaultValue=""
+                    defaultValue={
+                      store.getState().gen_hp_data.data.jar_2g_status +
+                      "--jar_2g_cdma_status"
+                    }
                     style={{ width: 80 }}
                     onChange={onChangeSelectGeneral}
                   >
-                    <Option value="yes--net_cdma">Yes</Option>
-                    <Option value="no--net_cdma">No</Option>
-                    <Option value="na--net_cdma">N/A</Option>
+                    <Option value="1--jar_2g_cdma_status">Yes</Option>
+                    <Option value="2--jar_2g_cdma_status">No</Option>
+                    <Option value="3--jar_2g_cdma_status">N/A</Option>
+                    <Option value="0--jar_2g_cdma_status">N/A</Option>
                   </Select>
                 </Input.Group>
               </div>
               <div style={{ margin: "30px 0px 0px 20px" }}>
                 <Input.Group compact>
                   <Input
-                    name="net_cdma_info"
+                    name="jar_2g_cdma"
                     onChange={onChangeInputGeneral}
-                    defaultValue=""
+                    defaultValue={store.getState().gen_hp_data.data.jar_2g_cdma}
                     style={{ width: 176, margin: "0px 0px 0px 0px" }}
                   />
                   <Button className="lay-group-label">MHz</Button>
@@ -181,6 +195,10 @@ const NetworkHp = () => {
                   showSearch
                   placeholder=""
                   optionFilterProp="children"
+                  defaultValue={
+                    store.getState().gen_hp_data.data.jar_3g_status +
+                    "--jar_3g_status"
+                  }
                   onChange={onChangeSelectGeneral}
                   filterOption={(input, option) =>
                     option.children
@@ -188,15 +206,17 @@ const NetworkHp = () => {
                       .indexOf(input.toLowerCase()) >= 0
                   }
                 >
-                  <Option value="yes--net_3g">Yes</Option>
-                  <Option value="no--net_3g">No</Option>
-                  <Option value="na--net_3g">N/A</Option>
+                  <Option value="1--jar_3g_status">Yes</Option>
+                  <Option value="2--jar_3g_status">No</Option>
+                  <Option value="3--jar_3g_status">N/A</Option>
+                  <Option value="0--jar_3g_status">N/A</Option>
                 </Select>
               </div>
               <div style={{ margin: "30px 0px 0px 20px", width: "100%" }}>
                 <TextArea
+                  name="jar_3g"
                   style={{ width: "100%" }}
-                  value={""}
+                  defaultValue={store.getState().gen_hp_data.data.jar_3g}
                   placeholder=""
                   autoSize={{ minRows: 3, maxRows: 5 }}
                 />
@@ -216,16 +236,22 @@ const NetworkHp = () => {
                       .toLowerCase()
                       .indexOf(input.toLowerCase()) >= 0
                   }
+                  defaultValue={
+                    store.getState().gen_hp_data.data.jar_3g_status +
+                    "--jar_4g_status"
+                  }
                 >
-                  <Option value="yes--net_4g">Yes</Option>
-                  <Option value="no--net_4g">No</Option>
-                  <Option value="na--net_4g">N/A</Option>
+                  <Option value="1--jar_4g_status">Yes</Option>
+                  <Option value="2--jar_4g_status">No</Option>
+                  <Option value="3--jar_4g_status">N/A</Option>
+                  <Option value="0--jar_4g_status">N/A</Option>
                 </Select>
               </div>
               <div style={{ margin: "30px 0px 0px 20px", width: "100%" }}>
                 <TextArea
+                  name="jar_4g"
                   style={{ width: "100%" }}
-                  value={""}
+                  defaultValue={store.getState().gen_hp_data.data.jar_4g}
                   placeholder=""
                   autoSize={{ minRows: 3, maxRows: 5 }}
                 />
@@ -245,16 +271,22 @@ const NetworkHp = () => {
                       .toLowerCase()
                       .indexOf(input.toLowerCase()) >= 0
                   }
+                  defaultValue={
+                    store.getState().gen_hp_data.data.jar_3g_status +
+                    "--jar_5g_status"
+                  }
                 >
-                  <Option value="yes--net_5g">Yes</Option>
-                  <Option value="no--net_5g">No</Option>
-                  <Option value="na--net_5g">N/A</Option>
+                  <Option value="1--jar_5g_status">Yes</Option>
+                  <Option value="2--jar_5g_status">No</Option>
+                  <Option value="3--jar_5g_status">N/A</Option>
+                  <Option value="0--jar_5g_status">N/A</Option>
                 </Select>
               </div>
               <div style={{ margin: "30px 0px 0px 20px", width: "100%" }}>
                 <TextArea
                   style={{ width: "100%" }}
-                  value={""}
+                  name="jar_5g"
+                  defaultValue={store.getState().gen_hp_data.data.jar_5g}
                   placeholder=""
                   autoSize={{ minRows: 3, maxRows: 5 }}
                 />
@@ -267,7 +299,10 @@ const NetworkHp = () => {
               <div style={{ margin: "0px 0px 0px 0px", width: "100%" }}>
                 <TextArea
                   style={{ width: "100%" }}
-                  value={""}
+                  name="jar_bwidth"
+                  defaultValue={store
+                    .getState()
+                    .gen_hp_data.data.jar_bwidth.replace(/; /g, "\n")}
                   placeholder=""
                   autoSize={{ minRows: 3, maxRows: 5 }}
                 />
@@ -296,18 +331,23 @@ const NetworkHp = () => {
                       .toLowerCase()
                       .indexOf(input.toLowerCase()) >= 0
                   }
+                  defaultValue={
+                    store.getState().gen_hp_data.data.jar_gprs_status +
+                    "--jar_gprs_status"
+                  }
                 >
-                  <Option value="yes--net_gprs">Yes</Option>
-                  <Option value="no--net_gprs">No</Option>
-                  <Option value="na--net_gprs">N/A</Option>
+                  <Option value="1--jar_gprs_status">Yes</Option>
+                  <Option value="2--jar_gprs_status">No</Option>
+                  <Option value="3--jar_gprs_status">N/A</Option>
+                  <Option value="0--jar_gprs_status">N/A</Option>
                 </Select>
               </div>
               <div style={{ width: "100%", margin: "30px 0px 0px 20px" }}>
                 <Input.Group compact>
                   <Input
-                    name="net_gprs_info"
+                    name="jar_gprs"
                     onChange={onChangeInputGeneral}
-                    defaultValue=""
+                    defaultValue={store.getState().gen_hp_data.data.jar_gprs}
                     style={{ width: "100%", margin: "0px 0px 0px 0px" }}
                   />
                 </Input.Group>
@@ -327,18 +367,23 @@ const NetworkHp = () => {
                       .toLowerCase()
                       .indexOf(input.toLowerCase()) >= 0
                   }
+                  defaultValue={
+                    store.getState().gen_hp_data.data.jar_edge_status +
+                    "--jar_edge_status"
+                  }
                 >
-                  <Option value="yes--net_edge">Yes</Option>
-                  <Option value="no--net_edge">No</Option>
-                  <Option value="na--net_edge">N/A</Option>
+                  <Option value="1--jar_edge_status">Yes</Option>
+                  <Option value="2--jar_edge_status">No</Option>
+                  <Option value="3--jar_edge_status">N/A</Option>
+                  <Option value="0--jar_edge_status">N/A</Option>
                 </Select>
               </div>
               <div style={{ width: "100%", margin: "30px 0px 0px 20px" }}>
                 <Input.Group compact>
                   <Input
-                    name="net_edge_info"
+                    name="jar_edge"
+                    defaultValue={store.getState().gen_hp_data.data.jar_edge}
                     onChange={onChangeInputGeneral}
-                    defaultValue=""
                     style={{ width: "100%", margin: "0px 0px 0px 0px" }}
                   />
                 </Input.Group>
@@ -349,6 +394,9 @@ const NetworkHp = () => {
                 <div className="lbl-input-data">Jenis SIM Card</div>
                 <Select
                   style={{ minWidth: 120 }}
+                  defaultValue={
+                    store.getState().gen_hp_data.data.jar_sc + "--jar_sc"
+                  }
                   showSearch
                   placeholder=""
                   optionFilterProp="children"
@@ -367,9 +415,11 @@ const NetworkHp = () => {
               <div style={{ width: "100%", margin: "30px 0px 0px 20px" }}>
                 <Input.Group compact>
                   <Input
-                    name="net_simcard_info"
+                    name="jar_multi_ket"
                     onChange={onChangeInputGeneral}
-                    defaultValue=""
+                    defaultValue={
+                      store.getState().gen_hp_data.data.jar_multi_ket
+                    }
                     style={{ width: "100%", margin: "0px 0px 0px 0px" }}
                   />
                 </Input.Group>
@@ -389,10 +439,15 @@ const NetworkHp = () => {
                       .toLowerCase()
                       .indexOf(input.toLowerCase()) >= 0
                   }
+                  defaultValue={
+                    store.getState().gen_hp_data.data.jar_multi_status +
+                    "--jar_multi_status"
+                  }
                 >
-                  <Option value="yes--net_multisim">Yes</Option>
-                  <Option value="no--net_multisim">No</Option>
-                  <Option value="na--net_multisim">N/A</Option>
+                  <Option value="1--jar_multi_status">Yes</Option>
+                  <Option value="2--jar_multi_status">No</Option>
+                  <Option value="3--jar_multi_status">N/A</Option>
+                  <Option value="0--jar_multi_status">N/A</Option>
                 </Select>
               </div>
               <div style={{ width: 120, margin: "30px 0px 0px 20px" }}>
@@ -407,10 +462,14 @@ const NetworkHp = () => {
                       .toLowerCase()
                       .indexOf(input.toLowerCase()) >= 0
                   }
+                  defaultValue={
+                    store.getState().gen_hp_data.data.jar_multi_tipe1 +
+                    "--jar_multi_tipe1"
+                  }
                 >
-                  <Option value="1--net_multisim_total">Dual-SIM</Option>
-                  <Option value="2--net_multisim_total">Triple-SIM</Option>
-                  <Option value="3--net_multisim_total">Quad-SIM</Option>
+                  <Option value="1--jar_multi_tipe1">Dual-SIM</Option>
+                  <Option value="2--jar_multi_tipe1">Triple-SIM</Option>
+                  <Option value="3--jar_multi_tipe1">Quad-SIM</Option>
                 </Select>
               </div>
               <div style={{ width: "100%", margin: "30px 0px 0px 20px" }}>
@@ -425,10 +484,14 @@ const NetworkHp = () => {
                       .toLowerCase()
                       .indexOf(input.toLowerCase()) >= 0
                   }
+                  defaultValue={
+                    store.getState().gen_hp_data.data.jar_multi_tipe2 +
+                    "--jar_multi_tipe2"
+                  }
                 >
-                  <Option value="1--net_multisim_gsmcdma">GSM-GSM</Option>
-                  <Option value="2--net_multisim_gsmcdma">GSM-CDMA</Option>
-                  <Option value="3--net_multisim_gsmcdma">CDMA-CDMA</Option>
+                  <Option value="1--jar_multi_tipe2">GSM-GSM</Option>
+                  <Option value="2--jar_multi_tipe2">GSM-CDMA</Option>
+                  <Option value="3--jar_multi_tipe2">CDMA-CDMA</Option>
                 </Select>
               </div>
             </div>
@@ -449,18 +512,25 @@ const NetworkHp = () => {
                       .toLowerCase()
                       .indexOf(input.toLowerCase()) >= 0
                   }
+                  defaultValue={
+                    store.getState().gen_hp_data.data.jar_dualon +
+                    "--jar_dualon"
+                  }
                 >
-                  <Option value="yes--net_dualon">Yes</Option>
-                  <Option value="no--net_dualon">No</Option>
-                  <Option value="na--net_dualon">N/A</Option>
+                  <Option value="1--jar_dualon">Yes</Option>
+                  <Option value="2--jar_dualon">No</Option>
+                  <Option value="3--jar_dualon">N/A</Option>
+                  <Option value="0--jar_dualon">N/A</Option>
                 </Select>
               </div>
               <div style={{ width: "100%", margin: "30px 0px 0px 20px" }}>
                 <Input.Group compact>
                   <Input
-                    name="net_dualon_info"
+                    name="jar_multi_ket"
                     onChange={onChangeInputGeneral}
-                    defaultValue=""
+                    defaultValue={
+                      store.getState().gen_hp_data.data.jar_multi_ket
+                    }
                     style={{ width: "100%", margin: "0px 0px 0px 0px" }}
                   />
                 </Input.Group>
