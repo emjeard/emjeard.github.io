@@ -23,8 +23,12 @@ export {
   getListNews,
   getListHp,
   getListHpModel,
+  getListHpMemJen,
+  getListHpMemKap,
+  getListHpBattery,
   getListHpLayarWarna,
   getListHpLayarSensor,
+  getListHpCpu,
   getListHpStatus,
   getListHpSimCard,
   getListCompareHp,
@@ -178,13 +182,28 @@ const getListHpModel = () => {
   const url = `${BASE_URL}hp/model`;
   return axios.get(url, headerRequest).then((response) => response.data);
 };
-
+const getListHpMemJen = () => {
+  const url = `${BASE_URL}hp/memjen`;
+  return axios.get(url, headerRequest).then((response) => response.data);
+};
+const getListHpMemKap = () => {
+  const url = `${BASE_URL}hp/memkap`;
+  return axios.get(url, headerRequest).then((response) => response.data);
+};
+const getListHpBattery = () => {
+  const url = `${BASE_URL}hp/battery/type`;
+  return axios.get(url, headerRequest).then((response) => response.data);
+};
 const getListHpLayarWarna = () => {
   const url = `${BASE_URL}hp/layar/warna`;
   return axios.get(url, headerRequest).then((response) => response.data);
 };
 const getListHpLayarSensor = () => {
   const url = `${BASE_URL}hp/layar/sensor`;
+  return axios.get(url, headerRequest).then((response) => response.data);
+};
+const getListHpCpu = () => {
+  const url = `${BASE_URL}hp/cpu`;
   return axios.get(url, headerRequest).then((response) => response.data);
 };
 const getListHpStatus = () => {

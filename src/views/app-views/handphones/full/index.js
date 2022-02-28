@@ -21,7 +21,15 @@ import { GEN_INPUT_ACT } from "redux/actions/General";
 import GeneralHp from "./GeneralHp";
 import NetworkHp from "./NetworkHp";
 import ScreenHp from "./ScreenHp";
-
+import HardSoftWareHp from "./HardSoftWareHp";
+import MemoriHp from "./MemoriHp";
+import ConnectivityHp from "./ConnectivityHp";
+import CameraHp from "./CameraHp";
+import FeaturesHp from "./FeaturesHp";
+import BatteryHp from "./BatteryHp";
+import BenchmarkHp from "./BenchmarkHp";
+import DxOmarkHp from "./DxOmarkHp";
+import CheckingHp from "./CheckingHp";
 const { Option } = Select;
 const init_data = { id: 0, nama_hp: "", image: "" };
 const reset_data = [];
@@ -299,6 +307,14 @@ const EditHpFullApp = (props) => {
         <GeneralHp />
         <NetworkHp />
         <ScreenHp />
+        <HardSoftWareHp />
+        <MemoriHp />
+        <ConnectivityHp />
+        <CameraHp />
+        <FeaturesHp />
+        <BatteryHp />
+        <BenchmarkHp />
+        <DxOmarkHp />
         <div
           style={{
             background: "#999999",
@@ -308,7 +324,7 @@ const EditHpFullApp = (props) => {
             fontWeight: 500,
           }}
         >
-          Status
+          Price from E-Commerce
         </div>
         <div style={{ padding: "0px 10px" }}>
           <div style={{ color: "red", marginTop: 15 }}>Harga Baru</div>
@@ -611,6 +627,8 @@ const EditHpFullApp = (props) => {
             </ul>
           </div>
         </div>
+        <CheckingHp />
+
         <Button
           onClick={onSubmitHp}
           type="primary"
