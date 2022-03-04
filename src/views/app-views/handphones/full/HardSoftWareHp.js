@@ -10,7 +10,6 @@ const { TextArea } = Input;
 const HardSoftWareHp = () => {
   const [dataCpuCore, setDataCpuCore] = useState([]);
   const [dataOs, setDataOs] = useState([]);
-  let childrenSensor = [];
 
   useEffect(() => {
     (async () => {
@@ -61,13 +60,7 @@ const HardSoftWareHp = () => {
 
   return (
     <div>
-      <div
-        id="screen"
-        style={{
-          background: "#A8BC7B",
-        }}
-        className="lay-segment"
-      >
+      <div id="hardwaresoftware" className="lay-segment affix-hardwaresoftware">
         Hardware & Software
       </div>
       <div>

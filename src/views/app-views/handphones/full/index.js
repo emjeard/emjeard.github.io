@@ -1,20 +1,9 @@
-import React, { useState, useEffect, useCallback } from "react";
-import {
-  Button,
-  Select,
-  Spin,
-  Card,
-  Input,
-  InputNumber,
-  DatePicker,
-} from "antd";
-import { ToastContainer, toast } from "react-toastify";
+import React, { useState, useEffect } from "react";
+import { Button, Select, Spin, Card, Anchor, Affix } from "antd";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { SaveOutlined } from "@ant-design/icons";
-import CKEditorCustom from "views/app-views/components/data-entry/input/CKEditorCustom";
-import { getSearchHp, getDetailHp, putUpdateHandphone } from "api/ApiData";
-import debounce from "lodash/debounce";
-import moment from "moment";
+import { getSearchHp, getDetailHp } from "api/ApiData";
 import { HP_PROS, HP_CONS } from "redux/actions/Handphone";
 import store from "redux/store";
 import { GEN_INPUT_ACT } from "redux/actions/General";
@@ -30,6 +19,14 @@ import BatteryHp from "./BatteryHp";
 import BenchmarkHp from "./BenchmarkHp";
 import DxOmarkHp from "./DxOmarkHp";
 import CheckingHp from "./CheckingHp";
+import NegativeWordsHp from "./NegativeWordsHp";
+import PriceRangeHp from "./PriceRangeHp";
+import ShopeeHp from "./ShopeeHp";
+import LazadaHp from "./LazadaHp";
+import ComparePopulerHp from "./ComparePopulerHp";
+import ProsConsHp from "./ProsConsHp";
+import { HP_DATA_ACT } from "redux/actions/Handphone";
+const { Link } = Anchor;
 const { Option } = Select;
 const init_data = { id: 0, nama_hp: "", image: "" };
 const reset_data = [];
@@ -57,6 +54,7 @@ const EditHpFullApp = (props) => {
   const [hpPros, setHpPros] = useState("");
   const [hpCons, setHpCons] = useState("");
   const [updateLoading, setUpdateLoading] = useState(false);
+  const [top, setTop] = useState(10);
 
   useEffect(() => {
     (async () => {
@@ -212,6 +210,9 @@ const EditHpFullApp = (props) => {
 
     let hp_pros = store.getState().hpproscons.pros_data;
     let hp_cons = store.getState().hpproscons.cons_data;
+    store.dispatch(HP_DATA_ACT("pros", hp_pros));
+    store.dispatch(HP_DATA_ACT("cons", hp_cons));
+
     let tagDevices = "";
 
     for (let i = 0; i < dataDefTagHp.length; i++) {
@@ -232,7 +233,7 @@ const EditHpFullApp = (props) => {
     //console.log("tagDevices", tagDevices);
     //console.log("hp_pros", hp_pros);
     //console.log("hp_cons", hp_cons);
-    putUpdateHandphone(
+    /* putUpdateHandphone(
       id_hp,
       hp_pros,
       hp_cons,
@@ -284,9 +285,19 @@ const EditHpFullApp = (props) => {
           theme: "colored",
         });
         setUpdateLoading(false);
-      });
+      }); */
   };
+  function scrollToTargetAdjusted(id_element) {
+    var element = document.getElementById(id_element);
+    var headerOffset = 130;
+    var elementPosition = element.getBoundingClientRect().top;
+    var offsetPosition = elementPosition + window.pageYOffset - headerOffset;
 
+    window.scrollTo({
+      top: offsetPosition,
+      behavior: "smooth",
+    });
+  }
   return firstLoading === true ? (
     <div
       style={{
@@ -300,7 +311,111 @@ const EditHpFullApp = (props) => {
     </div>
   ) : (
     <div>
-      <Card>
+      <div className="lay-root-affix">
+        <div
+          className="lay-segment-affix affix-general"
+          onClick={() => scrollToTargetAdjusted("general")}
+        >
+          General
+        </div>
+        <div
+          className="lay-segment-affix affix-network"
+          onClick={() => scrollToTargetAdjusted("network")}
+        >
+          Network
+        </div>
+        <div
+          className="lay-segment-affix affix-screen"
+          onClick={() => scrollToTargetAdjusted("screen")}
+        >
+          Screen
+        </div>
+        <div
+          className="lay-segment-affix affix-hardwaresoftware"
+          onClick={() => scrollToTargetAdjusted("hardwaresoftware")}
+        >
+          Hardware & Software
+        </div>
+        <div
+          className="lay-segment-affix affix-memori"
+          onClick={() => scrollToTargetAdjusted("memori")}
+        >
+          Memori
+        </div>
+        <div
+          className="lay-segment-affix affix-connectivity"
+          onClick={() => scrollToTargetAdjusted("connectivity")}
+        >
+          Connectivity
+        </div>
+        <div
+          className="lay-segment-affix affix-camera"
+          onClick={() => scrollToTargetAdjusted("camera")}
+        >
+          Camera
+        </div>
+        <div
+          className="lay-segment-affix affix-features"
+          onClick={() => scrollToTargetAdjusted("features")}
+        >
+          Features
+        </div>
+        <div
+          className="lay-segment-affix affix-battery"
+          onClick={() => scrollToTargetAdjusted("battery")}
+        >
+          Battery
+        </div>
+        <div
+          className="lay-segment-affix affix-benchmark"
+          onClick={() => scrollToTargetAdjusted("benchmark")}
+        >
+          Benchmark
+        </div>
+        <div
+          className="lay-segment-affix affix-dxomark"
+          onClick={() => scrollToTargetAdjusted("dxomark")}
+        >
+          DxOmark
+        </div>
+        <div
+          className="lay-segment-affix affix-price"
+          onClick={() => scrollToTargetAdjusted("price")}
+        >
+          Price
+        </div>
+        <div
+          className="lay-segment-affix affix-negativekeywords"
+          onClick={() => scrollToTargetAdjusted("negativekeywords")}
+        >
+          Negative Keywords
+        </div>
+        <div
+          className="lay-segment-affix affix-shopee"
+          onClick={() => scrollToTargetAdjusted("shopee")}
+        >
+          Shopee
+        </div>
+        <div
+          className="lay-segment-affix affix-lazada"
+          onClick={() => scrollToTargetAdjusted("lazada")}
+        >
+          Lazada
+        </div>
+        <div
+          className="lay-segment-affix affix-comparehp"
+          onClick={() => scrollToTargetAdjusted("comparehp")}
+        >
+          Komparasi Populer
+        </div>
+        <div
+          className="lay-segment-affix affix-proscons"
+          onClick={() => scrollToTargetAdjusted("proscons")}
+        >
+          Kelebihan & Kekurangan
+        </div>
+      </div>
+      <Card style={{ margin: "55px 0px 0px 0px" }}>
         <div style={{ fontSize: "30px", padding: "10px", fontWeight: 500 }}>
           {namaHp}
         </div>
@@ -315,320 +430,13 @@ const EditHpFullApp = (props) => {
         <BatteryHp />
         <BenchmarkHp />
         <DxOmarkHp />
-        <div
-          style={{
-            background: "#999999",
-            padding: "5px 10px",
-            borderRadius: "10px",
-            color: "white",
-            fontWeight: 500,
-          }}
-        >
-          Price from E-Commerce
-        </div>
-        <div style={{ padding: "0px 10px" }}>
-          <div style={{ color: "red", marginTop: 15 }}>Harga Baru</div>
-          <div style={{ display: "flex", marginTop: 5 }}>
-            <div style={{}}>
-              <div>Termurah</div>
-              <InputNumber
-                style={{ minWidth: "225px" }}
-                formatter={(value) =>
-                  `Rp. ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-                }
-                parser={(value) => value.replace(/\Rp.\s?|(,*)/g, "")}
-                onChange={onChangePriceNewFrom}
-                value={priceNewFromHp}
-                placeholder="Termurah"
-                allowClear
-              />
-            </div>
-            <div style={{ margin: "0px 0px 0px 25px" }}>
-              <div>Tertinggi</div>
-              <InputNumber
-                style={{ minWidth: "225px" }}
-                formatter={(value) =>
-                  `Rp. ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-                }
-                parser={(value) => value.replace(/\Rp.\s?|(,*)/g, "")}
-                onChange={onChangePriceNewEnd}
-                value={priceNewEndHp}
-                placeholder="Tertinggi"
-                allowClear
-              />
-            </div>
-          </div>
-          <div style={{ color: "red", marginTop: 25 }}>Harga Bekas</div>
-          <div style={{ display: "flex", marginTop: 5 }}>
-            <div>
-              <div>Termurah</div>
-              <InputNumber
-                style={{ minWidth: "225px" }}
-                formatter={(value) =>
-                  `Rp. ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-                }
-                parser={(value) => value.replace(/\Rp.\s?|(,*)/g, "")}
-                onChange={onChangePriceSecondFrom}
-                value={priceSecondFromHp}
-                placeholder="Termurah"
-                allowClear
-              />
-            </div>
-            <div style={{ margin: "0px 0px 0px 25px" }}>
-              <div>Tertinggi</div>
-              <InputNumber
-                style={{ minWidth: "225px" }}
-                formatter={(value) =>
-                  `Rp. ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-                }
-                parser={(value) => value.replace(/\Rp.\s?|(,*)/g, "")}
-                onChange={onChangePriceSecondEnd}
-                value={priceSecondEndHp}
-                placeholder="Tertinggi"
-                allowClear
-              />
-            </div>
-          </div>
-          <div style={{ display: "flex", marginTop: 25 }}>
-            <div>
-              <div>Update terakhir</div>
-              <DatePicker
-                onChange={onChangeUpdatedAt}
-                format="YYYY-MM-DD HH:mm:ss"
-                showTime={{ defaultValue: moment("00:00:00", "HH:mm:ss") }}
-                defaultValue={
-                  updatedAt === ""
-                    ? ""
-                    : moment(updatedAt, "YYYY-MM-DD HH:mm:ss")
-                }
-                value={
-                  updatedAt === ""
-                    ? ""
-                    : moment(updatedAt, "YYYY-MM-DD HH:mm:ss")
-                }
-                style={{ minWidth: "225px" }}
-              />
-            </div>
-            <div style={{ margin: "0px 0px 0px 25px" }}>
-              <div>Rilis di Indonesia</div>
-              <DatePicker
-                onChange={onChangeRilisDate}
-                format="YYYY-MM-DD"
-                defaultValue={
-                  rilisIdn === "" ? "" : moment(rilisIdn, "YYYY-MM-DD")
-                }
-                value={rilisIdn === "" ? "" : moment(rilisIdn, "YYYY-MM-DD")}
-                style={{ minWidth: "225px" }}
-              />
-            </div>
-          </div>
-        </div>
-        <div
-          style={{
-            margin: "25px 0px 0px 0px",
-            background: "#D47227",
-            padding: "5px 10px",
-            borderRadius: "10px",
-            color: "white",
-            fontWeight: 500,
-          }}
-        >
-          Negative keywords
-        </div>
-        <div style={{ padding: "0px 10px", margin: "10px 0px 0px 0px" }}>
-          <Input
-            placeholder="Negative keywords"
-            value={negativeKey}
-            onChange={onChangeNegativeKey}
-            style={{ width: "100%" }}
-            allowClear
-          />
-        </div>
-        <div
-          style={{
-            margin: "25px 0px 0px 0px",
-            background: "#D47227",
-            padding: "5px 10px",
-            borderRadius: "10px",
-            color: "white",
-            fontWeight: 500,
-          }}
-        >
-          Shopee
-        </div>
-        <div style={{ padding: "0px 10px", margin: "10px 0px 0px 0px" }}>
-          <div style={{ display: "flex" }}>
-            <div
-              style={{
-                minWidth: "150px",
-                display: "flex",
-                alignItems: "center",
-              }}
-            >
-              Product URL
-            </div>
-            <Input
-              value={shopeeProdUrl}
-              onChange={onChangeShopeeProdUrl}
-              placeholder="http"
-              style={{ width: "100%" }}
-              allowClear
-            />
-          </div>
-        </div>
-        <div style={{ padding: "0px 10px", margin: "10px 0px 0px 0px" }}>
-          <div style={{ display: "flex" }}>
-            <div
-              style={{
-                minWidth: "150px",
-                display: "flex",
-                alignItems: "center",
-              }}
-            >
-              Accessories URL
-            </div>
-            <Input
-              value={shopeeAccUrl}
-              onChange={onChangeShopeeAccUrl}
-              placeholder="http"
-              style={{ width: "100%" }}
-              allowClear
-            />
-          </div>
-        </div>
-        <div
-          style={{
-            margin: "25px 0px 0px 0px",
-            background: "#D47227",
-            padding: "5px 10px",
-            color: "white",
-            fontWeight: 500,
-            borderRadius: "10px",
-          }}
-        >
-          Lazada
-        </div>
-        <div style={{ padding: "0px 10px", margin: "10px 0px 0px 0px" }}>
-          <div style={{ display: "flex" }}>
-            <div
-              style={{
-                minWidth: "150px",
-                display: "flex",
-                alignItems: "center",
-              }}
-            >
-              Product URL
-            </div>
-            <Input
-              value={lazadaProdUrl}
-              onChange={onChangeLazProdUrl}
-              placeholder="http"
-              style={{ width: "100%" }}
-              allowClear
-            />
-          </div>
-        </div>
-        <div style={{ padding: "0px 10px", margin: "10px 0px 0px 0px" }}>
-          <div style={{ display: "flex" }}>
-            <div
-              style={{
-                minWidth: "150px",
-                display: "flex",
-                alignItems: "center",
-              }}
-            >
-              Accessories URL
-            </div>
-            <Input
-              value={lazadaAccUrl}
-              onChange={onChangeLazAccUrl}
-              placeholder="http"
-              style={{ width: "100%" }}
-              allowClear
-            />
-          </div>
-        </div>
-        <div
-          style={{
-            margin: "25px 0px 0px 0px",
-            background: "#cf3939",
-            padding: "5px 10px",
-            color: "white",
-            fontWeight: 500,
-            borderRadius: "10px",
-          }}
-        >
-          Komparasi Populer
-        </div>
-        <div style={{ padding: "0px 10px", margin: "10px 0px 0px 0px" }}>
-          <div style={{ display: "flex" }}>
-            <Select
-              mode="multiple"
-              labelInValue
-              value={dataDefTagHp}
-              placeholder="Select hp"
-              notFoundContent={hpLoading ? <Spin size="small" /> : null}
-              filterOption={false}
-              onSearch={debounce(handleSearchHp, 1000)}
-              onChange={handleChangeHp}
-              style={{ width: "100%", height: "auto !important" }}
-            >
-              {dataTagHp.map((item) => (
-                <Option key={item.value}>{item.text}</Option>
-              ))}
-            </Select>
-          </div>
-        </div>
-        <div
-          style={{
-            margin: "25px 0px 0px 0px",
-            background: "#5DC1C7",
-            padding: "5px 10px",
-            color: "white",
-            fontWeight: 500,
-            borderRadius: "10px",
-          }}
-        >
-          Kelebihan dan Kekurangan
-        </div>
-        <div
-          style={{
-            fontWeight: 500,
-            color: "#313131",
-            padding: "0px 0px 5px",
-            margin: "20px 0px 0px 0px",
-          }}
-        >
-          <div>{`Kelebihan ${namaHp}`}</div>
-          <div style={{ margin: "5px 0px 0px" }}>
-            <CKEditorCustom editor_type={"hp_pros"} />
-            <div>Contoh :</div>
-            <div>
-              <ul>
-                <li>Daya tahan baterai cukup lama</li>
-                <li>Desain ringkas dengan Invinity V Display</li>
-              </ul>
-            </div>
-          </div>
-          <div
-            style={{
-              fontWeight: 500,
-              color: "#313131",
-              padding: "0px 0px 5px",
-              margin: "20px 0px 0px 0px",
-            }}
-          >{`Kekurangan ${namaHp}`}</div>
-          <div style={{ margin: "5px 0px 0px" }}>
-            <CKEditorCustom editor_type={"hp_cons"} />
-            <div>Contoh:</div>
-            <ul>
-              <li>Kinerja kurang gesit</li>
-              <li>Memori internal hanya 16GB&nbsp;</li>
-            </ul>
-          </div>
-        </div>
+        <PriceRangeHp />
+        <NegativeWordsHp />
+        <ShopeeHp />
+        <LazadaHp />
+        <ComparePopulerHp />
+        <ProsConsHp />
         <CheckingHp />
-
         <Button
           onClick={onSubmitHp}
           type="primary"

@@ -19,14 +19,15 @@
 .loading .ant-spin {
   color: #c10000;
 }
-.lay-segment{
+.lay-segment {
   margin: 20px 0px 0px 0px;
-  padding: 5px 10px;
+  padding: 5px 20px;
   border-radius: 10px;
   color: white;
   font-weight: 500;
+  font-size: 22px;
 }
-.lay-subsegment{
+.lay-subsegment {
   padding: 20px 0px 0px 0px;
 }
 .layout-input-data-col {
@@ -41,4 +42,72 @@
   background: #f7f7f8 !important;
   font-size: 12px !important;
   padding: 0px 10px !important;
+}
+.lay-root-affix {
+  position: fixed;
+  top: 70px;
+  z-index: 1;
+  padding: 0px 25px 0px 0px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.lay-segment-affix {
+  padding: 5px 20px;
+  border-radius: 0px;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+}
+.affix-general {
+  background: #009688;
+}
+.affix-network {
+  background: #00c853;
+}
+.affix-screen {
+  background: #ff3d00;
+}
+.affix-hardwaresoftware {
+  background: #4caf50;
+}
+.affix-memori {
+  background: #673ab7;
+}
+.affix-connectivity {
+  background: #2196f3;
+}
+.affix-camera {
+  background: #9c27b0;
+}
+.affix-features {
+  background: #00bcd4;
+}
+.affix-battery {
+  background: #f44336;
+}
+.affix-benchmark {
+  background: #e91e63;
+}
+.affix-dxomark {
+  background: #03a9f4;
+}
+.affix-price {
+  background: #ff1744;
+}
+.affix-negativekeywords {
+  background: #ffb300;
+}
+.affix-shopee {
+  background: #f7462f;
+}
+.affix-lazada {
+  background: #006aff;
+}
+.affix-comparehp {
+  background: #3f51b5;
+}
+.affix-proscons {
+  background: #aeea00;
 }

@@ -10,7 +10,6 @@ const { TextArea } = Input;
 const FeaturesHp = () => {
   const [dataCpuCore, setDataCpuCore] = useState([]);
   const [dataOs, setDataOs] = useState([]);
-  let childrenSensor = [];
 
   useEffect(() => {
     (async () => {
@@ -61,13 +60,7 @@ const FeaturesHp = () => {
 
   return (
     <div>
-      <div
-        id="screen"
-        style={{
-          background: "#F0AD4E",
-        }}
-        className="lay-segment"
-      >
+      <div id="features" className="lay-segment affix-features">
         Features
       </div>
       <div>

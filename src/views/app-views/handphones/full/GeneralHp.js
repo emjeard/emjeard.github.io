@@ -25,7 +25,6 @@ const GeneralHp = () => {
   const [dataTagBrand, setDataTagBrand] = useState([]);
   const [dataHpModel, setDataHpModel] = useState([]);
   const [dataHpStatus, setDataHpStatus] = useState([]);
-  const [dataDefTagBrand, setDefDataTagBrand] = useState([]);
   const [size, setSize] = useState("default");
 
   useEffect(() => {
@@ -107,12 +106,7 @@ const GeneralHp = () => {
 
   return (
     <div>
-      <div
-        style={{
-          background: "#999999",
-        }}
-        className="lay-segment"
-      >
+      <div id="general" className="lay-segment affix-general">
         General
       </div>
       <div style={{ display: "flex" }}>

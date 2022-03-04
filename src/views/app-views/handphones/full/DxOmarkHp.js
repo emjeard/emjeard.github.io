@@ -7,22 +7,12 @@ const { Option } = Select;
 const { TextArea } = Input;
 
 const DxOmarkHp = () => {
-  const [dataMemJen, setDataMemJen] = useState([]);
-  const [dataMemKap, setDataMemKap] = useState([]);
-
   useEffect(() => {
     (async () => {
       retrieveData();
     })();
   }, []);
   const retrieveData = () => {};
-
-  const getStateValue = (e) => {
-    let stateName = e.target.name;
-    console.log("getStateValue", stateName);
-    let stateValue = store.getState().gen_hp_data.data[stateName];
-    return stateValue;
-  };
 
   const onChangeInputGeneral = (e) => {
     const stateName = e.target.name;
@@ -33,22 +23,11 @@ const DxOmarkHp = () => {
     }
     store.dispatch(HP_DATA_ACT(stateName, stateValue));
   };
-
-  const onChangeSelectGeneral = (selectedItems, option) => {
-    const splitOptions = option.value.split("--");
-    const stateName = splitOptions[1];
-    const valueSelect = splitOptions[0];
-    store.dispatch(HP_DATA_ACT(stateName, valueSelect));
-  };
-
   return (
     <div>
       <div
-        id="network"
-        style={{
-          background: "#555555",
-        }}
-        className="lay-segment"
+        id="dxomark"
+        className="lay-segment affix-dxomark"
       >
         DxOmark
       </div>

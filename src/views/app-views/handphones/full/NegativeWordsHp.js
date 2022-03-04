@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Input, Select, Checkbox } from "antd";
+import { Input, Select, Button, InputNumber } from "antd";
 import store from "redux/store";
 import { HP_DATA_ACT } from "redux/actions/Handphone";
 
 const { Option } = Select;
 const { TextArea } = Input;
 
-const CheckingHp = () => {
+const NegativeWordsHp = () => {
   useEffect(() => {
     (async () => {
       retrieveData();
@@ -26,30 +26,26 @@ const CheckingHp = () => {
   return (
     <div>
       <div
-        id="checking"
-        style={{
-          background: "#673AB7",
-        }}
-        className="lay-segment"
+        id="negativekeywords"
+        className="lay-segment affix-negativekeywords"
       >
-        Checking Data
+        Negative keywords
       </div>
       <div
         className="layout-input-data-col"
         style={{
           width: "100%",
           padding: "10px",
-          minHeight: 200,
         }}
       >
-        <div>Jika data sudah complete, kosongan form lain-lain dibawah.</div>
-        <div>
-          <TextArea
-            name="checkingdata_hp"
-            defaultValue={store.getState().gen_hp_data.data.checkingdata_hp}
+        <div className="lay-subsegment">
+          <Input
+            name="negative_keywords"
+            placeholder="Negative keywords"
+            defaultValue={store.getState().gen_hp_data.data.negative_keywords}
             onChange={onChangeInputGeneral}
-            style={{ width: "100%", margin: "0px 0px 0px 0px" }}
-            autoSize={{ minRows: 3, maxRows: 5 }}
+            style={{ width: "100%" }}
+            allowClear
           />
         </div>
       </div>
@@ -57,4 +53,4 @@ const CheckingHp = () => {
   );
 };
 
-export default CheckingHp;
+export default NegativeWordsHp;

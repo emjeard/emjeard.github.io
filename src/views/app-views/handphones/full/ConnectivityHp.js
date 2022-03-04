@@ -10,7 +10,6 @@ const { TextArea } = Input;
 const ConnectivityHp = () => {
   const [dataCpuCore, setDataCpuCore] = useState([]);
   const [dataOs, setDataOs] = useState([]);
-  let childrenSensor = [];
 
   useEffect(() => {
     (async () => {
@@ -62,11 +61,8 @@ const ConnectivityHp = () => {
   return (
     <div>
       <div
-        id="screen"
-        style={{
-          background: "#70AFC4",
-        }}
-        className="lay-segment"
+        id="connectivity"
+        className="lay-segment affix-connectivity"
       >
         Connectivity
       </div>

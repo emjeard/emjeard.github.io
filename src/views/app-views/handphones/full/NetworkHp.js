@@ -11,8 +11,6 @@ const NetworkHp = () => {
   const [dataSimcard, setDataSimcard] = useState([]);
   const [dataHpModel, setDataHpModel] = useState([]);
   const [dataHpStatus, setDataHpStatus] = useState([]);
-  const [dataDefTagBrand, setDefDataTagBrand] = useState([]);
-  const [size, setSize] = useState("default");
 
   useEffect(() => {
     (async () => {
@@ -23,13 +21,6 @@ const NetworkHp = () => {
     getListSimcard();
     getTagModelHp();
     getHpStatus();
-  };
-
-  const getStateValue = (e) => {
-    let stateName = e.target.name;
-    console.log("getStateValue", stateName);
-    let stateValue = store.getState().gen_hp_data.data[stateName];
-    return stateValue;
   };
 
   const onChangeInputGeneral = (e) => {
@@ -80,13 +71,7 @@ const NetworkHp = () => {
 
   return (
     <div>
-      <div
-        id="network"
-        style={{
-          background: "#D9534F",
-        }}
-        className="lay-segment"
-      >
+      <div id="network" className="lay-segment affix-network">
         Network
       </div>
       <div>

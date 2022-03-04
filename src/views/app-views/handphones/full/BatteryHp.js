@@ -9,8 +9,6 @@ const { TextArea } = Input;
 
 const BatteryHp = () => {
   const [dataBattery, setDataBattery] = useState([]);
-  const [dataOs, setDataOs] = useState([]);
-  let childrenSensor = [];
 
   useEffect(() => {
     (async () => {
@@ -50,13 +48,7 @@ const BatteryHp = () => {
 
   return (
     <div>
-      <div
-        id="screen"
-        style={{
-          background: "#A8BC7B",
-        }}
-        className="lay-segment"
-      >
+      <div id="battery" className="lay-segment affix-battery">
         Battery
       </div>
       <div>
@@ -126,9 +118,7 @@ const BatteryHp = () => {
                 <Input.Group compact>
                   <Input
                     name="bat_musik"
-                    defaultValue={
-                      store.getState().gen_hp_data.data.bat_musik
-                    }
+                    defaultValue={store.getState().gen_hp_data.data.bat_musik}
                     onChange={onChangeInputGeneral}
                     style={{ width: "100%", margin: "0px 0px 0px 0px" }}
                   />

@@ -1,11 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Input, Select, Button } from "antd";
 import store from "redux/store";
-import {
-  getListHpLayarSensor,
-  getListHpLayarWarna,
-  getListHpStatus,
-} from "api/ApiData";
+import { getListHpLayarSensor, getListHpLayarWarna } from "api/ApiData";
 import { HP_DATA_ACT } from "redux/actions/Handphone";
 
 const { Option } = Select;
@@ -85,13 +81,7 @@ const ScreenHp = () => {
 
   return (
     <div>
-      <div
-        id="screen"
-        style={{
-          background: "#F0AD4E",
-        }}
-        className="lay-segment"
-      >
+      <div id="screen" className="lay-segment affix-screen">
         Screen
       </div>
       <div>

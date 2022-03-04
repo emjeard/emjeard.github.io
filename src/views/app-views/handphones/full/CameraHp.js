@@ -21,13 +21,6 @@ const CameraHp = () => {
     getListMemKap();
   };
 
-  const getStateValue = (e) => {
-    let stateName = e.target.name;
-    console.log("getStateValue", stateName);
-    let stateValue = store.getState().gen_hp_data.data[stateName];
-    return stateValue;
-  };
-
   const onChangeInputGeneral = (e) => {
     const stateName = e.target.name;
     let stateValue = e.target.value;
@@ -66,11 +59,8 @@ const CameraHp = () => {
   return (
     <div>
       <div
-        id="network"
-        style={{
-          background: "#D9534F",
-        }}
-        className="lay-segment"
+        id="camera" 
+        className="lay-segment affix-camera"
       >
         Camera
       </div>

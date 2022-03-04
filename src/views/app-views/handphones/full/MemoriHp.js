@@ -21,13 +21,6 @@ const MemoriHp = () => {
     getListMemKap();
   };
 
-  const getStateValue = (e) => {
-    let stateName = e.target.name;
-    console.log("getStateValue", stateName);
-    let stateValue = store.getState().gen_hp_data.data[stateName];
-    return stateValue;
-  };
-
   const onChangeInputGeneral = (e) => {
     const stateName = e.target.name;
     let stateValue = e.target.value;
@@ -66,11 +59,8 @@ const MemoriHp = () => {
   return (
     <div>
       <div
-        id="network"
-        style={{
-          background: "#555555",
-        }}
-        className="lay-segment"
+        id="memori" 
+        className="lay-segment affix-memori"
       >
         Memori
       </div>
