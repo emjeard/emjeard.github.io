@@ -24,9 +24,13 @@ const PriceRangeHp = () => {
     }
     store.dispatch(HP_DATA_ACT(stateName, stateValue));
   };
-
+  const onChangeInputNumber = (e, name) => {
+    const stateName = name;
+    let stateValue = e;
+    store.dispatch(HP_DATA_ACT(stateName, stateValue));
+  };
   const onChangeLastUpdate = (date, dateString) => {
-    store.dispatch(HP_DATA_ACT("updated_at", dateString));
+    store.dispatch(HP_DATA_ACT("last_update", dateString));
   };
   const onChangeRilisDate = (date, dateString) => {
     store.dispatch(HP_DATA_ACT("release_idn", dateString));
@@ -57,7 +61,7 @@ const PriceRangeHp = () => {
                     `Rp. ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
                   }
                   parser={(value) => value.replace(/\Rp.\s?|(,*)/g, "")}
-                  onChange={onChangeInputGeneral}
+                  onChange={(e) => onChangeInputNumber(e, "price_new_from")}
                   defaultValue={
                     store.getState().gen_hp_data.data.price_new_from
                   }
@@ -74,7 +78,7 @@ const PriceRangeHp = () => {
                     `Rp. ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
                   }
                   parser={(value) => value.replace(/\Rp.\s?|(,*)/g, "")}
-                  onChange={onChangeInputGeneral}
+                  onChange={(e) => onChangeInputNumber(e, "price_new_end")}
                   defaultValue={store.getState().gen_hp_data.data.price_new_end}
                   placeholder="Tertinggi"
                   allowClear
@@ -92,7 +96,7 @@ const PriceRangeHp = () => {
                     `Rp. ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
                   }
                   parser={(value) => value.replace(/\Rp.\s?|(,*)/g, "")}
-                  onChange={onChangeInputGeneral}
+                  onChange={(e) => onChangeInputNumber(e, "price_second_from")}
                   defaultValue={
                     store.getState().gen_hp_data.data.price_second_from
                   }
@@ -109,7 +113,7 @@ const PriceRangeHp = () => {
                     `Rp. ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
                   }
                   parser={(value) => value.replace(/\Rp.\s?|(,*)/g, "")}
-                  onChange={onChangeInputGeneral}
+                  onChange={(e) => onChangeInputNumber(e, "price_second_end")}
                   defaultValue={
                     store.getState().gen_hp_data.data.price_second_end
                   }
@@ -126,10 +130,10 @@ const PriceRangeHp = () => {
                   format="YYYY-MM-DD HH:mm:ss"
                   showTime={{ defaultValue: moment("00:00:00", "HH:mm:ss") }}
                   defaultValue={
-                    store.getState().gen_hp_data.data.updated_at === ""
+                    store.getState().gen_hp_data.data.last_update === ""
                       ? ""
                       : moment(
-                          store.getState().gen_hp_data.data.updated_at,
+                          store.getState().gen_hp_data.data.last_update,
                           "YYYY-MM-DD HH:mm:ss"
                         )
                   }
@@ -142,7 +146,10 @@ const PriceRangeHp = () => {
                   onChange={onChangeRilisDate}
                   format="YYYY-MM-DD"
                   defaultValue={
-                    store.getState().gen_hp_data.data.release_idn === ""
+                    store.getState().gen_hp_data.data.release_idn === "" ||
+                    store
+                      .getState()
+                      .gen_hp_data.data.release_idn.includes("000")
                       ? ""
                       : moment(
                           store.getState().gen_hp_data.data.release_idn,

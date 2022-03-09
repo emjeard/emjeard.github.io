@@ -35,7 +35,7 @@ const HardSoftWareHp = () => {
     const splitOptions = option.value.split("--");
     const stateName = splitOptions[1];
     const valueSelect = splitOptions[0];
-    store.dispatch(HP_DATA_ACT(stateName, valueSelect));
+    store.dispatch(HP_DATA_ACT(stateName, parseInt(valueSelect)));
   };
 
   const getCpuCore = () => {
@@ -109,6 +109,7 @@ const HardSoftWareHp = () => {
                   style={{ width: "100%" }}
                   defaultValue={store.getState().gen_hp_data.data.har_chipset}
                   placeholder=""
+                  onChange={onChangeInputGeneral}
                 />
               </div>
             </div>

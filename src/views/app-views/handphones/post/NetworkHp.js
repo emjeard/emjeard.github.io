@@ -44,7 +44,7 @@ const NetworkHp = () => {
     const splitOptions = option.value.split("--");
     const stateName = splitOptions[1];
     const valueSelect = splitOptions[0];
-    store.dispatch(GEN_INPUT_ACT(stateName, valueSelect));
+    store.dispatch(GEN_INPUT_ACT(stateName, parseInt(valueSelect)));
   };
 
 

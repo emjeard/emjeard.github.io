@@ -17,10 +17,12 @@ const BenchmarkHp = () => {
   const onChangeInputGeneral = (e) => {
     const stateName = e.target.name;
     let stateValue = e.target.value;
+    store.dispatch(HP_DATA_ACT(stateName, stateValue));
+  };
 
-    if (stateName.includes("__cb")) {
-      stateValue = e.target.checked;
-    }
+  const onChangeInputNumber = (e, name) => {
+    const stateName = name;
+    let stateValue = e;
     store.dispatch(HP_DATA_ACT(stateName, stateValue));
   };
 
@@ -46,7 +48,7 @@ const BenchmarkHp = () => {
                   style={{ minWidth: "150px" }}
                   name="antutu_score1"
                   defaultValue={store.getState().gen_hp_data.data.antutu_score1}
-                  onChange={onChangeInputGeneral}
+                  onChange={(e) => onChangeInputNumber(e, "antutu_score1")}
                   formatter={(value) =>
                     `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
                   }
@@ -58,7 +60,7 @@ const BenchmarkHp = () => {
                   style={{ minWidth: "150px", margin: "15px 0px 0px 0px" }}
                   name="antutu_score2"
                   defaultValue={store.getState().gen_hp_data.data.antutu_score2}
-                  onChange={onChangeInputGeneral}
+                  onChange={(e) => onChangeInputNumber(e, "antutu_score2")}
                   formatter={(value) =>
                     `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
                   }
@@ -69,7 +71,7 @@ const BenchmarkHp = () => {
                 style={{ minWidth: "150px", margin: "15px 0px 0px 0px" }}
                 name="antutu_score3"
                 defaultValue={store.getState().gen_hp_data.data.antutu_score3}
-                onChange={onChangeInputGeneral}
+                onChange={(e) => onChangeInputNumber(e, "antutu_score3")}
                 formatter={(value) =>
                   `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
                 }

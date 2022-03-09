@@ -3,7 +3,7 @@ import { Button, Select, Spin, Card, Anchor, Affix } from "antd";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { SaveOutlined } from "@ant-design/icons";
-import { getSearchHp, getDetailHp } from "api/ApiData";
+import { getSearchHp, getDetailHp, postCreateHp } from "api/ApiData";
 import { HP_PROS, HP_CONS } from "redux/actions/Handphone";
 import store from "redux/store";
 import { GEN_INPUT_ACT } from "redux/actions/General";
@@ -28,8 +28,6 @@ import ProsConsHp from "./ProsConsHp";
 import { HP_DATA_ACT } from "redux/actions/Handphone";
 const { Link } = Anchor;
 const { Option } = Select;
-const init_data = { id: 0, nama_hp: "", image: "" };
-const reset_data = [];
 
 const EditHpFullApp = (props) => {
   const id_hp = props.match.params.id;
@@ -102,190 +100,24 @@ const EditHpFullApp = (props) => {
         store.dispatch(HP_CONS(dataHp.cons));
         setFirstLoading(false);
       })
-      .catch((e) => {
+      .catch(() => {
         //console.log(e);
         setFirstLoading(false);
       });
   };
 
-  const onChangeRilisDate = (date, dateString) => {
-    setRilisIdn(dateString);
-  };
-
-  const onChangeUpdatedAt = (date, dateString) => {
-    setUpdatedAt(dateString);
-  };
-
-  const getTagHp = (keyword) => {
-    setLastFetchIdHp(+1);
-    const fetchId = lastFetchIdHp;
-    setDataTagHp([]);
-    setHpLoading(true);
-    getSearchHp(keyword).then((response) => {
-      if (fetchId !== lastFetchIdHp) {
-        // for fetch callback order
-        return;
-      }
-      const data = response.data.map((item) => ({
-        text: item.nama_hp,
-        value: item.id,
-      }));
-      setDataTagHp(data);
-      setHpLoading(false);
-    });
-  };
-
-  const handleSearchHp = (value) => {
-    //console.log(value);
-    if (value.length > 0) {
-      getTagHp(value);
-    }
-  };
-  const handleChangeHp = (selectedItems) => {
-    //console.log(selectedItems);
-    setDefDataTagHp(selectedItems);
-  };
-
-  const onChangePriceNewFrom = (value) => {
-    //const price_int = parseInt(value.replace("Rp. ", "").replace(/\./g, ""));
-    //console.log(value);
-    //const priceRp = utils.formatRupiah(value, "Rp. ")
-    setPriceNewFromHp(value);
-  };
-
-  const onChangePriceNewEnd = (value) => {
-    //const price_int = parseInt(value.replace("Rp. ", "").replace(/\./g, ""));
-    //console.log(value);
-    //const priceRp = utils.formatRupiah(value, "Rp. ")
-    setPriceNewEndHp(value);
-  };
-
-  const onChangePriceSecondFrom = (value) => {
-    //const price_int = parseInt(value.replace("Rp. ", "").replace(/\./g, ""));
-    //console.log(value);
-    //const priceRp = utils.formatRupiah(value, "Rp. ")
-    setPriceSecondFromHp(value);
-  };
-
-  const onChangePriceSecondEnd = (value) => {
-    //const price_int = parseInt(value.replace("Rp. ", "").replace(/\./g, ""));
-    //console.log(value);
-    //const priceRp = utils.formatRupiah(value, "Rp. ")
-    setPriceSecondEndHp(value);
-  };
-
-  const onChangeNegativeKey = (e) => {
-    setNegativeKey(e.target.value);
-  };
-
-  const onChangeShopeeProdUrl = (e) => {
-    setShopeeProdUrl(e.target.value);
-  };
-
-  const onChangeShopeeAccUrl = (e) => {
-    setShopeeAccUrl(e.target.value);
-  };
-
-  const onChangeLazProdUrl = (e) => {
-    setLazadaProdUrl(e.target.value);
-  };
-
-  const onChangeLazAccUrl = (e) => {
-    setLazadaAccUrl(e.target.value);
-  };
-
-  const onSubmitHp = (e) => {
+  const onSubmitHp = async () => {
     setUpdateLoading(true);
-    let price_new_from = priceNewFromHp;
-    let price_new_end = priceNewEndHp;
-    let price_second_from = priceSecondFromHp;
-    let price_second_end = priceSecondEndHp;
-    let last_update = updatedAt;
-    let rilis_idn = rilisIdn;
-    let negative_keywords = negativeKey;
-    let shopee_prod_url = shopeeProdUrl;
-    let shopee_acc_url = shopeeAccUrl;
-    let laz_prod_url = lazadaProdUrl;
-    let laz_acc_url = lazadaAccUrl;
-
     let hp_pros = store.getState().hpproscons.pros_data;
     let hp_cons = store.getState().hpproscons.cons_data;
-    store.dispatch(HP_DATA_ACT("pros", hp_pros));
-    store.dispatch(HP_DATA_ACT("cons", hp_cons));
+    await store.dispatch(HP_DATA_ACT("pros", hp_pros));
+    await store.dispatch(HP_DATA_ACT("cons", hp_cons));
 
-    let tagDevices = "";
-
-    for (let i = 0; i < dataDefTagHp.length; i++) {
-      tagDevices += dataDefTagHp[i].key + ",";
-    }
-    tagDevices = tagDevices.slice(0, -1);
-    //console.log("price_new_from", price_new_from);
-    //console.log("price_new_end", price_new_end);
-    //console.log("price_second_from", price_second_from);
-    //console.log("price_second_end", price_second_end);
-    //console.log("last_update", last_update);
-    //console.log("rilis_idn", rilis_idn);
-    //console.log("negative_keywords", negative_keywords);
-    //console.log("shopee_prod_url", shopee_prod_url);
-    //console.log("shopee_acc_url", shopee_acc_url);
-    //console.log("laz_prod_url", laz_prod_url);
-    //console.log("laz_acc_url", laz_acc_url);
-    //console.log("tagDevices", tagDevices);
-    //console.log("hp_pros", hp_pros);
-    //console.log("hp_cons", hp_cons);
-    /* putUpdateHandphone(
-      id_hp,
-      hp_pros,
-      hp_cons,
-      tagDevices,
-      rilis_idn,
-      negative_keywords,
-      shopee_prod_url,
-      shopee_acc_url,
-      laz_prod_url,
-      laz_acc_url
-    )
-      .then((resp) => {
-        //console.log("update", resp.data.status);
-        if (resp.data.status === true) {
-          toast.success(resp.data.message, {
-            position: "top-right",
-            autoClose: true,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "colored",
-          });
-          setTimeout(() => (window.location.href = "/handphones/list"), 3000);
-        } else {
-          toast.error(resp.data.message, {
-            position: "top-right",
-            autoClose: true,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "colored",
-          });
-        }
-        setUpdateLoading(false);
-      })
-      .catch((err) => {
-        toast.error("Gagal update artikel", {
-          position: "top-right",
-          autoClose: true,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "colored",
-        });
-        setUpdateLoading(false);
-      }); */
+    let final_update = await store.getState().gen_hp_data.data;
+    postCreateHp(final_update).then((resp) => {
+      console.log(resp);
+      setUpdateLoading(false);
+    });
   };
   function scrollToTargetAdjusted(id_element) {
     var element = document.getElementById(id_element);
@@ -437,17 +269,21 @@ const EditHpFullApp = (props) => {
         <ComparePopulerHp />
         <ProsConsHp />
         <CheckingHp />
-        <Button
-          onClick={onSubmitHp}
-          type="primary"
-          icon={<SaveOutlined />}
-          style={{
-            width: "-webkit-fill-available",
-            margin: "15px 0px 10px 0px",
-          }}
-        >
-          Save
-        </Button>
+        {updateLoading ? (
+          ""
+        ) : (
+          <Button
+            onClick={onSubmitHp}
+            type="primary"
+            icon={<SaveOutlined />}
+            style={{
+              width: "-webkit-fill-available",
+              margin: "15px 0px 10px 0px",
+            }}
+          >
+            Save
+          </Button>
+        )}
         {updateLoading && (
           <div
             style={{

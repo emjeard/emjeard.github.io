@@ -10,6 +10,7 @@ const { TextArea } = Input;
 const MemoriHp = () => {
   const [dataMemJen, setDataMemJen] = useState([]);
   const [dataMemKap, setDataMemKap] = useState([]);
+  const [dataMemEksS, setDataMemEksS] = useState([]);
 
   useEffect(() => {
     (async () => {
@@ -28,14 +29,33 @@ const MemoriHp = () => {
     if (stateName.includes("__cb")) {
       stateValue = e.target.checked;
     }
-    store.dispatch(HP_DATA_ACT(stateName, stateValue));
+
+    if (stateName.includes("mem_ram") && !stateName.includes("mem_ram_ket")) {
+      store.dispatch(HP_DATA_ACT(stateName, parseInt(stateValue)));
+    } else if (
+      stateName.includes("mem_rom") &&
+      !stateName.includes("mem_rom_ket")
+    ) {
+      store.dispatch(HP_DATA_ACT(stateName, parseInt(stateValue)));
+    } else if (
+      stateName.includes("mem_internal") &&
+      !stateName.includes("mem_internal_ket")
+    ) {
+      store.dispatch(HP_DATA_ACT(stateName, parseInt(stateValue)));
+    } else {
+      store.dispatch(HP_DATA_ACT(stateName, stateValue));
+    }
   };
 
   const onChangeSelectGeneral = (selectedItems, option) => {
     const splitOptions = option.value.split("--");
     const stateName = splitOptions[1];
     const valueSelect = splitOptions[0];
-    store.dispatch(HP_DATA_ACT(stateName, valueSelect));
+    store.dispatch(HP_DATA_ACT(stateName, parseInt(valueSelect)));
+
+    if (stateName.includes("mem_eksternal_s")) {
+      setDataMemEksS(store.getState().gen_hp_data.data.mem_eksternal_s);
+    }
   };
 
   const getListMemJen = () => {
@@ -58,10 +78,7 @@ const MemoriHp = () => {
   };
   return (
     <div>
-      <div
-        id="memori" 
-        className="lay-segment affix-memori"
-      >
+      <div id="memori" className="lay-segment affix-memori">
         Memori
       </div>
       <div
@@ -267,17 +284,17 @@ const MemoriHp = () => {
         <div className="lay-subsegment">
           <div className="lbl-input-data">Internal</div>
           <div style={{ display: "flex", width: "100%" }}>
-            <div style={{ margin: "0px 0px 0px 0px", width: 65 }}>
+            <div style={{ margin: "0px 0px 0px 0px", width: 75 }}>
               <Input.Group compact>
                 <Input
                   name="mem_internal"
                   onChange={onChangeInputGeneral}
                   defaultValue={store.getState().gen_hp_data.data.mem_internal}
-                  style={{ width: 65, margin: "0px 0px 0px 0px" }}
+                  style={{ width: 75, margin: "0px 0px 0px 0px" }}
                 />
               </Input.Group>
             </div>
-            <div style={{ margin: "0px 0px 0px 10px", width: 65 }}>
+            <div style={{ margin: "0px 0px 0px 10px", width: 75 }}>
               <Input.Group compact>
                 <Input
                   name="mem_internal_1"
@@ -285,11 +302,11 @@ const MemoriHp = () => {
                   defaultValue={
                     store.getState().gen_hp_data.data.mem_internal_1
                   }
-                  style={{ width: 65, margin: "0px 0px 0px 0px" }}
+                  style={{ width: 75, margin: "0px 0px 0px 0px" }}
                 />
               </Input.Group>
             </div>
-            <div style={{ margin: "0px 0px 0px 10px", width: 65 }}>
+            <div style={{ margin: "0px 0px 0px 10px", width: 75 }}>
               <Input.Group compact>
                 <Input
                   name="mem_internal_2"
@@ -297,11 +314,11 @@ const MemoriHp = () => {
                   defaultValue={
                     store.getState().gen_hp_data.data.mem_internal_2
                   }
-                  style={{ width: 65, margin: "0px 0px 0px 0px" }}
+                  style={{ width: 75, margin: "0px 0px 0px 0px" }}
                 />
               </Input.Group>
             </div>
-            <div style={{ margin: "0px 0px 0px 10px", width: 65 }}>
+            <div style={{ margin: "0px 0px 0px 10px", width: 75 }}>
               <Input.Group compact>
                 <Input
                   name="mem_internal_3"
@@ -309,11 +326,11 @@ const MemoriHp = () => {
                   defaultValue={
                     store.getState().gen_hp_data.data.mem_internal_3
                   }
-                  style={{ width: 65, margin: "0px 0px 0px 0px" }}
+                  style={{ width: 75, margin: "0px 0px 0px 0px" }}
                 />
               </Input.Group>
             </div>
-            <div style={{ margin: "0px 0px 0px 10px", width: 65 }}>
+            <div style={{ margin: "0px 0px 0px 10px", width: 75 }}>
               <Input.Group compact>
                 <Input
                   name="mem_internal_4"
@@ -321,11 +338,11 @@ const MemoriHp = () => {
                   defaultValue={
                     store.getState().gen_hp_data.data.mem_internal_4
                   }
-                  style={{ width: 65, margin: "0px 0px 0px 0px" }}
+                  style={{ width: 75, margin: "0px 0px 0px 0px" }}
                 />
               </Input.Group>
             </div>
-            <div style={{ margin: "0px 0px 0px 10px", width: 65 }}>
+            <div style={{ margin: "0px 0px 0px 10px", width: 75 }}>
               <Input.Group compact>
                 <Input
                   name="mem_internal_5"
@@ -333,11 +350,11 @@ const MemoriHp = () => {
                   defaultValue={
                     store.getState().gen_hp_data.data.mem_internal_5
                   }
-                  style={{ width: 65, margin: "0px 0px 0px 0px" }}
+                  style={{ width: 75, margin: "0px 0px 0px 0px" }}
                 />
               </Input.Group>
             </div>
-            <div style={{ margin: "0px 0px 0px 10px", width: 65 }}>
+            <div style={{ margin: "0px 0px 0px 10px", width: 75 }}>
               <Input.Group compact>
                 <Input
                   name="mem_internal_6"
@@ -345,11 +362,11 @@ const MemoriHp = () => {
                   defaultValue={
                     store.getState().gen_hp_data.data.mem_internal_6
                   }
-                  style={{ width: 65, margin: "0px 0px 0px 0px" }}
+                  style={{ width: 75, margin: "0px 0px 0px 0px" }}
                 />
               </Input.Group>
             </div>
-            <div style={{ margin: "0px 0px 0px 10px", width: 105 }}>
+            <div style={{ margin: "0px 0px 0px 10px", width: 115 }}>
               <Input.Group compact>
                 <Input
                   name="mem_internal_7"
@@ -357,12 +374,12 @@ const MemoriHp = () => {
                   defaultValue={
                     store.getState().gen_hp_data.data.mem_internal_7
                   }
-                  style={{ width: 65, margin: "0px 0px 0px 0px" }}
+                  style={{ width: 75, margin: "0px 0px 0px 0px" }}
                 />
                 <Button className="lay-group-label">MB</Button>
               </Input.Group>
             </div>
-            <div style={{ margin: "0px 0px 0px 10px", width: 340 }}>
+            <div style={{ margin: "0px 0px 0px 10px", width: 257 }}>
               <Input.Group compact>
                 <Input
                   name="mem_internal_ket"
@@ -370,7 +387,7 @@ const MemoriHp = () => {
                   defaultValue={
                     store.getState().gen_hp_data.data.mem_internal_ket
                   }
-                  style={{ width: 340, margin: "0px 0px 0px 0px" }}
+                  style={{ width: 257, margin: "0px 0px 0px 0px" }}
                 />
               </Input.Group>
             </div>
@@ -403,8 +420,15 @@ const MemoriHp = () => {
             <Input.Group compact>
               <Select
                 defaultValue={
-                  store.getState().gen_hp_data.data.mem_eksternal +
-                  "--mem_eksternal"
+                  store.getState().gen_hp_data.data.mem_eksternal === ""
+                    ? ""
+                    : store.getState().gen_hp_data.data.mem_eksternal +
+                      "--mem_eksternal"
+                }
+                disabled={
+                  store.getState().gen_hp_data.data.mem_eksternal_s === 1
+                    ? false
+                    : true
                 }
                 style={{ width: 180 }}
                 onChange={onChangeSelectGeneral}
@@ -425,14 +449,21 @@ const MemoriHp = () => {
             <Input.Group compact>
               <Select
                 defaultValue={
-                  store.getState().gen_hp_data.data.mem_eksternal_kap +
-                  "--mem_eksternal_kap"
+                  store.getState().gen_hp_data.data.mem_eksternal_kap === ""
+                    ? ""
+                    : store.getState().gen_hp_data.data.mem_eksternal_kap +
+                      "--mem_eksternal_kap"
+                }
+                disabled={
+                  store.getState().gen_hp_data.data.mem_eksternal_s === 1
+                    ? false
+                    : true
                 }
                 style={{ width: 100 }}
                 onChange={onChangeSelectGeneral}
               >
                 {dataMemKap.map((item) => (
-                  <Option key={item.value}>{item.text+" GB"}</Option>
+                  <Option key={item.value}>{item.text + " GB"}</Option>
                 ))}
               </Select>
             </Input.Group>
@@ -441,6 +472,11 @@ const MemoriHp = () => {
             <Input.Group compact>
               <Input
                 name="mem_ekternal_ket"
+                disabled={
+                  store.getState().gen_hp_data.data.mem_eksternal_s === 1
+                    ? false
+                    : true
+                }
                 onChange={onChangeInputGeneral}
                 defaultValue={
                   store.getState().gen_hp_data.data.mem_ekternal_ket
@@ -449,6 +485,16 @@ const MemoriHp = () => {
               />
             </Input.Group>
           </div>
+        </div>
+        <div className="lay-subsegment">
+          <div className="lbl-input-data">Keterangan Tambahan </div>
+          <TextArea
+            name="mem_semua_ket"
+            defaultValue={store.getState().gen_hp_data.data.mem_semua_ket}
+            onChange={onChangeInputGeneral}
+            style={{ width: "100%", margin: "0px 0px 0px 0px" }}
+            autoSize={{ minRows: 3, maxRows: 5 }}
+          />
         </div>
       </div>
     </div>

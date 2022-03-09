@@ -8,9 +8,32 @@ const { Option } = Select;
 const { TextArea } = Input;
 
 const NetworkHp = () => {
+  const simcard_combination_1 = [
+    { id: 1, value: "GSM-GSM" },
+    { id: 2, value: "GSM-CDMA" },
+    { id: 3, value: "CDMA-CDMA" },
+  ];
+  const simcard_combination_2 = [
+    { id: 4, value: "GSM-GSM-GSM" },
+    { id: 5, value: "GSM-GSM-CDMA" },
+    { id: 6, value: "GSM-CDMA-CDMA" },
+    { id: 7, value: "CDMA-CDMA-CDMA" },
+  ];
+  const simcard_combination_3 = [
+    { id: 8, value: "GSM-GSM-GSM-GSM" },
+    { id: 9, value: "GSM-GSM-GSM-CDMA" },
+    { id: 10, value: "GSM-GSM-CDMA-CDMA" },
+    { id: 11, value: "GSM-CDMA-CDMA-CDMA" },
+    { id: 12, value: "CDMA-CDMA-CDMA-CDMA" },
+  ];
   const [dataSimcard, setDataSimcard] = useState([]);
   const [dataHpModel, setDataHpModel] = useState([]);
   const [dataHpStatus, setDataHpStatus] = useState([]);
+  const [dataSimcardComb, setDataSimcardComb] = useState([
+    { id: 1, value: "GSM-GSM" },
+    { id: 2, value: "GSM-CDMA" },
+    { id: 3, value: "CDMA-CDMA" },
+  ]);
 
   useEffect(() => {
     (async () => {
@@ -21,6 +44,13 @@ const NetworkHp = () => {
     getListSimcard();
     getTagModelHp();
     getHpStatus();
+    if (store.getState().gen_hp_data.data.jar_multi_tipe1 === 1) {
+      setDataSimcardComb(simcard_combination_1);
+    } else if (store.getState().gen_hp_data.data.jar_multi_tipe1 === 2) {
+      setDataSimcardComb(simcard_combination_2);
+    } else if (store.getState().gen_hp_data.data.jar_multi_tipe1 === 3) {
+      setDataSimcardComb(simcard_combination_3);
+    }
   };
 
   const onChangeInputGeneral = (e) => {
@@ -37,7 +67,15 @@ const NetworkHp = () => {
     const splitOptions = option.value.split("--");
     const stateName = splitOptions[1];
     const valueSelect = splitOptions[0];
-    store.dispatch(HP_DATA_ACT(stateName, valueSelect));
+    store.dispatch(HP_DATA_ACT(stateName, parseInt(valueSelect)));
+
+    if (option.value.includes("1--jar_multi_tipe1")) {
+      setDataSimcardComb(simcard_combination_1);
+    } else if (option.value.includes("2--jar_multi_tipe1")) {
+      setDataSimcardComb(simcard_combination_2);
+    } else if (option.value.includes("3--jar_multi_tipe1")) {
+      setDataSimcardComb(simcard_combination_3);
+    }
   };
 
   const getListSimcard = () => {
@@ -400,11 +438,9 @@ const NetworkHp = () => {
               <div style={{ width: "100%", margin: "30px 0px 0px 20px" }}>
                 <Input.Group compact>
                   <Input
-                    name="jar_multi_ket"
+                    name="jar_sc_ket"
                     onChange={onChangeInputGeneral}
-                    defaultValue={
-                      store.getState().gen_hp_data.data.jar_multi_ket
-                    }
+                    defaultValue={store.getState().gen_hp_data.data.jar_sc_ket}
                     style={{ width: "100%", margin: "0px 0px 0px 0px" }}
                   />
                 </Input.Group>
@@ -414,7 +450,7 @@ const NetworkHp = () => {
               <div>
                 <div className="lbl-input-data">Multi Sim</div>
                 <Select
-                  style={{ minWidth: 120 }}
+                  style={{ minWidth: 80 }}
                   showSearch
                   placeholder=""
                   optionFilterProp="children"
@@ -474,9 +510,11 @@ const NetworkHp = () => {
                     "--jar_multi_tipe2"
                   }
                 >
-                  <Option value="1--jar_multi_tipe2">GSM-GSM</Option>
-                  <Option value="2--jar_multi_tipe2">GSM-CDMA</Option>
-                  <Option value="3--jar_multi_tipe2">CDMA-CDMA</Option>
+                  {dataSimcardComb.map((item) => (
+                    <Option key={`${item.id}--jar_multi_tipe2`}>
+                      {item.value}
+                    </Option>
+                  ))}
                 </Select>
               </div>
             </div>

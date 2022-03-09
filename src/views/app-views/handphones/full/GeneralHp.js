@@ -13,9 +13,11 @@ import {
 import { InfoCircleOutlined, SaveOutlined } from "@ant-design/icons";
 import Drag from "./Drag";
 import store from "redux/store";
+import slugify from "slugify";
 import { HP_DATA_ACT } from "redux/actions/Handphone";
 
 import { getListBrands, getListHpModel, getListHpStatus } from "api/ApiData";
+import { parseInt } from "lodash";
 
 const { Option } = Select;
 const { TextArea } = Input;
@@ -25,7 +27,19 @@ const GeneralHp = () => {
   const [dataTagBrand, setDataTagBrand] = useState([]);
   const [dataHpModel, setDataHpModel] = useState([]);
   const [dataHpStatus, setDataHpStatus] = useState([]);
+  const [dataUmuDiumumkanStat, setDataUmuDiumumkanStat] = useState(true);
+  const [dataCodename, setDataCodename] = useState("");
+  const [dataMerk, setDataMerk] = useState("");
+  const [dataModel, setDataModel] = useState("");
   const [size, setSize] = useState("default");
+
+  console.log(store.getState().gen_hp_data.data.umu_tags);
+  let tagsRepl = store.getState().gen_hp_data.data.umu_tags.replace(/, /g, ",");
+  let tags = tagsRepl.split(",");
+  let tagsArr = [];
+  for (let i = 0; i < tags.length; i++) {
+    tagsArr.push(tags[i]);
+  }
 
   useEffect(() => {
     (async () => {
@@ -36,6 +50,14 @@ const GeneralHp = () => {
     getTagBrand();
     getTagModelHp();
     getHpStatus();
+    setDataCodename(store.getState().gen_hp_data.data.codename);
+    setDataMerk(store.getState().gen_hp_data.data.merk);
+    setDataModel(store.getState().gen_hp_data.data.model);
+    if (store.getState().gen_hp_data.data.umu_diumumkan !== "") {
+      setDataUmuDiumumkanStat(false);
+    } else {
+      setDataUmuDiumumkanStat(true);
+    }
   };
 
   function onSearchSelect(val) {
@@ -47,6 +69,20 @@ const GeneralHp = () => {
 
     if (stateName.includes("__cb")) {
       stateValue = e.target.checked;
+      setDataUmuDiumumkanStat(!dataUmuDiumumkanStat);
+    }
+
+    if (stateName.includes("model")) {
+      let merk = dataMerk;
+      let model = stateValue;
+      let namalengkap = merk + " " + model;
+      let codename = namalengkap.replace(/ /g, "");
+      let slug = slugify(namalengkap);
+      setDataModel(model);
+      store.dispatch(HP_DATA_ACT("codename", codename));
+      store.dispatch(HP_DATA_ACT("slug", slug.toLowerCase()));
+      store.dispatch(HP_DATA_ACT("merk", merk));
+      store.dispatch(HP_DATA_ACT("namalengkap", namalengkap));
     }
     store.dispatch(HP_DATA_ACT(stateName, stateValue));
   };
@@ -56,14 +92,34 @@ const GeneralHp = () => {
   };
 
   const onChangeSelectGeneral = (selectedItems, option) => {
+    console.log();
     const splitOptions = option.value.split("--");
     const stateName = splitOptions[1];
     const valueSelect = splitOptions[0];
-    store.dispatch(HP_DATA_ACT(stateName, valueSelect));
+    store.dispatch(HP_DATA_ACT(stateName, parseInt(valueSelect)));
+
+    if (option.value.includes("--id_merk")) {
+      let merk = option.children;
+      let model = dataModel;
+      let namalengkap = merk + " " + model;
+      let codename = namalengkap.replace(/ /g, "");
+      let slug = slugify(namalengkap);
+      setDataMerk(merk);
+      store.dispatch(HP_DATA_ACT("codename", codename));
+      store.dispatch(HP_DATA_ACT("slug", slug.toLowerCase()));
+      store.dispatch(HP_DATA_ACT("merk", merk));
+      store.dispatch(HP_DATA_ACT("namalengkap", namalengkap));
+    }
   };
 
   const onChangeTagsGeneral = (selectedItems, option) => {
-    store.dispatch(HP_DATA_ACT("umu_tags", selectedItems));
+    console.log(selectedItems);
+    let finalStateValue = "";
+    for (let i = 0; i < selectedItems.length; i++) {
+      finalStateValue += selectedItems[i] + ",";
+    }
+    finalStateValue = finalStateValue.substring(0, finalStateValue.length - 1);
+    store.dispatch(HP_DATA_ACT("umu_tags", finalStateValue));
   };
 
   const getTagBrand = () => {
@@ -94,15 +150,6 @@ const GeneralHp = () => {
       setDataHpStatus(data);
     });
   };
-
-  const tagsRepl = store
-    .getState()
-    .gen_hp_data.data.umu_tags.replace(/, /g, ",");
-  const tags = tagsRepl.split(",");
-  let tagsArr = [];
-  for (let i = 0; i < tags.length; i++) {
-    tagsArr.push(tags[i]);
-  }
 
   return (
     <div>
@@ -310,6 +357,7 @@ const GeneralHp = () => {
                       style={{ width: 80, padding: "5px 0px 0px 0px" }}
                       icon={
                         <Checkbox
+                          checked={dataUmuDiumumkanStat}
                           name="gen_diumumkan__cb"
                           onChange={onChangeInputGeneral}
                           style={{

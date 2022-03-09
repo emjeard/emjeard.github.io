@@ -132,7 +132,11 @@ export const HeaderNav = (props) => {
           </div>
           <div className="nav-right">
             <div className="ant-menu-item ant-menu-item-only-child">
-              <Button type="primary" icon={<PlusOutlined />}>
+              <Button
+                type="primary"
+                icon={<PlusOutlined />}
+                onClick={() => routeChange("/handphones/post")}
+              >
                 Post Product
               </Button>
             </div>

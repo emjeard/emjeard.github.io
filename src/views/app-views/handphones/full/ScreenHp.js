@@ -10,6 +10,8 @@ const { TextArea } = Input;
 const ScreenHp = () => {
   const [dataLayarWarna, setDataLayarWarna] = useState([]);
   const [dataLayarSensor, setDataLayarSensor] = useState([]);
+  const [dataLayFprintS, setDataLayFprintS] = useState([]);
+
   let childrenSensor = [];
 
   useEffect(() => {
@@ -36,7 +38,10 @@ const ScreenHp = () => {
     const splitOptions = option.value.split("--");
     const stateName = splitOptions[1];
     const valueSelect = splitOptions[0];
-    store.dispatch(HP_DATA_ACT(stateName, valueSelect));
+    store.dispatch(HP_DATA_ACT(stateName, parseInt(valueSelect)));
+    if (stateName.includes("lay_fprint_status")) {
+      setDataLayFprintS(store.getState().gen_hp_data.data.lay_fprint_status);
+    }
   };
 
   const getLayarWarna = () => {
@@ -148,6 +153,7 @@ const ScreenHp = () => {
                     store.getState().gen_hp_data.data.lay_tipe_layar
                   }
                   placeholder=""
+                  onChange={onChangeInputGeneral}
                 />
               </div>
             </div>
@@ -181,6 +187,7 @@ const ScreenHp = () => {
                   style={{ width: "100%" }}
                   defaultValue={store.getState().gen_hp_data.data.lay_warna_ket}
                   placeholder=""
+                  onChange={onChangeInputGeneral}
                 />
               </div>
             </div>
@@ -207,6 +214,7 @@ const ScreenHp = () => {
                     store.getState().gen_hp_data.data.lay_size_diagonal_ket
                   }
                   placeholder=""
+                  onChange={onChangeInputGeneral}
                 />
               </div>
             </div>
@@ -392,14 +400,21 @@ const ScreenHp = () => {
                   placeholder=""
                   optionFilterProp="children"
                   onChange={onChangeSelectGeneral}
+                  disabled={
+                    store.getState().gen_hp_data.data.lay_fprint_status === 1
+                      ? false
+                      : true
+                  }
                   filterOption={(input, option) =>
                     option.children
                       .toLowerCase()
                       .indexOf(input.toLowerCase()) >= 0
                   }
                   defaultValue={
-                    store.getState().gen_hp_data.data.lay_fprint_position +
-                    "--lay_fprint_position"
+                    store.getState().gen_hp_data.data.lay_fprint_position === 0
+                      ? ""
+                      : store.getState().gen_hp_data.data.lay_fprint_position +
+                        "--lay_fprint_position"
                   }
                 >
                   <Option value="1--lay_fprint_position">Front</Option>

@@ -35,7 +35,7 @@ const CameraHp = () => {
     const splitOptions = option.value.split("--");
     const stateName = splitOptions[1];
     const valueSelect = splitOptions[0];
-    store.dispatch(HP_DATA_ACT(stateName, valueSelect));
+    store.dispatch(HP_DATA_ACT(stateName, parseInt(valueSelect)));
   };
 
   const getListMemJen = () => {
@@ -121,12 +121,12 @@ const CameraHp = () => {
               <Button className="lay-group-label">MP</Button>
             </Input.Group>
           </div>
-          <div style={{ width: "250px", margin: "15px 0px 0px 20px" }}>
+          <div style={{ width: "-webkit-fill-available", margin: "15px 10px 0px 20px" }}>
             <Input
               name="kam_utama2"
               onChange={onChangeInputGeneral}
               defaultValue={store.getState().gen_hp_data.data.kam_utama2}
-              style={{ width: 250, margin: "0px 0px 0px 0px" }}
+              style={{ width: "-webkit-fill-available", margin: "0px 0px 0px 0px" }}
             />
           </div>
         </div>

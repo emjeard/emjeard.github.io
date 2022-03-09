@@ -23,12 +23,15 @@ const DxOmarkHp = () => {
     }
     store.dispatch(HP_DATA_ACT(stateName, stateValue));
   };
+
+  const onChangeInputNumber = (e, name) => {
+    const stateName = name;
+    let stateValue = e;
+    store.dispatch(HP_DATA_ACT(stateName, stateValue));
+  };
   return (
     <div>
-      <div
-        id="dxomark"
-        className="lay-segment affix-dxomark"
-      >
+      <div id="dxomark" className="lay-segment affix-dxomark">
         DxOmark
       </div>
       <div
@@ -72,7 +75,7 @@ const DxOmarkHp = () => {
                   style={{ minWidth: "150px" }}
                   name="dx_mob_total"
                   defaultValue={store.getState().gen_hp_data.data.dx_mob_total}
-                  onChange={onChangeInputGeneral}
+                  onChange={(e) => onChangeInputNumber(e, "dx_mob_total")}
                   formatter={(value) =>
                     `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
                   }
@@ -84,7 +87,7 @@ const DxOmarkHp = () => {
                   style={{ minWidth: "150px", margin: "15px 0px 0px 0px" }}
                   name="dx_mob_photo"
                   defaultValue={store.getState().gen_hp_data.data.dx_mob_photo}
-                  onChange={onChangeInputGeneral}
+                  onChange={(e) => onChangeInputNumber(e, "dx_mob_photo")}
                   formatter={(value) =>
                     `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
                   }
@@ -96,7 +99,7 @@ const DxOmarkHp = () => {
                   style={{ minWidth: "150px", margin: "15px 0px 0px 0px" }}
                   name="dx_mob_video"
                   defaultValue={store.getState().gen_hp_data.data.dx_mob_video}
-                  onChange={onChangeInputGeneral}
+                  onChange={(e) => onChangeInputNumber(e, "dx_mob_video")}
                   formatter={(value) =>
                     `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
                   }
@@ -145,7 +148,7 @@ const DxOmarkHp = () => {
                   style={{ minWidth: "150px" }}
                   name="dx_self_total"
                   defaultValue={store.getState().gen_hp_data.data.dx_self_total}
-                  onChange={onChangeInputGeneral}
+                  onChange={(e) => onChangeInputNumber(e, "dx_self_total")}
                   formatter={(value) =>
                     `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
                   }
@@ -157,7 +160,7 @@ const DxOmarkHp = () => {
                   style={{ minWidth: "150px", margin: "15px 0px 0px 0px" }}
                   name="dx_self_photo"
                   defaultValue={store.getState().gen_hp_data.data.dx_self_photo}
-                  onChange={onChangeInputGeneral}
+                  onChange={(e) => onChangeInputNumber(e, "dx_self_photo")}
                   formatter={(value) =>
                     `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
                   }
@@ -169,7 +172,7 @@ const DxOmarkHp = () => {
                   style={{ minWidth: "150px", margin: "15px 0px 0px 0px" }}
                   name="dx_self_video"
                   defaultValue={store.getState().gen_hp_data.data.dx_self_video}
-                  onChange={onChangeInputGeneral}
+                  onChange={(e) => onChangeInputNumber(e, "dx_self_video")}
                   formatter={(value) =>
                     `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
                   }
@@ -178,12 +181,12 @@ const DxOmarkHp = () => {
               </div>
               <div>
                 <Input
-                  name="dx_mob_urlreview"
+                  name="dx_self_urlreview"
                   defaultValue={
-                    store.getState().gen_hp_data.data.dx_mob_urlreview
+                    store.getState().gen_hp_data.data.dx_self_urlreview
                   }
                   onChange={onChangeInputGeneral}
-                  style={{ minWidth: "350px", margin: "15px 0px 0px 0px" }}
+                  style={{ minWidth: "450px", margin: "15px 0px 0px 0px" }}
                 />
               </div>
             </div>
