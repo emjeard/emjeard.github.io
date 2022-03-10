@@ -88,8 +88,10 @@ const FeaturesHp = () => {
                       .indexOf(input.toLowerCase()) >= 0
                   }
                   defaultValue={
-                    store.getState().gen_hp_data.data.fit_musik_status +
-                    "--fit_musik_status"
+                    store.getState().gen_hp_data.data.fit_musik_status === ""
+                      ? undefined
+                      : store.getState().gen_hp_data.data.fit_musik_status +
+                        "--fit_musik_status"
                   }
                 >
                   <Option value="1--fit_musik_status">Yes</Option>
@@ -124,8 +126,10 @@ const FeaturesHp = () => {
                       .indexOf(input.toLowerCase()) >= 0
                   }
                   defaultValue={
-                    store.getState().gen_hp_data.data.fit_radio_status +
-                    "--fit_radio_status"
+                    store.getState().gen_hp_data.data.fit_radio_status === ""
+                      ? undefined
+                      : store.getState().gen_hp_data.data.fit_radio_status +
+                        "--fit_radio_status"
                   }
                 >
                   <Option value="1--fit_radio_status">Yes</Option>
@@ -160,8 +164,10 @@ const FeaturesHp = () => {
                       .indexOf(input.toLowerCase()) >= 0
                   }
                   defaultValue={
-                    store.getState().gen_hp_data.data.fit_tvanalog +
-                    "--fit_tvanalog"
+                    store.getState().gen_hp_data.data.fit_tvanalog === ""
+                      ? undefined
+                      : store.getState().gen_hp_data.data.fit_tvanalog +
+                        "--fit_tvanalog"
                   }
                 >
                   <Option value="1--fit_tvanalog">Yes</Option>
@@ -198,8 +204,10 @@ const FeaturesHp = () => {
                       .indexOf(input.toLowerCase()) >= 0
                   }
                   defaultValue={
-                    store.getState().gen_hp_data.data.fit_gps_status +
-                    "--fit_gps_status"
+                    store.getState().gen_hp_data.data.fit_gps_status === ""
+                      ? undefined
+                      : store.getState().gen_hp_data.data.fit_gps_status +
+                        "--fit_gps_status"
                   }
                 >
                   <Option value="1--fit_gps_status">Yes</Option>
@@ -243,8 +251,10 @@ const FeaturesHp = () => {
                       .indexOf(input.toLowerCase()) >= 0
                   }
                   defaultValue={
-                    store.getState().gen_hp_data.data.fit_browser_status +
-                    "--fit_browser_status"
+                    store.getState().gen_hp_data.data.fit_browser_status === ""
+                      ? undefined
+                      : store.getState().gen_hp_data.data.fit_browser_status +
+                        "--fit_browser_status"
                   }
                 >
                   <Option value="1--fit_browser_status">Yes</Option>
@@ -279,8 +289,11 @@ const FeaturesHp = () => {
                       .indexOf(input.toLowerCase()) >= 0
                   }
                   defaultValue={
-                    store.getState().gen_hp_data.data.fit_wresistant_status +
-                    "--fit_wresistant_status"
+                    store.getState().gen_hp_data.data.fit_wresistant_status ===
+                    ""
+                      ? undefined
+                      : store.getState().gen_hp_data.data
+                          .fit_wresistant_status + "--fit_wresistant_status"
                   }
                 >
                   <Option value="1--fit_wresistant_status">Yes</Option>

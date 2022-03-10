@@ -58,10 +58,7 @@ const CameraHp = () => {
   };
   return (
     <div>
-      <div
-        id="camera" 
-        className="lay-segment affix-camera"
-      >
+      <div id="camera" className="lay-segment affix-camera">
         Camera
       </div>
       <div
@@ -87,8 +84,10 @@ const CameraHp = () => {
                 option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
               }
               defaultValue={
-                store.getState().gen_hp_data.data.kam_utama_status +
-                "--kam_utama_status"
+                store.getState().gen_hp_data.data.kam_utama_status === ""
+                  ? undefined
+                  : store.getState().gen_hp_data.data.kam_utama_status +
+                    "--kam_utama_status"
               }
             >
               <Option value="1--kam_utama_status">Yes</Option>
@@ -121,12 +120,20 @@ const CameraHp = () => {
               <Button className="lay-group-label">MP</Button>
             </Input.Group>
           </div>
-          <div style={{ width: "-webkit-fill-available", margin: "15px 10px 0px 20px" }}>
+          <div
+            style={{
+              width: "-webkit-fill-available",
+              margin: "15px 10px 0px 20px",
+            }}
+          >
             <Input
               name="kam_utama2"
               onChange={onChangeInputGeneral}
               defaultValue={store.getState().gen_hp_data.data.kam_utama2}
-              style={{ width: "-webkit-fill-available", margin: "0px 0px 0px 0px" }}
+              style={{
+                width: "-webkit-fill-available",
+                margin: "0px 0px 0px 0px",
+              }}
             />
           </div>
         </div>
@@ -153,8 +160,10 @@ const CameraHp = () => {
                 option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
               }
               defaultValue={
-                store.getState().gen_hp_data.data.kam_led_flash_status +
-                "--kam_led_flash_status"
+                store.getState().gen_hp_data.data.kam_led_flash_status === ""
+                  ? undefined
+                  : store.getState().gen_hp_data.data.kam_led_flash_status +
+                    "--kam_led_flash_status"
               }
             >
               <Option value="1--kam_led_flash_status">Yes</Option>
@@ -200,8 +209,10 @@ const CameraHp = () => {
                 option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
               }
               defaultValue={
-                store.getState().gen_hp_data.data.kam_video_status +
-                "--kam_video_status"
+                store.getState().gen_hp_data.data.kam_video_status === ""
+                  ? undefined
+                  : store.getState().gen_hp_data.data.kam_video_status +
+                    "--kam_video_status"
               }
             >
               <Option value="1--kam_video_status">Yes</Option>
@@ -221,8 +232,10 @@ const CameraHp = () => {
                 option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
               }
               defaultValue={
-                store.getState().gen_hp_data.data.kam_video_hd +
-                "--kam_video_hd"
+                store.getState().gen_hp_data.data.kam_video_hd === ""
+                  ? undefined
+                  : store.getState().gen_hp_data.data.kam_video_hd +
+                    "--kam_video_hd"
               }
             >
               <Option value="101--kam_video_hd">4K UHD 2160p</Option>
@@ -260,8 +273,10 @@ const CameraHp = () => {
                 option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
               }
               defaultValue={
-                store.getState().gen_hp_data.data.kam_depan_status +
-                "--kam_depan_status"
+                store.getState().gen_hp_data.data.kam_depan_status === ""
+                  ? undefined
+                  : store.getState().gen_hp_data.data.kam_depan_status +
+                    "--kam_depan_status"
               }
             >
               <Option value="1--kam_depan_status">Yes</Option>
@@ -295,8 +310,10 @@ const CameraHp = () => {
                 option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
               }
               defaultValue={
-                store.getState().gen_hp_data.data.kam_nat_vcall +
-                "--kam_nat_vcall"
+                store.getState().gen_hp_data.data.kam_nat_vcall === ""
+                  ? undefined
+                  : store.getState().gen_hp_data.data.kam_nat_vcall +
+                    "--kam_nat_vcall"
               }
             >
               <Option value="1--kam_nat_vcall">Yes</Option>

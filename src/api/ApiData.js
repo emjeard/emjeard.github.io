@@ -43,6 +43,7 @@ export {
   postUploadAvatar,
   postCreateArticle,
   postCreateHp,
+  postEditHp,
   putUpdateArticle,
   putUpdateHandphone,
   getCompareHp,
@@ -256,6 +257,24 @@ const postUploadAvatar = (file, fileName) => {
 };
 
 const postCreateHp = (jsonData) => {
+  const url = `${BASE_URL}hp/create`;
+  const data = JSON.stringify(jsonData);
+
+  var config = {
+    method: "post",
+    url: url,
+    headers: {
+      Authorization: "Basic " + btoa("inps2jtd0ll5ru5:222m1lSSSu5"),
+      "ADM-Token": getToken(),
+      "Content-Type": "application/json",
+    },
+    data: data,
+  };
+
+  return axios(config).then((response) => response);
+};
+
+const postEditHp = (jsonData) => {
   const url = `${BASE_URL}hp/edit/full`;
   const data = JSON.stringify(jsonData);
 

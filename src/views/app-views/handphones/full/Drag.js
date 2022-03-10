@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Upload, Progress } from "antd";
 import { CloudUploadOutlined } from "@ant-design/icons";
+import store from "redux/store";
+import { HP_DATA_ACT } from "redux/actions/Handphone";
 
 const DragApp = (props) => {
   const [defaultFileList, setDefaultFileList] = useState([]);
@@ -28,7 +30,10 @@ const DragApp = (props) => {
     };
     fmData.append("file", file);
     fmData.append("fileName", file.name);
-    fmData.append("folder", "article");
+    fmData.append(
+      "folder",
+      props.folder === undefined ? "article" : props.folder
+    );
     try {
       const res = await axios.post(
         "https://api.imagekit.io/v1/files/upload",
@@ -37,7 +42,10 @@ const DragApp = (props) => {
       );
 
       onSuccess("Ok");
-      props.parentCallback(res.data.url);
+      console.log(props.image_type);
+      if (props.image_type === "new_hp") {
+        store.dispatch(HP_DATA_ACT("gambar", res.data.name));
+      }
     } catch (err) {
       console.log("Eroor: ", err);
       onError({ err });

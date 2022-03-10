@@ -107,8 +107,11 @@ const ScreenHp = () => {
                   showSearch
                   placeholder=""
                   defaultValue={
-                    store.getState().gen_hp_data.data.lay_touchscreen_status +
-                    "--lay_touchscreen_status"
+                    store.getState().gen_hp_data.data.lay_touchscreen_status ===
+                    ""
+                      ? undefined
+                      : store.getState().gen_hp_data.data
+                          .lay_touchscreen_status + "--lay_touchscreen_status"
                   }
                   optionFilterProp="children"
                   onChange={onChangeSelectGeneral}
@@ -128,8 +131,12 @@ const ScreenHp = () => {
                 <Input.Group compact>
                   <Select
                     defaultValue={
-                      store.getState().gen_hp_data.data.lay_touchscreen +
-                      "--lay_touchscreen"
+                      store.getState().gen_hp_data.data.lay_touchscreen ===
+                        "" ||
+                      store.getState().gen_hp_data.data.lay_touchscreen === 0
+                        ? undefined
+                        : store.getState().gen_hp_data.data.lay_touchscreen +
+                          "--lay_touchscreen"
                     }
                     style={{ width: 150 }}
                     onChange={onChangeSelectGeneral}
@@ -172,8 +179,11 @@ const ScreenHp = () => {
                       .indexOf(input.toLowerCase()) >= 0
                   }
                   defaultValue={
-                    store.getState().gen_hp_data.data.lay_warna_layar +
-                    "--lay_warna_layar"
+                    store.getState().gen_hp_data.data.lay_warna_layar === "" ||
+                    store.getState().gen_hp_data.data.lay_warna_layar === 0
+                      ? undefined
+                      : store.getState().gen_hp_data.data.lay_warna_layar +
+                        "--lay_warna_layar"
                   }
                 >
                   {dataLayarWarna.map((item) => (
@@ -290,8 +300,12 @@ const ScreenHp = () => {
                       .indexOf(input.toLowerCase()) >= 0
                   }
                   defaultValue={
-                    store.getState().gen_hp_data.data.lay_proteksi_status +
-                    "--lay_proteksi_status"
+                    store.getState().gen_hp_data.data.lay_proteksi_status ===
+                      "" ||
+                    store.getState().gen_hp_data.data.lay_proteksi_status === 0
+                      ? undefined
+                      : store.getState().gen_hp_data.data.lay_proteksi_status +
+                        "--lay_proteksi_status"
                   }
                 >
                   <Option value="1--lay_proteksi_status">Yes</Option>
@@ -328,8 +342,11 @@ const ScreenHp = () => {
                       .indexOf(input.toLowerCase()) >= 0
                   }
                   defaultValue={
-                    store.getState().gen_hp_data.data.lay_multitouch_status +
-                    "--lay_multitouch_status"
+                    store.getState().gen_hp_data.data.lay_multitouch_status ===
+                    ""
+                      ? undefined
+                      : store.getState().gen_hp_data.data
+                          .lay_multitouch_status + "--lay_multitouch_status"
                   }
                 >
                   <Option value="1--lay_multitouch_status">Yes</Option>
@@ -352,13 +369,18 @@ const ScreenHp = () => {
               </div>
             </div>
             <div className="lay-subsegment" style={{ display: "flex" }}>
-              <div>
+              <div style={{ width: "100%" }}>
                 <div className="lbl-input-data">Sensor</div>
                 <Select
                   mode="multiple"
                   name="gen_tags"
                   placeholder=""
-                  defaultValue={tagsArr}
+                  defaultValue={
+                    store.getState().gen_hp_data.data.lay_sensor === "" ||
+                    store.getState().gen_hp_data.data.lay_sensor === 0
+                      ? []
+                      : tagsArr
+                  }
                   onChange={onChangeTagsSensor}
                   style={{ width: "100%" }}
                 >
@@ -383,8 +405,12 @@ const ScreenHp = () => {
                       .indexOf(input.toLowerCase()) >= 0
                   }
                   defaultValue={
-                    store.getState().gen_hp_data.data.lay_fprint_status +
-                    "--lay_fprint_status"
+                    store.getState().gen_hp_data.data.lay_fprint_status ===
+                      "" ||
+                    store.getState().gen_hp_data.data.lay_fprint_status === 0
+                      ? undefined
+                      : store.getState().gen_hp_data.data.lay_fprint_status +
+                        "--lay_fprint_status"
                   }
                 >
                   <Option value="1--lay_fprint_status">Yes</Option>
@@ -411,7 +437,12 @@ const ScreenHp = () => {
                       .indexOf(input.toLowerCase()) >= 0
                   }
                   defaultValue={
+                    store.getState().gen_hp_data.data.lay_fprint_position ===
+                      "" ||
                     store.getState().gen_hp_data.data.lay_fprint_position === 0
+                      ? undefined
+                      : store.getState().gen_hp_data.data
+                          .lay_fprint_position === 0
                       ? ""
                       : store.getState().gen_hp_data.data.lay_fprint_position +
                         "--lay_fprint_position"

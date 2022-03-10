@@ -130,8 +130,10 @@ const NetworkHp = () => {
                   showSearch
                   placeholder=""
                   defaultValue={
-                    store.getState().gen_hp_data.data.jar_2g_status +
-                    "--jar_2g_status"
+                    store.getState().gen_hp_data.data.jar_2g_status === ""
+                      ? undefined
+                      : store.getState().gen_hp_data.data.jar_2g_status +
+                        "--jar_2g_status"
                   }
                   optionFilterProp="children"
                   onChange={onChangeSelectGeneral}
@@ -154,8 +156,10 @@ const NetworkHp = () => {
                   </Button>
                   <Select
                     defaultValue={
-                      store.getState().gen_hp_data.data.jar_2g_status +
-                      "--jar_2g_gsm_status"
+                      store.getState().gen_hp_data.data.jar_2g_gsm_status === ""
+                        ? undefined
+                        : store.getState().gen_hp_data.data.jar_2g_gsm_status +
+                          "--jar_2g_gsm_status"
                     }
                     style={{ width: 80 }}
                     onChange={onChangeSelectGeneral}
@@ -185,8 +189,11 @@ const NetworkHp = () => {
                   <Button className="lay-group-label">CDMA</Button>
                   <Select
                     defaultValue={
-                      store.getState().gen_hp_data.data.jar_2g_status +
-                      "--jar_2g_cdma_status"
+                      store.getState().gen_hp_data.data.jar_2g_cdma_status ===
+                      ""
+                        ? undefined
+                        : store.getState().gen_hp_data.data.jar_2g_cdma_status +
+                          "--jar_2g_cdma_status"
                     }
                     style={{ width: 80 }}
                     onChange={onChangeSelectGeneral}
@@ -219,8 +226,10 @@ const NetworkHp = () => {
                   placeholder=""
                   optionFilterProp="children"
                   defaultValue={
-                    store.getState().gen_hp_data.data.jar_3g_status +
-                    "--jar_3g_status"
+                    store.getState().gen_hp_data.data.jar_3g_status === ""
+                      ? undefined
+                      : store.getState().gen_hp_data.data.jar_3g_status +
+                        "--jar_3g_status"
                   }
                   onChange={onChangeSelectGeneral}
                   filterOption={(input, option) =>
@@ -239,6 +248,7 @@ const NetworkHp = () => {
                 <TextArea
                   name="jar_3g"
                   style={{ width: "100%" }}
+                  onChange={onChangeInputGeneral}
                   defaultValue={store.getState().gen_hp_data.data.jar_3g}
                   placeholder=""
                   autoSize={{ minRows: 3, maxRows: 5 }}
@@ -260,8 +270,10 @@ const NetworkHp = () => {
                       .indexOf(input.toLowerCase()) >= 0
                   }
                   defaultValue={
-                    store.getState().gen_hp_data.data.jar_3g_status +
-                    "--jar_4g_status"
+                    store.getState().gen_hp_data.data.jar_4g_status === ""
+                      ? undefined
+                      : store.getState().gen_hp_data.data.jar_4g_status +
+                        "--jar_4g_status"
                   }
                 >
                   <Option value="1--jar_4g_status">Yes</Option>
@@ -274,6 +286,7 @@ const NetworkHp = () => {
                 <TextArea
                   name="jar_4g"
                   style={{ width: "100%" }}
+                  onChange={onChangeInputGeneral}
                   defaultValue={store.getState().gen_hp_data.data.jar_4g}
                   placeholder=""
                   autoSize={{ minRows: 3, maxRows: 5 }}
@@ -295,8 +308,10 @@ const NetworkHp = () => {
                       .indexOf(input.toLowerCase()) >= 0
                   }
                   defaultValue={
-                    store.getState().gen_hp_data.data.jar_3g_status +
-                    "--jar_5g_status"
+                    store.getState().gen_hp_data.data.jar_5g_status === ""
+                      ? undefined
+                      : store.getState().gen_hp_data.data.jar_5g_status +
+                        "--jar_5g_status"
                   }
                 >
                   <Option value="1--jar_5g_status">Yes</Option>
@@ -310,6 +325,7 @@ const NetworkHp = () => {
                   style={{ width: "100%" }}
                   name="jar_5g"
                   defaultValue={store.getState().gen_hp_data.data.jar_5g}
+                  onChange={onChangeInputGeneral}
                   placeholder=""
                   autoSize={{ minRows: 3, maxRows: 5 }}
                 />
@@ -323,6 +339,7 @@ const NetworkHp = () => {
                 <TextArea
                   style={{ width: "100%" }}
                   name="jar_bwidth"
+                  onChange={onChangeInputGeneral}
                   defaultValue={store
                     .getState()
                     .gen_hp_data.data.jar_bwidth.replace(/; /g, "\n")}
@@ -355,8 +372,10 @@ const NetworkHp = () => {
                       .indexOf(input.toLowerCase()) >= 0
                   }
                   defaultValue={
-                    store.getState().gen_hp_data.data.jar_gprs_status +
-                    "--jar_gprs_status"
+                    store.getState().gen_hp_data.data.jar_gprs_status === ""
+                      ? undefined
+                      : store.getState().gen_hp_data.data.jar_gprs_status +
+                        "--jar_gprs_status"
                   }
                 >
                   <Option value="1--jar_gprs_status">Yes</Option>
@@ -391,8 +410,10 @@ const NetworkHp = () => {
                       .indexOf(input.toLowerCase()) >= 0
                   }
                   defaultValue={
-                    store.getState().gen_hp_data.data.jar_edge_status +
-                    "--jar_edge_status"
+                    store.getState().gen_hp_data.data.jar_edge_status === ""
+                      ? undefined
+                      : store.getState().gen_hp_data.data.jar_edge_status +
+                        "--jar_edge_status"
                   }
                 >
                   <Option value="1--jar_edge_status">Yes</Option>
@@ -418,7 +439,10 @@ const NetworkHp = () => {
                 <Select
                   style={{ minWidth: 120 }}
                   defaultValue={
-                    store.getState().gen_hp_data.data.jar_sc + "--jar_sc"
+                    store.getState().gen_hp_data.data.jar_sc === "" ||
+                    store.getState().gen_hp_data.data.jar_sc === 0
+                      ? undefined
+                      : store.getState().gen_hp_data.data.jar_sc + "--jar_sc"
                   }
                   showSearch
                   placeholder=""
@@ -461,8 +485,10 @@ const NetworkHp = () => {
                       .indexOf(input.toLowerCase()) >= 0
                   }
                   defaultValue={
-                    store.getState().gen_hp_data.data.jar_multi_status +
-                    "--jar_multi_status"
+                    store.getState().gen_hp_data.data.jar_multi_status === ""
+                      ? undefined
+                      : store.getState().gen_hp_data.data.jar_multi_status +
+                        "--jar_multi_status"
                   }
                 >
                   <Option value="1--jar_multi_status">Yes</Option>
@@ -484,8 +510,11 @@ const NetworkHp = () => {
                       .indexOf(input.toLowerCase()) >= 0
                   }
                   defaultValue={
-                    store.getState().gen_hp_data.data.jar_multi_tipe1 +
-                    "--jar_multi_tipe1"
+                    store.getState().gen_hp_data.data.jar_multi_tipe1 === "" ||
+                    store.getState().gen_hp_data.data.jar_multi_tipe1 === 0
+                      ? undefined
+                      : store.getState().gen_hp_data.data.jar_multi_tipe1 +
+                        "--jar_multi_tipe1"
                   }
                 >
                   <Option value="1--jar_multi_tipe1">Dual-SIM</Option>
@@ -506,8 +535,11 @@ const NetworkHp = () => {
                       .indexOf(input.toLowerCase()) >= 0
                   }
                   defaultValue={
-                    store.getState().gen_hp_data.data.jar_multi_tipe2 +
-                    "--jar_multi_tipe2"
+                    store.getState().gen_hp_data.data.jar_multi_tipe2 === "" ||
+                    store.getState().gen_hp_data.data.jar_multi_tipe2 === 0
+                      ? undefined
+                      : store.getState().gen_hp_data.data.jar_multi_tipe2 +
+                        "--jar_multi_tipe2"
                   }
                 >
                   {dataSimcardComb.map((item) => (
@@ -536,8 +568,10 @@ const NetworkHp = () => {
                       .indexOf(input.toLowerCase()) >= 0
                   }
                   defaultValue={
-                    store.getState().gen_hp_data.data.jar_dualon +
-                    "--jar_dualon"
+                    store.getState().gen_hp_data.data.jar_dualon === ""
+                      ? undefined
+                      : store.getState().gen_hp_data.data.jar_dualon +
+                        "--jar_dualon"
                   }
                 >
                   <Option value="1--jar_dualon">Yes</Option>

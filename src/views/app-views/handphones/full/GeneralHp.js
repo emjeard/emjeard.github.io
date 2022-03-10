@@ -33,7 +33,6 @@ const GeneralHp = () => {
   const [dataModel, setDataModel] = useState("");
   const [size, setSize] = useState("default");
 
-  console.log(store.getState().gen_hp_data.data.umu_tags);
   let tagsRepl = store.getState().gen_hp_data.data.umu_tags.replace(/, /g, ",");
   let tags = tagsRepl.split(",");
   let tagsArr = [];
@@ -53,11 +52,11 @@ const GeneralHp = () => {
     setDataCodename(store.getState().gen_hp_data.data.codename);
     setDataMerk(store.getState().gen_hp_data.data.merk);
     setDataModel(store.getState().gen_hp_data.data.model);
-    if (store.getState().gen_hp_data.data.umu_diumumkan !== "") {
+    /*  if (store.getState().gen_hp_data.data.umu_diumumkan !== "") {
       setDataUmuDiumumkanStat(false);
     } else {
       setDataUmuDiumumkanStat(true);
-    }
+    } */
   };
 
   function onSearchSelect(val) {
@@ -177,7 +176,9 @@ const GeneralHp = () => {
                 onChange={onChangeSelectGeneral}
                 onSearch={onSearchSelect}
                 defaultValue={
-                  store.getState().gen_hp_data.data.id_merk + "--id_merk"
+                  store.getState().gen_hp_data.data.id_merk === ""
+                    ? undefined
+                    : store.getState().gen_hp_data.data.id_merk + "--id_merk"
                 }
                 filterOption={(input, option) =>
                   option.children.toLowerCase().indexOf(input.toLowerCase()) >=
@@ -219,8 +220,8 @@ const GeneralHp = () => {
               mode="tags"
               size={size}
               name="gen_tags"
-              placeholder=""
-              defaultValue={tagsArr}
+              placeholder="Supports multiple tags by pressing tab / enter button"
+              defaultValue={tagsArr[0] === "" ? [] : tagsArr}
               onChange={onChangeTagsGeneral}
               style={{ width: "100%" }}
             ></Select>
@@ -241,9 +242,16 @@ const GeneralHp = () => {
             <div className="lbl-input-data">Gambar</div>
             <Drag
               image={
-                "https://static.inponsel.com/images/hape/" +
-                store.getState().gen_hp_data.data.gambar
+                store.getState().gen_hp_data.data.gambar === ""
+                  ? ""
+                  : store.getState().gen_hp_data.data.gambar.includes("_")
+                  ? "https://ik.imagekit.io/inponsel/hp/" +
+                    store.getState().gen_hp_data.data.gambar
+                  : "https://static.inponsel.com/images/hape/" +
+                    store.getState().gen_hp_data.data.gambar
               }
+              image_type={"new_hp"}
+              folder={"hp"}
             />
           </div>
         </div>
@@ -265,7 +273,9 @@ const GeneralHp = () => {
               optionFilterProp="children"
               onChange={onChangeSelectGeneral}
               defaultValue={
-                store.getState().gen_hp_data.data.umu_model + "--umu_model"
+                store.getState().gen_hp_data.data.umu_model === ""
+                  ? undefined
+                  : store.getState().gen_hp_data.data.umu_model + "--umu_model"
               }
               onSearch={onSearchSelect}
               filterOption={(input, option) =>
@@ -347,36 +357,16 @@ const GeneralHp = () => {
                       onChange={onChangeGenDiumumkan}
                       name="umu_diumumkan"
                       picker="month"
-                      defaultValue={moment(
-                        store.getState().gen_hp_data.data.umu_diumumkan,
-                        monthFormat
-                      )}
+                      defaultValue={
+                        store.getState().gen_hp_data.data.umu_diumumkan === ""
+                          ? undefined
+                          : moment(
+                              store.getState().gen_hp_data.data.umu_diumumkan,
+                              monthFormat
+                            )
+                      }
                       format={monthFormat}
                     />
-                    <Button
-                      style={{ width: 80, padding: "5px 0px 0px 0px" }}
-                      icon={
-                        <Checkbox
-                          checked={dataUmuDiumumkanStat}
-                          name="gen_diumumkan__cb"
-                          onChange={onChangeInputGeneral}
-                          style={{
-                            position: "relative",
-                            top: "-5px",
-                          }}
-                        />
-                      }
-                    >
-                      <span
-                        style={{
-                          position: "relative",
-                          top: "-5px",
-                          margin: "0px 0px 0px 5px",
-                        }}
-                      >
-                        N/A
-                      </span>
-                    </Button>
                   </Input.Group>
                 </div>
               </div>
@@ -392,8 +382,10 @@ const GeneralHp = () => {
                     onChange={onChangeSelectGeneral}
                     onSearch={onSearchSelect}
                     defaultValue={
-                      store.getState().gen_hp_data.data.umu_status +
-                      "--umu_status"
+                      store.getState().gen_hp_data.data.umu_status === ""
+                        ? undefined
+                        : store.getState().gen_hp_data.data.umu_status +
+                          "--umu_status"
                     }
                     filterOption={(input, option) =>
                       option.children

@@ -76,8 +76,11 @@ const BatteryHp = () => {
                       .indexOf(input.toLowerCase()) >= 0
                   }
                   defaultValue={
-                    store.getState().gen_hp_data.data.bat_kapasitas_s +
-                    "--bat_kapasitas_s"
+                    store.getState().gen_hp_data.data.bat_kapasitas_s === "" ||
+                    store.getState().gen_hp_data.data.bat_kapasitas_s === 0
+                      ? undefined
+                      : store.getState().gen_hp_data.data.bat_kapasitas_s +
+                        "--bat_kapasitas_s"
                   }
                 >
                   {dataBattery.map((item) => (
@@ -149,8 +152,10 @@ const BatteryHp = () => {
                       .indexOf(input.toLowerCase()) >= 0
                   }
                   defaultValue={
-                    store.getState().gen_hp_data.data.bat_fcharge_status +
-                    "--bat_fcharge_status"
+                    store.getState().gen_hp_data.data.bat_fcharge_status === ""
+                      ? undefined
+                      : store.getState().gen_hp_data.data.bat_fcharge_status +
+                        "--bat_fcharge_status"
                   }
                 >
                   <Option value="1--bat_fcharge_status">Yes</Option>
@@ -185,8 +190,10 @@ const BatteryHp = () => {
                       .indexOf(input.toLowerCase()) >= 0
                   }
                   defaultValue={
-                    store.getState().gen_hp_data.data.bat_wcharge_status +
-                    "--bat_wcharge_status"
+                    store.getState().gen_hp_data.data.bat_wcharge_status === ""
+                      ? undefined
+                      : store.getState().gen_hp_data.data.bat_wcharge_status +
+                        "--bat_wcharge_status"
                   }
                 >
                   <Option value="1--bat_wcharge_status">Yes</Option>

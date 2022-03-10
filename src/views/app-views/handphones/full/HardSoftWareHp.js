@@ -83,7 +83,10 @@ const HardSoftWareHp = () => {
                   showSearch
                   placeholder=""
                   defaultValue={
-                    store.getState().gen_hp_data.data.har_info + "--har_info"
+                    store.getState().gen_hp_data.data.har_info === ""
+                      ? undefined
+                      : store.getState().gen_hp_data.data.har_info +
+                        "--har_info"
                   }
                   optionFilterProp="children"
                   onChange={onChangeSelectGeneral}
@@ -128,8 +131,11 @@ const HardSoftWareHp = () => {
                       .indexOf(input.toLowerCase()) >= 0
                   }
                   defaultValue={
-                    store.getState().gen_hp_data.data.har_cpu_core +
-                    "--har_cpu_core"
+                    store.getState().gen_hp_data.data.har_cpu_core === "" ||
+                    store.getState().gen_hp_data.data.har_cpu_core === 0
+                      ? undefined
+                      : store.getState().gen_hp_data.data.har_cpu_core +
+                        "--har_cpu_core"
                   }
                 >
                   {dataCpuCore.map((item) => (
@@ -202,7 +208,10 @@ const HardSoftWareHp = () => {
                       .indexOf(input.toLowerCase()) >= 0
                   }
                   defaultValue={
-                    store.getState().gen_hp_data.data.sof_os + "--sof_os"
+                    store.getState().gen_hp_data.data.sof_os === "" ||
+                    store.getState().gen_hp_data.data.sof_os === 0
+                      ? undefined
+                      : store.getState().gen_hp_data.data.sof_os + "--sof_os"
                   }
                 >
                   {dataOs.map((item) => (
@@ -238,8 +247,10 @@ const HardSoftWareHp = () => {
                       .indexOf(input.toLowerCase()) >= 0
                   }
                   defaultValue={
-                    store.getState().gen_hp_data.data.sof_java_status +
-                    "--sof_java_status"
+                    store.getState().gen_hp_data.data.sof_java_status === ""
+                      ? undefined
+                      : store.getState().gen_hp_data.data.sof_java_status +
+                        "--sof_java_status"
                   }
                 >
                   <Option value="1--sof_java_status">Yes</Option>

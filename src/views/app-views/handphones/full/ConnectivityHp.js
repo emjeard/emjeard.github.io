@@ -60,10 +60,7 @@ const ConnectivityHp = () => {
 
   return (
     <div>
-      <div
-        id="connectivity"
-        className="lay-segment affix-connectivity"
-      >
+      <div id="connectivity" className="lay-segment affix-connectivity">
         Connectivity
       </div>
       <div>
@@ -91,8 +88,11 @@ const ConnectivityHp = () => {
                       .indexOf(input.toLowerCase()) >= 0
                   }
                   defaultValue={
-                    store.getState().gen_hp_data.data.kon_bluetooth_status +
-                    "--kon_bluetooth_status"
+                    store.getState().gen_hp_data.data.kon_bluetooth_status ===
+                    ""
+                      ? undefined
+                      : store.getState().gen_hp_data.data.kon_bluetooth_status +
+                        "--kon_bluetooth_status"
                   }
                 >
                   <Option value="1--kon_bluetooth_status">Yes</Option>
@@ -129,8 +129,10 @@ const ConnectivityHp = () => {
                       .indexOf(input.toLowerCase()) >= 0
                   }
                   defaultValue={
-                    store.getState().gen_hp_data.data.kon_usb_status +
-                    "--kon_usb_status"
+                    store.getState().gen_hp_data.data.kon_usb_status === ""
+                      ? undefined
+                      : store.getState().gen_hp_data.data.kon_usb_status +
+                        "--kon_usb_status"
                   }
                 >
                   <Option value="1--kon_usb_status">Yes</Option>
@@ -165,8 +167,10 @@ const ConnectivityHp = () => {
                       .indexOf(input.toLowerCase()) >= 0
                   }
                   defaultValue={
-                    store.getState().gen_hp_data.data.kon_35mm_jack +
-                    "--kon_35mm_jack"
+                    store.getState().gen_hp_data.data.kon_35mm_jack === ""
+                      ? undefined
+                      : store.getState().gen_hp_data.data.kon_35mm_jack +
+                        "--kon_35mm_jack"
                   }
                 >
                   <Option value="1--kon_35mm_jack">Yes</Option>
@@ -203,8 +207,10 @@ const ConnectivityHp = () => {
                       .indexOf(input.toLowerCase()) >= 0
                   }
                   defaultValue={
-                    store.getState().gen_hp_data.data.kon_wlan_status +
-                    "--kon_wlan_status"
+                    store.getState().gen_hp_data.data.kon_wlan_status === ""
+                      ? undefined
+                      : store.getState().gen_hp_data.data.kon_wlan_status +
+                        "--kon_wlan_status"
                   }
                 >
                   <Option value="1--kon_wlan_status">Yes</Option>
@@ -248,8 +254,10 @@ const ConnectivityHp = () => {
                       .indexOf(input.toLowerCase()) >= 0
                   }
                   defaultValue={
-                    store.getState().gen_hp_data.data.kon_nfc_status +
-                    "--kon_nfc_status"
+                    store.getState().gen_hp_data.data.kon_nfc_status === ""
+                      ? undefined
+                      : store.getState().gen_hp_data.data.kon_nfc_status +
+                        "--kon_nfc_status"
                   }
                 >
                   <Option value="1--kon_nfc_status">Yes</Option>
@@ -284,8 +292,10 @@ const ConnectivityHp = () => {
                       .indexOf(input.toLowerCase()) >= 0
                   }
                   defaultValue={
-                    store.getState().gen_hp_data.data.kon_hdmi_status +
-                    "--kon_hdmi_status"
+                    store.getState().gen_hp_data.data.kon_hdmi_status === ""
+                      ? undefined
+                      : store.getState().gen_hp_data.data.kon_hdmi_status +
+                        "--kon_hdmi_status"
                   }
                 >
                   <Option value="1--kon_hdmi_status">Yes</Option>
@@ -320,8 +330,10 @@ const ConnectivityHp = () => {
                       .indexOf(input.toLowerCase()) >= 0
                   }
                   defaultValue={
-                    store.getState().gen_hp_data.data.kon_tvoutput_status +
-                    "--kon_tvoutput_status"
+                    store.getState().gen_hp_data.data.kon_tvoutput_status === ""
+                      ? undefined
+                      : store.getState().gen_hp_data.data.kon_tvoutput_status +
+                        "--kon_tvoutput_status"
                   }
                 >
                   <Option value="1--kon_tvoutput_status">Yes</Option>
@@ -358,8 +370,10 @@ const ConnectivityHp = () => {
                       .indexOf(input.toLowerCase()) >= 0
                   }
                   defaultValue={
-                    store.getState().gen_hp_data.data.kon_infrared +
-                    "--kon_infrared"
+                    store.getState().gen_hp_data.data.kon_infrared === ""
+                      ? undefined
+                      : store.getState().gen_hp_data.data.kon_infrared +
+                        "--kon_infrared"
                   }
                 >
                   <Option value="1--kon_infrared">Yes</Option>

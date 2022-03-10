@@ -401,8 +401,10 @@ const MemoriHp = () => {
               showSearch
               placeholder=""
               defaultValue={
-                store.getState().gen_hp_data.data.mem_eksternal_s +
-                "--mem_eksternal_s"
+                store.getState().gen_hp_data.data.mem_eksternal_s === ""
+                  ? undefined
+                  : store.getState().gen_hp_data.data.mem_eksternal_s +
+                    "--mem_eksternal_s"
               }
               optionFilterProp="children"
               onChange={onChangeSelectGeneral}
@@ -421,6 +423,8 @@ const MemoriHp = () => {
               <Select
                 defaultValue={
                   store.getState().gen_hp_data.data.mem_eksternal === ""
+                    ? undefined
+                    : store.getState().gen_hp_data.data.mem_eksternal === ""
                     ? ""
                     : store.getState().gen_hp_data.data.mem_eksternal +
                       "--mem_eksternal"
@@ -450,6 +454,8 @@ const MemoriHp = () => {
               <Select
                 defaultValue={
                   store.getState().gen_hp_data.data.mem_eksternal_kap === ""
+                    ? undefined
+                    : store.getState().gen_hp_data.data.mem_eksternal_kap === ""
                     ? ""
                     : store.getState().gen_hp_data.data.mem_eksternal_kap +
                       "--mem_eksternal_kap"

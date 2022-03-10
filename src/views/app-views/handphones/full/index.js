@@ -3,7 +3,7 @@ import { Button, Select, Spin, Card, Anchor, Affix } from "antd";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { SaveOutlined } from "@ant-design/icons";
-import { getSearchHp, getDetailHp, postCreateHp } from "api/ApiData";
+import { getSearchHp, getDetailHp, postEditHp } from "api/ApiData";
 import { HP_PROS, HP_CONS } from "redux/actions/Handphone";
 import store from "redux/store";
 import { GEN_INPUT_ACT } from "redux/actions/General";
@@ -114,7 +114,7 @@ const EditHpFullApp = (props) => {
     await store.dispatch(HP_DATA_ACT("cons", hp_cons));
 
     let final_update = await store.getState().gen_hp_data.data;
-    postCreateHp(final_update).then((resp) => {
+    postEditHp(final_update).then((resp) => {
       console.log(resp);
       setUpdateLoading(false);
     });

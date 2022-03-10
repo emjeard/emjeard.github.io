@@ -130,7 +130,10 @@ const PriceRangeHp = () => {
                   format="YYYY-MM-DD HH:mm:ss"
                   showTime={{ defaultValue: moment("00:00:00", "HH:mm:ss") }}
                   defaultValue={
-                    store.getState().gen_hp_data.data.last_update === ""
+                    store.getState().gen_hp_data.data.last_update === "" ||
+                    store
+                      .getState()
+                      .gen_hp_data.data.release_idn.includes("000")
                       ? ""
                       : moment(
                           store.getState().gen_hp_data.data.last_update,
