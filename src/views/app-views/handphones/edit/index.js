@@ -63,7 +63,7 @@ const EditHpApp = (props) => {
         setPriceNewEndHp(dataHp.price_new_end);
         setPriceSecondFromHp(dataHp.price_second_from);
         setPriceSecondEndHp(dataHp.price_second_end);
-        setUpdatedAt(dataHp.updated_at);
+        setUpdatedAt(dataHp.last_update);
         setRilisIdn(dataHp.release_idn);
         setNegativeKey(dataHp.negative_keywords);
         setShopeeProdUrl(dataHp.shopee_hp);
