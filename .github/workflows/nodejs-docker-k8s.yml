@@ -30,7 +30,7 @@ jobs:
           port: 22
           script: |
             cd ..
-            cd /mnt/volume_sgp1_01/inponsel/dashboard/inponsel-dash-react
+            cd /home/inponsel/dashboard/inponsel-dash-react
             sudo rm -rf package-lock.json
             git stash
             git pull https://${{ secrets.GIT_TOKEN }}:x-oauth-basic@github.com/emjeard/inponsel-dash-react.git master
