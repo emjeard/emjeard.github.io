@@ -84,7 +84,7 @@ const ListHandphone = (props) => {
         <span
           style={{ padding: "5px", background: "#ff7600", borderRadius: "5px" }}
         >
-          <a href={`/handphones/edit/${props.id}`}>
+          <a href={`/handphones/full/${props.id}`}>
             <EditOutlined style={{ color: "#fff" }} />
           </a>
         </span>
