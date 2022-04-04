@@ -21,22 +21,24 @@
 }
 .lay-segment {
   margin: 20px 0px 0px 0px;
-  padding: 5px 20px;
-  border-radius: 10px;
+  padding: 4px 10px;
+  border-radius: 7px;
   color: white;
-  font-weight: 500;
-  font-size: 22px;
+  font-weight: 600;
+  font-size: 0.9rem;
 }
 .lay-subsegment {
   padding: 20px 0px 0px 0px;
 }
 .layout-input-data-col {
   margin: 0px 10px;
+  padding: 0px 10px 10px 0px;
 }
 .lbl-input-data {
   margin: 5px;
-  font-size: 14px;
+  font-size: 0.8rem;
   font-weight: 500;
+  color:#bbb;
 }
 .lay-group-label {
   background: #f7f7f8 !important;
@@ -53,7 +55,8 @@
   justify-content: center;
 }
 .lay-segment-affix {
-  padding: 5px 20px;
+  font-size: 0.7rem;
+  padding: 2px 12px;
   border-radius: 0px;
   color: #fff;
   display: flex;

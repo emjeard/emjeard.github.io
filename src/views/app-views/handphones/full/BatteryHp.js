@@ -29,6 +29,16 @@ const BatteryHp = () => {
     store.dispatch(HP_DATA_ACT(stateName, stateValue));
   };
 
+  const onChangeInputIntGeneral = (e) => {
+    const stateName = e.target.name;
+    let stateValue = e.target.value;
+
+    if (stateName.includes("__cb")) {
+      stateValue = e.target.checked;
+    }
+    store.dispatch(HP_DATA_ACT(stateName, parseInt(stateValue)));
+  };
+
   const onChangeSelectGeneral = (selectedItems, option) => {
     const splitOptions = option.value.split("--");
     const stateName = splitOptions[1];
@@ -57,7 +67,6 @@ const BatteryHp = () => {
             className="layout-input-data-col"
             style={{
               width: "100%",
-              padding: "10px",
               minHeight: 200,
             }}
           >
@@ -133,7 +142,6 @@ const BatteryHp = () => {
             className="layout-input-data-col"
             style={{
               width: "100%",
-              padding: "10px",
               minHeight: 200,
             }}
           >
@@ -141,7 +149,7 @@ const BatteryHp = () => {
               <div>
                 <div className="lbl-input-data">Fast Charging</div>
                 <Select
-                  style={{ minWidth: 130 }}
+                  style={{ minWidth: 100 }}
                   showSearch
                   placeholder=""
                   optionFilterProp="children"
@@ -164,14 +172,27 @@ const BatteryHp = () => {
                   <Option value="0--bat_fcharge_status">N/A</Option>
                 </Select>
               </div>
-              <div style={{ width: "100%", margin: "30px 0px 0px 20px" }}>
+              <div style={{ width: "210px", margin: "30px 0px 0px 20px" }}>
                 <Input.Group compact>
                   <Input
                     name="bat_fcharge"
                     defaultValue={store.getState().gen_hp_data.data.bat_fcharge}
                     onChange={onChangeInputGeneral}
-                    style={{ width: "100%", margin: "0px 0px 0px 0px" }}
+                    style={{ width: "210px", margin: "0px 0px 0px 0px" }}
                   />
+                </Input.Group>
+              </div>
+              <div style={{ width: "102px", margin: "30px 0px 0px 20px" }}>
+                <Input.Group compact>
+                  <Input
+                    name="bat_fcharge_watt"
+                    defaultValue={
+                      store.getState().gen_hp_data.data.bat_fcharge_watt
+                    }
+                    onChange={onChangeInputGeneral}
+                    style={{ width: "55px", margin: "0px 0px 0px 0px" }}
+                  />
+                  <Button className="lay-group-label">Watt</Button>
                 </Input.Group>
               </div>
             </div>
@@ -179,7 +200,7 @@ const BatteryHp = () => {
               <div>
                 <div className="lbl-input-data">Wireless Charging</div>
                 <Select
-                  style={{ minWidth: 130 }}
+                  style={{ minWidth: 110 }}
                   showSearch
                   placeholder=""
                   optionFilterProp="children"
@@ -202,14 +223,27 @@ const BatteryHp = () => {
                   <Option value="0--bat_wcharge_status">N/A</Option>
                 </Select>
               </div>
-              <div style={{ width: "100%", margin: "30px 0px 0px 20px" }}>
+              <div style={{ width: "200px", margin: "30px 0px 0px 20px" }}>
                 <Input.Group compact>
                   <Input
                     name="bat_wcharge"
                     defaultValue={store.getState().gen_hp_data.data.bat_wcharge}
                     onChange={onChangeInputGeneral}
-                    style={{ width: "100%", margin: "0px 0px 0px 0px" }}
+                    style={{ width: "200px", margin: "0px 0px 0px 0px" }}
                   />
+                </Input.Group>
+              </div>
+              <div style={{ width: "102px", margin: "30px 0px 0px 20px" }}>
+                <Input.Group compact>
+                  <Input
+                    name="bat_wcharge_watt"
+                    defaultValue={
+                      store.getState().gen_hp_data.data.bat_wcharge_watt
+                    }
+                    onChange={onChangeInputGeneral}
+                    style={{ width: "55px", margin: "0px 0px 0px 0px" }}
+                  />
+                  <Button className="lay-group-label">Watt</Button>
                 </Input.Group>
               </div>
             </div>

@@ -118,7 +118,6 @@ const NetworkHp = () => {
             className="layout-input-data-col"
             style={{
               width: "100%",
-              padding: "10px",
               minHeight: 200,
             }}
           >
@@ -353,7 +352,6 @@ const NetworkHp = () => {
             className="layout-input-data-col"
             style={{
               width: "100%",
-              padding: "10px",
               minHeight: 200,
             }}
           >

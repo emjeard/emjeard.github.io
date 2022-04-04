@@ -32,7 +32,6 @@ const LazadaHp = () => {
         className="layout-input-data-col"
         style={{
           width: "100%",
-          padding: "10px",
         }}
       >
         <div className="lay-subsegment">

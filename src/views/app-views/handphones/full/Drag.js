@@ -68,7 +68,10 @@ const DragApp = (props) => {
         onChange={handleOnChange}
         listType="picture-card"
         defaultFileList={defaultFileList}
-        style={{ width: "100%", minHeight: 195 }}
+        style={{
+          width: "100%",
+          minHeight: props.folder === undefined ? 195 : 120,
+        }}
       >
         {defaultFileList.length >= 1 ? null : (
           <div>
@@ -77,7 +80,10 @@ const DragApp = (props) => {
                 <img
                   src={props.image}
                   alt=""
-                  style={{ width: 140, height: 185 }}
+                  style={{
+                    width: props.folder === undefined ? 140 : "50%",
+                    height: props.folder === undefined ? 185 : "50%",
+                  }}
                 />
               </div>
             ) : (

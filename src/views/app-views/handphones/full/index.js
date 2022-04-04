@@ -248,7 +248,14 @@ const EditHpFullApp = (props) => {
         </div>
       </div>
       <Card style={{ margin: "55px 0px 0px 0px" }}>
-        <div style={{ fontSize: "30px", padding: "10px", fontWeight: 500 }}>
+        <div
+          style={{
+            fontSize: "1.4rem",
+            padding: "10px 0px 0px",
+            fontWeight: 600,
+            textAlign: "center",
+          }}
+        >
           {namaHp}
         </div>
         <GeneralHp />

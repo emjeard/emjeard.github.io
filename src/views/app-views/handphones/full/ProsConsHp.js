@@ -33,7 +33,6 @@ const ProsConsHp = () => {
         className="layout-input-data-col"
         style={{
           width: "100%",
-          padding: "10px",
         }}
       >
         <div className="lay-subsegment">
@@ -50,11 +49,15 @@ const ProsConsHp = () => {
             }`}</div>
             <div style={{ margin: "5px 0px 0px" }}>
               <CKEditorCustom editor_type={"hp_pros"} />
-              <div>Contoh :</div>
+              <div style={{ fontSize: "11px", fontWeight: 400 }}>Contoh :</div>
               <div>
                 <ul>
-                  <li>Daya tahan baterai cukup lama</li>
-                  <li>Desain ringkas dengan Invinity V Display</li>
+                  <li style={{ fontSize: "11px", fontWeight: 400 }}>
+                    Daya tahan baterai cukup lama
+                  </li>
+                  <li style={{ fontSize: "11px", fontWeight: 400 }}>
+                    Desain ringkas dengan Invinity V Display
+                  </li>
                 </ul>
               </div>
             </div>

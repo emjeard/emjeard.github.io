@@ -35,7 +35,6 @@ const BenchmarkHp = () => {
         className="layout-input-data-col"
         style={{
           width: "100%",
-          padding: "10px",
           minHeight: 200,
         }}
       >
@@ -79,7 +78,7 @@ const BenchmarkHp = () => {
               />
             </div>
             <div style={{ margin: "0px 0px 0px 30px" }}>
-              <div className="lbl-input-data">Sumber</div>
+              <div className="lbl-input-data">URL Youtube</div>
               <div>
                 <Input
                   name="antutu_url_1"
@@ -92,14 +91,6 @@ const BenchmarkHp = () => {
                 <Input
                   name="antutu_url_2"
                   defaultValue={store.getState().gen_hp_data.data.antutu_url_2}
-                  onChange={onChangeInputGeneral}
-                  style={{ minWidth: "350px", margin: "15px 0px 0px 0px" }}
-                />
-              </div>
-              <div>
-                <Input
-                  name="antutu_url_3"
-                  defaultValue={store.getState().gen_hp_data.data.antutu_url_3}
                   onChange={onChangeInputGeneral}
                   style={{ minWidth: "350px", margin: "15px 0px 0px 0px" }}
                 />
@@ -123,25 +114,8 @@ const BenchmarkHp = () => {
                   style={{ minWidth: "350px", margin: "15px 0px 0px 0px" }}
                 />
               </div>
-              <div>
-                <Input
-                  name="antutu_ket_3"
-                  defaultValue={store.getState().gen_hp_data.data.antutu_ket_3}
-                  onChange={onChangeInputGeneral}
-                  style={{ minWidth: "350px", margin: "15px 0px 0px 0px" }}
-                />
-              </div>
             </div>
           </div>
-        </div>
-        <div className="lay-subsegment">
-          <div className="lbl-input-data">Youtube URL</div>
-          <Input
-            name="antutu_youtube"
-            defaultValue={store.getState().gen_hp_data.data.antutu_youtube}
-            onChange={onChangeInputGeneral}
-            style={{ maxWidth: "350px", margin: "0px 0px 0px 0px" }}
-          />
         </div>
       </div>
     </div>

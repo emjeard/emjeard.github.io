@@ -108,7 +108,6 @@ const GeneralHp = () => {
           className="layout-input-data-col"
           style={{
             width: "100%",
-            padding: "10px",
             minHeight: 200,
           }}
         >
@@ -189,7 +188,6 @@ const GeneralHp = () => {
           style={{
             width: "100%",
             minHeight: 200,
-            padding: "10px",
           }}
         >
           <div className="lay-subsegment">

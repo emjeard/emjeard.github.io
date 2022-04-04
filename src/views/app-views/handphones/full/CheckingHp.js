@@ -38,11 +38,11 @@ const CheckingHp = () => {
         className="layout-input-data-col"
         style={{
           width: "100%",
-          padding: "10px",
-          minHeight: 200,
         }}
       >
-        <div>Jika data sudah complete, kosongan form lain-lain dibawah.</div>
+        <div style={{ padding: "0px 0px 10px", fontWeight: 500 }}>
+          Jika data sudah complete, kosongan form lain-lain dibawah.
+        </div>
         <div>
           <TextArea
             name="checkingdata_hp"

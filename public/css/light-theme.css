@@ -15054,7 +15054,7 @@ _:-ms-fullscreen
   min-width: 0;
   padding: 8.5px 11px;
   color: #455560;
-  font-size: 14px;
+  font-size: 12.5px;
   line-height: 1.5;
   background-color: #fff;
   background-image: none;
@@ -20392,7 +20392,7 @@ span.ant-transfer-list-search-action {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-size: 14px;
+  font-size: 12.5px;
   font-variant: tabular-nums;
   line-height: 1.5;
   list-style: none;
