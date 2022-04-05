@@ -203,7 +203,7 @@ const ScreenHp = () => {
             <div style={{ display: "flex" }} className="lay-subsegment">
               <div>
                 <div className="lbl-input-data">Ukuran</div>
-                <Input.Group compact>
+                <Input.Group compact style={{ display: "inline-flex" }} class>
                   <Input
                     name="lay_size_diagonal"
                     onChange={onChangeInputGeneral}

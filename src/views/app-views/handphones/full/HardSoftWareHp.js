@@ -143,7 +143,7 @@ const HardSoftWareHp = () => {
                 </Select>
               </div>
               <div style={{ margin: "30px 0px 0px 20px", width: "100%" }}>
-                <Input.Group compact>
+                <Input.Group compact style={{ display: "inline-flex" }}>
                   <Input
                     name="har_cpu_clock"
                     onChange={onChangeInputGeneral}

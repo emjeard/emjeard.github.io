@@ -121,7 +121,10 @@ const NetworkHp = () => {
               minHeight: 200,
             }}
           >
-            <div className="lay-subsegment" style={{ display: "flex" }}>
+            <div
+              className="lay-subsegment"
+              style={{ display: "inline-flex", flexWrap: "wrap" }}
+            >
               <div>
                 <div className="lbl-input-data">2G</div>
                 <Select
@@ -182,7 +185,7 @@ const NetworkHp = () => {
                 </Input.Group>
               </div>
             </div>
-            <div style={{ display: "flex" }}>
+            <div style={{ display: "inline-flex", flexWrap: "wrap" }}>
               <div style={{ margin: "30px 0px 0px 90px" }}>
                 <Input.Group compact>
                   <Button className="lay-group-label">CDMA</Button>

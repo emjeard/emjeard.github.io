@@ -183,7 +183,7 @@ const BatteryHp = () => {
                 </Input.Group>
               </div>
               <div style={{ width: "102px", margin: "30px 0px 0px 20px" }}>
-                <Input.Group compact>
+                <Input.Group compact style={{ display: "inline-flex" }}>
                   <Input
                     name="bat_fcharge_watt"
                     defaultValue={
@@ -234,7 +234,7 @@ const BatteryHp = () => {
                 </Input.Group>
               </div>
               <div style={{ width: "102px", margin: "30px 0px 0px 20px" }}>
-                <Input.Group compact>
+                <Input.Group compact style={{ display: "inline-flex" }}>
                   <Input
                     name="bat_wcharge_watt"
                     defaultValue={

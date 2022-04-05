@@ -86,6 +86,7 @@ const ComparePopulerHp = () => {
         className="layout-input-data-col"
         style={{
           width: "100%",
+          margin: 0,
         }}
       >
         <div className="lay-subsegment">

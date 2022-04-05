@@ -286,30 +286,28 @@ const GeneralHp = () => {
             </Select>
           </div>
           <div className="lay-subsegment">
-            <div className="lbl-input-data">Dimensi</div>
+            <div className="lbl-input-data">Dimensi (mm)</div>
             <div style={{ display: "flex", flexWrap: "wrap" }}>
               <Input
-                addonAfter={
-                  <span className="lay-group-label">mm (panjang)</span>
-                }
+                addonAfter={<span className="lay-group-label">panjang</span>}
                 defaultValue={store.getState().gen_hp_data.data.umu_dim_panjang}
                 onChange={onChangeInputGeneral}
                 name="umu_dim_panjang"
-                style={{ width: 170 }}
+                style={{ width: 130, margin: "0px 10px 10px 0px" }}
               />
               <Input
-                addonAfter={<span className="lay-group-label">mm (lebar)</span>}
+                addonAfter={<span className="lay-group-label">lebar</span>}
                 defaultValue={store.getState().gen_hp_data.data.umu_dim_lebar}
                 onChange={onChangeInputGeneral}
                 name="umu_dim_lebar"
-                style={{ width: 150, margin: "0px 0px 0px 20px" }}
+                style={{ width: 110, margin: "0px 10px 10px 0px" }}
               />
               <Input
-                addonAfter={<span className="lay-group-label">mm (tebal)</span>}
+                addonAfter={<span className="lay-group-label">tebal</span>}
                 defaultValue={store.getState().gen_hp_data.data.umu_dim_tebal}
                 onChange={onChangeInputGeneral}
                 name="umu_dim_tebal"
-                style={{ width: 150, margin: "10px 0px 0px 0px" }}
+                style={{ width: 110, margin: "0px 10px 10px 0px" }}
               />
             </div>
           </div>
@@ -320,14 +318,14 @@ const GeneralHp = () => {
                 addonAfter={<span className="lay-group-label">gram</span>}
                 defaultValue={store.getState().gen_hp_data.data.umu_bobot}
                 onChange={onChangeInputGeneral}
-                style={{ width: 120 }}
+                style={{ width: 110, margin: "0px 10px 10px 0px" }}
                 name="umu_bobot"
               />
               <Input
                 defaultValue={store.getState().gen_hp_data.data.umu_bobot_ket}
                 onChange={onChangeInputGeneral}
                 name="umu_bobot_ket"
-                style={{ width: 250, margin: "0px 0px 0px 20px" }}
+                style={{ width: 250, margin: "0px 10px 10px 0px" }}
               />
             </div>
           </div>

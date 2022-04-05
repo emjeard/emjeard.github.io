@@ -40,7 +40,7 @@ const CheckingHp = () => {
           width: "100%",
         }}
       >
-        <div style={{ padding: "0px 0px 10px", fontWeight: 500 }}>
+        <div style={{ padding: "10px 0px", fontWeight: 500 }}>
           Jika data sudah complete, kosongan form lain-lain dibawah.
         </div>
         <div>

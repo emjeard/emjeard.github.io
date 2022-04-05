@@ -162,7 +162,7 @@ const MemoriHp = () => {
               </Input.Group>
             </div>
             <div style={{ margin: "0px 0px 0px 10px", width: 105 }}>
-              <Input.Group compact>
+              <Input.Group compact style={{ display: "inline-flex" }}>
                 <Input
                   name="mem_ram_7"
                   onChange={onChangeInputGeneral}
@@ -258,7 +258,7 @@ const MemoriHp = () => {
               </Input.Group>
             </div>
             <div style={{ margin: "0px 0px 0px 10px", width: 105 }}>
-              <Input.Group compact>
+              <Input.Group compact style={{ display: "inline-flex" }}>
                 <Input
                   name="mem_rom_7"
                   onChange={onChangeInputGeneral}
@@ -366,7 +366,7 @@ const MemoriHp = () => {
               </Input.Group>
             </div>
             <div style={{ margin: "0px 0px 0px 10px", width: 115 }}>
-              <Input.Group compact>
+              <Input.Group compact style={{ display: "inline-flex" }}>
                 <Input
                   name="mem_internal_7"
                   onChange={onChangeInputGeneral}

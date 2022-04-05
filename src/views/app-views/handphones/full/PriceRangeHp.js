@@ -45,11 +45,14 @@ const PriceRangeHp = () => {
         className="layout-input-data-col"
         style={{
           width: "100%",
+          margin: 0,
         }}
       >
         <div className="lay-subsegment">
           <div style={{ padding: "0px 10px" }}>
-            <div style={{ color: "red" }}>Harga Baru</div>
+            <div style={{ color: "#bbb", fontSize: "0.8rem", fontWeight: 600 }}>
+              Harga Baru
+            </div>
             <div style={{ display: "flex", marginTop: 5 }}>
               <div style={{}}>
                 <div>Termurah</div>
@@ -84,7 +87,16 @@ const PriceRangeHp = () => {
                 />
               </div>
             </div>
-            <div style={{ color: "red", marginTop: 25 }}>Harga Bekas</div>
+            <div
+              style={{
+                color: "#bbb",
+                fontSize: "0.8rem",
+                fontWeight: 600,
+                marginTop: 25,
+              }}
+            >
+              Harga Bekas
+            </div>
             <div style={{ display: "flex", marginTop: 5 }}>
               <div>
                 <div>Termurah</div>
