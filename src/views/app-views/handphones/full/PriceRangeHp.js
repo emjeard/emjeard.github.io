@@ -55,7 +55,9 @@ const PriceRangeHp = () => {
             </div>
             <div style={{ display: "flex", marginTop: 5 }}>
               <div style={{}}>
-                <div>Termurah</div>
+                <div style={{ fontSize: "12px", fontWeight: 500 }}>
+                  Termurah
+                </div>
                 <InputNumber
                   name="price_new_from"
                   style={{ minWidth: "225px" }}
@@ -72,7 +74,9 @@ const PriceRangeHp = () => {
                 />
               </div>
               <div style={{ margin: "0px 0px 0px 25px" }}>
-                <div>Tertinggi</div>
+                <div style={{ fontSize: "12px", fontWeight: 500 }}>
+                  Tertinggi
+                </div>
                 <InputNumber
                   name="price_new_end"
                   style={{ minWidth: "225px" }}
@@ -135,7 +139,9 @@ const PriceRangeHp = () => {
             </div>
             <div style={{ display: "flex", marginTop: 25 }}>
               <div>
-                <div>Update terakhir</div>
+                <div style={{ fontSize: "12px", fontWeight: 500 }}>
+                  Update terakhir
+                </div>
                 <DatePicker
                   onChange={onChangeLastUpdate}
                   format="YYYY-MM-DD HH:mm:ss"
@@ -155,7 +161,9 @@ const PriceRangeHp = () => {
                 />
               </div>
               <div style={{ margin: "0px 0px 0px 25px" }}>
-                <div>Rilis di Indonesia</div>
+                <div style={{ fontSize: "12px", fontWeight: 500 }}>
+                  Rilis di Indonesia
+                </div>
                 <DatePicker
                   onChange={onChangeRilisDate}
                   format="YYYY-MM-DD"

@@ -60,7 +60,7 @@ const DragApp = (props) => {
   };
 
   return (
-    <div style={{ width: 229, height: 195 }}>
+    <div style={{ width: 229, height: 120 }}>
       <Upload
         id="upload_hp"
         accept="image/*"

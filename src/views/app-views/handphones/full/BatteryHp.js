@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Input, Select, Button } from "antd";
+import { Input, InputNumber, Select, Button } from "antd";
 import store from "redux/store";
 import { getListHpBattery } from "api/ApiData";
 import { HP_DATA_ACT } from "redux/actions/Handphone";
@@ -29,14 +29,10 @@ const BatteryHp = () => {
     store.dispatch(HP_DATA_ACT(stateName, stateValue));
   };
 
-  const onChangeInputIntGeneral = (e) => {
-    const stateName = e.target.name;
-    let stateValue = e.target.value;
-
-    if (stateName.includes("__cb")) {
-      stateValue = e.target.checked;
-    }
-    store.dispatch(HP_DATA_ACT(stateName, parseInt(stateValue)));
+  const onChangeInputNumber = (e, name) => {
+    const stateName = name;
+    let stateValue = e;
+    store.dispatch(HP_DATA_ACT(stateName, stateValue === null ? 0 : stateValue));
   };
 
   const onChangeSelectGeneral = (selectedItems, option) => {
@@ -169,7 +165,6 @@ const BatteryHp = () => {
                   <Option value="1--bat_fcharge_status">Yes</Option>
                   <Option value="2--bat_fcharge_status">No</Option>
                   <Option value="3--bat_fcharge_status">N/A</Option>
-                  <Option value="0--bat_fcharge_status">N/A</Option>
                 </Select>
               </div>
               <div style={{ width: "210px", margin: "30px 0px 0px 20px" }}>
@@ -184,12 +179,14 @@ const BatteryHp = () => {
               </div>
               <div style={{ width: "102px", margin: "30px 0px 0px 20px" }}>
                 <Input.Group compact style={{ display: "inline-flex" }}>
-                  <Input
+                  <InputNumber
                     name="bat_fcharge_watt"
                     defaultValue={
-                      store.getState().gen_hp_data.data.bat_fcharge_watt
+                      store.getState().gen_hp_data.data.bat_fcharge_watt === 0
+                        ? ""
+                        : store.getState().gen_hp_data.data.bat_fcharge_watt
                     }
-                    onChange={onChangeInputGeneral}
+                    onChange={(e) => onChangeInputNumber(e, "bat_fcharge_watt")}
                     style={{ width: "55px", margin: "0px 0px 0px 0px" }}
                   />
                   <Button className="lay-group-label">Watt</Button>
@@ -220,7 +217,6 @@ const BatteryHp = () => {
                   <Option value="1--bat_wcharge_status">Yes</Option>
                   <Option value="2--bat_wcharge_status">No</Option>
                   <Option value="3--bat_wcharge_status">N/A</Option>
-                  <Option value="0--bat_wcharge_status">N/A</Option>
                 </Select>
               </div>
               <div style={{ width: "200px", margin: "30px 0px 0px 20px" }}>
@@ -235,12 +231,14 @@ const BatteryHp = () => {
               </div>
               <div style={{ width: "102px", margin: "30px 0px 0px 20px" }}>
                 <Input.Group compact style={{ display: "inline-flex" }}>
-                  <Input
+                  <InputNumber
                     name="bat_wcharge_watt"
                     defaultValue={
-                      store.getState().gen_hp_data.data.bat_wcharge_watt
+                      store.getState().gen_hp_data.data.bat_wcharge_watt === 0
+                        ? ""
+                        : store.getState().gen_hp_data.data.bat_wcharge_watt
                     }
-                    onChange={onChangeInputGeneral}
+                    onChange={(e) => onChangeInputNumber(e, "bat_wcharge_watt")}
                     style={{ width: "55px", margin: "0px 0px 0px 0px" }}
                   />
                   <Button className="lay-group-label">Watt</Button>

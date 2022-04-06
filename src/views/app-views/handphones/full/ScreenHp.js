@@ -123,7 +123,6 @@ const ScreenHp = () => {
                   <Option value="1--lay_touchscreen_status">Yes</Option>
                   <Option value="2--lay_touchscreen_status">No</Option>
                   <Option value="3--lay_touchscreen_status">N/A</Option>
-                  <Option value="0--lay_touchscreen_status">N/A</Option>
                 </Select>
               </div>
               <div style={{ margin: "30px 0px 0px 20px" }}>
@@ -143,7 +142,6 @@ const ScreenHp = () => {
                     <Option value="1--lay_touchscreen">Capacitive</Option>
                     <Option value="2--lay_touchscreen">Resistive</Option>
                     <Option value="3--lay_touchscreen">N/A</Option>
-                    <Option value="0--lay_touchscreen">N/A</Option>
                   </Select>
                 </Input.Group>
               </div>
@@ -309,7 +307,6 @@ const ScreenHp = () => {
                   <Option value="1--lay_proteksi_status">Yes</Option>
                   <Option value="2--lay_proteksi_status">No</Option>
                   <Option value="3--lay_proteksi_status">N/A</Option>
-                  <Option value="0--lay_proteksi_status">N/A</Option>
                 </Select>
               </div>
               <div style={{ width: "100%", margin: "30px 0px 0px 20px" }}>
@@ -350,7 +347,6 @@ const ScreenHp = () => {
                   <Option value="1--lay_multitouch_status">Yes</Option>
                   <Option value="2--lay_multitouch_status">No</Option>
                   <Option value="3--lay_multitouch_status">N/A</Option>
-                  <Option value="0--lay_multitouch_status">N/A</Option>
                 </Select>
               </div>
               <div style={{ width: "100%", margin: "30px 0px 0px 20px" }}>
@@ -414,7 +410,6 @@ const ScreenHp = () => {
                   <Option value="1--lay_fprint_status">Yes</Option>
                   <Option value="2--lay_fprint_status">No</Option>
                   <Option value="3--lay_fprint_status">N/A</Option>
-                  <Option value="0--lay_fprint_status">N/A</Option>
                 </Select>
               </div>
               <div style={{ width: 120, margin: "30px 0px 0px 20px" }}>

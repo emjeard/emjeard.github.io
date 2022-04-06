@@ -74,7 +74,7 @@ const ProsConsHp = () => {
             }`}</div>
             <div style={{ margin: "5px 0px 0px" }}>
               <CKEditorCustom editor_type={"hp_cons"} />
-              <div>Contoh:</div>
+              <div style={{ fontSize: "11px", fontWeight: 400 }}>Contoh:</div>
               <ul>
                 <li>Kinerja kurang gesit</li>
                 <li>Memori internal hanya 16GB&nbsp;</li>

@@ -96,7 +96,11 @@ const MemoriHp = () => {
                 <Input
                   name="mem_ram"
                   onChange={onChangeInputGeneral}
-                  defaultValue={store.getState().gen_hp_data.data.mem_ram}
+                  defaultValue={
+                    store.getState().gen_hp_data.data.mem_ram === 0
+                      ? ""
+                      : store.getState().gen_hp_data.data.mem_ram
+                  }
                   style={{ width: 65, margin: "0px 0px 0px 0px" }}
                 />
               </Input.Group>
@@ -106,7 +110,11 @@ const MemoriHp = () => {
                 <Input
                   name="mem_ram_1"
                   onChange={onChangeInputGeneral}
-                  defaultValue={store.getState().gen_hp_data.data.mem_ram_1}
+                  defaultValue={
+                    store.getState().gen_hp_data.data.mem_ram_1 === 0
+                      ? ""
+                      : store.getState().gen_hp_data.data.mem_ram_1
+                  }
                   style={{ width: 65, margin: "0px 0px 0px 0px" }}
                 />
               </Input.Group>
@@ -116,7 +124,11 @@ const MemoriHp = () => {
                 <Input
                   name="mem_ram_2"
                   onChange={onChangeInputGeneral}
-                  defaultValue={store.getState().gen_hp_data.data.mem_ram_2}
+                  defaultValue={
+                    store.getState().gen_hp_data.data.mem_ram_2 === 0
+                      ? ""
+                      : store.getState().gen_hp_data.data.mem_ram_2
+                  }
                   style={{ width: 65, margin: "0px 0px 0px 0px" }}
                 />
               </Input.Group>
@@ -126,7 +138,11 @@ const MemoriHp = () => {
                 <Input
                   name="mem_ram_3"
                   onChange={onChangeInputGeneral}
-                  defaultValue={store.getState().gen_hp_data.data.mem_ram_3}
+                  defaultValue={
+                    store.getState().gen_hp_data.data.mem_ram_3 === 0
+                      ? ""
+                      : store.getState().gen_hp_data.data.mem_ram_3
+                  }
                   style={{ width: 65, margin: "0px 0px 0px 0px" }}
                 />
               </Input.Group>
@@ -136,7 +152,11 @@ const MemoriHp = () => {
                 <Input
                   name="mem_ram_4"
                   onChange={onChangeInputGeneral}
-                  defaultValue={store.getState().gen_hp_data.data.mem_ram_4}
+                  defaultValue={
+                    store.getState().gen_hp_data.data.mem_ram_4 === 0
+                      ? ""
+                      : store.getState().gen_hp_data.data.mem_ram_4
+                  }
                   style={{ width: 65, margin: "0px 0px 0px 0px" }}
                 />
               </Input.Group>
@@ -146,7 +166,11 @@ const MemoriHp = () => {
                 <Input
                   name="mem_ram_5"
                   onChange={onChangeInputGeneral}
-                  defaultValue={store.getState().gen_hp_data.data.mem_ram_5}
+                  defaultValue={
+                    store.getState().gen_hp_data.data.mem_ram_5 === 0
+                      ? ""
+                      : store.getState().gen_hp_data.data.mem_ram_5
+                  }
                   style={{ width: 65, margin: "0px 0px 0px 0px" }}
                 />
               </Input.Group>
@@ -156,7 +180,11 @@ const MemoriHp = () => {
                 <Input
                   name="mem_ram_6"
                   onChange={onChangeInputGeneral}
-                  defaultValue={store.getState().gen_hp_data.data.mem_ram_6}
+                  defaultValue={
+                    store.getState().gen_hp_data.data.mem_ram_6 === 0
+                      ? ""
+                      : store.getState().gen_hp_data.data.mem_ram_6
+                  }
                   style={{ width: 65, margin: "0px 0px 0px 0px" }}
                 />
               </Input.Group>
@@ -166,7 +194,11 @@ const MemoriHp = () => {
                 <Input
                   name="mem_ram_7"
                   onChange={onChangeInputGeneral}
-                  defaultValue={store.getState().gen_hp_data.data.mem_ram_7}
+                  defaultValue={
+                    store.getState().gen_hp_data.data.mem_ram_7 === 0
+                      ? ""
+                      : store.getState().gen_hp_data.data.mem_ram_7
+                  }
                   style={{ width: 65, margin: "0px 0px 0px 0px" }}
                 />
                 <Button className="lay-group-label">MB</Button>
@@ -192,7 +224,11 @@ const MemoriHp = () => {
                 <Input
                   name="mem_rom"
                   onChange={onChangeInputGeneral}
-                  defaultValue={store.getState().gen_hp_data.data.mem_rom}
+                  defaultValue={
+                    store.getState().gen_hp_data.data.mem_rom === 0
+                      ? ""
+                      : store.getState().gen_hp_data.data.mem_rom
+                  }
                   style={{ width: 65, margin: "0px 0px 0px 0px" }}
                 />
               </Input.Group>
@@ -202,7 +238,9 @@ const MemoriHp = () => {
                 <Input
                   name="mem_rom_1"
                   onChange={onChangeInputGeneral}
-                  defaultValue={store.getState().gen_hp_data.data.mem_rom_1}
+                  defaultValue={store.getState().gen_hp_data.data.mem_rom_1 === 0
+                    ? ""
+                    : store.getState().gen_hp_data.data.mem_rom_1}
                   style={{ width: 65, margin: "0px 0px 0px 0px" }}
                 />
               </Input.Group>
@@ -212,7 +250,9 @@ const MemoriHp = () => {
                 <Input
                   name="mem_rom_2"
                   onChange={onChangeInputGeneral}
-                  defaultValue={store.getState().gen_hp_data.data.mem_rom_2}
+                  defaultValue={store.getState().gen_hp_data.data.mem_rom_2 === 0
+                    ? ""
+                    : store.getState().gen_hp_data.data.mem_rom_2}
                   style={{ width: 65, margin: "0px 0px 0px 0px" }}
                 />
               </Input.Group>
@@ -222,7 +262,9 @@ const MemoriHp = () => {
                 <Input
                   name="mem_rom_3"
                   onChange={onChangeInputGeneral}
-                  defaultValue={store.getState().gen_hp_data.data.mem_rom_3}
+                  defaultValue={store.getState().gen_hp_data.data.mem_rom_3 === 0
+                    ? ""
+                    : store.getState().gen_hp_data.data.mem_rom_3}
                   style={{ width: 65, margin: "0px 0px 0px 0px" }}
                 />
               </Input.Group>
@@ -232,7 +274,9 @@ const MemoriHp = () => {
                 <Input
                   name="mem_rom_4"
                   onChange={onChangeInputGeneral}
-                  defaultValue={store.getState().gen_hp_data.data.mem_rom_4}
+                  defaultValue={store.getState().gen_hp_data.data.mem_rom_4 === 0
+                    ? ""
+                    : store.getState().gen_hp_data.data.mem_rom_4}
                   style={{ width: 65, margin: "0px 0px 0px 0px" }}
                 />
               </Input.Group>
@@ -242,7 +286,9 @@ const MemoriHp = () => {
                 <Input
                   name="mem_rom_5"
                   onChange={onChangeInputGeneral}
-                  defaultValue={store.getState().gen_hp_data.data.mem_rom_5}
+                  defaultValue={store.getState().gen_hp_data.data.mem_rom_5 === 0
+                    ? ""
+                    : store.getState().gen_hp_data.data.mem_rom_5}
                   style={{ width: 65, margin: "0px 0px 0px 0px" }}
                 />
               </Input.Group>
@@ -252,7 +298,9 @@ const MemoriHp = () => {
                 <Input
                   name="mem_rom_6"
                   onChange={onChangeInputGeneral}
-                  defaultValue={store.getState().gen_hp_data.data.mem_rom_6}
+                  defaultValue={store.getState().gen_hp_data.data.mem_rom_6 === 0
+                    ? ""
+                    : store.getState().gen_hp_data.data.mem_rom_6}
                   style={{ width: 65, margin: "0px 0px 0px 0px" }}
                 />
               </Input.Group>
@@ -262,7 +310,9 @@ const MemoriHp = () => {
                 <Input
                   name="mem_rom_7"
                   onChange={onChangeInputGeneral}
-                  defaultValue={store.getState().gen_hp_data.data.mem_rom_7}
+                  defaultValue={store.getState().gen_hp_data.data.mem_rom_7 === 0
+                    ? ""
+                    : store.getState().gen_hp_data.data.mem_rom_7}
                   style={{ width: 65, margin: "0px 0px 0px 0px" }}
                 />
                 <Button className="lay-group-label">MB</Button>
@@ -288,7 +338,9 @@ const MemoriHp = () => {
                 <Input
                   name="mem_internal"
                   onChange={onChangeInputGeneral}
-                  defaultValue={store.getState().gen_hp_data.data.mem_internal}
+                  defaultValue={store.getState().gen_hp_data.data.mem_internal === 0
+                    ? ""
+                    : store.getState().gen_hp_data.data.mem_internal}
                   style={{ width: 75, margin: "0px 0px 0px 0px" }}
                 />
               </Input.Group>
@@ -299,7 +351,9 @@ const MemoriHp = () => {
                   name="mem_internal_1"
                   onChange={onChangeInputGeneral}
                   defaultValue={
-                    store.getState().gen_hp_data.data.mem_internal_1
+                    store.getState().gen_hp_data.data.mem_internal_1 === 0
+                    ? ""
+                    : store.getState().gen_hp_data.data.mem_internal_1
                   }
                   style={{ width: 75, margin: "0px 0px 0px 0px" }}
                 />
@@ -311,7 +365,9 @@ const MemoriHp = () => {
                   name="mem_internal_2"
                   onChange={onChangeInputGeneral}
                   defaultValue={
-                    store.getState().gen_hp_data.data.mem_internal_2
+                    store.getState().gen_hp_data.data.mem_internal_2 === 0
+                    ? ""
+                    : store.getState().gen_hp_data.data.mem_internal_2
                   }
                   style={{ width: 75, margin: "0px 0px 0px 0px" }}
                 />
@@ -323,7 +379,9 @@ const MemoriHp = () => {
                   name="mem_internal_3"
                   onChange={onChangeInputGeneral}
                   defaultValue={
-                    store.getState().gen_hp_data.data.mem_internal_3
+                    store.getState().gen_hp_data.data.mem_internal_3 === 0
+                    ? ""
+                    : store.getState().gen_hp_data.data.mem_internal_3
                   }
                   style={{ width: 75, margin: "0px 0px 0px 0px" }}
                 />
@@ -335,7 +393,9 @@ const MemoriHp = () => {
                   name="mem_internal_4"
                   onChange={onChangeInputGeneral}
                   defaultValue={
-                    store.getState().gen_hp_data.data.mem_internal_4
+                    store.getState().gen_hp_data.data.mem_internal_4 === 0
+                    ? ""
+                    : store.getState().gen_hp_data.data.mem_internal_4
                   }
                   style={{ width: 75, margin: "0px 0px 0px 0px" }}
                 />
@@ -347,7 +407,9 @@ const MemoriHp = () => {
                   name="mem_internal_5"
                   onChange={onChangeInputGeneral}
                   defaultValue={
-                    store.getState().gen_hp_data.data.mem_internal_5
+                    store.getState().gen_hp_data.data.mem_internal_5 === 0
+                    ? ""
+                    : store.getState().gen_hp_data.data.mem_internal_5
                   }
                   style={{ width: 75, margin: "0px 0px 0px 0px" }}
                 />
@@ -359,7 +421,9 @@ const MemoriHp = () => {
                   name="mem_internal_6"
                   onChange={onChangeInputGeneral}
                   defaultValue={
-                    store.getState().gen_hp_data.data.mem_internal_6
+                    store.getState().gen_hp_data.data.mem_internal_6 === 0
+                    ? ""
+                    : store.getState().gen_hp_data.data.mem_internal_6
                   }
                   style={{ width: 75, margin: "0px 0px 0px 0px" }}
                 />
@@ -371,7 +435,9 @@ const MemoriHp = () => {
                   name="mem_internal_7"
                   onChange={onChangeInputGeneral}
                   defaultValue={
-                    store.getState().gen_hp_data.data.mem_internal_7
+                    store.getState().gen_hp_data.data.mem_internal_7 === 0
+                    ? ""
+                    : store.getState().gen_hp_data.data.mem_internal_7
                   }
                   style={{ width: 75, margin: "0px 0px 0px 0px" }}
                 />
@@ -414,7 +480,6 @@ const MemoriHp = () => {
               <Option value="1--mem_eksternal_s">Yes</Option>
               <Option value="2--mem_eksternal_s">No</Option>
               <Option value="3--mem_eksternal_s">N/A</Option>
-              <Option value="0--mem_eksternal_s">N/A</Option>
             </Select>
           </div>
           <div style={{ margin: "30px 0px 0px 20px" }}>

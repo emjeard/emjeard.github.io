@@ -46,7 +46,11 @@ const BenchmarkHp = () => {
                 <InputNumber
                   style={{ minWidth: "150px" }}
                   name="antutu_score1"
-                  defaultValue={store.getState().gen_hp_data.data.antutu_score1}
+                  defaultValue={
+                    store.getState().gen_hp_data.data.antutu_score1 === 0
+                      ? ""
+                      : store.getState().gen_hp_data.data.antutu_score1
+                  }
                   onChange={(e) => onChangeInputNumber(e, "antutu_score1")}
                   formatter={(value) =>
                     `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
@@ -58,7 +62,11 @@ const BenchmarkHp = () => {
                 <InputNumber
                   style={{ minWidth: "150px", margin: "15px 0px 0px 0px" }}
                   name="antutu_score2"
-                  defaultValue={store.getState().gen_hp_data.data.antutu_score2}
+                  defaultValue={
+                    store.getState().gen_hp_data.data.antutu_score2 === 0
+                      ? ""
+                      : store.getState().gen_hp_data.data.antutu_score2
+                  }
                   onChange={(e) => onChangeInputNumber(e, "antutu_score2")}
                   formatter={(value) =>
                     `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
@@ -66,16 +74,6 @@ const BenchmarkHp = () => {
                   parser={(value) => value.replace(/\$\s?|(,*)/g, "")}
                 />
               </div>
-              <InputNumber
-                style={{ minWidth: "150px", margin: "15px 0px 0px 0px" }}
-                name="antutu_score3"
-                defaultValue={store.getState().gen_hp_data.data.antutu_score3}
-                onChange={(e) => onChangeInputNumber(e, "antutu_score3")}
-                formatter={(value) =>
-                  `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-                }
-                parser={(value) => value.replace(/\$\s?|(,*)/g, "")}
-              />
             </div>
             <div style={{ margin: "0px 0px 0px 30px" }}>
               <div className="lbl-input-data">URL Youtube</div>

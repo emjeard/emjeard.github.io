@@ -98,7 +98,6 @@ const HardSoftWareHp = () => {
                   <Option value="1--har_info">Yes</Option>
                   <Option value="2--har_info">No</Option>
                   <Option value="3--har_info">N/A</Option>
-                  <Option value="0--har_info">N/A</Option>
                 </Select>
               </div>
             </div>
@@ -254,7 +253,6 @@ const HardSoftWareHp = () => {
                   <Option value="1--sof_java_status">Yes</Option>
                   <Option value="2--sof_java_status">No</Option>
                   <Option value="3--sof_java_status">N/A</Option>
-                  <Option value="0--sof_java_status">N/A</Option>
                 </Select>
               </div>
               <div style={{ width: "100%", margin: "30px 0px 0px 20px" }}>

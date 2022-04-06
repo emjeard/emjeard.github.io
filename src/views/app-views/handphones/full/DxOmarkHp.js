@@ -73,7 +73,11 @@ const DxOmarkHp = () => {
                 <InputNumber
                   style={{ minWidth: "150px" }}
                   name="dx_mob_total"
-                  defaultValue={store.getState().gen_hp_data.data.dx_mob_total}
+                  defaultValue={
+                    store.getState().gen_hp_data.data.dx_mob_total === 0
+                      ? ""
+                      : store.getState().gen_hp_data.data.dx_mob_total
+                  }
                   onChange={(e) => onChangeInputNumber(e, "dx_mob_total")}
                   formatter={(value) =>
                     `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
@@ -85,7 +89,11 @@ const DxOmarkHp = () => {
                 <InputNumber
                   style={{ minWidth: "150px", margin: "15px 0px 0px 0px" }}
                   name="dx_mob_photo"
-                  defaultValue={store.getState().gen_hp_data.data.dx_mob_photo}
+                  defaultValue={
+                    store.getState().gen_hp_data.data.dx_mob_photo === 0
+                      ? ""
+                      : store.getState().gen_hp_data.data.dx_mob_photo
+                  }
                   onChange={(e) => onChangeInputNumber(e, "dx_mob_photo")}
                   formatter={(value) =>
                     `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
@@ -97,7 +105,11 @@ const DxOmarkHp = () => {
                 <InputNumber
                   style={{ minWidth: "150px", margin: "15px 0px 0px 0px" }}
                   name="dx_mob_video"
-                  defaultValue={store.getState().gen_hp_data.data.dx_mob_video}
+                  defaultValue={
+                    store.getState().gen_hp_data.data.dx_mob_video === 0
+                      ? ""
+                      : store.getState().gen_hp_data.data.dx_mob_video
+                  }
                   onChange={(e) => onChangeInputNumber(e, "dx_mob_video")}
                   formatter={(value) =>
                     `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
@@ -146,7 +158,11 @@ const DxOmarkHp = () => {
                 <InputNumber
                   style={{ minWidth: "150px" }}
                   name="dx_self_total"
-                  defaultValue={store.getState().gen_hp_data.data.dx_self_total}
+                  defaultValue={
+                    store.getState().gen_hp_data.data.dx_self_total === 0
+                      ? ""
+                      : store.getState().gen_hp_data.data.dx_self_total
+                  }
                   onChange={(e) => onChangeInputNumber(e, "dx_self_total")}
                   formatter={(value) =>
                     `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
@@ -158,7 +174,11 @@ const DxOmarkHp = () => {
                 <InputNumber
                   style={{ minWidth: "150px", margin: "15px 0px 0px 0px" }}
                   name="dx_self_photo"
-                  defaultValue={store.getState().gen_hp_data.data.dx_self_photo}
+                  defaultValue={
+                    store.getState().gen_hp_data.data.dx_self_photo === 0
+                      ? ""
+                      : store.getState().gen_hp_data.data.dx_self_photo
+                  }
                   onChange={(e) => onChangeInputNumber(e, "dx_self_photo")}
                   formatter={(value) =>
                     `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
@@ -170,7 +190,11 @@ const DxOmarkHp = () => {
                 <InputNumber
                   style={{ minWidth: "150px", margin: "15px 0px 0px 0px" }}
                   name="dx_self_video"
-                  defaultValue={store.getState().gen_hp_data.data.dx_self_video}
+                  defaultValue={
+                    store.getState().gen_hp_data.data.dx_self_video === 0
+                      ? ""
+                      : store.getState().gen_hp_data.data.dx_self_video
+                  }
                   onChange={(e) => onChangeInputNumber(e, "dx_self_video")}
                   formatter={(value) =>
                     `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
