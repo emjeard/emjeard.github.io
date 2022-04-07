@@ -67,7 +67,9 @@ const PriceRangeHp = () => {
                   parser={(value) => value.replace(/\Rp.\s?|(,*)/g, "")}
                   onChange={(e) => onChangeInputNumber(e, "price_new_from")}
                   defaultValue={
-                    store.getState().gen_hp_data.data.price_new_from
+                    store.getState().gen_hp_data.data.price_new_from === 0
+                      ? ""
+                      : store.getState().gen_hp_data.data.price_new_from
                   }
                   placeholder="Termurah"
                   allowClear
@@ -85,7 +87,9 @@ const PriceRangeHp = () => {
                   }
                   parser={(value) => value.replace(/\Rp.\s?|(,*)/g, "")}
                   onChange={(e) => onChangeInputNumber(e, "price_new_end")}
-                  defaultValue={store.getState().gen_hp_data.data.price_new_end}
+                  defaultValue={store.getState().gen_hp_data.data.price_new_end === 0
+                    ? ""
+                    : store.getState().gen_hp_data.data.price_new_end}
                   placeholder="Tertinggi"
                   allowClear
                 />
@@ -113,7 +117,9 @@ const PriceRangeHp = () => {
                   parser={(value) => value.replace(/\Rp.\s?|(,*)/g, "")}
                   onChange={(e) => onChangeInputNumber(e, "price_second_from")}
                   defaultValue={
-                    store.getState().gen_hp_data.data.price_second_from
+                    store.getState().gen_hp_data.data.price_second_from === 0
+                    ? ""
+                    : store.getState().gen_hp_data.data.price_second_from
                   }
                   placeholder="Termurah"
                   allowClear
@@ -130,7 +136,9 @@ const PriceRangeHp = () => {
                   parser={(value) => value.replace(/\Rp.\s?|(,*)/g, "")}
                   onChange={(e) => onChangeInputNumber(e, "price_second_end")}
                   defaultValue={
-                    store.getState().gen_hp_data.data.price_second_end
+                    store.getState().gen_hp_data.data.price_second_end === 0
+                    ? ""
+                    : store.getState().gen_hp_data.data.price_second_end
                   }
                   placeholder="Tertinggi"
                   allowClear

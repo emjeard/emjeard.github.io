@@ -61,7 +61,7 @@ const DragApp = (props) => {
 
   return (
     <div style={{ width: 229, height: 120 }}>
-      <Upload
+      <Upload.Dragger
         id="upload_hp"
         accept="image/*"
         customRequest={uploadImage}
@@ -71,6 +71,7 @@ const DragApp = (props) => {
         style={{
           width: "100%",
           minHeight: props.folder === undefined ? 195 : 120,
+          maxHeight: props.folder === undefined ? 195 : 120,
         }}
       >
         {defaultFileList.length >= 1 ? null : (
@@ -81,8 +82,8 @@ const DragApp = (props) => {
                   src={props.image}
                   alt=""
                   style={{
-                    width: props.folder === undefined ? 140 : "50%",
-                    height: props.folder === undefined ? 185 : "50%",
+                    width: props.folder === undefined ? 140 : "40%",
+                    height: props.folder === undefined ? 185 : "40%",
                   }}
                 />
               </div>
@@ -93,7 +94,7 @@ const DragApp = (props) => {
             )}
           </div>
         )}
-      </Upload>
+      </Upload.Dragger>
       {progress > 0 ? <Progress percent={progress} /> : null}
     </div>
   );

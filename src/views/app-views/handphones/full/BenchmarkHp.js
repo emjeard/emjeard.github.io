@@ -35,7 +35,6 @@ const BenchmarkHp = () => {
         className="layout-input-data-col"
         style={{
           width: "100%",
-          minHeight: 200,
         }}
       >
         <div className="lay-subsegment">

@@ -97,6 +97,7 @@ const ConnectivityHp = () => {
                   <Option value="1--kon_bluetooth_status">Yes</Option>
                   <Option value="2--kon_bluetooth_status">No</Option>
                   <Option value="3--kon_bluetooth_status">N/A</Option>
+                  <Option value="0--kon_bluetooth_status">-</Option>
                 </Select>
               </div>
               <div style={{ width: "100%", margin: "30px 0px 0px 20px" }}>
@@ -136,6 +137,7 @@ const ConnectivityHp = () => {
                   <Option value="1--kon_usb_status">Yes</Option>
                   <Option value="2--kon_usb_status">No</Option>
                   <Option value="3--kon_usb_status">N/A</Option>
+                  <Option value="0--kon_usb_status">-</Option>
                 </Select>
               </div>
               <div style={{ width: "100%", margin: "30px 0px 0px 20px" }}>
@@ -173,6 +175,7 @@ const ConnectivityHp = () => {
                   <Option value="1--kon_35mm_jack">Yes</Option>
                   <Option value="2--kon_35mm_jack">No</Option>
                   <Option value="3--kon_35mm_jack">N/A</Option>
+                  <Option value="0--kon_35mm_jack">-</Option>
                 </Select>
               </div>
               <div style={{ width: "100%", margin: "30px 0px 0px 20px" }}>
@@ -212,6 +215,7 @@ const ConnectivityHp = () => {
                   <Option value="1--kon_wlan_status">Yes</Option>
                   <Option value="2--kon_wlan_status">No</Option>
                   <Option value="3--kon_wlan_status">N/A</Option>
+                  <Option value="0--kon_wlan_status">-</Option>
                 </Select>
               </div>
               <div style={{ width: "100%", margin: "30px 0px 0px 20px" }}>
@@ -257,6 +261,7 @@ const ConnectivityHp = () => {
                   <Option value="1--kon_nfc_status">Yes</Option>
                   <Option value="2--kon_nfc_status">No</Option>
                   <Option value="3--kon_nfc_status">N/A</Option>
+                  <Option value="0--kon_nfc_status">-</Option>
                 </Select>
               </div>
               <div style={{ width: "100%", margin: "30px 0px 0px 20px" }}>
@@ -294,6 +299,7 @@ const ConnectivityHp = () => {
                   <Option value="1--kon_hdmi_status">Yes</Option>
                   <Option value="2--kon_hdmi_status">No</Option>
                   <Option value="3--kon_hdmi_status">N/A</Option>
+                  <Option value="0--kon_hdmi_status">-</Option>
                 </Select>
               </div>
               <div style={{ width: "100%", margin: "30px 0px 0px 20px" }}>
@@ -331,6 +337,7 @@ const ConnectivityHp = () => {
                   <Option value="1--kon_tvoutput_status">Yes</Option>
                   <Option value="2--kon_tvoutput_status">No</Option>
                   <Option value="3--kon_tvoutput_status">N/A</Option>
+                  <Option value="0--kon_tvoutput_status">-</Option>
                 </Select>
               </div>
               <div style={{ width: "100%", margin: "30px 0px 0px 20px" }}>
@@ -370,6 +377,7 @@ const ConnectivityHp = () => {
                   <Option value="1--kon_infrared">Yes</Option>
                   <Option value="2--kon_infrared">No</Option>
                   <Option value="3--kon_infrared">N/A</Option>
+                  <Option value="0--kon_infrared">-</Option>
                 </Select>
               </div>
               <div style={{ width: "100%", margin: "30px 0px 0px 20px" }}>

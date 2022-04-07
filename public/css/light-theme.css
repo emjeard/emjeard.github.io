@@ -15061,6 +15061,7 @@ _:-ms-fullscreen
   border: 1px solid #e6ebf1;
   border-radius: 0.625rem;
   transition: all 0.3s;
+  height: 40px;
 }
 .ant-input::-webkit-input-placeholder {
   color: rgba(114, 132, 154, 0.4);
