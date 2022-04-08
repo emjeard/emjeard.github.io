@@ -178,17 +178,18 @@ const BatteryHp = () => {
                   />
                 </Input.Group>
               </div>
-              <div style={{ width: "102px", margin: "30px 0px 0px 20px" }}>
+              <div style={{ width: "125px", margin: "30px 0px 0px 20px" }}>
                 <Input.Group compact style={{ display: "inline-flex" }}>
                   <InputNumber
                     name="bat_fcharge_watt"
+                    stringMode
                     defaultValue={
-                      store.getState().gen_hp_data.data.bat_fcharge_watt === 0
+                      store.getState().gen_hp_data.data.bat_fcharge_watt === "0"
                         ? ""
                         : store.getState().gen_hp_data.data.bat_fcharge_watt
                     }
                     onChange={(e) => onChangeInputNumber(e, "bat_fcharge_watt")}
-                    style={{ width: "55px", margin: "0px 0px 0px 0px" }}
+                    style={{ width: "80px", margin: "0px 0px 0px 0px" }}
                   />
                   <Button className="lay-group-label">Watt</Button>
                 </Input.Group>
@@ -231,17 +232,18 @@ const BatteryHp = () => {
                   />
                 </Input.Group>
               </div>
-              <div style={{ width: "102px", margin: "30px 0px 0px 20px" }}>
+              <div style={{ width: "125px", margin: "30px 0px 0px 20px" }}>
                 <Input.Group compact style={{ display: "inline-flex" }}>
                   <InputNumber
                     name="bat_wcharge_watt"
+                    stringMode
                     defaultValue={
-                      store.getState().gen_hp_data.data.bat_wcharge_watt === 0
+                      store.getState().gen_hp_data.data.bat_wcharge_watt === "0"
                         ? ""
                         : store.getState().gen_hp_data.data.bat_wcharge_watt
                     }
                     onChange={(e) => onChangeInputNumber(e, "bat_wcharge_watt")}
-                    style={{ width: "55px", margin: "0px 0px 0px 0px" }}
+                    style={{ width: "80px", margin: "0px 0px 0px 0px" }}
                   />
                   <Button className="lay-group-label">Watt</Button>
                 </Input.Group>

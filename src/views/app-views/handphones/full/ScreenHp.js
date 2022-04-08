@@ -11,6 +11,7 @@ const ScreenHp = () => {
   const [dataLayarWarna, setDataLayarWarna] = useState([]);
   const [dataLayarSensor, setDataLayarSensor] = useState([]);
   const [dataLayFprintS, setDataLayFprintS] = useState([]);
+  const [dataLayPPI, setDataLayPPI] = useState(0);
 
   let childrenSensor = [];
 
@@ -22,6 +23,7 @@ const ScreenHp = () => {
   const retrieveData = () => {
     getLayarWarna();
     getLayarSensor();
+    setDataLayPPI(store.getState().gen_hp_data.data.lay_size_ppi);
   };
 
   const onChangeInputGeneral = (e) => {
@@ -31,7 +33,19 @@ const ScreenHp = () => {
     if (stateName.includes("__cb")) {
       stateValue = e.target.checked;
     }
+
     store.dispatch(HP_DATA_ACT(stateName, stateValue));
+    if (
+      stateName.includes("lay_size_horizontal") ||
+      stateName.includes("lay_size_vertikal") ||
+      stateName.includes("lay_size_diagonal")
+    ) {
+      calc_dpi(
+        store.getState().gen_hp_data.data.lay_size_horizontal,
+        store.getState().gen_hp_data.data.lay_size_vertikal,
+        store.getState().gen_hp_data.data.lay_size_diagonal
+      );
+    }
   };
 
   const onChangeSelectGeneral = (selectedItems, option) => {
@@ -83,6 +97,34 @@ const ScreenHp = () => {
   for (let i = 0; i < tags.length; i++) {
     tagsArr.push(tags[i] + "--lay_sensor");
   }
+
+  const calc_dpi = (x, y, diag) => {
+    console.log("x", x);
+    console.log("y", y);
+    console.log("diag", diag);
+    if (y == 0 || x == 0) return;
+    var ratio = y / x;
+    var xd = Math.sqrt(Math.pow(diag, 2) / (1 + Math.pow(ratio, 2)));
+    var yd = xd * ratio;
+    var pitch = 25.4 / (x / xd); // metric
+    var result = {
+      diagmetric: diag * 2.54,
+      sizex: xd,
+      sizey: yd,
+      metricsizex: 2.54 * xd,
+      metricsizey: 2.54 * yd,
+      xppi: x / xd,
+      yppi: y / yd,
+      dotpitch: pitch,
+      sqppi: ((x / xd) * y) / yd,
+    };
+    const final_ppi = result.xppi.toFixed(2);
+    console.log(final_ppi);
+    store.dispatch(HP_DATA_ACT("lay_size_ppi", final_ppi));
+    setDataLayPPI(final_ppi);
+
+    return result;
+  };
 
   return (
     <div>
@@ -265,9 +307,8 @@ const ScreenHp = () => {
                     <Input
                       name="lay_size_ppi"
                       onChange={onChangeInputGeneral}
-                      defaultValue={
-                        store.getState().gen_hp_data.data.lay_size_ppi
-                      }
+                      defaultValue={dataLayPPI}
+                      value={dataLayPPI}
                       style={{ width: 75, margin: "0px 0px 0px 0px" }}
                     />
                     <Button className="lay-group-label">PPI</Button>

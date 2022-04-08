@@ -127,7 +127,7 @@ const EditHpFullApp = (props) => {
           progress: undefined,
           theme: "colored",
         });
-        setTimeout(() => (window.location.href = "/handphones/list"), 3000);
+        //setTimeout(() => (window.location.href = "/handphones/list"), 3000);
       } else {
         toast.error("Gagal update data", {
           position: "top-right",
