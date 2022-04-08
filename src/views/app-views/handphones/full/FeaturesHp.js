@@ -96,7 +96,7 @@ const FeaturesHp = () => {
                   <Option value="1--fit_musik_status">Yes</Option>
                   <Option value="2--fit_musik_status">No</Option>
                   <Option value="3--fit_musik_status">N/A</Option>
-                  <Option value="0--fit_musik_status">-</Option>
+                  <Option value="0--fit_musik_status">---</Option>
                 </Select>
               </div>
               <div style={{ width: "100%", margin: "30px 0px 0px 20px" }}>
@@ -134,7 +134,7 @@ const FeaturesHp = () => {
                   <Option value="1--fit_radio_status">Yes</Option>
                   <Option value="2--fit_radio_status">No</Option>
                   <Option value="3--fit_radio_status">N/A</Option>
-                  <Option value="0--fit_radio_status">-</Option>
+                  <Option value="0--fit_radio_status">---</Option>
                 </Select>
               </div>
               <div style={{ width: "100%", margin: "30px 0px 0px 20px" }}>
@@ -172,7 +172,7 @@ const FeaturesHp = () => {
                   <Option value="1--fit_tvanalog">Yes</Option>
                   <Option value="2--fit_tvanalog">No</Option>
                   <Option value="3--fit_tvanalog">N/A</Option>
-                  <Option value="0--fit_tvanalog">-</Option>
+                  <Option value="0--fit_tvanalog">---</Option>
                 </Select>
               </div>
               <div style={{ width: "100%", margin: "30px 0px 0px 20px" }}>
@@ -212,7 +212,7 @@ const FeaturesHp = () => {
                   <Option value="1--fit_gps_status">Yes</Option>
                   <Option value="2--fit_gps_status">No</Option>
                   <Option value="3--fit_gps_status">N/A</Option>
-                  <Option value="0--fit_gps_status">-</Option>
+                  <Option value="0--fit_gps_status">---</Option>
                 </Select>
               </div>
               <div style={{ width: "100%", margin: "30px 0px 0px 20px" }}>
@@ -258,7 +258,7 @@ const FeaturesHp = () => {
                   <Option value="1--fit_browser_status">Yes</Option>
                   <Option value="2--fit_browser_status">No</Option>
                   <Option value="3--fit_browser_status">N/A</Option>
-                  <Option value="0--fit_browser_status">-</Option>
+                  <Option value="0--fit_browser_status">---</Option>
                 </Select>
               </div>
               <div style={{ width: "100%", margin: "30px 0px 0px 20px" }}>
@@ -297,7 +297,7 @@ const FeaturesHp = () => {
                   <Option value="1--fit_wresistant_status">Yes</Option>
                   <Option value="2--fit_wresistant_status">No</Option>
                   <Option value="3--fit_wresistant_status">N/A</Option>
-                  <Option value="0--fit_wresistant_status">-</Option>
+                  <Option value="0--fit_wresistant_status">---</Option>
                 </Select>
               </div>
               <div style={{ width: "100%", margin: "30px 0px 0px 20px" }}>

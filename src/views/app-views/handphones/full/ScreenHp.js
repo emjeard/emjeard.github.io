@@ -123,7 +123,7 @@ const ScreenHp = () => {
                   <Option value="1--lay_touchscreen_status">Yes</Option>
                   <Option value="2--lay_touchscreen_status">No</Option>
                   <Option value="3--lay_touchscreen_status">N/A</Option>
-                  <Option value="0--lay_touchscreen_status">-</Option>
+                  <Option value="0--lay_touchscreen_status">---</Option>
                 </Select>
               </div>
               <div style={{ margin: "30px 0px 0px 20px" }}>
@@ -143,7 +143,7 @@ const ScreenHp = () => {
                     <Option value="1--lay_touchscreen">Capacitive</Option>
                     <Option value="2--lay_touchscreen">Resistive</Option>
                     <Option value="3--lay_touchscreen">N/A</Option>
-                    <Option value="0--lay_touchscreen">-</Option>
+                    <Option value="0--lay_touchscreen">---</Option>
                   </Select>
                 </Input.Group>
               </div>
@@ -309,7 +309,7 @@ const ScreenHp = () => {
                   <Option value="1--lay_proteksi_status">Yes</Option>
                   <Option value="2--lay_proteksi_status">No</Option>
                   <Option value="3--lay_proteksi_status">N/A</Option>
-                  <Option value="0--lay_proteksi_status">-</Option>
+                  <Option value="0--lay_proteksi_status">---</Option>
                 </Select>
               </div>
               <div style={{ width: "100%", margin: "30px 0px 0px 20px" }}>
@@ -350,7 +350,7 @@ const ScreenHp = () => {
                   <Option value="1--lay_multitouch_status">Yes</Option>
                   <Option value="2--lay_multitouch_status">No</Option>
                   <Option value="3--lay_multitouch_status">N/A</Option>
-                  <Option value="0--lay_multitouch_status">-</Option>
+                  <Option value="0--lay_multitouch_status">---</Option>
                 </Select>
               </div>
               <div style={{ width: "100%", margin: "30px 0px 0px 20px" }}>
@@ -414,7 +414,7 @@ const ScreenHp = () => {
                   <Option value="1--lay_fprint_status">Yes</Option>
                   <Option value="2--lay_fprint_status">No</Option>
                   <Option value="3--lay_fprint_status">N/A</Option>
-                  <Option value="0--lay_fprint_status">-</Option>
+                  <Option value="0--lay_fprint_status">---</Option>
                 </Select>
               </div>
               <div style={{ width: 120, margin: "30px 0px 0px 20px" }}>
@@ -451,7 +451,7 @@ const ScreenHp = () => {
                   <Option value="4--lay_fprint_position">On-screen</Option>
                   <Option value="5--lay_fprint_position">Edge-side</Option>
                   <Option value="3--lay_fprint_position">N/A</Option>
-                  <Option value="0--lay_fprint_position">-</Option>
+                  <Option value="0--lay_fprint_position">---</Option>
                 </Select>
               </div>
             </div>

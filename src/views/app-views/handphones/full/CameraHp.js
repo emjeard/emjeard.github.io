@@ -92,7 +92,7 @@ const CameraHp = () => {
               <Option value="1--kam_utama_status">Yes</Option>
               <Option value="2--kam_utama_status">No</Option>
               <Option value="3--kam_utama_status">N/A</Option>
-              <Option value="0--kam_utama_status">-</Option>
+              <Option value="0--kam_utama_status">---</Option>
             </Select>
           </div>
           <div style={{ width: "100%", margin: "30px 0px 0px 20px" }}>
@@ -168,7 +168,7 @@ const CameraHp = () => {
               <Option value="1--kam_led_flash_status">Yes</Option>
               <Option value="2--kam_led_flash_status">No</Option>
               <Option value="3--kam_led_flash_status">N/A</Option>
-              <Option value="0--kam_led_flash_status">-</Option>
+              <Option value="0--kam_led_flash_status">---</Option>
             </Select>
           </div>
           <div style={{ width: "100%", margin: "30px 0px 0px 20px" }}>
@@ -217,7 +217,7 @@ const CameraHp = () => {
               <Option value="1--kam_video_status">Yes</Option>
               <Option value="2--kam_video_status">No</Option>
               <Option value="3--kam_video_status">N/A</Option>
-              <Option value="0--kam_video_status">-</Option>
+              <Option value="0--kam_video_status">---</Option>
             </Select>
           </div>
           <div style={{ margin: "30px 0px 0px 20px" }}>
@@ -281,7 +281,7 @@ const CameraHp = () => {
               <Option value="1--kam_depan_status">Yes</Option>
               <Option value="2--kam_depan_status">No</Option>
               <Option value="3--kam_depan_status">N/A</Option>
-              <Option value="0--kam_depan_status">-</Option>
+              <Option value="0--kam_depan_status">---</Option>
             </Select>
           </div>
           <div style={{ margin: "30px 0px 0px 20px" }}>
@@ -318,7 +318,7 @@ const CameraHp = () => {
               <Option value="1--kam_nat_vcall">Yes</Option>
               <Option value="2--kam_nat_vcall">No</Option>
               <Option value="3--kam_nat_vcall">N/A</Option>
-              <Option value="0--kam_nat_vcall">-</Option>
+              <Option value="0--kam_nat_vcall">---</Option>
             </Select>
           </div>
         </div>

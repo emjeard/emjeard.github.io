@@ -98,7 +98,7 @@ const HardSoftWareHp = () => {
                   <Option value="1--har_info">Yes</Option>
                   <Option value="2--har_info">No</Option>
                   <Option value="3--har_info">N/A</Option>
-                  <Option value="0--har_info">-</Option>
+                  <Option value="0--har_info">---</Option>
                 </Select>
               </div>
             </div>

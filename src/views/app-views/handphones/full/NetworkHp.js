@@ -147,7 +147,7 @@ const NetworkHp = () => {
                   <Option value="1--jar_2g_status">Yes</Option>
                   <Option value="2--jar_2g_status">No</Option>
                   <Option value="3--jar_2g_status">N/A</Option>
-                  <Option value="0--jar_2g_status">-</Option>
+                  <Option value="0--jar_2g_status">---</Option>
                 </Select>
               </div>
               <div style={{ margin: "30px 0px 0px 20px" }}>
@@ -168,7 +168,7 @@ const NetworkHp = () => {
                     <Option value="1--jar_2g_gsm_status">Yes</Option>
                     <Option value="2--jar_2g_gsm_status">No</Option>
                     <Option value="3--jar_2g_gsm_status">N/A</Option>
-                    <Option value="0--jar_2g_gsm_status">-</Option>
+                    <Option value="0--jar_2g_gsm_status">---</Option>
                   </Select>
                 </Input.Group>
               </div>
@@ -211,7 +211,7 @@ const NetworkHp = () => {
                     <Option value="1--jar_2g_cdma_status">Yes</Option>
                     <Option value="2--jar_2g_cdma_status">No</Option>
                     <Option value="3--jar_2g_cdma_status">N/A</Option>
-                    <Option value="0--jar_2g_cdma_status">-</Option>
+                    <Option value="0--jar_2g_cdma_status">---</Option>
                   </Select>
                 </Input.Group>
               </div>
@@ -250,7 +250,7 @@ const NetworkHp = () => {
                   <Option value="1--jar_3g_status">Yes</Option>
                   <Option value="2--jar_3g_status">No</Option>
                   <Option value="3--jar_3g_status">N/A</Option>
-                  <Option value="0--jar_3g_status">-</Option>
+                  <Option value="0--jar_3g_status">---</Option>
                 </Select>
               </div>
               <div style={{ margin: "30px 0px 0px 20px", width: "100%" }}>
@@ -287,7 +287,7 @@ const NetworkHp = () => {
                   <Option value="1--jar_4g_status">Yes</Option>
                   <Option value="2--jar_4g_status">No</Option>
                   <Option value="3--jar_4g_status">N/A</Option>
-                  <Option value="0--jar_4g_status">-</Option>
+                  <Option value="0--jar_4g_status">---</Option>
                 </Select>
               </div>
               <div style={{ margin: "30px 0px 0px 20px", width: "100%" }}>
@@ -324,7 +324,7 @@ const NetworkHp = () => {
                   <Option value="1--jar_5g_status">Yes</Option>
                   <Option value="2--jar_5g_status">No</Option>
                   <Option value="3--jar_5g_status">N/A</Option>
-                  <Option value="0--jar_5g_status">-</Option>
+                  <Option value="0--jar_5g_status">---</Option>
                 </Select>
               </div>
               <div style={{ margin: "30px 0px 0px 20px", width: "100%" }}>
@@ -386,7 +386,7 @@ const NetworkHp = () => {
                   <Option value="1--jar_gprs_status">Yes</Option>
                   <Option value="2--jar_gprs_status">No</Option>
                   <Option value="3--jar_gprs_status">N/A</Option>
-                  <Option value="0--jar_gprs_status">-</Option>
+                  <Option value="0--jar_gprs_status">---</Option>
                 </Select>
               </div>
               <div style={{ width: "100%", margin: "30px 0px 0px 20px" }}>
@@ -423,7 +423,7 @@ const NetworkHp = () => {
                   <Option value="1--jar_edge_status">Yes</Option>
                   <Option value="2--jar_edge_status">No</Option>
                   <Option value="3--jar_edge_status">N/A</Option>
-                  <Option value="0--jar_edge_status">-</Option>
+                  <Option value="0--jar_edge_status">---</Option>
                 </Select>
               </div>
               <div style={{ width: "100%", margin: "30px 0px 0px 20px" }}>
@@ -496,7 +496,7 @@ const NetworkHp = () => {
                   <Option value="1--jar_multi_status">Yes</Option>
                   <Option value="2--jar_multi_status">No</Option>
                   <Option value="3--jar_multi_status">N/A</Option>
-                  <Option value="0--jar_multi_status">-</Option>
+                  <Option value="0--jar_multi_status">---</Option>
                 </Select>
               </div>
               <div style={{ width: 120, margin: "30px 0px 0px 20px" }}>
@@ -576,7 +576,7 @@ const NetworkHp = () => {
                   <Option value="1--jar_dualon">Yes</Option>
                   <Option value="2--jar_dualon">No</Option>
                   <Option value="3--jar_dualon">N/A</Option>
-                  <Option value="0--jar_dualon">-</Option>
+                  <Option value="0--jar_dualon">---</Option>
                 </Select>
               </div>
               <div style={{ width: "100%", margin: "30px 0px 0px 20px" }}>

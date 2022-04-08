@@ -496,7 +496,7 @@ const MemoriHp = () => {
               <Option value="1--mem_eksternal_s">Yes</Option>
               <Option value="2--mem_eksternal_s">No</Option>
               <Option value="3--mem_eksternal_s">N/A</Option>
-              <Option value="0--mem_eksternal_s">-</Option>
+              <Option value="0--mem_eksternal_s">---</Option>
             </Select>
           </div>
           <div style={{ margin: "30px 0px 0px 20px" }}>

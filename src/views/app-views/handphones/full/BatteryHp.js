@@ -165,7 +165,7 @@ const BatteryHp = () => {
                   <Option value="1--bat_fcharge_status">Yes</Option>
                   <Option value="2--bat_fcharge_status">No</Option>
                   <Option value="3--bat_fcharge_status">N/A</Option>
-                  <Option value="0--bat_fcharge_status">-</Option>
+                  <Option value="0--bat_fcharge_status">---</Option>
                 </Select>
               </div>
               <div style={{ width: "210px", margin: "30px 0px 0px 20px" }}>
@@ -218,7 +218,7 @@ const BatteryHp = () => {
                   <Option value="1--bat_wcharge_status">Yes</Option>
                   <Option value="2--bat_wcharge_status">No</Option>
                   <Option value="3--bat_wcharge_status">N/A</Option>
-                  <Option value="0--bat_wcharge_status">-</Option>
+                  <Option value="0--bat_wcharge_status">---</Option>
                 </Select>
               </div>
               <div style={{ width: "200px", margin: "30px 0px 0px 20px" }}>
