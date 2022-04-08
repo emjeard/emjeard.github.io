@@ -6346,6 +6346,7 @@ a.ant-btn-sm {
   padding: 0;
   background: 0 0;
   border: 0;
+  cursor: pointer;
 }
 .ant-picker-input > input::-webkit-input-placeholder {
   color: rgba(114, 132, 154, 0.4);
@@ -20408,6 +20409,7 @@ span.ant-transfer-list-search-action {
   border: 1px solid #e6ebf1;
   border-radius: 0.625rem;
   transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+  height: 38.5px;
 }
 .ant-select:not(.ant-select-customize-input) .ant-select-selector input {
   cursor: pointer;

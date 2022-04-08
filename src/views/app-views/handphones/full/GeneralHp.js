@@ -167,8 +167,7 @@ const GeneralHp = () => {
             <div className="lay-subsegment">
               <div className="lbl-input-data">Merek</div>
               <Select
-                style={{ minWidth: 200 }}
-                showSearch
+                style={{ minWidth: 200, height: 38.5 }}
                 name="id_merk"
                 placeholder="Pilih merek"
                 optionFilterProp="children"
@@ -266,7 +265,6 @@ const GeneralHp = () => {
             <Select
               name="umu_model"
               style={{ minWidth: 230 }}
-              showSearch
               placeholder="Pilih model"
               optionFilterProp="children"
               onChange={onChangeSelectGeneral}
@@ -372,7 +370,6 @@ const GeneralHp = () => {
                   <Select
                     name="umu_status"
                     style={{ minWidth: 230 }}
-                    showSearch
                     placeholder="Pilih status"
                     optionFilterProp="children"
                     onChange={onChangeSelectGeneral}

@@ -178,9 +178,18 @@ const NetworkHp = () => {
                     name="jar_2g_gsm"
                     onChange={onChangeInputGeneral}
                     defaultValue={store.getState().gen_hp_data.data.jar_2g_gsm}
-                    style={{ width: 176, margin: "0px 0px 0px 0px" }}
+                    style={{
+                      width: 176,
+                      margin: "0px 0px 0px 0px",
+                      height: "38.5px",
+                    }}
                   />
-                  <Button className="lay-group-label">MHz</Button>
+                  <Button
+                    className="lay-group-label"
+                    style={{ height: "38.5px" }}
+                  >
+                    MHz
+                  </Button>
                 </Input.Group>
               </div>
             </div>

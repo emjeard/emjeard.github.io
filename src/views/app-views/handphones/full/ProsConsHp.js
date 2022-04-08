@@ -45,7 +45,7 @@ const ProsConsHp = () => {
               margin: "0px 0px 0px 0px",
             }}
           >
-            <div>{`Kelebihan ${
+            <div style={{ fontWeight: 500 }}>{`Kelebihan ${
               store.getState().gen_hp_data.data.namalengkap
             }`}</div>
             <div style={{ margin: "5px 0px 0px" }}>
