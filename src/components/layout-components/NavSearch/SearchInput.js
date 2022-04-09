@@ -187,6 +187,7 @@ const SearchInput = (props) => {
       value={value}
     >
       <Input
+        style={{ height: 40 }}
         placeholder={
           props.hpOnly === true ? "Cari Hp..." : "Cari Hp dan Artikel..."
         }
