@@ -215,13 +215,14 @@ const GeneralHp = () => {
           <div className="lay-subsegment">
             <div className="lbl-input-data">Tags</div>
             <Select
+              id="hp-select-tags"
               mode="tags"
               size={size}
               name="gen_tags"
               placeholder="Supports multiple tags by pressing tab / enter button"
               defaultValue={tagsArr[0] === "" ? [] : tagsArr}
               onChange={onChangeTagsGeneral}
-              style={{ width: "100%" }}
+              style={{ width: "100%", height: "auto" }}
             ></Select>
           </div>
           <div className="lay-subsegment">

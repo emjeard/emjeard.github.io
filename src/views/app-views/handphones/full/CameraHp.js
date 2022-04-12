@@ -74,7 +74,7 @@ const CameraHp = () => {
               Kamera Utama
             </div>
             <Select
-              style={{ minWidth: 100 }}
+              style={{ minWidth: 100, width: 100 }}
               showSearch
               placeholder=""
               optionFilterProp="children"

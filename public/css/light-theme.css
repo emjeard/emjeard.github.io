@@ -3338,7 +3338,7 @@ mark {
   -ms-user-select: none;
   user-select: none;
   touch-action: manipulation;
-  height: 40px;
+  height: 38.5px;
   padding: 8.5px 1.25rem;
   font-size: 14px;
   border-radius: 0.625rem;
@@ -14885,7 +14885,7 @@ _:-ms-fullscreen
   display: inline-block;
   width: 100%;
   min-width: 0;
-  padding: 8.5px 11px;
+  padding: 0px 10px;
   color: #455560;
   font-size: 14px;
   line-height: 1.5;
@@ -15062,7 +15062,7 @@ _:-ms-fullscreen
   border: 1px solid #e6ebf1;
   border-radius: 0.625rem;
   transition: all 0.3s;
-  height: 40px;
+  height: 38.5px;
 }
 .ant-input::-webkit-input-placeholder {
   color: rgba(114, 132, 154, 0.4);
@@ -20417,6 +20417,7 @@ span.ant-transfer-list-search-action {
 .ant-select-show-search.ant-select:not(.ant-select-customize-input)
   .ant-select-selector {
   cursor: text;
+  height: auto;
 }
 .ant-select-show-search.ant-select:not(.ant-select-customize-input)
   .ant-select-selector
@@ -20471,6 +20472,7 @@ span.ant-transfer-list-search-action {
 .ant-select:not(.ant-select-disabled):hover .ant-select-selector {
   border-color: #a10000;
   border-right-width: 1px !important;
+  height: auto;
 }
 .ant-input-rtl
   .ant-select:not(.ant-select-disabled):hover

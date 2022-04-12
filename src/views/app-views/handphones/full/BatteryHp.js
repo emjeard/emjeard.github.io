@@ -197,7 +197,7 @@ const BatteryHp = () => {
             </div>
             <div className="lay-subsegment" style={{ display: "flex" }}>
               <div>
-                <div className="lbl-input-data">Wireless Charging</div>
+                <div className="lbl-input-data">Wireless Charge</div>
                 <Select
                   style={{ minWidth: 110 }}
                   showSearch
