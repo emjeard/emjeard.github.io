@@ -69,7 +69,7 @@ const CameraHp = () => {
         }}
       >
         <div className="lay-subsegment" style={{ display: "flex" }}>
-          <div>
+          <div style={{width: "100px"}}>
             <div className="lbl-input-data" style={{ minWidth: 150 }}>
               Kamera Utama
             </div>
