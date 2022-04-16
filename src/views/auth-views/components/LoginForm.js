@@ -64,7 +64,13 @@ export const LoginForm = (props) => {
       console.log("useEffect", redirect);
       //history.push({ pathname: '/empty' });
       //history.replace({ pathname: redirect });
-      window.location.href = "/app/dashboards/default";
+      let last_path = localStorage.getItem("last-path");
+
+      if (last_path === undefined || last_path === "") {
+        last_path = "/app/dashboards/default";
+      }
+
+      window.location.href = last_path;
     }
     if (showMessage) {
       setTimeout(() => {
@@ -73,11 +79,7 @@ export const LoginForm = (props) => {
     }
   });
 
-  const renderOtherSignIn = (
-    <div>
-      
-    </div>
-  );
+  const renderOtherSignIn = <div></div>;
 
   return (
     <>

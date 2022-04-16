@@ -5,6 +5,7 @@ import Articles from "./Articles";
 import Handphone from "./Handphone";
 import FormInput from "./FormInput";
 import General from "./General";
+import History from "./History";
 
 const reducers = combineReducers({
   theme: Theme,
@@ -13,6 +14,7 @@ const reducers = combineReducers({
   hpproscons: Handphone,
   form_input: FormInput,
   gen_hp_data: General,
+  history: History,
 });
 
 export default reducers;
