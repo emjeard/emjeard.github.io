@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Button, Select, Spin, Card, Anchor, Affix } from "antd";
-import { ToastContainer } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { SaveOutlined } from "@ant-design/icons";
 import { getSearchHp, getDetailHp, postCreateHp } from "api/ApiData";
@@ -368,6 +368,30 @@ const PostHandphoneApp = (props) => {
     let final_update = await store.getState().gen_hp_data.data;
     postCreateHp(final_update).then((resp) => {
       console.log(resp);
+      if (resp.data.status === true) {
+        toast.success(resp.data.message, {
+          position: "top-right",
+          autoClose: true,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
+        setTimeout(() => (window.location.href = "/handphones/list"), 3000);
+      } else {
+        toast.error("Gagal update data", {
+          position: "top-right",
+          autoClose: true,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
+      }
       setUpdateLoading(false);
     });
   };

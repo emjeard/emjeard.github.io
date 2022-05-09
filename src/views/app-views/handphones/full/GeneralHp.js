@@ -239,19 +239,21 @@ const GeneralHp = () => {
           </div>
           <div className="lay-subsegment">
             <div className="lbl-input-data">Gambar</div>
-            <Drag
-              image={
-                store.getState().gen_hp_data.data.gambar === ""
-                  ? ""
-                  : store.getState().gen_hp_data.data.gambar.includes("_")
-                  ? "https://ik.imagekit.io/inponsel/hp/" +
-                    store.getState().gen_hp_data.data.gambar
-                  : "https://static.inponsel.com/images/hape/" +
-                    store.getState().gen_hp_data.data.gambar
-              }
-              image_type={"new_hp"}
-              folder={"hp"}
-            />
+            <div style={{ position: "relative" }}>
+              <Drag
+                image={
+                  store.getState().gen_hp_data.data.gambar === ""
+                    ? ""
+                    : store.getState().gen_hp_data.data.gambar.includes("_")
+                    ? "https://ik.imagekit.io/inponsel/hp/" +
+                      store.getState().gen_hp_data.data.gambar
+                    : "https://ik.imagekit.io/inponsel/images/hape/" +
+                      store.getState().gen_hp_data.data.gambar
+                }
+                image_type={"new_hp"}
+                folder={"hp"}
+              />
+            </div>
           </div>
         </div>
         <div
