@@ -48,7 +48,11 @@ const PopulerData = (props) => {
   const handleSearch2 = (value) => {
     getSearchHp(value)
       .then((response) => {
-        setResult2(response.data);
+        if (response.status === true) {
+          setResult2(response.data);
+        } else {
+          setResult2([]);
+        }
       })
       .catch((e) => {
         console.log(e);
@@ -138,6 +142,7 @@ const PopulerData = (props) => {
         }}
       />
       <AutoComplete
+        notFoundContent={"Data tidak ditemukan"}
         allowClear={true}
         style={{
           display: "flex",
