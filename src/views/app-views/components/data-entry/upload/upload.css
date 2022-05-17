@@ -1,0 +1,53 @@
+.ant-upload-list {
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+  color: rgb(69, 85, 96);
+  font-size: 14px;
+  font-variant: tabular-nums;
+  list-style: none;
+  font-feature-settings: "tnum";
+  line-height: 1.5;
+  position: absolute;
+  top: 270px;
+  left: 0px;
+  display: flex;
+  width: -webkit-fill-available;
+  flex-wrap: wrap;
+}
+.ant-upload.ant-upload-drag {
+  border: 2px dashed rgb(0, 115, 255);
+  border-radius: 0.625rem;
+  padding: 0px 16px;
+  background: 0px 0px;
+  min-height: 220px;
+  display: flex;
+  align-items: center;
+  width: 250px;
+  height: 250px;
+}
+.ant-upload-list-picture-card-container {
+  display: inline-block;
+  height: 225px;
+  vertical-align: top;
+  width: 225px;
+  margin: 10px 10px 0px 0px;
+}
+.ant-upload-list-picture-card .ant-upload-list-item {
+  height: 225px;
+  margin: 0px;
+  position: absolute;
+  width: 225px;
+}
+.ant-upload.ant-upload-drag:not(.ant-upload-disabled):hover {
+  border-color: rgb(0 193 7);
+}
+.ant-upload-list-item-actions {
+  display: none;
+}
+.ant-upload-list-item-error .ant-upload-list-item-card-actions-btn,
+.ant-upload-list-picture-card
+  .ant-upload-list-item:hover
+  .ant-upload-list-item-info::before {
+  opacity: 0;
+}

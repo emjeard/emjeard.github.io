@@ -26,6 +26,10 @@ const Handphones = ({ match }) => (
         component={lazy(() => import(`./post`))}
       />
       <Route
+        path={`${match.url}/gallery/:id`}
+        component={lazy(() => import(`./gallery`))}
+      />
+      <Route
         path={`${match.url}/edit/:id`}
         component={lazy(() => import(`./edit`))}
       />

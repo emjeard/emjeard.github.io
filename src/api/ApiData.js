@@ -52,6 +52,8 @@ export {
   putUpdateBrand,
   postCreateBrand,
   getRootPathSitePage,
+  getListGalleryHp,
+  putUpdateGalleryHp,
 };
 
 const getToken = function () {
@@ -180,6 +182,12 @@ const getListHp = (page, many, filter) => {
   const url = `${BASE_URL}hp/list?page=${page}&many=${many}${filter}`;
   return axios.get(url, headerRequest).then((response) => response.data);
 };
+
+const getListGalleryHp = (id_hp) => {
+  const url = `${BASE_URL}hp/gallery?id=${id_hp}`;
+  return axios.get(url, headerRequest).then((response) => response.data);
+};
+
 const getListHpModel = () => {
   const url = `${BASE_URL}hp/model`;
   return axios.get(url, headerRequest).then((response) => response.data);
@@ -515,5 +523,17 @@ const postCreateBrand = (
 
   return axios
     .post(url, formData, headerRequest)
+    .then((response) => response.data);
+};
+
+const putUpdateGalleryHp = (id, galeri) => {
+  const url = `${BASE_URL}hp/gallery/update`;
+
+  const formData = new FormData();
+  formData.append("id", id);
+  formData.append("galeri", galeri);
+
+  return axios
+    .put(url, formData, headerRequest)
     .then((response) => response.data);
 };
