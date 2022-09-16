@@ -17,6 +17,7 @@ export {
   getMeProfile,
   getListHpEdChoice,
   getSearchHp,
+  getSearchCity,
   putUpdateHpEditorChoice,
   putUpdateCompareHp,
   getSearchMore,
@@ -40,10 +41,13 @@ export {
   getListTagOp,
   getListTagBrand,
   getDetailHp,
+  getDetailOp,
   postUploadAvatar,
   postCreateArticle,
   postCreateHp,
   postEditHp,
+  postCreateOpPackage,
+  putUpdateOpPackage,
   putUpdateArticle,
   putUpdateHandphone,
   getCompareHp,
@@ -51,6 +55,7 @@ export {
   getListBrands,
   getListProvince,
   getListOperator,
+  getListOperatorPack,
   putUpdateBrand,
   postCreateBrand,
   getRootPathSitePage,
@@ -104,8 +109,18 @@ const getSearchHp = (keyword) => {
   return axios.get(url, headerRequest).then((response) => response.data);
 };
 
+const getSearchCity = (keyword) => {
+  const url = `${BASE_URL}city/list?page=1&many=20&key=${keyword}`;
+  return axios.get(url, headerRequest).then((response) => response.data);
+};
+
 const getDetailHp = (id) => {
   const url = `${BASE_URL}hp/detail?id=${id}`;
+  return axios.get(url, headerRequest).then((response) => response.data);
+};
+
+const getDetailOp = (id) => {
+  const url = `${BASE_URL}operator/package?id=${id}`;
   return axios.get(url, headerRequest).then((response) => response.data);
 };
 
@@ -237,6 +252,12 @@ const getListOperator = (page, many, filter) => {
   const url = `${BASE_URL}operator/list?page=${page}&many=${many}&order=${filter}`;
   return axios.get(url, headerRequest).then((response) => response.data);
 };
+
+const getListOperatorPack = (page, many, filter) => {
+  const url = `${BASE_URL}operator/package/list?page=${page}&many=${many}&order=${filter}`;
+  return axios.get(url, headerRequest).then((response) => response.data);
+};
+
 const getListProvince = (page, many, filter) => {
   const url = `${BASE_URL}province/list?page=${page}&many=${many}&order=${filter}`;
   return axios.get(url, headerRequest).then((response) => response.data);
@@ -298,6 +319,42 @@ const postEditHp = (jsonData) => {
 
   var config = {
     method: "post",
+    url: url,
+    headers: {
+      Authorization: "Basic " + btoa("inps2jtd0ll5ru5:222m1lSSSu5"),
+      "ADM-Token": getToken(),
+      "Content-Type": "application/json",
+    },
+    data: data,
+  };
+
+  return axios(config).then((response) => response);
+};
+
+const postCreateOpPackage = (jsonData) => {
+  const url = `${BASE_URL}operator/package/create`;
+  const data = JSON.stringify(jsonData);
+
+  var config = {
+    method: "post",
+    url: url,
+    headers: {
+      Authorization: "Basic " + btoa("inps2jtd0ll5ru5:222m1lSSSu5"),
+      "ADM-Token": getToken(),
+      "Content-Type": "application/json",
+    },
+    data: data,
+  };
+
+  return axios(config).then((response) => response);
+};
+
+const putUpdateOpPackage = (jsonData) => {
+  const url = `${BASE_URL}operator/package/edit`;
+  const data = JSON.stringify(jsonData);
+
+  var config = {
+    method: "put",
     url: url,
     headers: {
       Authorization: "Basic " + btoa("inps2jtd0ll5ru5:222m1lSSSu5"),

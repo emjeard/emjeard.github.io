@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { Select, Tooltip, Input, InputNumber, Button, Checkbox } from "antd";
+import { Select, Spin, Input, InputNumber, Button, Checkbox } from "antd";
 import store from "redux/store";
-import slugify from "slugify";
+import debounce from "lodash/debounce";
 import { HP_DATA_ACT } from "redux/actions/Handphone";
-import { getListProvince, getListCountry } from "api/ApiData";
+import { getListProvince, getListCountry, getSearchCity } from "api/ApiData";
 
 const { Option } = Select;
 const init_data = { id: 0, nama_hp: "", image: "" };
@@ -12,6 +12,11 @@ const reset_data = [];
 const AreaOperator = () => {
   const [dataProvince, setDataProvince] = useState([]);
   const [dataCountry, setDataCountry] = useState([]);
+  const [dataDefTagHp, setDefDataTagHp] = useState([]);
+  const [hpLoading, setHpLoading] = useState(false);
+  const [lastFetchIdHp, setLastFetchIdHp] = useState(0);
+  const [dataTagHp, setDataTagHp] = useState([]);
+
   useEffect(() => {
     (async () => {
       retrieveData();
@@ -20,6 +25,17 @@ const AreaOperator = () => {
   const retrieveData = () => {
     getProvince();
     getCountry();
+    const tags_city = store.getState().gen_hp_data.data.area_layanan_kota_list;
+    for (let m = 0; m < tags_city.length; m++) {
+      setDefDataTagHp((oldArray) => [
+        ...oldArray,
+        {
+          value: String(tags_city[m].id),
+          label: tags_city[m].name,
+          key: String(tags_city[m].id),
+        },
+      ]);
+    }
   };
   const getProvince = () => {
     getListProvince(1, 1000, "").then((response) => {
@@ -99,7 +115,44 @@ const AreaOperator = () => {
   for (let i = 0; i < propinsiTags.length; i++) {
     propinsiArr.push(propinsiTags[i] + "--area_layanan_propinsi");
   }
+  const handleSearchHp = (value) => {
+    //console.log(value);
+    if (value.length > 0) {
+      getTagHp(value);
+    }
+  };
+  const handleChangeHp = (selectedItems) => {
+    //console.log(selectedItems);
+    setDefDataTagHp(selectedItems);
+    let dataHp = "";
+    selectedItems.map((item) => (dataHp += item.value + ","));
+    dataHp = dataHp.substring(0, dataHp.length - 1);
+    store.dispatch(HP_DATA_ACT("area_layanan_kota", dataHp));
+  };
 
+  const getTagHp = (keyword) => {
+    setLastFetchIdHp(+1);
+    const fetchId = lastFetchIdHp;
+    setDataTagHp([]);
+    setHpLoading(true);
+    getSearchCity(keyword).then((response) => {
+      if (fetchId !== lastFetchIdHp) {
+        // for fetch callback order
+        return;
+      }
+      if (response.status === false) {
+        setDataTagHp([]);
+      } else {
+        const data = response.data.map((item) => ({
+          text: item.name,
+          value: item.id,
+        }));
+        setDataTagHp(data);
+      }
+
+      setHpLoading(false);
+    });
+  };
   function onSearchSelect(val) {
     console.log("search:", val);
   }
@@ -171,17 +224,20 @@ const AreaOperator = () => {
         >
           <div className="lbl-input-data">Kota</div>
           <Select
-            style={{ width: "-webkit-fill-available", height: 38.5 }}
-            name="op_jenis_paket"
-            placeholder="Pilih Kota"
-            optionFilterProp="children"
-            onChange={onChangeSelectGeneral}
-            onSearch={onSearchSelect}
-            defaultValue={undefined}
-            filterOption={(input, option) =>
-              option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-            }
-          ></Select>
+            mode="multiple"
+            labelInValue
+            value={dataDefTagHp}
+            placeholder="Contoh: Jakarta"
+            notFoundContent={hpLoading ? <Spin size="small" /> : null}
+            filterOption={false}
+            onSearch={debounce(handleSearchHp, 1000)}
+            onChange={handleChangeHp}
+            style={{ width: "100%", height: "auto !important" }}
+          >
+            {dataTagHp.map((item) => (
+              <Option key={item.value}>{item.text}</Option>
+            ))}
+          </Select>
         </div>
       </div>
       <div style={{ display: "flex" }}>

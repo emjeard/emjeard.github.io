@@ -9,12 +9,38 @@ const init_data = { id: 0, nama_hp: "", image: "" };
 const reset_data = [];
 
 const Telpon = () => {
+  const [cbTelpon1, setCbTelpon1] = useState(false);
+  const [cbTelpon2, setCbTelpon2] = useState(false);
+  const [cbTelpon3, setCbTelpon3] = useState(false);
+  const [cbTelpon4, setCbTelpon4] = useState(false);
   useEffect(() => {
     (async () => {
       retrieveData();
     })();
   }, []);
-  const retrieveData = () => {};
+  const retrieveData = () => {
+    setCbTelpon1(
+      store.getState().gen_hp_data.data.telpon_sesama_menit_unl === 1
+        ? true
+        : false
+    );
+
+    setCbTelpon2(
+      store.getState().gen_hp_data.data.sms_sesama_unl === 1 ? true : false
+    );
+
+    setCbTelpon3(
+      store.getState().gen_hp_data.data.telpon_antar_operator_menit_unl === 1
+        ? true
+        : false
+    );
+
+    setCbTelpon4(
+      store.getState().gen_hp_data.data.sms_antar_operator_unl === 1
+        ? true
+        : false
+    );
+  };
 
   const onChangeInputGeneral = (e) => {
     const stateName = e.target.name;
@@ -37,13 +63,18 @@ const Telpon = () => {
   const onChangeCb = (e, name) => {
     const stateName = name;
     const checked = e.target.checked;
-    const is_unlimited = checked === true ? 1 : 0;
-    console.log(`checked = ${checked} ${stateName}`);
+    const is_unlimited = checked === true ? 1 : 2;
+    if (stateName === "telpon_sesama_menit_unl") {
+      setCbTelpon1(checked);
+    } else if (stateName === "sms_sesama_unl") {
+      setCbTelpon2(checked);
+    } else if (stateName === "telpon_antar_operator_menit_unl") {
+      setCbTelpon3(checked);
+    } else if (stateName === "sms_antar_operator_unl") {
+      setCbTelpon4(checked);
+    }
     store.dispatch(HP_DATA_ACT(stateName, is_unlimited));
   };
-  function onSearchSelect(val) {
-    console.log("search:", val);
-  }
   return (
     <div>
       <div id="op-telpon" className="lay-segment affix-op-telpon">
@@ -77,6 +108,7 @@ const Telpon = () => {
           <div style={{ padding: "5px 10px" }}>
             <Checkbox
               onChange={(e) => onChangeCb(e, "telpon_sesama_menit_unl")}
+              checked={cbTelpon1}
             >
               Unlimited
             </Checkbox>
@@ -104,7 +136,10 @@ const Telpon = () => {
             />
           </Input.Group>
           <div style={{ padding: "5px 10px" }}>
-            <Checkbox onChange={(e) => onChangeCb(e, "sms_sesama_unl")}>
+            <Checkbox
+              onChange={(e) => onChangeCb(e, "sms_sesama_unl")}
+              checked={cbTelpon2}
+            >
               Unlimited
             </Checkbox>
           </div>
@@ -143,6 +178,7 @@ const Telpon = () => {
           <div style={{ padding: "5px 10px" }}>
             <Checkbox
               onChange={(e) => onChangeCb(e, "telpon_antar_operator_menit_unl")}
+              checked={cbTelpon3}
             >
               Unlimited
             </Checkbox>
@@ -170,7 +206,10 @@ const Telpon = () => {
             />
           </Input.Group>
           <div style={{ padding: "5px 10px" }}>
-            <Checkbox onChange={(e) => onChangeCb(e, "sms_antar_operator_unl")}>
+            <Checkbox
+              onChange={(e) => onChangeCb(e, "sms_antar_operator_unl")}
+              checked={cbTelpon4}
+            >
               Unlimited
             </Checkbox>
           </div>

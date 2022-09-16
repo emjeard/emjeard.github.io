@@ -1,10 +1,9 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { Select, DatePicker, Button } from "antd";
+import { Select, DatePicker, Button, Spin } from "antd";
 import moment from "moment";
 import store from "redux/store";
 import { HP_DATA_ACT } from "redux/actions/Handphone";
 import CKEditorCustom from "views/app-views/components/data-entry/input/CKEditorCustom";
-import { SaveOutlined } from "@ant-design/icons";
 
 const { Option } = Select;
 const init_data = { id: 0, nama_hp: "", image: "" };
@@ -17,7 +16,16 @@ const AdditionalInfo = () => {
       retrieveData();
     })();
   }, []);
-  const retrieveData = () => {};
+  const retrieveData = () => {
+    const last_update = store.getState().gen_hp_data.data.updated_at_u;
+    if (last_update !== 0) {
+      const dateString = moment
+        .unix(last_update / 1000)
+        .format("YYYY-MM-DD HH:mm:ss");
+      console.log(dateString);
+      setUpdatedAt(dateString);
+    }
+  };
 
   const onChangeInputGeneral = (e) => {
     const stateName = e.target.name;
@@ -34,15 +42,10 @@ const AdditionalInfo = () => {
   };
 
   const onChangeUpdatedAt = (date, dateString) => {
+    console.log(date);
     setUpdatedAt(dateString);
-    store.dispatch(HP_DATA_ACT("created_at_u", dateString));
-  };
-
-  const onSubmitData = (e) => {
-    const created_at = Date.now();
-    const updated_at = Date.now();
-    store.dispatch(HP_DATA_ACT("created_at", created_at));
-    store.dispatch(HP_DATA_ACT("updated_at", updated_at));
+    const update_at_u = moment(dateString, "YYYY-MM-DD HH:mm:ss").valueOf();
+    store.dispatch(HP_DATA_ACT("updated_at_u", update_at_u));
   };
 
   return (
@@ -69,17 +72,6 @@ const AdditionalInfo = () => {
           />
         </div>
       </div>
-      <Button
-        onClick={onSubmitData}
-        type="primary"
-        icon={<SaveOutlined />}
-        style={{
-          width: "-webkit-fill-available",
-          margin: "15px 0px 10px 0px",
-        }}
-      >
-        Save
-      </Button>
     </div>
   );
 };

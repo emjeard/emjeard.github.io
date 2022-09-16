@@ -37,10 +37,11 @@ const init_data = {
   area_layanan: "",
   area_layanan_propinsi: "",
   area_layanan_kota: "",
+  area_layanan_kota_list: [],
   area_layanan_negara: "",
   additional_info: "",
   created_by: "",
-  created_at_u: "",
+  updated_at_u: 0,
   created_at: "",
   updated_at: "",
 };

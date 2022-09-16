@@ -135,6 +135,8 @@ class CKEditorCustom extends Component {
               ? store.getState().hpproscons.pros_data
               : this.props.editor_type === "brand"
               ? store.getState().form_input.form_1_data
+              : this.props.editor_type === "additional_info"
+              ? store.getState().gen_hp_data.data.additional_info
               : store.getState().hpproscons.cons_data
           }
           onReady={(editor) => {

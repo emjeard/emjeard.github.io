@@ -27,7 +27,7 @@
 
 	"sidenav.operators": "OPERATORS",
 	"sidenav.operators.list_operators": "List Operators",
-	"sidenav.operators.add_operator": "Add Data",
+	"sidenav.operators.list_packages": "List Packages",
 
 	"sidenav.pages": "Pages",
 	"sidenav.pages.profile": "Profile",

@@ -57,7 +57,8 @@ const DataOperator = () => {
               store.getState().gen_hp_data.data.data_jaringan === "" ||
               store.getState().gen_hp_data.data.data_jaringan === 0
                 ? undefined
-                : store.getState().gen_hp_data.data.data_jaringan
+                : store.getState().gen_hp_data.data.data_jaringan +
+                  "--data_jaringan"
             }
             filterOption={(input, option) =>
               option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
@@ -110,7 +111,8 @@ const DataOperator = () => {
               store.getState().gen_hp_data.data.data_jenis_paket === "" ||
               store.getState().gen_hp_data.data.data_jenis_paket === 0
                 ? undefined
-                : store.getState().gen_hp_data.data.data_jenis_paket
+                : store.getState().gen_hp_data.data.data_jenis_paket +
+                  "--data_jenis_paket"
             }
             filterOption={(input, option) =>
               option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
