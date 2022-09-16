@@ -212,10 +212,39 @@ const componentsNavTree = [
   },
 ];
 
+const operatorsNavTree = [
+  {
+    key: "operators",
+    path: `${APP_PREFIX_PATH}/operators`,
+    title: "sidenav.operators",
+    icon: AntDesignOutlined,
+    breadcrumb: true,
+    submenu: [
+      {
+        key: "operators-list_operators",
+        path: `${APP_PREFIX_PATH}/operators/list`,
+        title: "sidenav.operators.list_operators",
+        icon: InfoCircleOutlined,
+        breadcrumb: false,
+        submenu: [],
+      },
+      {
+        key: "operators-add_operator",
+        path: `${APP_PREFIX_PATH}/operators/add`,
+        title: "sidenav.operators.add_operator",
+        icon: InfoCircleOutlined,
+        breadcrumb: false,
+        submenu: [],
+      },
+    ],
+  },
+];
+
 const navigationConfig = [
   ...dashBoardNavTree,
   ...appsNavTree,
   ...componentsNavTree,
+  ...operatorsNavTree,
 ];
 
 export default navigationConfig;

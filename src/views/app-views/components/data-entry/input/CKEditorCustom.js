@@ -4,7 +4,7 @@ import Editor from "ckeditor-inponsel";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import store from "redux/store";
 import ADD_DATA from "redux/actions";
-import { HP_PROS, HP_CONS } from "redux/actions/Handphone";
+import { HP_PROS, HP_CONS, HP_DATA_ACT } from "redux/actions/Handphone";
 import { INPUT_1_ACT } from "redux/actions/FormInput";
 
 class CKEditorCustom extends Component {
@@ -152,6 +152,8 @@ class CKEditorCustom extends Component {
                 ? HP_PROS(data)
                 : this.props.editor_type === "brand"
                 ? INPUT_1_ACT(data)
+                : this.props.editor_type === "additional_info"
+                ? HP_DATA_ACT("additional_info", data)
                 : HP_CONS(data)
             );
           }}

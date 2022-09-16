@@ -44,6 +44,11 @@ export const AppViews = () => {
           component={lazy(() => import(`./handphones`))}
           forceRefresh={true}
         />
+        <Route
+          path={`${APP_PREFIX_PATH}/operators`}
+          component={lazy(() => import(`./operators`))}
+          forceRefresh={true}
+        />
         <Redirect
           from={`${APP_PREFIX_PATH}`}
           to={`${APP_PREFIX_PATH}/dashboards`}

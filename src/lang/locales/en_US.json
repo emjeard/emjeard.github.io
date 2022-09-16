@@ -25,6 +25,10 @@
 	"sidenav.data_source.hp_terlaris": "Hp Terlaris",
 	"sidenav.data_source.hp_terlaris.shopee": "Shopee",
 
+	"sidenav.operators": "OPERATORS",
+	"sidenav.operators.list_operators": "List Operators",
+	"sidenav.operators.add_operator": "Add Data",
+
 	"sidenav.pages": "Pages",
 	"sidenav.pages.profile": "Profile",
 	"sidenav.pages.invoice": "Invoice",

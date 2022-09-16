@@ -49,6 +49,8 @@ export {
   getCompareHp,
   getGenerateCompareHp,
   getListBrands,
+  getListProvince,
+  getListOperator,
   putUpdateBrand,
   postCreateBrand,
   getRootPathSitePage,
@@ -231,6 +233,14 @@ const getListBrands = (page, many, filter) => {
   return axios.get(url, headerRequest).then((response) => response.data);
 };
 
+const getListOperator = (page, many, filter) => {
+  const url = `${BASE_URL}operator/list?page=${page}&many=${many}&order=${filter}`;
+  return axios.get(url, headerRequest).then((response) => response.data);
+};
+const getListProvince = (page, many, filter) => {
+  const url = `${BASE_URL}province/list?page=${page}&many=${many}&order=${filter}`;
+  return axios.get(url, headerRequest).then((response) => response.data);
+};
 const getListCompareHp = (page, many, filter) => {
   const url = `${BASE_URL}hp/compare/list?page=${page}&many=${many}${filter}`;
   return axios.get(url, headerRequest).then((response) => response.data);

@@ -38,7 +38,7 @@
   margin: 5px;
   font-size: 0.8rem;
   font-weight: 500;
-  color:#bbb;
+  color: #bbb;
 }
 .lay-group-label {
   background: #f7f7f8 !important;
@@ -113,4 +113,22 @@
 }
 .affix-proscons {
   background: #aeea00;
+}
+.affix-op-general {
+  background: #ffcc99;
+}
+.affix-op-masa-aktiv {
+  background: #ff9999;
+}
+.affix-op-data {
+  background: #cc99ff;
+}
+.affix-op-telpon {
+  background: #ff99ff;
+}
+.affix-op-area-layanan {
+  background: #ccccff;
+}
+.affix-op-informasi-tambahan {
+  background: #ff9966;
 }
