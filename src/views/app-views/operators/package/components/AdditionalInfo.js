@@ -17,7 +17,7 @@ const AdditionalInfo = () => {
     })();
   }, []);
   const retrieveData = () => {
-    const last_update = store.getState().gen_hp_data.data.updated_at_u;
+    const last_update = store.getState().gen_hp_data.data.updated_at;
     if (last_update !== 0) {
       const dateString = moment
         .unix(last_update / 1000)

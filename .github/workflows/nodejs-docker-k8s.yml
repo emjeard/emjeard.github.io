@@ -34,5 +34,3 @@ jobs:
             sudo rm -rf package-lock.json
             git stash
             git pull https://${{ secrets.GIT_TOKEN }}:x-oauth-basic@github.com/emjeard/inponsel-dash-react.git master
-            npm i -d postcss
-            npm run build
