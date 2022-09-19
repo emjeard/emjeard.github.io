@@ -56,7 +56,11 @@ const GeneralOperator = () => {
   }
   return (
     <div>
-      <div id="op-general" className="lay-segment affix-op-general">
+      <div
+        id="op-general"
+        className="lay-segment affix-op-general"
+        style={{ color: "#212121" }}
+      >
         General
       </div>
       <div style={{ display: "flex" }}>
@@ -66,7 +70,9 @@ const GeneralOperator = () => {
             marginTop: "10px",
           }}
         >
-          <div className="lbl-input-data">Nama Paket</div>
+          <div className="lbl-input-data" style={{ color: "#777" }}>
+            Nama Paket
+          </div>
           <Input
             placeholder="Contoh: Combo Sakti Unlimited 15GB"
             style={{ minWidth: 230 }}
