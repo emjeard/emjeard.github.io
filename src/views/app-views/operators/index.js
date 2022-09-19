@@ -7,6 +7,10 @@ const Dashboards = ({ match }) => {
     <Suspense fallback={<Loading cover="content" />}>
       <Switch>
         <Route
+          path={`${match.url}/add`}
+          component={lazy(() => import(`./add`))}
+        />{" "}
+        <Route
           path={`${match.url}/list`}
           component={lazy(() => import(`./list`))}
         />

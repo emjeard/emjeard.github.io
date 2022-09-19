@@ -110,7 +110,17 @@ const GeneralOperator = () => {
                 <CloudUploadOutlined style={{ fontSize: "4rem" }} />
               </p>
             ) : (
-              <img src={dataImgOp} alt="img" width="200px" height="200px" />
+              <img
+                src={
+                  store.getState().gen_hp_data.data.img_file === undefined
+                    ? "https://is3.cloudhost.id/inps/images/operator/" +
+                      dataImgOp
+                    : dataImgOp
+                }
+                alt="img"
+                width="200px"
+                height="200px"
+              />
             )}
           </div>
         </div>

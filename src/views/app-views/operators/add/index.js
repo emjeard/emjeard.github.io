@@ -3,7 +3,7 @@ import { Select, Spin, Input, Card, Button, Checkbox } from "antd";
 import General from "../components/General";
 import store from "redux/store";
 import { GEN_INPUT_ACT } from "redux/actions/General";
-import { getDetailOp, putUpdateOp, postUploadFile } from "api/ApiData";
+import { getDetailOp, postUpdateOp, postUploadFile } from "api/ApiData";
 import WebSosMed from "../components/WebSosMed";
 import AdditionalInfo from "../components/AdditionalInfo";
 import { ToastContainer, toast } from "react-toastify";
@@ -35,8 +35,7 @@ const init_data = {
 };
 const reset_data = [];
 
-const OperatorEdit = (props) => {
-  const id_op = props.match.params.id;
+const OperatorAdd = (props) => {
   const [imgLogo, setImgLogo] = useState("");
   const [updateLoading, setUpdateLoading] = useState(false);
   const [dataTagBrand, setDataTagBrand] = useState([]);
@@ -47,19 +46,8 @@ const OperatorEdit = (props) => {
     })();
   }, []);
   const retrieveData = () => {
-    setFirstLoading(true);
-
-    getDetailOp(id_op)
-      .then((response) => {
-        const dataOp = response.data;
-        store.dispatch(GEN_INPUT_ACT("data", dataOp));
-
-        setFirstLoading(false);
-      })
-      .catch(() => {
-        //console.log(e);
-        setFirstLoading(false);
-      });
+    store.dispatch(GEN_INPUT_ACT("data", init_data));
+    setFirstLoading(false);
   };
 
   const upload_file = async () => {
@@ -80,7 +68,7 @@ const OperatorEdit = (props) => {
 
   const update_data = async () => {
     const final_update = await store.getState().gen_hp_data.data;
-    putUpdateOp(final_update).then((resp) => {
+    postUpdateOp(final_update).then((resp) => {
       console.log(resp);
       if (resp.data.status === true) {
         toast.success(resp.data.message, {
@@ -112,6 +100,7 @@ const OperatorEdit = (props) => {
   const onSubmitData = async (e) => {
     const updated_at = Date.now();
     const modified = moment(updated_at).format("YYYY-MM-DD HH:mm:ss");
+    store.dispatch(HP_DATA_ACT("created", modified));
     store.dispatch(HP_DATA_ACT("modified", modified));
     setUpdateLoading(true);
 
@@ -172,4 +161,4 @@ const OperatorEdit = (props) => {
   );
 };
 
-export default OperatorEdit;
+export default OperatorAdd;

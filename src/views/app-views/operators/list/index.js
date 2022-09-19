@@ -110,7 +110,7 @@ const ListOperator = () => {
           <Button
             type="primary"
             icon={<PlusOutlined />}
-            onClick={() => routeChange("/operators/packages/add")}
+            onClick={() => routeChange("/operators/add")}
           ></Button>
         </div>
         <Sticky enabled={true} top={70} innerZ={1}>
