@@ -3,7 +3,7 @@ import { Select, Spin, Input, Card, Button, Checkbox } from "antd";
 import General from "../components/General";
 import store from "redux/store";
 import { GEN_INPUT_ACT } from "redux/actions/General";
-import { getDetailOp, putUpdateOp } from "api/ApiData";
+import { getDetailOp, putUpdateOp, postUploadFile } from "api/ApiData";
 import WebSosMed from "../components/WebSosMed";
 import AdditionalInfo from "../components/AdditionalInfo";
 import { ToastContainer, toast } from "react-toastify";
@@ -37,6 +37,7 @@ const reset_data = [];
 
 const OperatorEdit = (props) => {
   const id_op = props.match.params.id;
+  const [imgLogo, setImgLogo] = useState("");
   const [updateLoading, setUpdateLoading] = useState(false);
   const [dataTagBrand, setDataTagBrand] = useState([]);
   const [firstLoading, setFirstLoading] = useState(true);
@@ -60,12 +61,21 @@ const OperatorEdit = (props) => {
         setFirstLoading(false);
       });
   };
-  const onSubmitData = async (e) => {
-    const updated_at = Date.now();
-    const modified = moment(updated_at).format("YYYY-MM-DD HH:mm:ss");
-    store.dispatch(HP_DATA_ACT("modified", modified));
-    setUpdateLoading(true);
-    let final_update = await store.getState().gen_hp_data.data;
+
+  const upload_file = async () => {
+    await postUploadFile(
+      store.getState().gen_hp_data.data.img_file,
+      "",
+      "images/operator/"
+    ).then((resp) => {
+      console.log("object", resp);
+      setImgLogo(resp.data.message);
+      store.dispatch(HP_DATA_ACT("logo", resp.data.message));
+    });
+  };
+
+  const update_data = async () => {
+    const final_update = await store.getState().gen_hp_data.data;
     putUpdateOp(final_update).then((resp) => {
       console.log(resp);
       if (resp.data.status === true) {
@@ -79,10 +89,7 @@ const OperatorEdit = (props) => {
           progress: undefined,
           theme: "colored",
         });
-        setTimeout(
-          () => (window.location.href = "/operators/list"),
-          3000
-        );
+        setTimeout(() => (window.location.href = "/operators/list"), 3000);
       } else {
         toast.error("Gagal update data", {
           position: "top-right",
@@ -97,6 +104,19 @@ const OperatorEdit = (props) => {
       }
       setUpdateLoading(false);
     });
+  };
+  const onSubmitData = async (e) => {
+    const updated_at = Date.now();
+    const modified = moment(updated_at).format("YYYY-MM-DD HH:mm:ss");
+    store.dispatch(HP_DATA_ACT("modified", modified));
+    setUpdateLoading(true);
+
+    if (store.getState().gen_hp_data.data.img_file === undefined) {
+      update_data();
+    } else {
+      await upload_file();
+      await update_data();
+    }
   };
   return firstLoading === true ? (
     <div

@@ -159,7 +159,7 @@ class CKEditorCustom extends Component {
                 : this.props.editor_type === "additional_info"
                 ? HP_DATA_ACT("additional_info", data)
                 : this.props.editor_type === "tentang_perusahaan"
-                ? store.getState().gen_hp_data.data.dscp
+                ? HP_DATA_ACT("tentang_perusahaan", data)
                 : HP_CONS(data)
             );
           }}

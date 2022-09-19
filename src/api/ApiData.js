@@ -63,6 +63,7 @@ export {
   getRootPathSitePage,
   getListGalleryHp,
   putUpdateGalleryHp,
+  postUploadFile,
 };
 
 const getToken = function () {
@@ -627,4 +628,15 @@ const putUpdateGalleryHp = (id, galeri) => {
   return axios
     .put(url, formData, headerRequest)
     .then((response) => response.data);
+};
+
+const postUploadFile = (file, fileName, folder) => {
+  const url = `${BASE_URL}admin/upload/s3`;
+
+  const formData = new FormData();
+  formData.append("file", file);
+  formData.append("fileName", fileName);
+  formData.append("folder_path", folder);
+
+  return axios.post(url, formData, headerRequest).then((response) => response);
 };

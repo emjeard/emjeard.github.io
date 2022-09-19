@@ -1,11 +1,9 @@
-import React, { useState, useEffect, useCallback } from "react";
-import { Select, Tooltip, Input, InputNumber, Button, Checkbox } from "antd";
+import React, { useState, useEffect } from "react";
+import { Select, Input } from "antd";
 import store from "redux/store";
-import slugify from "slugify";
 import { HP_DATA_ACT } from "redux/actions/Handphone";
-import { InfoCircleOutlined, SaveOutlined } from "@ant-design/icons";
+import { CloudUploadOutlined } from "@ant-design/icons";
 import { getListOperator } from "api/ApiData";
-import Drag from "./Drag";
 
 const { TextArea } = Input;
 
@@ -15,13 +13,15 @@ const reset_data = [];
 
 const GeneralOperator = () => {
   const [dataOperator, setDataOperator] = useState([]);
-
+  const [dataImgOp, setDataImgOp] = useState("");
+  const hiddenFileInput = React.useRef(null);
   useEffect(() => {
     (async () => {
       retrieveData();
     })();
   }, []);
   const retrieveData = () => {
+    setDataImgOp(store.getState().gen_hp_data.data.logo);
     getOperator();
   };
   const getOperator = () => {
@@ -50,6 +50,15 @@ const GeneralOperator = () => {
     const stateName = name;
     let stateValue = e;
     store.dispatch(HP_DATA_ACT(stateName, stateValue));
+  };
+
+  const handleChangeImage = (e) => {
+    setDataImgOp(URL.createObjectURL(e.target.files[0]));
+    console.log("img", e.target.files[0]);
+    store.dispatch(HP_DATA_ACT("img_file", e.target.files[0]));
+  };
+  const handleClick = (event) => {
+    hiddenFileInput.current.click();
   };
 
   function onSearchSelect(val) {
@@ -84,8 +93,25 @@ const GeneralOperator = () => {
       <div style={{ display: "flex" }}>
         <div className="lay-subsegment">
           <div className="lbl-input-data">Logo (600x600)</div>
-          <div style={{ position: "relative" }}>
-            <Drag image={""} id="img-operator" className="drag-operator"/>
+          <div
+            className="col-12"
+            style={{ padding: 0, margin: 0, textAlign: "center" }}
+          >
+            <input
+              ref={hiddenFileInput}
+              type="file"
+              id="img"
+              name="img"
+              accept="image/*"
+              onChange={handleChangeImage}
+            />
+            {dataImgOp === "" ? (
+              <p className="ant-upload-drag-icon" onClick={handleClick}>
+                <CloudUploadOutlined style={{ fontSize: "4rem" }} />
+              </p>
+            ) : (
+              <img src={dataImgOp} alt="img" width="200px" height="200px" />
+            )}
           </div>
         </div>
         <div
@@ -102,7 +128,12 @@ const GeneralOperator = () => {
             name="addr"
             placeholder=""
             onChange={onChangeInputGeneral}
-            value={store.getState().hpproscons.addr}
+            value={store.getState().gen_hp_data.data.addr}
+            defaultValue={
+              store.getState().gen_hp_data.data.addr == null
+                ? undefined
+                : store.getState().gen_hp_data.data.addr
+            }
           />
         </div>
       </div>
