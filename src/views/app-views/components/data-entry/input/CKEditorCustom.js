@@ -137,6 +137,8 @@ class CKEditorCustom extends Component {
               ? store.getState().form_input.form_1_data
               : this.props.editor_type === "additional_info"
               ? store.getState().gen_hp_data.data.additional_info
+              : this.props.editor_type === "tentang_perusahaan"
+              ? store.getState().gen_hp_data.data.dscp
               : store.getState().hpproscons.cons_data
           }
           onReady={(editor) => {
@@ -156,6 +158,8 @@ class CKEditorCustom extends Component {
                 ? INPUT_1_ACT(data)
                 : this.props.editor_type === "additional_info"
                 ? HP_DATA_ACT("additional_info", data)
+                : this.props.editor_type === "tentang_perusahaan"
+                ? store.getState().gen_hp_data.data.dscp
                 : HP_CONS(data)
             );
           }}

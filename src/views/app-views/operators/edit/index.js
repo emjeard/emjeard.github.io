@@ -1,55 +1,41 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { Select, Spin, Input, Card, Button, Checkbox } from "antd";
-import { getSearchHp, getDetailOpPack, postEditHp } from "api/ApiData";
-import { SaveOutlined } from "@ant-design/icons";
-import { putUpdateOpPackage } from "api/ApiData";
+import General from "../components/General";
+import store from "redux/store";
+import { GEN_INPUT_ACT } from "redux/actions/General";
+import { getDetailOp, putUpdateOp } from "api/ApiData";
+import WebSosMed from "../components/WebSosMed";
+import AdditionalInfo from "../components/AdditionalInfo";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { GEN_INPUT_ACT } from "redux/actions/General";
-import GeneralOperator from "../components/General";
-import ActivePeriode from "../components/ActivePeriode";
-import DataOperator from "../components/Data";
-import Telpon from "../components/Telpon";
-import AreaOperator from "../components/Area";
-import AdditionalInfo from "../components/AdditionalInfo";
-import store from "redux/store";
+import { SaveOutlined } from "@ant-design/icons";
 import { HP_DATA_ACT } from "redux/actions/Handphone";
-const { TextArea } = Input;
+import moment from "moment";
 
 const { Option } = Select;
 const init_data = {
-  name: "",
-  jenis_layanan: "",
-  id_operator: "",
-  jenis_paket: "",
-  price: "",
-  masa_aktiv_periode: "",
-  masa_aktiv_durasi: "",
-  data_jaringan: "",
-  data_kecepatan_mbps: "",
-  data_jenis_paket: "",
-  data_kuota_mb: "",
-  telpon_sesama_menit: "",
-  telpon_sesama_menit_unl: 0,
-  sms_sesama: "",
-  sms_sesama_unl: 0,
-  telpon_antar_operator_menit: "",
-  telpon_antar_operator_menit_unl: 0,
-  sms_antar_operator: "",
-  sms_antar_operator_unl: 0,
-  area_layanan: "",
-  area_layanan_propinsi: "",
-  area_layanan_kota: "",
-  area_layanan_negara: "",
-  additional_info: "",
-  created_by: "",
-  updated_at_u: "",
-  created_at: "",
-  updated_at: "",
+  id: 0,
+  nm_op_parent: "",
+  tag: "",
+  logo: "",
+  dscp: "",
+  addr: "",
+  c_center: "",
+  em: "",
+  url: "",
+  fb: "",
+  tw: "",
+  instagrm: "",
+  ytube: "",
+  ch: "",
+  tiktok: "",
+  ord: 0,
+  created: "",
+  modified: "",
 };
 const reset_data = [];
 
-const EditOperatorPack = (props) => {
+const OperatorEdit = (props) => {
   const id_op = props.match.params.id;
   const [updateLoading, setUpdateLoading] = useState(false);
   const [dataTagBrand, setDataTagBrand] = useState([]);
@@ -62,7 +48,7 @@ const EditOperatorPack = (props) => {
   const retrieveData = () => {
     setFirstLoading(true);
 
-    getDetailOpPack(id_op)
+    getDetailOp(id_op)
       .then((response) => {
         const dataOp = response.data;
         store.dispatch(GEN_INPUT_ACT("data", dataOp));
@@ -75,17 +61,12 @@ const EditOperatorPack = (props) => {
       });
   };
   const onSubmitData = async (e) => {
-    const created_at = Date.now();
     const updated_at = Date.now();
-    let updated_at_u = store.getState().gen_hp_data.data.updated_at_u;
-    store.dispatch(HP_DATA_ACT("created_at", created_at));
-    store.dispatch(HP_DATA_ACT("updated_at", updated_at));
-    if (updated_at_u === "") {
-      store.dispatch(HP_DATA_ACT("updated_at_u", updated_at));
-    }
+    const modified = moment(updated_at).format("YYYY-MM-DD HH:mm:ss");
+    store.dispatch(HP_DATA_ACT("modified", modified));
     setUpdateLoading(true);
     let final_update = await store.getState().gen_hp_data.data;
-    putUpdateOpPackage(final_update).then((resp) => {
+    putUpdateOp(final_update).then((resp) => {
       console.log(resp);
       if (resp.data.status === true) {
         toast.success(resp.data.message, {
@@ -99,7 +80,7 @@ const EditOperatorPack = (props) => {
           theme: "colored",
         });
         setTimeout(
-          () => (window.location.href = "/operators/packages/list"),
+          () => (window.location.href = "/operators/list"),
           3000
         );
       } else {
@@ -129,16 +110,10 @@ const EditOperatorPack = (props) => {
       <Spin size="large" />
     </div>
   ) : (
-    <Card>
-      <div>
-        <div style={{ fontSize: 18, fontWeight: 600 }}>
-          Data Operator Seluler: Telpon, SMS, Paket Data
-        </div>
-        <GeneralOperator />
-        <ActivePeriode />
-        <DataOperator />
-        <Telpon />
-        <AreaOperator />
+    <div>
+      <Card>
+        <General />
+        <WebSosMed />
         <AdditionalInfo />
         {updateLoading ? (
           ""
@@ -168,9 +143,9 @@ const EditOperatorPack = (props) => {
         )}
 
         <ToastContainer />
-      </div>
-    </Card>
+      </Card>
+    </div>
   );
 };
 
-export default EditOperatorPack;
+export default OperatorEdit;

@@ -2,8 +2,8 @@ import React, { useState, useEffect, useCallback } from "react";
 import { Select, Card, Input, Spin, Pagination, Button } from "antd";
 import { useHistory } from "react-router-dom";
 import Sticky from "react-stickynode";
-import { getListOperatorPack } from "api/ApiData";
-import ListPackage from "./ListPackage";
+import { getListOperator } from "api/ApiData";
+import ItemListOperator from "./ItemListOperator";
 import moment from "moment";
 import {
   MenuFoldOutlined,
@@ -18,7 +18,7 @@ const { Option } = Select;
 const init_data = { id: 0, nama_hp: "", image: "" };
 const reset_data = [];
 
-const ListOperatorPack = () => {
+const ListOperator = () => {
   const [dataNews, setDataNews] = useState([]);
   const [keysearch, setKeysearch] = useState("");
   const [totalData, setTotalData] = useState(0);
@@ -47,7 +47,7 @@ const ListOperatorPack = () => {
   const retrieveDatahp = (page, many, filter) => {
     setFirstLoading(true);
     page = page === null ? 1 : page;
-    getListOperatorPack(page, many, filter)
+    getListOperator(page, many, filter)
       .then((response) => {
         if (response.status === true) {
           setDataNews(response.data);
@@ -142,13 +142,11 @@ const ListOperatorPack = () => {
                 backgroundColor: index % 2 ? "#f7f7f7" : "white",
               }}
             >
-              <ListPackage
+              <ItemListOperator
                 id={items.id}
                 name={items.name}
-                operator={items.operator}
-                last_update={moment
-                  .unix(items.last_update / 1000)
-                  .format("YYYY-MM-DD HH:mm:ss")}
+                logo={items.logo}
+                last_update={items.modified}
               />
             </div>
           ))}
@@ -173,4 +171,4 @@ const ListOperatorPack = () => {
   );
 };
 
-export default ListOperatorPack;
+export default ListOperator;

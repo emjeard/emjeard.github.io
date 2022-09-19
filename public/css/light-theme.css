@@ -33121,6 +33121,8 @@ button.bg-dark:hover {
     max-width: 50px; 
     width: 50px;
 }
+.drag-operator{
+}
 .lay-hp-name{
     font-size: 12px;
     padding: 5px 15px; 

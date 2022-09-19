@@ -221,6 +221,14 @@ const operatorsNavTree = [
     breadcrumb: true,
     submenu: [
       {
+        key: "operators-list_operators",
+        path: `${APP_PREFIX_PATH}/operators/list`,
+        title: "sidenav.operators.list_operators",
+        icon: InfoCircleOutlined,
+        breadcrumb: false,
+        submenu: [],
+      },
+      {
         key: "operators-list_packages",
         path: `${APP_PREFIX_PATH}/operators/packages/list`,
         title: "sidenav.operators.list_packages",

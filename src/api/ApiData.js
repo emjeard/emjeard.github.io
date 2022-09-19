@@ -42,12 +42,14 @@ export {
   getListTagBrand,
   getDetailHp,
   getDetailOp,
+  getDetailOpPack,
   postUploadAvatar,
   postCreateArticle,
   postCreateHp,
   postEditHp,
   postCreateOpPackage,
   putUpdateOpPackage,
+  putUpdateOp,
   putUpdateArticle,
   putUpdateHandphone,
   getCompareHp,
@@ -119,8 +121,13 @@ const getDetailHp = (id) => {
   return axios.get(url, headerRequest).then((response) => response.data);
 };
 
-const getDetailOp = (id) => {
+const getDetailOpPack = (id) => {
   const url = `${BASE_URL}operator/package?id=${id}`;
+  return axios.get(url, headerRequest).then((response) => response.data);
+};
+
+const getDetailOp = (id) => {
+  const url = `${BASE_URL}operator?id=${id}`;
   return axios.get(url, headerRequest).then((response) => response.data);
 };
 
@@ -337,6 +344,23 @@ const postCreateOpPackage = (jsonData) => {
 
   var config = {
     method: "post",
+    url: url,
+    headers: {
+      Authorization: "Basic " + btoa("inps2jtd0ll5ru5:222m1lSSSu5"),
+      "ADM-Token": getToken(),
+      "Content-Type": "application/json",
+    },
+    data: data,
+  };
+
+  return axios(config).then((response) => response);
+};
+const putUpdateOp = (jsonData) => {
+  const url = `${BASE_URL}operator/edit`;
+  const data = JSON.stringify(jsonData);
+
+  var config = {
+    method: "put",
     url: url,
     headers: {
       Authorization: "Basic " + btoa("inps2jtd0ll5ru5:222m1lSSSu5"),
