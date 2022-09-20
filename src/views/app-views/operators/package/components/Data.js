@@ -40,7 +40,11 @@ const DataOperator = () => {
   }
   return (
     <div>
-      <div id="op-data" className="lay-segment affix-op-data">
+      <div
+        id="op-data"
+        className="lay-segment affix-op-data"
+        style={{ color: "#212121" }}
+      >
         Data
       </div>
       <div style={{ display: "flex" }}>

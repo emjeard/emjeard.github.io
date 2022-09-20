@@ -1,9 +1,14 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { Select, Spin, Input, Card, Button, Checkbox } from "antd";
+import { Select, Spin, Modal, Card, Button, Checkbox } from "antd";
 import General from "../components/General";
 import store from "redux/store";
 import { GEN_INPUT_ACT } from "redux/actions/General";
-import { getDetailOp, putUpdateOp, postUploadFile } from "api/ApiData";
+import {
+  getDetailOp,
+  putUpdateOp,
+  postUploadFile,
+  delDetailOp,
+} from "api/ApiData";
 import WebSosMed from "../components/WebSosMed";
 import AdditionalInfo from "../components/AdditionalInfo";
 import { ToastContainer, toast } from "react-toastify";
@@ -11,6 +16,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { SaveOutlined } from "@ant-design/icons";
 import { HP_DATA_ACT } from "redux/actions/Handphone";
 import moment from "moment";
+const { confirm } = Modal;
 
 const { Option } = Select;
 const init_data = {
@@ -122,6 +128,51 @@ const OperatorEdit = (props) => {
       await update_data();
     }
   };
+
+  const onSubmitDel = async (e) => {
+    confirm({
+      title: "Do you want to delete these items?",
+      content: store.getState().gen_hp_data.data.name,
+      async onOk() {
+        return new Promise((resolve, reject) => {
+          //setTimeout(Math.random() > 0.5 ? resolve : reject, 1000);
+          delDetailOp(id_op).then((response) => {
+            if (response.status === true) {
+              toast.success(response.message, {
+                position: "top-right",
+                autoClose: true,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+              });
+              setTimeout(
+                () => (window.location.href = "/operators/list"),
+                3000
+              );
+              resolve();
+            } else {
+              resolve();
+              toast.error("Gagal menghapus data", {
+                position: "top-right",
+                autoClose: true,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+              });
+            }
+          });
+        }).catch(() => console.log("Oops errors!"));
+      },
+      onCancel() {},
+    });
+  };
+
   return firstLoading === true ? (
     <div
       style={{
@@ -142,17 +193,34 @@ const OperatorEdit = (props) => {
         {updateLoading ? (
           ""
         ) : (
-          <Button
-            onClick={onSubmitData}
-            type="primary"
-            icon={<SaveOutlined />}
-            style={{
-              width: "-webkit-fill-available",
-              margin: "15px 0px 10px 0px",
-            }}
-          >
-            Save
-          </Button>
+          <div style={{ display: "flex", justifyContent: "center" }}>
+            <Button
+              onClick={onSubmitData}
+              type="primary"
+              icon={<SaveOutlined />}
+              style={{
+                margin: "15px 10px 10px 0px",
+                background: "#009933",
+                borderColor: "#009933",
+                width: 200,
+              }}
+            >
+              Simpan
+            </Button>
+            <Button
+              onClick={onSubmitDel}
+              type="primary"
+              icon={<SaveOutlined />}
+              style={{
+                width: 200,
+                margin: "15px 0px 10px 10px",
+                background: "#C10000",
+                borderColor: "#C10000",
+              }}
+            >
+              Hapus
+            </Button>
+          </div>
         )}
         {updateLoading && (
           <div

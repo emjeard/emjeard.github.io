@@ -40,7 +40,11 @@ const ActivePeriode = () => {
   }
   return (
     <div>
-      <div id="op-masa-aktiv" className="lay-segment affix-op-masa-aktiv">
+      <div
+        id="op-masa-aktiv"
+        className="lay-segment affix-op-masa-aktiv"
+        style={{ color: "#212121" }}
+      >
         Masa Aktiv
       </div>
       <div style={{ display: "flex" }}>

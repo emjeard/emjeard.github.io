@@ -158,7 +158,11 @@ const AreaOperator = () => {
   }
   return (
     <div>
-      <div id="op-area-layanan" className="lay-segment affix-op-area-layanan">
+      <div
+        id="op-area-layanan"
+        className="lay-segment affix-op-area-layanan"
+        style={{ color: "#212121" }}
+      >
         Area Layanan
       </div>
       <div style={{ display: "flex" }}>

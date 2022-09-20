@@ -43,6 +43,8 @@ export {
   getDetailHp,
   getDetailOp,
   getDetailOpPack,
+  delDetailOpPack,
+  delDetailOp,
   postUploadAvatar,
   postCreateArticle,
   postCreateHp,
@@ -126,6 +128,16 @@ const getDetailHp = (id) => {
 const getDetailOpPack = (id) => {
   const url = `${BASE_URL}operator/package?id=${id}`;
   return axios.get(url, headerRequest).then((response) => response.data);
+};
+
+const delDetailOpPack = (id) => {
+  const url = `${BASE_URL}operator/package/delete?id=${id}`;
+  return axios.delete(url, headerRequest).then((response) => response.data);
+};
+
+const delDetailOp = (id) => {
+  const url = `${BASE_URL}operator/delete?id=${id}`;
+  return axios.delete(url, headerRequest).then((response) => response.data);
 };
 
 const getDetailOp = (id) => {

@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useCallback } from "react";
-import { Select, Spin, Input, Card, Button, Checkbox } from "antd";
-import { getSearchHp, getDetailOpPack, postEditHp } from "api/ApiData";
+import React, { useState, useEffect } from "react";
+import { Select, Spin, Input, Card, Button, Modal } from "antd";
+import { getDetailOpPack, delDetailOpPack } from "api/ApiData";
 import { SaveOutlined } from "@ant-design/icons";
 import { putUpdateOpPackage } from "api/ApiData";
 import { ToastContainer, toast } from "react-toastify";
@@ -15,6 +15,7 @@ import AdditionalInfo from "../components/AdditionalInfo";
 import store from "redux/store";
 import { HP_DATA_ACT } from "redux/actions/Handphone";
 const { TextArea } = Input;
+const { confirm } = Modal;
 
 const { Option } = Select;
 const init_data = {
@@ -117,6 +118,50 @@ const EditOperatorPack = (props) => {
       setUpdateLoading(false);
     });
   };
+
+  const onSubmitDel = async (e) => {
+    confirm({
+      title: "Do you want to delete these items?",
+      content: store.getState().gen_hp_data.data.name,
+      async onOk() {
+        return new Promise((resolve, reject) => {
+          //setTimeout(Math.random() > 0.5 ? resolve : reject, 1000);
+          delDetailOpPack(id_op).then((response) => {
+            if (response.status === true) {
+              toast.success(response.message, {
+                position: "top-right",
+                autoClose: true,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+              });
+              setTimeout(
+                () => (window.location.href = "/operators/packages/list"),
+                3000
+              );
+              resolve();
+            } else {
+              resolve();
+              toast.error("Gagal menghapus data", {
+                position: "top-right",
+                autoClose: true,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+              });
+            }
+          });
+        }).catch(() => console.log("Oops errors!"));
+      },
+      onCancel() {},
+    });
+  };
   return firstLoading === true ? (
     <div
       style={{
@@ -143,17 +188,34 @@ const EditOperatorPack = (props) => {
         {updateLoading ? (
           ""
         ) : (
-          <Button
-            onClick={onSubmitData}
-            type="primary"
-            icon={<SaveOutlined />}
-            style={{
-              width: "-webkit-fill-available",
-              margin: "15px 0px 10px 0px",
-            }}
-          >
-            Save
-          </Button>
+          <div style={{ display: "flex", justifyContent: "center" }}>
+            <Button
+              onClick={onSubmitData}
+              type="primary"
+              icon={<SaveOutlined />}
+              style={{
+                margin: "15px 10px 10px 0px",
+                background: "#009933",
+                borderColor: "#009933",
+                width: 200,
+              }}
+            >
+              Simpan
+            </Button>
+            <Button
+              onClick={onSubmitDel}
+              type="primary"
+              icon={<SaveOutlined />}
+              style={{
+                width: 200,
+                margin: "15px 0px 10px 10px",
+                background: "#C10000",
+                borderColor: "#C10000",
+              }}
+            >
+              Hapus
+            </Button>
+          </div>
         )}
         {updateLoading && (
           <div

@@ -77,7 +77,11 @@ const Telpon = () => {
   };
   return (
     <div>
-      <div id="op-telpon" className="lay-segment affix-op-telpon">
+      <div
+        id="op-telpon"
+        className="lay-segment affix-op-telpon"
+        style={{ color: "#212121" }}
+      >
         Telpon
       </div>
       <div style={{ display: "flex" }}>

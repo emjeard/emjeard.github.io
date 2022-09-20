@@ -50,7 +50,11 @@ const AdditionalInfo = () => {
 
   return (
     <div>
-      <div id="op-data" className="lay-segment affix-op-informasi-tambahan">
+      <div
+        id="op-data"
+        className="lay-segment affix-op-informasi-tambahan"
+        style={{ color: "#212121" }}
+      >
         Info Tambahan
       </div>
       <div className="lbl-input-data">Keterangan</div>

@@ -88,7 +88,9 @@ const GeneralOperator = () => {
       </div>
       <div style={{ display: "flex" }}>
         <div className="lay-subsegment">
-          <div className="lbl-input-data">Jenis Layanan</div>
+          <div className="lbl-input-data" style={{ color: "#aaa" }}>
+            Jenis Layanan
+          </div>
           <Select
             style={{ minWidth: 200, height: 38.5 }}
             name="jenis_layanan"

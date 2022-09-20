@@ -66,7 +66,11 @@ const GeneralOperator = () => {
   }
   return (
     <div>
-      <div id="op-general" className="lay-segment affix-op-general">
+      <div
+        id="op-general"
+        className="lay-segment affix-op-general"
+        style={{ color: "#212121" }}
+      >
         General
       </div>
       <div style={{ display: "flex" }}>
@@ -76,7 +80,9 @@ const GeneralOperator = () => {
             marginTop: "10px",
           }}
         >
-          <div className="lbl-input-data">Nama Operator</div>
+          <div className="lbl-input-data" style={{ color: "#aaa" }}>
+            Nama Operator
+          </div>
           <Input
             placeholder="Contoh: Telkomsel"
             style={{ minWidth: 230 }}
@@ -118,8 +124,8 @@ const GeneralOperator = () => {
                     : dataImgOp
                 }
                 alt="img"
-                width="200px"
-                height="200px"
+                width="150px"
+                height="150px"
               />
             )}
           </div>
@@ -133,12 +139,11 @@ const GeneralOperator = () => {
         >
           <div className="lbl-input-data">Alamat</div>
           <TextArea
-            style={{ width: "-webkit-fill-available" }}
+            style={{ width: "-webkit-fill-available", minHeight: "150px" }}
             rows={4}
             name="addr"
             placeholder=""
             onChange={onChangeInputGeneral}
-            value={store.getState().gen_hp_data.data.addr}
             defaultValue={
               store.getState().gen_hp_data.data.addr == null
                 ? undefined
