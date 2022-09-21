@@ -131,8 +131,9 @@ export const HeaderNav = (props) => {
             </ul>
           </div>
           <div className="nav-right">
-            <div className="ant-menu-item ant-menu-item-only-child">
+            <div>
               <Button
+                style={{ fontSize: "12px", margin: "0px 5px 0px 0px" }}
                 type="primary"
                 icon={<PlusOutlined />}
                 onClick={() => routeChange("/handphones/post")}
@@ -140,13 +141,24 @@ export const HeaderNav = (props) => {
                 Post Product
               </Button>
             </div>
-            <div className="ant-menu-item ant-menu-item-only-child">
+            <div>
               <Button
+                style={{ fontSize: "12px", margin: "0px 5px 0px 0px" }}
                 type="primary"
                 icon={<PlusOutlined />}
                 onClick={() => routeChange("/dashboards/rss/create")}
               >
                 Post Article
+              </Button>
+            </div>
+            <div>
+              <Button
+                style={{ fontSize: "12px" }}
+                type="primary"
+                icon={<PlusOutlined />}
+                onClick={() => routeChange("/dashboards/image/upload")}
+              >
+                Upload Image
               </Button>
             </div>
             <NavProfile />

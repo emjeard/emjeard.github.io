@@ -1,6 +1,6 @@
 {
   "name": "inponsel-dash-react",
-  "version": "0.1.4",
+  "version": "0.0.12",
   "private": true,
   "dependencies": {
     "@ckeditor/ckeditor5-alignment": "27.0.0",
@@ -50,7 +50,7 @@
     "react-beautiful-dnd": "^13.0.0",
     "react-chartjs-2": "^2.11.1",
     "react-color": "^2.19.3",
-    "react-copy-to-clipboard": "^5.0.2",
+    "react-copy-to-clipboard": "^5.1.0",
     "react-css-theme-switcher": "^0.1.5",
     "react-custom-scrollbars": "^4.2.1",
     "react-dnd": "^11.1.3",

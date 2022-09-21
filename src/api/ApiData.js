@@ -665,10 +665,12 @@ const putUpdateGalleryHp = (id, galeri) => {
 const postUploadFile = (file, fileName, folder) => {
   const url = `${BASE_URL}admin/upload/s3`;
 
+  let final_folder = folder.replace("//", "/");
+
   const formData = new FormData();
   formData.append("file", file);
-  formData.append("fileName", fileName);
-  formData.append("folder_path", folder);
+  formData.append("filename", fileName);
+  formData.append("folder_path", final_folder);
 
   return axios.post(url, formData, headerRequest).then((response) => response);
 };

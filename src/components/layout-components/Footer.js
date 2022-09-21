@@ -7,7 +7,7 @@ export default function Footer() {
       <span>
         Copyright &copy; {`${new Date().getFullYear()}`}{" "}
         <span className="font-weight-semibold">{`${APP_NAME}`}</span> All rights
-        reserved. v0.0.11
+        reserved. v0.0.12
       </span>
       <div>
         <a className="text-gray" href="/#" onClick={(e) => e.preventDefault()}>

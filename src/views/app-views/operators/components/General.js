@@ -23,17 +23,8 @@ const GeneralOperator = () => {
   }, []);
   const retrieveData = () => {
     setDataImgOp(store.getState().gen_hp_data.data.logo);
-    getOperator();
   };
-  const getOperator = () => {
-    getListOperator(1, 1000, "").then((response) => {
-      const data = response.data.map((item) => ({
-        text: item.name,
-        value: item.id + "--id_operator",
-      }));
-      setDataOperator(data);
-    });
-  };
+
   const onChangeInputGeneral = (e) => {
     const stateName = e.target.name;
     let stateValue = e.target.value;
