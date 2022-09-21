@@ -40,8 +40,12 @@ const WebSosMed = () => {
   }
   return (
     <div>
-      <div id="op-data" className="lay-segment affix-op-data">
-        Web & Sosial Media
+      <div
+        id="op-data"
+        style={{ color: "#212121" }}
+        className="lay-segment affix-op-data"
+      >
+        Web & Social Media
       </div>
       <div style={{ display: "flex" }}>
         <div className="lay-subsegment">

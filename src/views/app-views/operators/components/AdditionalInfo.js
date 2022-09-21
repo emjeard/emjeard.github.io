@@ -44,10 +44,16 @@ const AdditionalInfo = () => {
 
   return (
     <div>
-      <div id="op-data" className="lay-segment affix-op-informasi-tambahan">
+      <div
+        id="op-data"
+        style={{ color: "#212121" }}
+        className="lay-segment affix-op-tentang-perusahaan"
+      >
         Tentang Perusahaan
       </div>
-      <CKEditorCustom editor_type={"tentang_perusahaan"} />
+      <div style={{ margin: "20px 0px 0px" }}>
+        <CKEditorCustom editor_type={"tentang_perusahaan"} />
+      </div>
       <div style={{ display: "flex", marginTop: 25 }}>
         <div>
           <div>Tanggal Update</div>

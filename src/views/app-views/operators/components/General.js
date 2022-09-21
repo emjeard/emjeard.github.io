@@ -14,6 +14,7 @@ const reset_data = [];
 const GeneralOperator = () => {
   const [dataOperator, setDataOperator] = useState([]);
   const [dataImgOp, setDataImgOp] = useState("");
+  const [isValidImage, setIsValidImage] = useState(false);
   const hiddenFileInput = React.useRef(null);
   useEffect(() => {
     (async () => {
@@ -52,10 +53,28 @@ const GeneralOperator = () => {
     store.dispatch(HP_DATA_ACT(stateName, stateValue));
   };
 
-  const handleChangeImage = (e) => {
-    setDataImgOp(URL.createObjectURL(e.target.files[0]));
-    console.log("img", e.target.files[0]);
-    store.dispatch(HP_DATA_ACT("img_file", e.target.files[0]));
+  const check_img_res = (e) => {};
+
+  const handleChangeImage = async (e) => {
+    let img_file = e.target.files[0];
+    let img = new Image();
+    await new Promise((r) => {
+      img.onload = (e) => {
+        console.log("img", img.height + "x" + img.width);
+        if (img.height === 400 && img.width === 400) {
+          setIsValidImage(true);
+          setDataImgOp(URL.createObjectURL(img_file));
+          store.dispatch(HP_DATA_ACT("img_file", img_file));
+          r();
+        } else {
+          alert("Ukuran gambar harus 400x400");
+          store.dispatch(HP_DATA_ACT("img_file", undefined));
+          setDataImgOp("");
+        }
+      };
+      img.src = window.URL.createObjectURL(img_file);
+    });
+    console.log("isValidImage", isValidImage);
   };
   const handleClick = (event) => {
     hiddenFileInput.current.click();
@@ -98,7 +117,7 @@ const GeneralOperator = () => {
       </div>
       <div style={{ display: "flex" }}>
         <div className="lay-subsegment">
-          <div className="lbl-input-data">Logo (600x600)</div>
+          <div className="lbl-input-data">Logo (400x400)</div>
           <div
             className="col-12"
             style={{ padding: 0, margin: 0, textAlign: "center" }}
@@ -119,8 +138,10 @@ const GeneralOperator = () => {
               <img
                 src={
                   store.getState().gen_hp_data.data.img_file === undefined
-                    ? "https://is3.cloudhost.id/inps/images/operator/" +
-                      dataImgOp
+                    ? dataImgOp.includes("blob")
+                      ? dataImgOp
+                      : "https://is3.cloudhost.id/inps/images/operator/" +
+                        dataImgOp
                     : dataImgOp
                 }
                 alt="img"

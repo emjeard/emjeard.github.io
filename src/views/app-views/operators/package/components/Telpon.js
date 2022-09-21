@@ -4,7 +4,7 @@ import store from "redux/store";
 import slugify from "slugify";
 import { HP_DATA_ACT } from "redux/actions/Handphone";
 
-const { Option } = Select;
+const { TextArea } = Input;
 const init_data = { id: 0, nama_hp: "", image: "" };
 const reset_data = [];
 
@@ -218,6 +218,26 @@ const Telpon = () => {
             </Checkbox>
           </div>
         </div>
+      </div>
+      <div
+        className="lay-subsegment"
+        style={{
+          width: "-webkit-fill-available",
+        }}
+      >
+        <div className="lbl-input-data">Lainnya</div>
+        <TextArea
+          style={{ width: "-webkit-fill-available", minHeight: "100px" }}
+          rows={3}
+          placeholder="Contoh: 15 GB Sosial Media"
+          name="telpon_add_info"
+          onChange={onChangeInputGeneral}
+          defaultValue={
+            store.getState().gen_hp_data.data.telpon_add_info == null
+              ? undefined
+              : store.getState().gen_hp_data.data.telpon_add_info
+          }
+        />
       </div>
     </div>
   );

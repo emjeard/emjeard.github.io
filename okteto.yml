@@ -1,0 +1,7 @@
+build:
+  tpl-dash-react:
+    image: okteto.dev/tpl-dash-react:0.0.11
+    context: .
+    dockerfile: Dockerfile
+deploy:
+  - kubectl apply -f k8s

@@ -34,6 +34,7 @@ const init_data = {
   telpon_antar_operator_menit_unl: 0,
   sms_antar_operator: "",
   sms_antar_operator_unl: 0,
+  telpon_add_info: "",
   area_layanan: "",
   area_layanan_propinsi: "",
   area_layanan_kota: "",
