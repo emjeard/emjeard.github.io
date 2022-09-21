@@ -132,12 +132,12 @@ const getDetailOpPack = (id) => {
 
 const delDetailOpPack = (id) => {
   const url = `${BASE_URL}operator/package/delete?id=${id}`;
-  return axios.delete(url, headerRequest).then((response) => response.data);
+  return axios.get(url, headerRequest).then((response) => response.data);
 };
 
 const delDetailOp = (id) => {
   const url = `${BASE_URL}operator/delete?id=${id}`;
-  return axios.delete(url, headerRequest).then((response) => response.data);
+  return axios.get(url, headerRequest).then((response) => response.data);
 };
 
 const getDetailOp = (id) => {
