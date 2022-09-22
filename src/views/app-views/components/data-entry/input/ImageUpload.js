@@ -28,7 +28,7 @@ const ImageUpload = (props) => {
     let final_img_name = slugify(fixedUrl) + "-" + timestamp + "." + file_type;
     console.log("fileName", final_img_name);
 
-    let final_folder = "portal/";
+    let final_folder = "images/article/";
 
     const formData = new FormData();
     formData.append("file", file);
