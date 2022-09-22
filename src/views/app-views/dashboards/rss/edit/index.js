@@ -29,6 +29,7 @@ import ADD_DATA from "redux/actions";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import CKEditorCustom from "views/app-views/components/data-entry/input/CKEditorCustom";
+import CKEditorCustomS3 from "views/app-views/components/data-entry/input/CKEditorCustomS3";
 
 const { Option } = Select;
 const { TextArea } = Input;
@@ -423,12 +424,14 @@ const RSSApp = (props) => {
           >
             {Parser(title)}
           </div>
-          <CKEditorCustom />
-          <div style={{ margin: "15px 0px" }}>
+          <CKEditorCustomS3 />
+          <div style={{ margin: "15px 0px", height: 200 }}>
             <div style={{ margin: "25px 0px 5px", fontWeight: 500 }}>
               Header Image *
             </div>
-            <Drag parentCallback={callback} image={dataNews.meta_image} />
+            <div style={{ position: "relative" }}>
+              <Drag parentCallback={callback} image={dataNews.meta_image} />
+            </div>
           </div>
           <div>
             <div style={{ margin: "25px 0px 5px", fontWeight: 500 }}>

@@ -67,6 +67,8 @@ export {
   getListGalleryHp,
   putUpdateGalleryHp,
   postUploadFile,
+  headerRequest,
+  getToken
 };
 
 const getToken = function () {

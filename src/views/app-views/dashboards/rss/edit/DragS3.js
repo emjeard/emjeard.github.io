@@ -2,18 +2,12 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Upload, Progress } from "antd";
 import { CloudUploadOutlined } from "@ant-design/icons";
-import store from "redux/store";
-import { INPUT_1_ACT_IMG, INPUT_2_ACT_IMG } from "redux/actions/FormInput";
 import { getToken } from "api/ApiData";
 import slugify from "slugify";
 
-const ImageUpload = (props) => {
+const DragS3 = (props) => {
   const [defaultFileList, setDefaultFileList] = useState([]);
   const [progress, setProgress] = useState(0);
-
-  const btoa = function (str) {
-    return Buffer.from(str).toString("base64");
-  };
 
   const uploadImage = async (options) => {
     const { onSuccess, onError, file, onProgress } = options;
@@ -58,14 +52,7 @@ const ImageUpload = (props) => {
       );
 
       onSuccess("Ok");
-      console.log(res.data.message);
-      store.dispatch(
-        props.img_pos === undefined
-          ? INPUT_1_ACT_IMG(res.data.message)
-          : props.img_pos === "2"
-          ? INPUT_2_ACT_IMG(res.data.url)
-          : INPUT_1_ACT_IMG(res.data.message)
-      );
+      props.parentCallback(res.data.url);
     } catch (err) {
       console.log("Eroor: ", err);
       onError({ err });
@@ -80,7 +67,7 @@ const ImageUpload = (props) => {
   };
 
   return (
-    <div style={{ maxWidth: 640, position: "relative" }}>
+    <div style={{ maxWidth: 640 }}>
       <Upload
         accept="image/*"
         customRequest={uploadImage}
@@ -112,4 +99,4 @@ const ImageUpload = (props) => {
   );
 };
 
-export default ImageUpload;
+export default DragS3;

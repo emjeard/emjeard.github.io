@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import MyCustomUploadAdapterPlugin from "./MyCustomUploadAdapterPlugin";
+import UploadImageS3 from "./UploadImageS3";
 import Editor from "ckeditor-inponsel";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import store from "redux/store";
@@ -7,7 +7,7 @@ import ADD_DATA from "redux/actions";
 import { HP_PROS, HP_CONS, HP_DATA_ACT } from "redux/actions/Handphone";
 import { INPUT_1_ACT } from "redux/actions/FormInput";
 
-class CKEditorCustom extends Component {
+class CKEditorCustomS3 extends Component {
   render() {
     return (
       <div className="App">
@@ -20,7 +20,7 @@ class CKEditorCustom extends Component {
                 : this.props.editor_type === "hp_pros"
                 ? ""
                 : "",
-            extraPlugins: [MyCustomUploadAdapterPlugin],
+            extraPlugins: [UploadImageS3],
             toolbar: {
               items: [
                 "alignment",
@@ -177,4 +177,4 @@ class CKEditorCustom extends Component {
   }
 }
 
-export default CKEditorCustom;
+export default CKEditorCustomS3;

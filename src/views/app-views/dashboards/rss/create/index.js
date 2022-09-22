@@ -29,6 +29,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import CKEditorCustom from "views/app-views/components/data-entry/input/CKEditorCustom";
 import ImageUpload from "views/app-views/components/data-entry/input/ImageUpload";
+import CKEditorCustomS3 from "views/app-views/components/data-entry/input/CKEditorCustomS3";
 const { Option } = Select;
 const { TextArea } = Input;
 const init_data = { id: 0, nama_hp: "", image: "" };
@@ -384,8 +385,8 @@ const CreateRSSApp = (props) => {
             value={title}
             onChange={onChangeTitleJudul}
           />
-          <CKEditorCustom />
-          <div style={{ margin: "15px 0px" }}>
+          <CKEditorCustomS3 />
+          <div style={{ margin: "15px 0px", height: 200 }}>
             <div style={{ margin: "25px 0px 5px", fontWeight: 500 }}>
               Header Image *
             </div>
