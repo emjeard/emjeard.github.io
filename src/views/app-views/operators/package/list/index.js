@@ -1,10 +1,12 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { Select, Card, Input, Spin, Pagination, Button } from "antd";
+import { Select, Card, Input, Spin, Pagination, Button, Modal } from "antd";
 import { useHistory } from "react-router-dom";
 import Sticky from "react-stickynode";
-import { getListOperatorPack } from "api/ApiData";
+import { delDetailOpPack, getListOperatorPack } from "api/ApiData";
 import ListPackage from "./ListPackage";
 import moment from "moment";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,
@@ -13,6 +15,7 @@ import {
 } from "@ant-design/icons";
 
 const { Search } = Input;
+const { confirm } = Modal;
 
 const { Option } = Select;
 const init_data = { id: 0, nama_hp: "", image: "" };
@@ -95,6 +98,52 @@ const ListOperatorPack = () => {
     }
   };
 
+  const showConfirm = (item_id, item_name) => {
+    confirm({
+      title: "Do you want to delete these items?",
+      content: item_name,
+      async onOk() {
+        return new Promise((resolve, reject) => {
+          //setTimeout(Math.random() > 0.5 ? resolve : reject, 1000);
+          delDetailOpPack(item_id).then((response) => {
+            if (response.status === true) {
+              toast.success(response.message, {
+                position: "top-right",
+                autoClose: true,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+              });
+              setTimeout(
+                () => (window.location.href = "/operators/packages/list"),
+                3000
+              );
+              resolve();
+            } else {
+              resolve();
+              toast.error("Gagal update data", {
+                position: "top-right",
+                autoClose: true,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+              });
+            }
+          });
+        }).catch(() => console.log("Oops errors!"));
+      },
+      onCancel() {},
+    });
+  };
+  const deleteItem = (item_id, item_name) => {
+    showConfirm(item_id, item_name);
+  };
   return (
     <div>
       <Card>
@@ -149,6 +198,7 @@ const ListOperatorPack = () => {
                 last_update={moment
                   .unix(items.last_update / 1000)
                   .format("YYYY-MM-DD HH:mm:ss")}
+                onDeleteItem={(id, name) => deleteItem(id, name)}
               />
             </div>
           ))}
@@ -169,6 +219,7 @@ const ListOperatorPack = () => {
           />
         </div>
       </Card>
+      <ToastContainer />
     </div>
   );
 };

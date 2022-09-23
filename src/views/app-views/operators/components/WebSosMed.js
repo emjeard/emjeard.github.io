@@ -100,9 +100,9 @@ const WebSosMed = () => {
       </div>
       <div style={{ display: "flex" }}>
         <div className="lay-subsegment">
-          <div className="lbl-input-data">Facebook</div>
+          <div className="lbl-input-data">Facebook ID</div>
           <Input
-            placeholder="Contoh: Telkomsel"
+            placeholder="Contoh: 17662812631"
             style={{ minWidth: 230 }}
             name="fb"
             onChange={onChangeInputGeneral}
