@@ -85,9 +85,13 @@ const OperatorEdit = (props) => {
   };
 
   const update_data = async () => {
+    let final_created = store.getState().gen_hp_data.data.created;
+    final_created = final_created.replace("T", " ");
+    final_created = final_created.replace("Z", "");
+    const final_modified = store.getState().gen_hp_data.data.modified;
+    store.dispatch(HP_DATA_ACT("created", final_created));
     const final_update = await store.getState().gen_hp_data.data;
     putUpdateOp(final_update).then((resp) => {
-      console.log(resp);
       if (resp.data.status === true) {
         toast.success(resp.data.message, {
           position: "top-right",
@@ -99,7 +103,7 @@ const OperatorEdit = (props) => {
           progress: undefined,
           theme: "colored",
         });
-        //setTimeout(() => (window.location.href = "/operators/list"), 3000);
+        setTimeout(() => (window.location.href = "/operators/list"), 3000);
       } else {
         toast.error("Gagal update data", {
           position: "top-right",

@@ -29,6 +29,12 @@ const GeneralOperator = () => {
     const stateName = e.target.name;
     let stateValue = e.target.value;
 
+    if (stateName === "name") {
+      const op_tag = "op_";
+      const op_tag_name = stateValue.replace(/ /g, "").toLowerCase();
+      store.dispatch(HP_DATA_ACT("tag", op_tag + op_tag_name));
+    }
+
     store.dispatch(HP_DATA_ACT(stateName, stateValue));
   };
   const onChangeSelectGeneral = (selectedItems, option) => {
