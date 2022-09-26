@@ -52,7 +52,7 @@ const AdditionalInfo = () => {
         Tentang Perusahaan
       </div>
       <div style={{ margin: "20px 0px 0px" }}>
-        <CKEditorCustom editor_type={"tentang_perusahaan"} />
+        <CKEditorCustom editor_type={"dscp"} />
       </div>
       <div style={{ display: "flex", marginTop: 25 }}>
         <div>

@@ -139,7 +139,7 @@ class CKEditorCustom extends Component {
               ? store
                   .getState()
                   .gen_hp_data.data.additional_info.replace(/\\\\n/g, "")
-              : this.props.editor_type === "tentang_perusahaan"
+              : this.props.editor_type === "dscp"
               ? store.getState().gen_hp_data.data.dscp.replace(/\\\\n/g, "")
               : store.getState().hpproscons.cons_data.replace(/\\\\n/g, "")
           }
@@ -160,8 +160,8 @@ class CKEditorCustom extends Component {
                 ? INPUT_1_ACT(data)
                 : this.props.editor_type === "additional_info"
                 ? HP_DATA_ACT("additional_info", data)
-                : this.props.editor_type === "tentang_perusahaan"
-                ? HP_DATA_ACT("tentang_perusahaan", data)
+                : this.props.editor_type === "dscp"
+                ? HP_DATA_ACT("dscp", data)
                 : HP_CONS(data)
             );
           }}
