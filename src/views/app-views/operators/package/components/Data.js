@@ -32,6 +32,9 @@ const DataOperator = () => {
   const onChangeInputNumber = (e, name) => {
     const stateName = name;
     let stateValue = e;
+    if (stateValue === null) {
+      stateValue = -1;
+    }
     store.dispatch(HP_DATA_ACT(stateName, stateValue));
   };
 
@@ -59,7 +62,7 @@ const DataOperator = () => {
             onSearch={onSearchSelect}
             defaultValue={
               store.getState().gen_hp_data.data.data_jaringan === "" ||
-              store.getState().gen_hp_data.data.data_jaringan === 0
+              store.getState().gen_hp_data.data.data_jaringan <= 0
                 ? undefined
                 : store.getState().gen_hp_data.data.data_jaringan +
                   "--data_jaringan"
@@ -88,7 +91,7 @@ const DataOperator = () => {
               onChange={(e) => onChangeInputNumber(e, "data_kecepatan_mbps")}
               defaultValue={
                 store.getState().gen_hp_data.data.data_kecepatan_mbps === "" ||
-                store.getState().gen_hp_data.data.data_kecepatan_mbps === 0
+                store.getState().gen_hp_data.data.data_kecepatan_mbps <= 0
                   ? undefined
                   : store.getState().gen_hp_data.data.data_kecepatan_mbps
               }
@@ -113,7 +116,7 @@ const DataOperator = () => {
             onSearch={onSearchSelect}
             defaultValue={
               store.getState().gen_hp_data.data.data_jenis_paket === "" ||
-              store.getState().gen_hp_data.data.data_jenis_paket === 0
+              store.getState().gen_hp_data.data.data_jenis_paket <= 0
                 ? undefined
                 : store.getState().gen_hp_data.data.data_jenis_paket +
                   "--data_jenis_paket"
@@ -141,7 +144,7 @@ const DataOperator = () => {
               onChange={(e) => onChangeInputNumber(e, "data_kuota_mb")}
               defaultValue={
                 store.getState().gen_hp_data.data.data_kuota_mb === "" ||
-                store.getState().gen_hp_data.data.data_kuota_mb === 0
+                store.getState().gen_hp_data.data.data_kuota_mb <= 0
                   ? undefined
                   : store.getState().gen_hp_data.data.data_kuota_mb
               }

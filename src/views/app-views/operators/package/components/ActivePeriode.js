@@ -32,6 +32,9 @@ const ActivePeriode = () => {
   const onChangeInputNumber = (e, name) => {
     const stateName = name;
     let stateValue = e;
+    if (stateValue === null) {
+      stateValue = -1;
+    }
     store.dispatch(HP_DATA_ACT(stateName, stateValue));
   };
 
@@ -59,7 +62,7 @@ const ActivePeriode = () => {
             onSearch={onSearchSelect}
             defaultValue={
               store.getState().gen_hp_data.data.masa_aktiv_periode === "" ||
-              store.getState().gen_hp_data.data.masa_aktiv_periode === 0
+              store.getState().gen_hp_data.data.masa_aktiv_periode <= 0
                 ? undefined
                 : store.getState().gen_hp_data.data.masa_aktiv_periode +
                   "--masa_aktiv_periode"
@@ -89,7 +92,7 @@ const ActivePeriode = () => {
               onChange={(e) => onChangeInputNumber(e, "masa_aktiv_durasi")}
               defaultValue={
                 store.getState().gen_hp_data.data.masa_aktiv_durasi === "" ||
-                store.getState().gen_hp_data.data.masa_aktiv_durasi === 0
+                store.getState().gen_hp_data.data.masa_aktiv_durasi <= 0
                   ? undefined
                   : store.getState().gen_hp_data.data.masa_aktiv_durasi
               }

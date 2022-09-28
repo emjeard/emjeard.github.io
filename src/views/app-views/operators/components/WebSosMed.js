@@ -19,7 +19,9 @@ const WebSosMed = () => {
   const onChangeInputGeneral = (e) => {
     const stateName = e.target.name;
     let stateValue = e.target.value;
-
+    if (stateValue === "") {
+      stateValue = "-";
+    }
     store.dispatch(HP_DATA_ACT(stateName, stateValue));
   };
   const onChangeSelectGeneral = (selectedItems, option) => {
@@ -56,7 +58,8 @@ const WebSosMed = () => {
             name="url"
             onChange={onChangeInputGeneral}
             defaultValue={
-              store.getState().gen_hp_data.data.url == null
+              store.getState().gen_hp_data.data.url == null ||
+              store.getState().gen_hp_data.data.url === "-"
                 ? undefined
                 : store.getState().gen_hp_data.data.url
             }
@@ -70,7 +73,8 @@ const WebSosMed = () => {
             name="instagrm"
             onChange={onChangeInputGeneral}
             defaultValue={
-              store.getState().gen_hp_data.data.instagrm == null
+              store.getState().gen_hp_data.data.instagrm == null ||
+              store.getState().gen_hp_data.data.instagrm === "-"
                 ? undefined
                 : store.getState().gen_hp_data.data.instagrm
             }
@@ -91,7 +95,8 @@ const WebSosMed = () => {
             name="c_center"
             onChange={onChangeInputGeneral}
             defaultValue={
-              store.getState().gen_hp_data.data.c_center == null
+              store.getState().gen_hp_data.data.c_center == null ||
+              store.getState().gen_hp_data.data.c_center === "-"
                 ? undefined
                 : store.getState().gen_hp_data.data.c_center
             }
@@ -107,7 +112,8 @@ const WebSosMed = () => {
             name="fb"
             onChange={onChangeInputGeneral}
             defaultValue={
-              store.getState().gen_hp_data.data.fb == null
+              store.getState().gen_hp_data.data.fb == null ||
+              store.getState().gen_hp_data.data.fb === "-"
                 ? undefined
                 : store.getState().gen_hp_data.data.fb
             }
@@ -121,7 +127,8 @@ const WebSosMed = () => {
             name="tiktok"
             onChange={onChangeInputGeneral}
             defaultValue={
-              store.getState().gen_hp_data.data.tiktok == null
+              store.getState().gen_hp_data.data.tiktok == null ||
+              store.getState().gen_hp_data.data.tiktok === "-"
                 ? undefined
                 : store.getState().gen_hp_data.data.tiktok
             }
@@ -142,7 +149,8 @@ const WebSosMed = () => {
             name="em"
             onChange={onChangeInputGeneral}
             defaultValue={
-              store.getState().gen_hp_data.data.em == null
+              store.getState().gen_hp_data.data.em == null ||
+              store.getState().gen_hp_data.data.em === "-"
                 ? undefined
                 : store.getState().gen_hp_data.data.em
             }
@@ -158,7 +166,8 @@ const WebSosMed = () => {
             name="tw"
             onChange={onChangeInputGeneral}
             defaultValue={
-              store.getState().gen_hp_data.data.tw == null
+              store.getState().gen_hp_data.data.tw == null ||
+              store.getState().gen_hp_data.data.tw === "-"
                 ? undefined
                 : store.getState().gen_hp_data.data.tw
             }
@@ -172,7 +181,8 @@ const WebSosMed = () => {
             name="ytube"
             onChange={onChangeInputGeneral}
             defaultValue={
-              store.getState().gen_hp_data.data.ytube == null
+              store.getState().gen_hp_data.data.ytube == null ||
+              store.getState().gen_hp_data.data.ytube === "-"
                 ? undefined
                 : store.getState().gen_hp_data.data.ytube
             }

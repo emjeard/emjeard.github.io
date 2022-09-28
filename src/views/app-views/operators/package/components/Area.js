@@ -12,10 +12,10 @@ const reset_data = [];
 const AreaOperator = () => {
   const [dataProvince, setDataProvince] = useState([]);
   const [dataCountry, setDataCountry] = useState([]);
-  const [dataDefTagHp, setDefDataTagHp] = useState([]);
+  const [dataDefTagKota, setDefDataTagKota] = useState([]);
   const [hpLoading, setHpLoading] = useState(false);
   const [lastFetchIdHp, setLastFetchIdHp] = useState(0);
-  const [dataTagHp, setDataTagHp] = useState([]);
+  const [dataTagKota, setDataTagKota] = useState([]);
 
   useEffect(() => {
     (async () => {
@@ -27,7 +27,7 @@ const AreaOperator = () => {
     getCountry();
     const tags_city = store.getState().gen_hp_data.data.area_layanan_kota_list;
     for (let m = 0; m < tags_city.length; m++) {
-      setDefDataTagHp((oldArray) => [
+      setDefDataTagKota((oldArray) => [
         ...oldArray,
         {
           value: String(tags_city[m].id),
@@ -83,6 +83,9 @@ const AreaOperator = () => {
       .slice(0, -1)
       .replace(/--area_layanan_propinsi/g, "");
 
+    if (finalStateValue === "") {
+      finalStateValue = "-";
+    }
     store.dispatch(HP_DATA_ACT("area_layanan_propinsi", finalStateValue));
   };
 
@@ -95,7 +98,9 @@ const AreaOperator = () => {
     finalStateValue = finalStateValue
       .slice(0, -1)
       .replace(/--area_layanan_negara/g, "");
-
+    if (finalStateValue === "") {
+      finalStateValue = "-";
+    }
     store.dispatch(HP_DATA_ACT("area_layanan_negara", finalStateValue));
   };
   let negaraArr = [];
@@ -121,9 +126,9 @@ const AreaOperator = () => {
       getTagHp(value);
     }
   };
-  const handleChangeHp = (selectedItems) => {
+  const handleChangeKota = (selectedItems) => {
     //console.log(selectedItems);
-    setDefDataTagHp(selectedItems);
+    setDefDataTagKota(selectedItems);
     let dataHp = "";
     selectedItems.map((item) => (dataHp += item.value + ","));
     dataHp = dataHp.substring(0, dataHp.length - 1);
@@ -133,7 +138,7 @@ const AreaOperator = () => {
   const getTagHp = (keyword) => {
     setLastFetchIdHp(+1);
     const fetchId = lastFetchIdHp;
-    setDataTagHp([]);
+    setDataTagKota([]);
     setHpLoading(true);
     getSearchCity(keyword).then((response) => {
       if (fetchId !== lastFetchIdHp) {
@@ -141,13 +146,13 @@ const AreaOperator = () => {
         return;
       }
       if (response.status === false) {
-        setDataTagHp([]);
+        setDataTagKota([]);
       } else {
         const data = response.data.map((item) => ({
           text: item.name,
           value: item.id,
         }));
-        setDataTagHp(data);
+        setDataTagKota(data);
       }
 
       setHpLoading(false);
@@ -208,6 +213,7 @@ const AreaOperator = () => {
             }
             defaultValue={
               store.getState().gen_hp_data.data.area_layanan_propinsi === "" ||
+              store.getState().gen_hp_data.data.area_layanan_propinsi === "-" ||
               store.getState().gen_hp_data.data.area_layanan_propinsi === 0
                 ? []
                 : propinsiArr
@@ -230,15 +236,15 @@ const AreaOperator = () => {
           <Select
             mode="multiple"
             labelInValue
-            value={dataDefTagHp}
+            value={dataDefTagKota}
             placeholder="Contoh: Jakarta"
             notFoundContent={hpLoading ? <Spin size="small" /> : null}
             filterOption={false}
             onSearch={debounce(handleSearchHp, 1000)}
-            onChange={handleChangeHp}
+            onChange={handleChangeKota}
             style={{ width: "100%", height: "auto !important" }}
           >
-            {dataTagHp.map((item) => (
+            {dataTagKota.map((item) => (
               <Option key={item.value}>{item.text}</Option>
             ))}
           </Select>
@@ -261,6 +267,7 @@ const AreaOperator = () => {
             onSearch={onSearchSelect}
             defaultValue={
               store.getState().gen_hp_data.data.area_layanan_negara === "" ||
+              store.getState().gen_hp_data.data.area_layanan_negara === "-" ||
               store.getState().gen_hp_data.data.area_layanan_negara === 0
                 ? []
                 : negaraArr

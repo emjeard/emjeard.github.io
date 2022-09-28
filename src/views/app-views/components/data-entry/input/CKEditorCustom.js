@@ -9,6 +9,25 @@ import { INPUT_1_ACT } from "redux/actions/FormInput";
 
 class CKEditorCustom extends Component {
   render() {
+    let data_content =
+      this.props.editor_type === undefined
+        ? store.getState().articles.content.replace(/\\\\n/g, "")
+        : this.props.editor_type === "hp_pros"
+        ? store.getState().hpproscons.pros_data.replace(/\\\\n/g, "")
+        : this.props.editor_type === "brand"
+        ? store.getState().form_input.form_1_data.replace(/\\\\n/g, "")
+        : this.props.editor_type === "additional_info"
+        ? store
+            .getState()
+            .gen_hp_data.data.additional_info.replace(/\\\\n/g, "")
+        : this.props.editor_type === "dscp"
+        ? store.getState().gen_hp_data.data.dscp.replace(/\\\\n/g, "")
+        : store.getState().hpproscons.cons_data.replace(/\\\\n/g, "");
+
+    if (data_content === "-") {
+      data_content = "";
+    }
+
     return (
       <div className="App">
         <CKEditor
@@ -128,28 +147,17 @@ class CKEditorCustom extends Component {
               ],
             },
           }}
-          data={
-            this.props.editor_type === undefined
-              ? store.getState().articles.content.replace(/\\\\n/g, "")
-              : this.props.editor_type === "hp_pros"
-              ? store.getState().hpproscons.pros_data.replace(/\\\\n/g, "")
-              : this.props.editor_type === "brand"
-              ? store.getState().form_input.form_1_data.replace(/\\\\n/g, "")
-              : this.props.editor_type === "additional_info"
-              ? store
-                  .getState()
-                  .gen_hp_data.data.additional_info.replace(/\\\\n/g, "")
-              : this.props.editor_type === "dscp"
-              ? store.getState().gen_hp_data.data.dscp.replace(/\\\\n/g, "")
-              : store.getState().hpproscons.cons_data.replace(/\\\\n/g, "")
-          }
+          data={data_content}
           onReady={(editor) => {
             // You can store the "editor" and use when it is needed.
             console.log("Editor is ready to use!", editor);
           }}
           onChange={(event, editor) => {
             //console.log(Array.from(editor.ui.componentFactory.names()));
-            const data = editor.getData();
+            let data = editor.getData();
+            if (data === "") {
+              data = "-";
+            }
             //console.log({ event, editor, data });
             store.dispatch(
               this.props.editor_type === undefined

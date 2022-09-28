@@ -28,6 +28,9 @@ const GeneralOperator = () => {
   const onChangeInputGeneral = (e) => {
     const stateName = e.target.name;
     let stateValue = e.target.value;
+    if (stateValue === "") {
+      stateValue = "-";
+    }
 
     if (stateName === "name") {
       const op_tag = "op_";
@@ -105,7 +108,8 @@ const GeneralOperator = () => {
             name="name"
             onChange={onChangeInputGeneral}
             defaultValue={
-              store.getState().gen_hp_data.data.name == null
+              store.getState().gen_hp_data.data.name == null ||
+              store.getState().gen_hp_data.data.name === "-"
                 ? undefined
                 : store.getState().gen_hp_data.data.name
             }
@@ -163,7 +167,8 @@ const GeneralOperator = () => {
             placeholder=""
             onChange={onChangeInputGeneral}
             defaultValue={
-              store.getState().gen_hp_data.data.addr == null
+              store.getState().gen_hp_data.data.addr == null ||
+              store.getState().gen_hp_data.data.addr === "-"
                 ? undefined
                 : store.getState().gen_hp_data.data.addr
             }
