@@ -58,6 +58,9 @@ const Telpon = () => {
   const onChangeInputNumber = (e, name) => {
     const stateName = name;
     let stateValue = e;
+    if (stateValue === null) {
+      stateValue = -1;
+    }
     store.dispatch(HP_DATA_ACT(stateName, stateValue));
   };
   const onChangeCb = (e, name) => {
@@ -98,7 +101,7 @@ const Telpon = () => {
               onChange={(e) => onChangeInputNumber(e, "telpon_sesama_menit")}
               defaultValue={
                 store.getState().gen_hp_data.data.telpon_sesama_menit === "" ||
-                store.getState().gen_hp_data.data.telpon_sesama_menit === 0
+                store.getState().gen_hp_data.data.telpon_sesama_menit <= 0
                   ? undefined
                   : store.getState().gen_hp_data.data.telpon_sesama_menit
               }
@@ -131,7 +134,7 @@ const Telpon = () => {
               onChange={(e) => onChangeInputNumber(e, "sms_sesama")}
               defaultValue={
                 store.getState().gen_hp_data.data.sms_sesama === "" ||
-                store.getState().gen_hp_data.data.sms_sesama === 0
+                store.getState().gen_hp_data.data.sms_sesama <= 0
                   ? undefined
                   : store.getState().gen_hp_data.data.sms_sesama
               }
@@ -166,8 +169,8 @@ const Telpon = () => {
               defaultValue={
                 store.getState().gen_hp_data.data
                   .telpon_antar_operator_menit === "" ||
-                store.getState().gen_hp_data.data
-                  .telpon_antar_operator_menit === 0
+                store.getState().gen_hp_data.data.telpon_antar_operator_menit <=
+                  0
                   ? undefined
                   : store.getState().gen_hp_data.data
                       .telpon_antar_operator_menit
@@ -201,7 +204,7 @@ const Telpon = () => {
               onChange={(e) => onChangeInputNumber(e, "sms_antar_operator")}
               defaultValue={
                 store.getState().gen_hp_data.data.sms_antar_operator === "" ||
-                store.getState().gen_hp_data.data.sms_antar_operator === 0
+                store.getState().gen_hp_data.data.sms_antar_operator <= 0
                   ? undefined
                   : store.getState().gen_hp_data.data.sms_antar_operator
               }
