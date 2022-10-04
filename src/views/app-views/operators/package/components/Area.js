@@ -132,6 +132,9 @@ const AreaOperator = () => {
     let dataHp = "";
     selectedItems.map((item) => (dataHp += item.value + ","));
     dataHp = dataHp.substring(0, dataHp.length - 1);
+    if (dataHp === "") {
+      dataHp = "-";
+    }
     store.dispatch(HP_DATA_ACT("area_layanan_kota", dataHp));
   };
 

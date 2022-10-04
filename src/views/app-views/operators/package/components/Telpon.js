@@ -45,7 +45,9 @@ const Telpon = () => {
   const onChangeInputGeneral = (e) => {
     const stateName = e.target.name;
     let stateValue = e.target.value;
-
+    if (stateValue === "") {
+      stateValue = "-";
+    }
     store.dispatch(HP_DATA_ACT(stateName, stateValue));
   };
   const onChangeSelectGeneral = (selectedItems, option) => {
@@ -236,7 +238,8 @@ const Telpon = () => {
           name="telpon_add_info"
           onChange={onChangeInputGeneral}
           defaultValue={
-            store.getState().gen_hp_data.data.telpon_add_info == null
+            store.getState().gen_hp_data.data.telpon_add_info == null ||
+            store.getState().gen_hp_data.data.telpon_add_info === "-"
               ? undefined
               : store.getState().gen_hp_data.data.telpon_add_info
           }
