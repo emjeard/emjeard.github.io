@@ -9,6 +9,28 @@ import { INPUT_1_ACT } from "redux/actions/FormInput";
 
 class CKEditorCustomS3 extends Component {
   render() {
+    let data_content =
+      this.props.editor_type === undefined
+        ? store.getState().articles.content
+        : this.props.editor_type === "hp_pros"
+        ? store.getState().hpproscons.pros_data
+        : this.props.editor_type === "hp_cons"
+        ? store.getState().hpproscons.cons_data
+        : this.props.editor_type === "brand"
+        ? store.getState().form_input.form_1_data
+        : this.props.editor_type === "additional_info"
+        ? store.getState().gen_hp_data.data.additional_info
+        : this.props.editor_type === "dscp"
+        ? store.getState().gen_hp_data.data.dscp
+        : "";
+
+    if (data_content === "-") {
+      data_content = "";
+    }
+
+    if (data_content !== undefined) {
+      data_content = data_content.replace(/\\\\n/g, "");
+    }
     return (
       <div className="App">
         <CKEditor
@@ -128,21 +150,7 @@ class CKEditorCustomS3 extends Component {
               ],
             },
           }}
-          data={
-            this.props.editor_type === undefined
-              ? store.getState().articles.content.replace(/\\\\n/g, "")
-              : this.props.editor_type === "hp_pros"
-              ? store.getState().hpproscons.pros_data.replace(/\\\\n/g, "")
-              : this.props.editor_type === "brand"
-              ? store.getState().form_input.form_1_data.replace(/\\\\n/g, "")
-              : this.props.editor_type === "additional_info"
-              ? store
-                  .getState()
-                  .gen_hp_data.data.additional_info.replace(/\\\\n/g, "")
-              : this.props.editor_type === "tentang_perusahaan"
-              ? store.getState().gen_hp_data.data.dscp.replace(/\\\\n/g, "")
-              : store.getState().hpproscons.cons_data.replace(/\\\\n/g, "")
-          }
+          data={data_content}
           onReady={(editor) => {
             // You can store the "editor" and use when it is needed.
             console.log("Editor is ready to use!", editor);

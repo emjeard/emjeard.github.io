@@ -11,21 +11,25 @@ class CKEditorCustom extends Component {
   render() {
     let data_content =
       this.props.editor_type === undefined
-        ? store.getState().articles.content.replace(/\\\\n/g, "")
+        ? store.getState().articles.content
         : this.props.editor_type === "hp_pros"
-        ? store.getState().hpproscons.pros_data.replace(/\\\\n/g, "")
+        ? store.getState().hpproscons.pros_data
+        : this.props.editor_type === "hp_cons"
+        ? store.getState().hpproscons.cons_data
         : this.props.editor_type === "brand"
-        ? store.getState().form_input.form_1_data.replace(/\\\\n/g, "")
+        ? store.getState().form_input.form_1_data
         : this.props.editor_type === "additional_info"
-        ? store
-            .getState()
-            .gen_hp_data.data.additional_info.replace(/\\\\n/g, "")
+        ? store.getState().gen_hp_data.data.additional_info
         : this.props.editor_type === "dscp"
-        ? store.getState().gen_hp_data.data.dscp.replace(/\\\\n/g, "")
-        : store.getState().hpproscons.cons_data.replace(/\\\\n/g, "");
+        ? store.getState().gen_hp_data.data.dscp
+        : "";
 
     if (data_content === "-") {
       data_content = "";
+    }
+
+    if (data_content !== undefined) {
+      data_content = data_content.replace(/\\\\n/g, "");
     }
 
     return (
