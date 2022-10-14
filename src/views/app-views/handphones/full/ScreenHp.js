@@ -29,7 +29,9 @@ const ScreenHp = () => {
   const onChangeInputGeneral = (e) => {
     const stateName = e.target.name;
     let stateValue = e.target.value;
-
+    if (stateValue === "") {
+      stateValue = null;
+    }
     if (stateName.includes("__cb")) {
       stateValue = e.target.checked;
     }
@@ -102,28 +104,40 @@ const ScreenHp = () => {
     console.log("x", x);
     console.log("y", y);
     console.log("diag", diag);
-    if (y == 0 || x == 0) return;
-    var ratio = y / x;
-    var xd = Math.sqrt(Math.pow(diag, 2) / (1 + Math.pow(ratio, 2)));
-    var yd = xd * ratio;
-    var pitch = 25.4 / (x / xd); // metric
-    var result = {
-      diagmetric: diag * 2.54,
-      sizex: xd,
-      sizey: yd,
-      metricsizex: 2.54 * xd,
-      metricsizey: 2.54 * yd,
-      xppi: x / xd,
-      yppi: y / yd,
-      dotpitch: pitch,
-      sqppi: ((x / xd) * y) / yd,
-    };
-    const final_ppi = result.xppi.toFixed(2);
-    console.log(final_ppi);
-    store.dispatch(HP_DATA_ACT("lay_size_ppi", final_ppi));
-    setDataLayPPI(final_ppi);
 
-    return result;
+    if (
+      y === 0 ||
+      x === 0 ||
+      y === null ||
+      x === null ||
+      diag === null ||
+      diag === 0
+    ) {
+      setDataLayPPI(null);
+      store.dispatch(HP_DATA_ACT("lay_size_ppi", null));
+    } else {
+      var ratio = y / x;
+      var xd = Math.sqrt(Math.pow(diag, 2) / (1 + Math.pow(ratio, 2)));
+      var yd = xd * ratio;
+      var pitch = 25.4 / (x / xd); // metric
+      var result = {
+        diagmetric: diag * 2.54,
+        sizex: xd,
+        sizey: yd,
+        metricsizex: 2.54 * xd,
+        metricsizey: 2.54 * yd,
+        xppi: x / xd,
+        yppi: y / yd,
+        dotpitch: pitch,
+        sqppi: ((x / xd) * y) / yd,
+      };
+      const final_ppi = result.xppi.toFixed(2);
+      console.log(final_ppi);
+      store.dispatch(HP_DATA_ACT("lay_size_ppi", final_ppi));
+      setDataLayPPI(final_ppi);
+
+      return result;
+    }
   };
 
   return (
