@@ -19,7 +19,7 @@ const ListBrand = (props) => {
           src={
             props.logo.includes("ik.imagekit.io")
               ? props.logo
-              : "https://static.inponsel.com/images/brands/" + props.logo
+              : "https://is3.cloudhost.id/inps/images/brands/" + props.logo
           }
           alt={props.merk}
           width={150}
