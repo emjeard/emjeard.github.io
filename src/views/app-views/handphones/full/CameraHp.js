@@ -24,7 +24,9 @@ const CameraHp = () => {
   const onChangeInputGeneral = (e) => {
     const stateName = e.target.name;
     let stateValue = e.target.value;
-
+    if (stateValue === "") {
+      stateValue = null;
+    }
     if (stateName.includes("__cb")) {
       stateValue = e.target.checked;
     }
@@ -69,7 +71,7 @@ const CameraHp = () => {
         }}
       >
         <div className="lay-subsegment" style={{ display: "flex" }}>
-          <div style={{width: "100px"}}>
+          <div style={{ width: "100px" }}>
             <div className="lbl-input-data" style={{ minWidth: 150 }}>
               Kamera Utama
             </div>
@@ -100,7 +102,11 @@ const CameraHp = () => {
               <Input
                 name="kam_utama_total"
                 onChange={onChangeInputGeneral}
-                defaultValue={store.getState().gen_hp_data.data.kam_utama_total}
+                defaultValue={
+                  store.getState().gen_hp_data.data.kam_utama_total === 0
+                    ? ""
+                    : store.getState().gen_hp_data.data.kam_utama_total
+                }
                 style={{ width: 65, margin: "0px 0px 0px 0px" }}
               />
               <Button className="lay-group-label">lensa</Button>
@@ -113,7 +119,11 @@ const CameraHp = () => {
               <Input
                 name="kam_utama"
                 onChange={onChangeInputGeneral}
-                defaultValue={store.getState().gen_hp_data.data.kam_utama}
+                defaultValue={
+                  store.getState().gen_hp_data.data.kam_utama === 0
+                    ? ""
+                    : store.getState().gen_hp_data.data.kam_utama
+                }
                 style={{ width: 125, margin: "0px 0px 0px 0px" }}
               />
               <Button className="lay-group-label">MP</Button>
@@ -289,7 +299,11 @@ const CameraHp = () => {
               <Input
                 name="kam_depan_total"
                 onChange={onChangeInputGeneral}
-                defaultValue={store.getState().gen_hp_data.data.kam_depan_total}
+                defaultValue={
+                  store.getState().gen_hp_data.data.kam_depan_total === 0
+                    ? ""
+                    : store.getState().gen_hp_data.data.kam_depan_total
+                }
                 style={{ width: 65, margin: "0px 0px 0px 0px" }}
               />
               <Button className="lay-group-label">lensa</Button>
