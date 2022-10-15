@@ -40,6 +40,9 @@ const UploadImage = (props) => {
   const onChangeInputGeneral = (e) => {
     const stateName = e.target.name;
     let stateValue = e.target.value;
+    if (stateValue === "") {
+      stateValue = null;
+    }
     setImgPath(stateValue);
   };
   const check_img_res = (e) => {};

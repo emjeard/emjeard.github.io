@@ -18,7 +18,9 @@ const PriceRangeHp = () => {
   const onChangeInputGeneral = (e) => {
     const stateName = e.target.name;
     let stateValue = e.target.value;
-
+    if (stateValue === "") {
+      stateValue = null;
+    }
     if (stateName.includes("__cb")) {
       stateValue = e.target.checked;
     }
@@ -62,9 +64,13 @@ const PriceRangeHp = () => {
                   name="price_new_from"
                   style={{ minWidth: "225px" }}
                   formatter={(value) =>
-                    `Rp. ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+                    value === ""
+                      ? ""
+                      : `Rp. ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
                   }
-                  parser={(value) => value.replace(/\Rp.\s?|(,*)/g, "")}
+                  parser={(value) =>
+                    value === "" ? "" : value.replace(/\Rp.\s?|(,*)/g, "")
+                  }
                   onChange={(e) => onChangeInputNumber(e, "price_new_from")}
                   defaultValue={
                     store.getState().gen_hp_data.data.price_new_from === 0
@@ -83,13 +89,19 @@ const PriceRangeHp = () => {
                   name="price_new_end"
                   style={{ minWidth: "225px" }}
                   formatter={(value) =>
-                    `Rp. ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+                    value === ""
+                      ? ""
+                      : `Rp. ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
                   }
-                  parser={(value) => value.replace(/\Rp.\s?|(,*)/g, "")}
+                  parser={(value) =>
+                    value === "" ? "" : value.replace(/\Rp.\s?|(,*)/g, "")
+                  }
                   onChange={(e) => onChangeInputNumber(e, "price_new_end")}
-                  defaultValue={store.getState().gen_hp_data.data.price_new_end === 0
-                    ? ""
-                    : store.getState().gen_hp_data.data.price_new_end}
+                  defaultValue={
+                    store.getState().gen_hp_data.data.price_new_end === 0
+                      ? ""
+                      : store.getState().gen_hp_data.data.price_new_end
+                  }
                   placeholder="Tertinggi"
                   allowClear
                 />
@@ -112,14 +124,18 @@ const PriceRangeHp = () => {
                   name="price_second_from"
                   style={{ minWidth: "225px" }}
                   formatter={(value) =>
-                    `Rp. ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+                    value === ""
+                      ? ""
+                      : `Rp. ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
                   }
-                  parser={(value) => value.replace(/\Rp.\s?|(,*)/g, "")}
+                  parser={(value) =>
+                    value === "" ? "" : value.replace(/\Rp.\s?|(,*)/g, "")
+                  }
                   onChange={(e) => onChangeInputNumber(e, "price_second_from")}
                   defaultValue={
                     store.getState().gen_hp_data.data.price_second_from === 0
-                    ? ""
-                    : store.getState().gen_hp_data.data.price_second_from
+                      ? ""
+                      : store.getState().gen_hp_data.data.price_second_from
                   }
                   placeholder="Termurah"
                   allowClear
@@ -131,14 +147,18 @@ const PriceRangeHp = () => {
                   name="price_second_end"
                   style={{ minWidth: "225px" }}
                   formatter={(value) =>
-                    `Rp. ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+                    value === ""
+                      ? ""
+                      : `Rp. ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
                   }
-                  parser={(value) => value.replace(/\Rp.\s?|(,*)/g, "")}
+                  parser={(value) =>
+                    value === "" ? "" : value.replace(/\Rp.\s?|(,*)/g, "")
+                  }
                   onChange={(e) => onChangeInputNumber(e, "price_second_end")}
                   defaultValue={
                     store.getState().gen_hp_data.data.price_second_end === 0
-                    ? ""
-                    : store.getState().gen_hp_data.data.price_second_end
+                      ? ""
+                      : store.getState().gen_hp_data.data.price_second_end
                   }
                   placeholder="Tertinggi"
                   allowClear

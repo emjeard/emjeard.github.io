@@ -32,7 +32,9 @@ const NetworkHp = () => {
   const onChangeInputGeneral = (e) => {
     const stateName = e.target.name;
     let stateValue = e.target.value;
-
+    if (stateValue === "") {
+      stateValue = null;
+    }
     if (stateName.includes("__cb")) {
       stateValue = e.target.checked;
     }

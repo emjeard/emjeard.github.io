@@ -19,7 +19,9 @@ const DataOperator = () => {
   const onChangeInputGeneral = (e) => {
     const stateName = e.target.name;
     let stateValue = e.target.value;
-
+    if (stateValue === "") {
+      stateValue = null;
+    }
     store.dispatch(HP_DATA_ACT(stateName, stateValue));
   };
   const onChangeSelectGeneral = (selectedItems, option) => {
