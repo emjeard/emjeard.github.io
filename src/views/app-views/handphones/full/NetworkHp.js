@@ -349,9 +349,13 @@ const NetworkHp = () => {
                   style={{ width: "100%" }}
                   name="jar_bwidth"
                   onChange={onChangeInputGeneral}
-                  defaultValue={store
-                    .getState()
-                    .gen_hp_data.data.jar_bwidth.replace(/; /g, "\n")}
+                  defaultValue={
+                    store.getState().gen_hp_data.data.jar_bwidth === null
+                      ? ""
+                      : store
+                          .getState()
+                          .gen_hp_data.data.jar_bwidth.replace(/; /g, "\n")
+                  }
                   placeholder=""
                   autoSize={{ minRows: 3, maxRows: 5 }}
                 />

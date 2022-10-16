@@ -236,9 +236,13 @@ const GeneralHp = () => {
               name="ketamb"
               placeholder=""
               onChange={onChangeInputGeneral}
-              defaultValue={store
-                .getState()
-                .gen_hp_data.data.ketamb.replace(/; /g, "\n")}
+              defaultValue={
+                store.getState().gen_hp_data.data.ketamb === null
+                  ? ""
+                  : store
+                      .getState()
+                      .gen_hp_data.data.ketamb.replace(/; /g, "\n")
+              }
             />
           </div>
           <div className="lay-subsegment">
