@@ -11,6 +11,7 @@ import slugify from "slugify";
 import { HP_DATA_ACT } from "redux/actions/Handphone";
 import UploadImage from "views/app-views/components/data-entry/upload/UploadImage";
 import { useSelector } from "react-redux";
+import Utils from "utils";
 
 const { Option } = Select;
 const init_data = { id: 0, nama_hp: "", image: "" };
@@ -41,28 +42,37 @@ const GalleryHp = (props) => {
     const setData = () =>
       new Promise((resolve) => {
         getListGalleryHp(id_hp).then((response) => {
-          const dataHp = response.data;
-          setOriImage(dataHp.galeri);
-          setNamaHp(dataHp.nama_hp);
-          const split_gallery = dataHp.galeri.split(",");
-          for (let i = 0; i < split_gallery.length; i++) {
-            setGalleryData((galleryData) => [...galleryData, split_gallery[i]]);
-            setImagesGallery((imagesGallery) => [
-              ...imagesGallery,
-              {
-                src:
-                  "https://ik.imagekit.io/inponsel/images/galeri/" +
-                  split_gallery[i],
-                thumbnail:
-                  "https://ik.imagekit.io/inponsel/images/galeri/" +
-                  split_gallery[i],
-                thumbnailWidth: 350,
-                thumbnailHeight: 350,
-                caption: "",
-                isSelected: false,
-              },
-            ]);
+          console.log("object", response.status);
+          if (response.status === 200) {
+            const dataHp = response.data.data;
+            setOriImage(dataHp.galeri);
+            setNamaHp(dataHp.nama_hp);
+            const split_gallery = dataHp.galeri.split(",");
+            for (let i = 0; i < split_gallery.length; i++) {
+              setGalleryData((galleryData) => [
+                ...galleryData,
+                split_gallery[i],
+              ]);
+              setImagesGallery((imagesGallery) => [
+                ...imagesGallery,
+                {
+                  src:
+                    "https://ik.imagekit.io/inponsel/images/galeri/" +
+                    split_gallery[i],
+                  thumbnail:
+                    "https://ik.imagekit.io/inponsel/images/galeri/" +
+                    split_gallery[i],
+                  thumbnailWidth: 350,
+                  thumbnailHeight: 350,
+                  caption: "",
+                  isSelected: false,
+                },
+              ]);
+            }
+          } else {
+            setOriImage("");
           }
+
           resolve();
         });
       });
@@ -175,8 +185,8 @@ const GalleryHp = (props) => {
     for (let i = 0; i < ori_image_split.length; i++) {
       final_image += ori_image_split[i] + ",";
     }
-    console.log("final", final_image.slice(0, -1));
-    putUpdateGalleryHp(id_hp, final_image.slice(0, -1))
+    console.log("final", final_image.replace(/(^,)|(,$)/g, ""));
+    putUpdateGalleryHp(id_hp, final_image.replace(/(^,)|(,$)/g, ""))
       .then((resp) => {
         console.log("update", resp);
         if (resp.status === true) {
@@ -190,10 +200,7 @@ const GalleryHp = (props) => {
             progress: undefined,
             theme: "colored",
           });
-          setTimeout(
-            () => (window.location.href = "/handphones/gallery/" + id_hp),
-            3000
-          );
+          setTimeout(() => (window.location.href = "/handphones/list"), 3000);
         } else {
           toast.error(resp.message, {
             position: "top-right",
@@ -227,9 +234,9 @@ const GalleryHp = (props) => {
     setUpdateLoading(true);
     let final_image = oriImage;
     final_image += "," + store.getState().gen_hp_data.galeri;
-    console.log("final_image", final_image);
+    console.log("final_image", final_image.replace(/(^,)|(,$)/g, ""));
 
-    putUpdateGalleryHp(id_hp, final_image)
+    putUpdateGalleryHp(id_hp, final_image.replace(/(^,)|(,$)/g, ""))
       .then((resp) => {
         console.log("update", resp);
         if (resp.status === true) {

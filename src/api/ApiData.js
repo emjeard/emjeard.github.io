@@ -225,7 +225,10 @@ const getListHp = (page, many, filter) => {
 
 const getListGalleryHp = (id_hp) => {
   const url = `${BASE_URL}hp/gallery?id=${id_hp}`;
-  return axios.get(url, headerRequest).then((response) => response.data);
+  return axios
+    .get(url, headerRequest)
+    .then((response) => response)
+    .catch((err) => err.response);
 };
 
 const getListHpModel = () => {
