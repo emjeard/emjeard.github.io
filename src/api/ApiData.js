@@ -44,6 +44,7 @@ export {
   getDetailOp,
   getDetailOpPack,
   delDetailOpPack,
+  delUmuModel,
   delDetailOp,
   postUploadAvatar,
   postCreateArticle,
@@ -51,6 +52,8 @@ export {
   postEditHp,
   postCreateOpPackage,
   postUpdateOp,
+  postUmuModel,
+  putUmuModel,
   putUpdateOpPackage,
   putUpdateOp,
   putUpdateArticle,
@@ -58,6 +61,7 @@ export {
   getCompareHp,
   getGenerateCompareHp,
   getListBrands,
+  getListUmuModel,
   getListProvince,
   getListOperator,
   getListOperatorPack,
@@ -135,6 +139,14 @@ const getDetailOpPack = (id) => {
 const delDetailOpPack = (id) => {
   const url = `${BASE_URL}operator/package/delete?id=${id}`;
   return axios.get(url, headerRequest).then((response) => response.data);
+};
+
+const delUmuModel = (id) => {
+  const url = `${BASE_URL}master/umu-model/delete?id=${id}`;
+  return axios
+    .get(url, headerRequest)
+    .then((response) => response)
+    .catch((err) => err.response);
 };
 
 const delDetailOp = (id) => {
@@ -272,6 +284,14 @@ const getListHpSimCard = () => {
 const getListBrands = (page, many, filter) => {
   const url = `${BASE_URL}brand/list?page=${page}&many=${many}&order=${filter}`;
   return axios.get(url, headerRequest).then((response) => response.data);
+};
+
+const getListUmuModel = (page, many, filter) => {
+  const url = `${BASE_URL}master/umu-model/list?page=${page}&many=${many}&order=${filter}`;
+  return axios
+    .get(url, headerRequest)
+    .then((response) => response)
+    .catch((err) => err.response);
 };
 
 const getListOperator = (page, many, filter) => {
@@ -469,7 +489,25 @@ const postCreateArticle = (
 
   return axios.post(url, formData, headerRequest).then((response) => response);
 };
-
+const postUmuModel = (model) => {
+  const url = `${BASE_URL}master/umu-model/create`;
+  const formData = new FormData();
+  formData.append("model", model);
+  return axios
+    .post(url, formData, headerRequest)
+    .then((response) => response)
+    .catch((err) => err.response);
+};
+const putUmuModel = (id, model) => {
+  const url = `${BASE_URL}master/umu-model/update`;
+  const formData = new FormData();
+  formData.append("id", id);
+  formData.append("model", model);
+  return axios
+    .put(url, formData, headerRequest)
+    .then((response) => response)
+    .catch((err) => err.response);
+};
 const putUpdateArticle = (
   id,
   title,

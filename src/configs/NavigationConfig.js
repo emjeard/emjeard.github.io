@@ -52,7 +52,7 @@ const dashBoardNavTree = [
             submenu: [],
           },
           {
-            key: "dashboards-master-data-form-factor",
+            key: "dashboards-master-data-device-status",
             path: `${APP_PREFIX_PATH}/dashboards/master-data/device-status`,
             title: "sidenav.dashboard.master_data.device_status",
             icon: "",

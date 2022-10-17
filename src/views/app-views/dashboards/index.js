@@ -38,6 +38,10 @@ const Dashboards = ({ match }) => {
           path={`${match.url}/custom-page`}
           component={lazy(() => import(`./custom-page`))}
         />
+         <Route
+          path={`${match.url}/master-data`}
+          component={lazy(() => import(`./master-data`))}
+        />
         <Redirect from={`${match.url}`} to={`${match.url}/default`} />
       </Switch>
     </Suspense>
