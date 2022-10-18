@@ -45,6 +45,7 @@ export {
   getDetailOpPack,
   delDetailOpPack,
   delUmuModel,
+  delDeviceStatus,
   delDetailOp,
   postUploadAvatar,
   postCreateArticle,
@@ -53,6 +54,7 @@ export {
   postCreateOpPackage,
   postUpdateOp,
   postUmuModel,
+  postDeviceStatus,
   putUmuModel,
   putUpdateOpPackage,
   putUpdateOp,
@@ -65,6 +67,7 @@ export {
   getListProvince,
   getListOperator,
   getListOperatorPack,
+  getListDeviceStatus,
   putUpdateBrand,
   postCreateBrand,
   getRootPathSitePage,
@@ -148,7 +151,15 @@ const delUmuModel = (id) => {
     .then((response) => response)
     .catch((err) => err.response);
 };
-
+const delDeviceStatus = async (id) => {
+  const url = `${BASE_URL}master/device-status/delete?id=${id}`;
+  try {
+    const response = await axios.delete(url, headerRequest);
+    return response;
+  } catch (err) {
+    return err.response;
+  }
+};
 const delDetailOp = (id) => {
   const url = `${BASE_URL}operator/delete?id=${id}`;
   return axios.get(url, headerRequest).then((response) => response.data);
@@ -288,6 +299,14 @@ const getListBrands = (page, many, filter) => {
 
 const getListUmuModel = (page, many, filter) => {
   const url = `${BASE_URL}master/umu-model/list?page=${page}&many=${many}&order=${filter}`;
+  return axios
+    .get(url, headerRequest)
+    .then((response) => response)
+    .catch((err) => err.response);
+};
+
+const getListDeviceStatus = (page, many, filter) => {
+  const url = `${BASE_URL}master/device-status/list?page=${page}&many=${many}&order=${filter}`;
   return axios
     .get(url, headerRequest)
     .then((response) => response)
@@ -497,6 +516,17 @@ const postUmuModel = (model) => {
     .post(url, formData, headerRequest)
     .then((response) => response)
     .catch((err) => err.response);
+};
+const postDeviceStatus = async (status) => {
+  const url = `${BASE_URL}master/device-status/create`;
+  const formData = new FormData();
+  formData.append("status", status);
+  try {
+    const response = await axios.post(url, formData, headerRequest);
+    return response;
+  } catch (err) {
+    return err.response;
+  }
 };
 const putUmuModel = (id, model) => {
   const url = `${BASE_URL}master/umu-model/update`;

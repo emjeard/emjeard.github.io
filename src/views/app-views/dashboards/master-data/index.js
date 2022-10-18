@@ -10,6 +10,10 @@ const MasterDataDashboard = ({ match }) => {
           path={`${match.url}/form-factor`}
           component={lazy(() => import(`./umu-model`))}
         />
+         <Route
+          path={`${match.url}/device-status`}
+          component={lazy(() => import(`./device-status`))}
+        />
         <Redirect from={`${match.url}`} to={`${match.url}/default`} />
       </Switch>
     </Suspense>
