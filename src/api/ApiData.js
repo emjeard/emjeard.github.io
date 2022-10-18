@@ -93,6 +93,14 @@ export {
   postOperatingSystem,
   putOperatingSystem,
   delOperatingSystem,
+  getListMemoryType,
+  postMemoryType,
+  putMemoryType,
+  delMemoryType,
+  getListMemoryCap,
+  postMemoryCap,
+  putMemoryCap,
+  delMemoryCap,
 };
 
 const getToken = function () {
@@ -954,6 +962,96 @@ const putOperatingSystem = async (id, os) => {
 
 const delOperatingSystem = async (id) => {
   const url = `${BASE_URL}master/os/delete?id=${id}`;
+  try {
+    const response = await axios.delete(url, headerRequest);
+    return response;
+  } catch (err) {
+    return err.response;
+  }
+};
+
+const getListMemoryType = async (page, many, filter) => {
+  const url = `${BASE_URL}master/memory-type/list?page=${page}&many=${many}&order=${filter}`;
+  try {
+    const response = await axios.get(url, headerRequest);
+    return response;
+  } catch (err) {
+    return err.response;
+  }
+};
+
+const postMemoryType = async (memjen) => {
+  const url = `${BASE_URL}master/memory-type/create`;
+  const formData = new FormData();
+  formData.append("memjen", memjen);
+  try {
+    const response = await axios.post(url, formData, headerRequest);
+    return response;
+  } catch (err) {
+    return err.response;
+  }
+};
+
+const putMemoryType = async (id, memjen) => {
+  const url = `${BASE_URL}master/memory-type/update`;
+  const formData = new FormData();
+  formData.append("id", id);
+  formData.append("memjen", memjen);
+  try {
+    const response = await axios.put(url, formData, headerRequest);
+    return response;
+  } catch (err) {
+    return err.response;
+  }
+};
+
+const delMemoryType = async (id) => {
+  const url = `${BASE_URL}master/memory-type/delete?id=${id}`;
+  try {
+    const response = await axios.delete(url, headerRequest);
+    return response;
+  } catch (err) {
+    return err.response;
+  }
+};
+
+const getListMemoryCap = async (page, many, filter) => {
+  const url = `${BASE_URL}master/memory-cap/list?page=${page}&many=${many}&order=${filter}`;
+  try {
+    const response = await axios.get(url, headerRequest);
+    return response;
+  } catch (err) {
+    return err.response;
+  }
+};
+
+const postMemoryCap = async (memkap) => {
+  const url = `${BASE_URL}master/memory-cap/create`;
+  const formData = new FormData();
+  formData.append("memkap", memkap);
+  try {
+    const response = await axios.post(url, formData, headerRequest);
+    return response;
+  } catch (err) {
+    return err.response;
+  }
+};
+
+const putMemoryCap = async (id, memkap) => {
+  const url = `${BASE_URL}master/memory-cap/update`;
+  const formData = new FormData();
+  formData.append("id", id);
+  formData.append("memkap", memkap);
+  try {
+    const response = await axios.put(url, formData, headerRequest);
+    return response;
+  } catch (err) {
+    return err.response;
+  }
+};
+
+const delMemoryCap = async (id) => {
+  const url = `${BASE_URL}master/memory-cap/delete?id=${id}`;
   try {
     const response = await axios.delete(url, headerRequest);
     return response;

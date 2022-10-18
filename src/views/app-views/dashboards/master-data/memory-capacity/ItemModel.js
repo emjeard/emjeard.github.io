@@ -22,7 +22,7 @@ const ItemModel = (props) => {
         {props.id}
       </div>
       <div style={{ padding: "5px 15px", maxWidth: 250, width: 250 }}>
-        {props.model}
+        {props.memkap}
       </div>
       <div style={{ padding: "5px 15px", maxWidth: 250, width: 250 }}>
         {props.created}
@@ -32,7 +32,7 @@ const ItemModel = (props) => {
       </div>
       <div style={{ padding: "5px 15px", display: "flex" }}>
         <div
-          onClick={() => updateItem(props.id, props.model)}
+          onClick={() => updateItem(props.id, props.memkap)}
           style={{
             display: "flex",
             justifyContent: "center",
@@ -48,7 +48,7 @@ const ItemModel = (props) => {
           <EditOutlined style={{ color: "#fff" }} />
         </div>
         <div
-          onClick={() => deleteItem(props.id, props.model)}
+          onClick={() => deleteItem(props.id, props.memkap)}
           style={{
             display: "flex",
             justifyContent: "center",
