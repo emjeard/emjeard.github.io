@@ -24,7 +24,7 @@ import store from "redux/store";
 const { Search } = Input;
 const { confirm } = Modal;
 
-const DeviceStatusIndex = () => {
+const ColorDepthIndex = () => {
   const [dataInput, setDataInput] = useState("");
   const [dataItem, setDataItem] = useState([]);
   const [keysearch, setKeysearch] = useState("");
@@ -361,4 +361,4 @@ const DeviceStatusIndex = () => {
   );
 };
 
-export default DeviceStatusIndex;
+export default ColorDepthIndex;
