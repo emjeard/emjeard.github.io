@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { Card, Pagination, Input, Modal } from "antd";
 import {
-  getListUmuModel,
-  postUmuModel,
-  putUmuModel,
-  delUmuModel,
+  getListSimcard,
+  postSimcard,
+  putSimcard,
+  delSimcard,
 } from "api/ApiData";
 import { Select, Button, Spin } from "antd";
 import moment from "moment";
@@ -49,7 +49,7 @@ const SimcardIndex = () => {
   const retrieveData = (page, many, filter) => {
     setFirstLoading(true);
     page = page === null ? 1 : page;
-    getListUmuModel(page, many, filter)
+    getListSimcard(page, many, filter)
       .then((response) => {
         if (response.status === 200) {
           setDataItem(response.data.data);
@@ -108,9 +108,9 @@ const SimcardIndex = () => {
       ),
       async onOk() {
         return new Promise((resolve, reject) => {
-          putUmuModel(
+          putSimcard(
             item_id,
-            store.getState().gen_hp_data.data.umu_model
+            store.getState().gen_hp_data.data.data_label
           ).then((response) => {
             if (response.status === 200) {
               toast.success(response.data.message, {
@@ -147,12 +147,12 @@ const SimcardIndex = () => {
 
   const onChangeInput = (e) => {
     setDataInput(e.target.value);
-    store.dispatch(HP_DATA_ACT("umu_model", e.target.value));
+    store.dispatch(HP_DATA_ACT("data_label", e.target.value));
   };
 
   const showCreate = () => {
     confirm({
-      title: "Create model handphone",
+      title: "Create Simcard",
       content: (
         <div>
           <Input
@@ -166,7 +166,7 @@ const SimcardIndex = () => {
       ),
       async onOk() {
         return new Promise((resolve, reject) => {
-          postUmuModel(store.getState().gen_hp_data.data.umu_model).then(
+          postSimcard(store.getState().gen_hp_data.data.data_label).then(
             (response) => {
               if (response.status === 201) {
                 toast.success(response.data.message, {
@@ -209,7 +209,7 @@ const SimcardIndex = () => {
       async onOk() {
         return new Promise((resolve, reject) => {
           //setTimeout(Math.random() > 0.5 ? resolve : reject, 1000);
-          delUmuModel(item_id).then((response) => {
+          delSimcard(item_id).then((response) => {
             if (response.status === 200) {
               toast.success(response.data.message, {
                 position: "top-right",
@@ -259,7 +259,7 @@ const SimcardIndex = () => {
         <div style={{ margin: "10px 0px 20px", display: "flex" }}>
           <Search
             value={keysearch}
-            placeholder="Cari model..."
+            placeholder="Cari Simcard..."
             onSearch={(value) => searchData(value)}
             onChange={onChangeSearch}
             enterButton
@@ -270,7 +270,7 @@ const SimcardIndex = () => {
             style={{ margin: "0px 0px 0px 20px" }}
             onClick={createItem}
           >
-            Create Model
+            Create Simcard
           </Button>
         </div>
         <Sticky enabled={true} top={70} innerZ={1}>
@@ -327,11 +327,11 @@ const SimcardIndex = () => {
             >
               <ItemModel
                 id={items.id}
-                model={items.model}
+                sc={items.sc}
                 created={moment(items.created).format("MMMM Do YYYY, HH:mm")}
                 modified={moment(items.modified).format("MMMM Do YYYY, HH:mm")}
-                onDeleteItem={(id, model) => deleteItem(id, model)}
-                onUpdateItem={(id, model) => updateItem(id, model)}
+                onDeleteItem={(id, sc) => deleteItem(id, sc)}
+                onUpdateItem={(id, sc) => updateItem(id, sc)}
               />
             </div>
           ))}

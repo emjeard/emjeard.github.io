@@ -101,6 +101,18 @@ export {
   postMemoryCap,
   putMemoryCap,
   delMemoryCap,
+  getListBattery,
+  postBattery,
+  putBattery,
+  delBattery,
+  getListResolution,
+  postResolution,
+  putResolution,
+  delResolution,
+  getListSimcard,
+  postSimcard,
+  putSimcard,
+  delSimcard,
 };
 
 const getToken = function () {
@@ -1052,6 +1064,144 @@ const putMemoryCap = async (id, memkap) => {
 
 const delMemoryCap = async (id) => {
   const url = `${BASE_URL}master/memory-cap/delete?id=${id}`;
+  try {
+    const response = await axios.delete(url, headerRequest);
+    return response;
+  } catch (err) {
+    return err.response;
+  }
+};
+
+
+const getListBattery = async (page, many, filter) => {
+  const url = `${BASE_URL}master/battery/list?page=${page}&many=${many}&order=${filter}`;
+  try {
+    const response = await axios.get(url, headerRequest);
+    return response;
+  } catch (err) {
+    return err.response;
+  }
+};
+
+const postBattery = async (jbat) => {
+  const url = `${BASE_URL}master/battery/create`;
+  const formData = new FormData();
+  formData.append("jbat", jbat);
+  try {
+    const response = await axios.post(url, formData, headerRequest);
+    return response;
+  } catch (err) {
+    return err.response;
+  }
+};
+
+const putBattery = async (id, jbat) => {
+  const url = `${BASE_URL}master/battery/update`;
+  const formData = new FormData();
+  formData.append("id", id);
+  formData.append("jbat", jbat);
+  try {
+    const response = await axios.put(url, formData, headerRequest);
+    return response;
+  } catch (err) {
+    return err.response;
+  }
+};
+
+const delBattery = async (id) => {
+  const url = `${BASE_URL}master/battery/delete?id=${id}`;
+  try {
+    const response = await axios.delete(url, headerRequest);
+    return response;
+  } catch (err) {
+    return err.response;
+  }
+};
+
+
+const getListResolution = async (page, many, filter) => {
+  const url = `${BASE_URL}master/resolution/list?page=${page}&many=${many}&order=${filter}`;
+  try {
+    const response = await axios.get(url, headerRequest);
+    return response;
+  } catch (err) {
+    return err.response;
+  }
+};
+
+const postResolution = async (fitkam) => {
+  const url = `${BASE_URL}master/resolution/create`;
+  const formData = new FormData();
+  formData.append("fitkam", fitkam);
+  try {
+    const response = await axios.post(url, formData, headerRequest);
+    return response;
+  } catch (err) {
+    return err.response;
+  }
+};
+
+const putResolution = async (id, fitkam) => {
+  const url = `${BASE_URL}master/resolution/update`;
+  const formData = new FormData();
+  formData.append("id", id);
+  formData.append("fitkam", fitkam);
+  try {
+    const response = await axios.put(url, formData, headerRequest);
+    return response;
+  } catch (err) {
+    return err.response;
+  }
+};
+
+const delResolution = async (id) => {
+  const url = `${BASE_URL}master/resolution/delete?id=${id}`;
+  try {
+    const response = await axios.delete(url, headerRequest);
+    return response;
+  } catch (err) {
+    return err.response;
+  }
+};
+
+
+const getListSimcard = async (page, many, filter) => {
+  const url = `${BASE_URL}master/simcard/list?page=${page}&many=${many}&order=${filter}`;
+  try {
+    const response = await axios.get(url, headerRequest);
+    return response;
+  } catch (err) {
+    return err.response;
+  }
+};
+
+const postSimcard = async (sc) => {
+  const url = `${BASE_URL}master/simcard/create`;
+  const formData = new FormData();
+  formData.append("sc", sc);
+  try {
+    const response = await axios.post(url, formData, headerRequest);
+    return response;
+  } catch (err) {
+    return err.response;
+  }
+};
+
+const putSimcard = async (id, sc) => {
+  const url = `${BASE_URL}master/simcard/update`;
+  const formData = new FormData();
+  formData.append("id", id);
+  formData.append("sc", sc);
+  try {
+    const response = await axios.put(url, formData, headerRequest);
+    return response;
+  } catch (err) {
+    return err.response;
+  }
+};
+
+const delSimcard = async (id) => {
+  const url = `${BASE_URL}master/simcard/delete?id=${id}`;
   try {
     const response = await axios.delete(url, headerRequest);
     return response;
