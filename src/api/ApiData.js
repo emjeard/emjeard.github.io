@@ -69,6 +69,7 @@ export {
   getListOperator,
   getListOperatorPack,
   getListDeviceStatus,
+  getListColorDepth,
   putUpdateBrand,
   postCreateBrand,
   getRootPathSitePage,
@@ -77,6 +78,13 @@ export {
   postUploadFile,
   headerRequest,
   getToken,
+  postColorDepth,
+  putColorDepth,
+  delColorDepth,
+  getListSensor,
+  postSensor,
+  putSensor,
+  delSensor,
 };
 
 const getToken = function () {
@@ -156,6 +164,15 @@ const delUmuModel = async (id) => {
 };
 const delDeviceStatus = async (id) => {
   const url = `${BASE_URL}master/device-status/delete?id=${id}`;
+  try {
+    const response = await axios.delete(url, headerRequest);
+    return response;
+  } catch (err) {
+    return err.response;
+  }
+};
+const delColorDepth = async (id) => {
+  const url = `${BASE_URL}master/color-depth/delete?id=${id}`;
   try {
     const response = await axios.delete(url, headerRequest);
     return response;
@@ -308,12 +325,24 @@ const getListUmuModel = (page, many, filter) => {
     .catch((err) => err.response);
 };
 
-const getListDeviceStatus = (page, many, filter) => {
+const getListDeviceStatus = async (page, many, filter) => {
   const url = `${BASE_URL}master/device-status/list?page=${page}&many=${many}&order=${filter}`;
-  return axios
-    .get(url, headerRequest)
-    .then((response) => response)
-    .catch((err) => err.response);
+  try {
+    const response = await axios.get(url, headerRequest);
+    return response;
+  } catch (err) {
+    return err.response;
+  }
+};
+
+const getListColorDepth = async (page, many, filter) => {
+  const url = `${BASE_URL}master/color-depth/list?page=${page}&many=${many}&order=${filter}`;
+  try {
+    const response = await axios.get(url, headerRequest);
+    return response;
+  } catch (err) {
+    return err.response;
+  }
 };
 
 const getListOperator = (page, many, filter) => {
@@ -511,14 +540,16 @@ const postCreateArticle = (
 
   return axios.post(url, formData, headerRequest).then((response) => response);
 };
-const postUmuModel = (model) => {
+const postUmuModel = async (model) => {
   const url = `${BASE_URL}master/umu-model/create`;
   const formData = new FormData();
   formData.append("model", model);
-  return axios
-    .post(url, formData, headerRequest)
-    .then((response) => response)
-    .catch((err) => err.response);
+  try {
+    const response = await axios.post(url, formData, headerRequest);
+    return response;
+  } catch (err) {
+    return err.response;
+  }
 };
 const postDeviceStatus = async (status) => {
   const url = `${BASE_URL}master/device-status/create`;
@@ -531,11 +562,34 @@ const postDeviceStatus = async (status) => {
     return err.response;
   }
 };
+const postColorDepth = async (warna) => {
+  const url = `${BASE_URL}master/color-depth/create`;
+  const formData = new FormData();
+  formData.append("warna", warna);
+  try {
+    const response = await axios.post(url, formData, headerRequest);
+    return response;
+  } catch (err) {
+    return err.response;
+  }
+};
 const putDeviceStatus = async (id, status) => {
   const url = `${BASE_URL}master/device-status/update`;
   const formData = new FormData();
   formData.append("id", id);
   formData.append("status", status);
+  try {
+    const response = await axios.put(url, formData, headerRequest);
+    return response;
+  } catch (err) {
+    return err.response;
+  }
+};
+const putColorDepth = async (id, warna) => {
+  const url = `${BASE_URL}master/color-depth/update`;
+  const formData = new FormData();
+  formData.append("id", id);
+  formData.append("warna", warna);
   try {
     const response = await axios.put(url, formData, headerRequest);
     return response;
@@ -763,4 +817,49 @@ const postUploadFile = (file, fileName, folder) => {
   formData.append("folder_path", final_folder);
 
   return axios.post(url, formData, headerRequest).then((response) => response);
+};
+
+const getListSensor = async (page, many, filter) => {
+  const url = `${BASE_URL}master/sensor/list?page=${page}&many=${many}&order=${filter}`;
+  try {
+    const response = await axios.get(url, headerRequest);
+    return response;
+  } catch (err) {
+    return err.response;
+  }
+};
+
+const postSensor = async (sensor) => {
+  const url = `${BASE_URL}master/sensor/create`;
+  const formData = new FormData();
+  formData.append("sensor", sensor);
+  try {
+    const response = await axios.post(url, formData, headerRequest);
+    return response;
+  } catch (err) {
+    return err.response;
+  }
+};
+
+const putSensor = async (id, sensor) => {
+  const url = `${BASE_URL}master/sensor/update`;
+  const formData = new FormData();
+  formData.append("id", id);
+  formData.append("sensor", sensor);
+  try {
+    const response = await axios.put(url, formData, headerRequest);
+    return response;
+  } catch (err) {
+    return err.response;
+  }
+};
+
+const delSensor = async (id) => {
+  const url = `${BASE_URL}master/sensor/delete?id=${id}`;
+  try {
+    const response = await axios.delete(url, headerRequest);
+    return response;
+  } catch (err) {
+    return err.response;
+  }
 };

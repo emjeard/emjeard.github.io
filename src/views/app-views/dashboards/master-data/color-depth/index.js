@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { Card, Pagination, Input, Modal } from "antd";
 import {
-  getListDeviceStatus,
-  postDeviceStatus,
-  putDeviceStatus,
-  delDeviceStatus,
+  getListColorDepth,
+  postColorDepth,
+  putColorDepth,
+  delColorDepth,
 } from "api/ApiData";
 import { Select, Button, Spin } from "antd";
 import moment from "moment";
@@ -49,7 +49,7 @@ const ColorDepthIndex = () => {
   const retrieveData = (page, many, filter) => {
     setFirstLoading(true);
     page = page === null ? 1 : page;
-    getListDeviceStatus(page, many, filter)
+    getListColorDepth(page, many, filter)
       .then((response) => {
         if (response.status === 200) {
           setDataItem(response.data.data);
@@ -99,7 +99,7 @@ const ColorDepthIndex = () => {
       content: (
         <div>
           <Input
-            placeholder="Contoh: Flip"
+            placeholder="Contoh: 16 juta warna"
             allowClear
             defaultValue={item_name}
             onChange={onChangeInput}
@@ -108,7 +108,7 @@ const ColorDepthIndex = () => {
       ),
       async onOk() {
         return new Promise((resolve, reject) => {
-          putDeviceStatus(
+          putColorDepth(
             item_id,
             store.getState().gen_hp_data.data.data_label
           ).then((response) => {
@@ -152,7 +152,7 @@ const ColorDepthIndex = () => {
 
   const showCreate = () => {
     confirm({
-      title: "Create status",
+      title: "Create color depth",
       content: (
         <div>
           <Input
@@ -166,7 +166,7 @@ const ColorDepthIndex = () => {
       ),
       async onOk() {
         return new Promise((resolve, reject) => {
-          postDeviceStatus(store.getState().gen_hp_data.data.data_label).then(
+          postColorDepth(store.getState().gen_hp_data.data.data_label).then(
             (response) => {
               if (response.status === 201) {
                 toast.success(response.data.message, {
@@ -209,7 +209,7 @@ const ColorDepthIndex = () => {
       async onOk() {
         return new Promise((resolve, reject) => {
           //setTimeout(Math.random() > 0.5 ? resolve : reject, 1000);
-          delDeviceStatus(item_id).then((response) => {
+          delColorDepth(item_id).then((response) => {
             if (response.status === 200) {
               toast.success(response.data.message, {
                 position: "top-right",
@@ -327,11 +327,11 @@ const ColorDepthIndex = () => {
             >
               <ItemModel
                 id={items.id}
-                status={items.status}
+                warna={items.warna}
                 created={moment(items.created).format("MMMM Do YYYY, HH:mm")}
                 modified={moment(items.modified).format("MMMM Do YYYY, HH:mm")}
-                onDeleteItem={(id, status) => deleteItem(id, status)}
-                onUpdateItem={(id, status) => updateItem(id, status)}
+                onDeleteItem={(id, warna) => deleteItem(id, warna)}
+                onUpdateItem={(id, warna) => updateItem(id, warna)}
               />
             </div>
           ))}
