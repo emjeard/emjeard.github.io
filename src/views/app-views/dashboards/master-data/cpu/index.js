@@ -1,11 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { Card, Pagination, Input, Modal } from "antd";
-import {
-  getListUmuModel,
-  postUmuModel,
-  putUmuModel,
-  delUmuModel,
-} from "api/ApiData";
+import { getListCpu, postCpu, putCpu, delCpu } from "api/ApiData";
 import { Select, Button, Spin } from "antd";
 import moment from "moment";
 import Sticky from "react-stickynode";
@@ -49,7 +44,7 @@ const CpuIndex = () => {
   const retrieveData = (page, many, filter) => {
     setFirstLoading(true);
     page = page === null ? 1 : page;
-    getListUmuModel(page, many, filter)
+    getListCpu(page, many, filter)
       .then((response) => {
         if (response.status === 200) {
           setDataItem(response.data.data);
@@ -99,7 +94,7 @@ const CpuIndex = () => {
       content: (
         <div>
           <Input
-            placeholder="Contoh: Flip"
+            placeholder="Contoh: Octa Core"
             allowClear
             defaultValue={item_name}
             onChange={onChangeInput}
@@ -108,37 +103,36 @@ const CpuIndex = () => {
       ),
       async onOk() {
         return new Promise((resolve, reject) => {
-          putUmuModel(
-            item_id,
-            store.getState().gen_hp_data.data.umu_model
-          ).then((response) => {
-            if (response.status === 200) {
-              toast.success(response.data.message, {
-                position: "top-right",
-                autoClose: true,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "colored",
-              });
-              resolve();
-              retrieveData(1, 10, "");
-            } else {
-              resolve();
-              toast.error(response.data.message, {
-                position: "top-right",
-                autoClose: true,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "colored",
-              });
+          putCpu(item_id, store.getState().gen_hp_data.data.data_label).then(
+            (response) => {
+              if (response.status === 200) {
+                toast.success(response.data.message, {
+                  position: "top-right",
+                  autoClose: true,
+                  hideProgressBar: false,
+                  closeOnClick: true,
+                  pauseOnHover: true,
+                  draggable: true,
+                  progress: undefined,
+                  theme: "colored",
+                });
+                resolve();
+                retrieveData(1, 10, "");
+              } else {
+                resolve();
+                toast.error(response.data.message, {
+                  position: "top-right",
+                  autoClose: true,
+                  hideProgressBar: false,
+                  closeOnClick: true,
+                  pauseOnHover: true,
+                  draggable: true,
+                  progress: undefined,
+                  theme: "colored",
+                });
+              }
             }
-          });
+          );
         }).catch(() => console.log("Oops errors!"));
       },
       onCancel() {},
@@ -147,12 +141,12 @@ const CpuIndex = () => {
 
   const onChangeInput = (e) => {
     setDataInput(e.target.value);
-    store.dispatch(HP_DATA_ACT("umu_model", e.target.value));
+    store.dispatch(HP_DATA_ACT("data_label", e.target.value));
   };
 
   const showCreate = () => {
     confirm({
-      title: "Create model handphone",
+      title: "Create CPU",
       content: (
         <div>
           <Input
@@ -166,7 +160,7 @@ const CpuIndex = () => {
       ),
       async onOk() {
         return new Promise((resolve, reject) => {
-          postUmuModel(store.getState().gen_hp_data.data.umu_model).then(
+          postCpu(store.getState().gen_hp_data.data.data_label).then(
             (response) => {
               if (response.status === 201) {
                 toast.success(response.data.message, {
@@ -209,7 +203,7 @@ const CpuIndex = () => {
       async onOk() {
         return new Promise((resolve, reject) => {
           //setTimeout(Math.random() > 0.5 ? resolve : reject, 1000);
-          delUmuModel(item_id).then((response) => {
+          delCpu(item_id).then((response) => {
             if (response.status === 200) {
               toast.success(response.data.message, {
                 position: "top-right",
@@ -270,7 +264,7 @@ const CpuIndex = () => {
             style={{ margin: "0px 0px 0px 20px" }}
             onClick={createItem}
           >
-            Create Model
+            Create CPU
           </Button>
         </div>
         <Sticky enabled={true} top={70} innerZ={1}>
@@ -327,11 +321,11 @@ const CpuIndex = () => {
             >
               <ItemModel
                 id={items.id}
-                model={items.model}
+                cpu={items.cpu}
                 created={moment(items.created).format("MMMM Do YYYY, HH:mm")}
                 modified={moment(items.modified).format("MMMM Do YYYY, HH:mm")}
-                onDeleteItem={(id, model) => deleteItem(id, model)}
-                onUpdateItem={(id, model) => updateItem(id, model)}
+                onDeleteItem={(id, cpu) => deleteItem(id, cpu)}
+                onUpdateItem={(id, cpu) => updateItem(id, cpu)}
               />
             </div>
           ))}

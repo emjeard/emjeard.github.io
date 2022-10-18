@@ -85,6 +85,14 @@ export {
   postSensor,
   putSensor,
   delSensor,
+  getListCpu,
+  postCpu,
+  putCpu,
+  delCpu,
+  getListOperatingSystem,
+  postOperatingSystem,
+  putOperatingSystem,
+  delOperatingSystem,
 };
 
 const getToken = function () {
@@ -856,6 +864,96 @@ const putSensor = async (id, sensor) => {
 
 const delSensor = async (id) => {
   const url = `${BASE_URL}master/sensor/delete?id=${id}`;
+  try {
+    const response = await axios.delete(url, headerRequest);
+    return response;
+  } catch (err) {
+    return err.response;
+  }
+};
+
+const getListCpu = async (page, many, filter) => {
+  const url = `${BASE_URL}master/cpu/list?page=${page}&many=${many}&order=${filter}`;
+  try {
+    const response = await axios.get(url, headerRequest);
+    return response;
+  } catch (err) {
+    return err.response;
+  }
+};
+
+const postCpu = async (cpu) => {
+  const url = `${BASE_URL}master/cpu/create`;
+  const formData = new FormData();
+  formData.append("cpu", cpu);
+  try {
+    const response = await axios.post(url, formData, headerRequest);
+    return response;
+  } catch (err) {
+    return err.response;
+  }
+};
+
+const putCpu = async (id, cpu) => {
+  const url = `${BASE_URL}master/cpu/update`;
+  const formData = new FormData();
+  formData.append("id", id);
+  formData.append("cpu", cpu);
+  try {
+    const response = await axios.put(url, formData, headerRequest);
+    return response;
+  } catch (err) {
+    return err.response;
+  }
+};
+
+const delCpu = async (id) => {
+  const url = `${BASE_URL}master/cpu/delete?id=${id}`;
+  try {
+    const response = await axios.delete(url, headerRequest);
+    return response;
+  } catch (err) {
+    return err.response;
+  }
+};
+
+const getListOperatingSystem = async (page, many, filter) => {
+  const url = `${BASE_URL}master/os/list?page=${page}&many=${many}&order=${filter}`;
+  try {
+    const response = await axios.get(url, headerRequest);
+    return response;
+  } catch (err) {
+    return err.response;
+  }
+};
+
+const postOperatingSystem = async (os) => {
+  const url = `${BASE_URL}master/os/create`;
+  const formData = new FormData();
+  formData.append("os", os);
+  try {
+    const response = await axios.post(url, formData, headerRequest);
+    return response;
+  } catch (err) {
+    return err.response;
+  }
+};
+
+const putOperatingSystem = async (id, os) => {
+  const url = `${BASE_URL}master/os/update`;
+  const formData = new FormData();
+  formData.append("id", id);
+  formData.append("os", os);
+  try {
+    const response = await axios.put(url, formData, headerRequest);
+    return response;
+  } catch (err) {
+    return err.response;
+  }
+};
+
+const delOperatingSystem = async (id) => {
+  const url = `${BASE_URL}master/os/delete?id=${id}`;
   try {
     const response = await axios.delete(url, headerRequest);
     return response;
