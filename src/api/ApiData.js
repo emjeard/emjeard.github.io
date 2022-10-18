@@ -113,6 +113,10 @@ export {
   postSimcard,
   putSimcard,
   delSimcard,
+  getListOprProduct,
+  postOprProduct,
+  putOprProduct,
+  delOprProduct,
 };
 
 const getToken = function () {
@@ -1202,6 +1206,53 @@ const putSimcard = async (id, sc) => {
 
 const delSimcard = async (id) => {
   const url = `${BASE_URL}master/simcard/delete?id=${id}`;
+  try {
+    const response = await axios.delete(url, headerRequest);
+    return response;
+  } catch (err) {
+    return err.response;
+  }
+};
+
+const getListOprProduct = async (page, many, filter) => {
+  const url = `${BASE_URL}master/operator-product/list?page=${page}&many=${many}&order=${filter}`;
+  try {
+    const response = await axios.get(url, headerRequest);
+    return response;
+  } catch (err) {
+    return err.response;
+  }
+};
+
+const postOprProduct = async (nm_op, op_parent) => {
+  const url = `${BASE_URL}master/operator-product/create`;
+  const formData = new FormData();
+  formData.append("nm_op", nm_op);
+  formData.append("op_parent", op_parent);
+  try {
+    const response = await axios.post(url, formData, headerRequest);
+    return response;
+  } catch (err) {
+    return err.response;
+  }
+};
+
+const putOprProduct = async (id, nm_op, op_parent) => {
+  const url = `${BASE_URL}master/operator-product/update`;
+  const formData = new FormData();
+  formData.append("id", id);
+  formData.append("nm_op", nm_op);
+  formData.append("op_parent", op_parent);
+  try {
+    const response = await axios.put(url, formData, headerRequest);
+    return response;
+  } catch (err) {
+    return err.response;
+  }
+};
+
+const delOprProduct = async (id) => {
+  const url = `${BASE_URL}master/operator-product/delete?id=${id}`;
   try {
     const response = await axios.delete(url, headerRequest);
     return response;

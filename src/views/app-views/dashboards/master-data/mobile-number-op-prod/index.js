@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { Card, Pagination, Input, Modal } from "antd";
 import {
-  getListUmuModel,
-  postUmuModel,
-  putUmuModel,
-  delUmuModel,
+  getListOprProduct,
+  postOprProduct,
+  putOprProduct,
+  delOprProduct,
+  getListOperator,
 } from "api/ApiData";
 import { Select, Button, Spin } from "antd";
 import moment from "moment";
@@ -20,7 +21,7 @@ import {
 import ItemModel from "./ItemModel";
 import { HP_DATA_ACT } from "redux/actions/Handphone";
 import store from "redux/store";
-
+const { Option } = Select;
 const { Search } = Input;
 const { confirm } = Modal;
 
@@ -31,6 +32,8 @@ const MobileNumberOpProdIndex = () => {
   const [totalData, setTotalData] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
   const [firstLoading, setFirstLoading] = useState(true);
+  const [dataModel, setDataModel] = useState("");
+  const [dataOpParent, setDataOpParent] = useState([]);
 
   useEffect(() => {
     const urlPath = new URL(window.location.href);
@@ -43,13 +46,14 @@ const MobileNumberOpProdIndex = () => {
       keyword = "";
     }
     setCurrentPage(parseInt(page === null ? 1 : page));
+    getTagModelHp();
     retrieveData(page, 10, keyword);
   }, []);
 
   const retrieveData = (page, many, filter) => {
     setFirstLoading(true);
     page = page === null ? 1 : page;
-    getListUmuModel(page, many, filter)
+    getListOprProduct(page, many, filter)
       .then((response) => {
         if (response.status === 200) {
           setDataItem(response.data.data);
@@ -66,6 +70,17 @@ const MobileNumberOpProdIndex = () => {
         setFirstLoading(false);
       });
   };
+
+  const getTagModelHp = () => {
+    getListOperator().then((response) => {
+      const data = response.data.map((item) => ({
+        text: item.name,
+        value: item.id + "--op_parent",
+      }));
+      setDataOpParent(data);
+    });
+  };
+
   const onChange = (pageNumber) => {
     const urlPath = new URL(window.location.href);
     let keyword = urlPath.searchParams.get("key");
@@ -93,11 +108,41 @@ const MobileNumberOpProdIndex = () => {
     setKeysearch(data.target.value);
   };
 
+  const onChangeSelectGeneral = (selectedItems, option) => {
+    console.log();
+    const splitOptions = option.value.split("--");
+    const stateName = splitOptions[1];
+    const valueSelect = splitOptions[0];
+    store.dispatch(HP_DATA_ACT(stateName, parseInt(valueSelect)));
+  };
+  function onSearchSelect(val) {
+    console.log("search:", val);
+  }
   const showUpdate = (item_id, item_name) => {
     confirm({
       title: "Do you want to update these items?",
       content: (
         <div>
+          <Select
+            name="op_parent"
+            style={{ minWidth: 230 }}
+            placeholder="Pilih Operator"
+            optionFilterProp="children"
+            onChange={onChangeSelectGeneral}
+            defaultValue={
+              store.getState().gen_hp_data.data.op_parent === ""
+                ? undefined
+                : store.getState().gen_hp_data.data.op_parent + "--op_parent"
+            }
+            onSearch={onSearchSelect}
+            filterOption={(input, option) =>
+              option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+            }
+          >
+            {dataOpParent.map((item) => (
+              <Option key={item.value}>{item.text}</Option>
+            ))}
+          </Select>
           <Input
             placeholder="Contoh: Flip"
             allowClear
@@ -108,9 +153,9 @@ const MobileNumberOpProdIndex = () => {
       ),
       async onOk() {
         return new Promise((resolve, reject) => {
-          putUmuModel(
+          putOprProduct(
             item_id,
-            store.getState().gen_hp_data.data.umu_model
+            store.getState().gen_hp_data.data.data_label
           ).then((response) => {
             if (response.status === 200) {
               toast.success(response.data.message, {
@@ -147,14 +192,33 @@ const MobileNumberOpProdIndex = () => {
 
   const onChangeInput = (e) => {
     setDataInput(e.target.value);
-    store.dispatch(HP_DATA_ACT("umu_model", e.target.value));
+    store.dispatch(HP_DATA_ACT("data_label", e.target.value));
   };
 
   const showCreate = () => {
     confirm({
-      title: "Create model handphone",
+      title: "Create Operator Product",
       content: (
         <div>
+          <div style={{ marginBottom: 15, width: "100%" }}>
+            <Select
+              showSearch
+              name="op_parent"
+              style={{ width: "100%" }}
+              placeholder="Pilih Operator"
+              optionFilterProp="children"
+              onChange={onChangeSelectGeneral}
+              defaultValue={undefined}
+              onSearch={onSearchSelect}
+              filterOption={(input, option) =>
+                option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+              }
+            >
+              {dataOpParent.map((item) => (
+                <Option key={item.value}>{item.text}</Option>
+              ))}
+            </Select>
+          </div>
           <Input
             placeholder="Contoh: Flip"
             allowClear
@@ -166,7 +230,7 @@ const MobileNumberOpProdIndex = () => {
       ),
       async onOk() {
         return new Promise((resolve, reject) => {
-          postUmuModel(store.getState().gen_hp_data.data.umu_model).then(
+          postOprProduct(store.getState().gen_hp_data.data.data_label).then(
             (response) => {
               if (response.status === 201) {
                 toast.success(response.data.message, {
@@ -209,7 +273,7 @@ const MobileNumberOpProdIndex = () => {
       async onOk() {
         return new Promise((resolve, reject) => {
           //setTimeout(Math.random() > 0.5 ? resolve : reject, 1000);
-          delUmuModel(item_id).then((response) => {
+          delOprProduct(item_id).then((response) => {
             if (response.status === 200) {
               toast.success(response.data.message, {
                 position: "top-right",
@@ -259,7 +323,7 @@ const MobileNumberOpProdIndex = () => {
         <div style={{ margin: "10px 0px 20px", display: "flex" }}>
           <Search
             value={keysearch}
-            placeholder="Cari model..."
+            placeholder="Cari Operator Product..."
             onSearch={(value) => searchData(value)}
             onChange={onChangeSearch}
             enterButton
@@ -270,7 +334,7 @@ const MobileNumberOpProdIndex = () => {
             style={{ margin: "0px 0px 0px 20px" }}
             onClick={createItem}
           >
-            Create Model
+            Create Operator Product
           </Button>
         </div>
         <Sticky enabled={true} top={70} innerZ={1}>
@@ -327,11 +391,11 @@ const MobileNumberOpProdIndex = () => {
             >
               <ItemModel
                 id={items.id}
-                model={items.model}
+                nm_op={items.nm_op}
                 created={moment(items.created).format("MMMM Do YYYY, HH:mm")}
                 modified={moment(items.modified).format("MMMM Do YYYY, HH:mm")}
-                onDeleteItem={(id, model) => deleteItem(id, model)}
-                onUpdateItem={(id, model) => updateItem(id, model)}
+                onDeleteItem={(id, nm_op) => deleteItem(id, nm_op)}
+                onUpdateItem={(id, nm_op) => updateItem(id, nm_op)}
               />
             </div>
           ))}
