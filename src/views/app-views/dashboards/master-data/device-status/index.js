@@ -3,7 +3,7 @@ import { Card, Pagination, Input, Modal } from "antd";
 import {
   getListDeviceStatus,
   postDeviceStatus,
-  putUmuModel,
+  putDeviceStatus,
   delDeviceStatus,
 } from "api/ApiData";
 import { Select, Button, Spin } from "antd";
@@ -108,7 +108,7 @@ const UmuModelApp = () => {
       ),
       async onOk() {
         return new Promise((resolve, reject) => {
-          putUmuModel(
+          putDeviceStatus(
             item_id,
             store.getState().gen_hp_data.data.data_label
           ).then((response) => {

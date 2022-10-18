@@ -56,6 +56,7 @@ export {
   postUmuModel,
   postDeviceStatus,
   putUmuModel,
+  putDeviceStatus,
   putUpdateOpPackage,
   putUpdateOp,
   putUpdateArticle,
@@ -147,8 +148,7 @@ const delDetailOpPack = (id) => {
 const delUmuModel = async (id) => {
   const url = `${BASE_URL}master/umu-model/delete?id=${id}`;
   try {
-    const response = await axios
-      .delete(url, headerRequest);
+    const response = await axios.delete(url, headerRequest);
     return response;
   } catch (err) {
     return err.response;
@@ -531,15 +531,29 @@ const postDeviceStatus = async (status) => {
     return err.response;
   }
 };
-const putUmuModel = (id, model) => {
+const putDeviceStatus = async (id, status) => {
+  const url = `${BASE_URL}master/device-status/update`;
+  const formData = new FormData();
+  formData.append("id", id);
+  formData.append("status", status);
+  try {
+    const response = await axios.put(url, formData, headerRequest);
+    return response;
+  } catch (err) {
+    return err.response;
+  }
+};
+const putUmuModel = async (id, model) => {
   const url = `${BASE_URL}master/umu-model/update`;
   const formData = new FormData();
   formData.append("id", id);
   formData.append("model", model);
-  return axios
-    .put(url, formData, headerRequest)
-    .then((response) => response)
-    .catch((err) => err.response);
+  try {
+    const response = await axios.put(url, formData, headerRequest);
+    return response;
+  } catch (err) {
+    return err.response;
+  }
 };
 const putUpdateArticle = (
   id,
