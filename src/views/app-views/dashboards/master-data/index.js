@@ -14,7 +14,7 @@ const MasterDataDashboard = ({ match }) => {
           path={`${match.url}/device-status`}
           component={lazy(() => import(`./device-status`))}
         />
-        <Redirect from={`${match.url}`} to={`${match.url}/default`} />
+        <Redirect from={`${match.url}`} to={`/dashboards/default`} />
       </Switch>
     </Suspense>
   );

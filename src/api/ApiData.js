@@ -144,12 +144,15 @@ const delDetailOpPack = (id) => {
   return axios.get(url, headerRequest).then((response) => response.data);
 };
 
-const delUmuModel = (id) => {
+const delUmuModel = async (id) => {
   const url = `${BASE_URL}master/umu-model/delete?id=${id}`;
-  return axios
-    .get(url, headerRequest)
-    .then((response) => response)
-    .catch((err) => err.response);
+  try {
+    const response = await axios
+      .delete(url, headerRequest);
+    return response;
+  } catch (err) {
+    return err.response;
+  }
 };
 const delDeviceStatus = async (id) => {
   const url = `${BASE_URL}master/device-status/delete?id=${id}`;
