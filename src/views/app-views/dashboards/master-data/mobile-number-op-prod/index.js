@@ -118,35 +118,39 @@ const MobileNumberOpProdIndex = () => {
   function onSearchSelect(val) {
     console.log("search:", val);
   }
-  const showUpdate = (item_id, item_name) => {
+  const showUpdate = (item_id, items) => {
     confirm({
       title: "Do you want to update these items?",
       content: (
         <div>
-          <Select
-            name="op_parent"
-            style={{ minWidth: 230 }}
-            placeholder="Pilih Operator"
-            optionFilterProp="children"
-            onChange={onChangeSelectGeneral}
-            defaultValue={
-              store.getState().gen_hp_data.data.op_parent === ""
-                ? undefined
-                : store.getState().gen_hp_data.data.op_parent + "--op_parent"
-            }
-            onSearch={onSearchSelect}
-            filterOption={(input, option) =>
-              option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-            }
-          >
-            {dataOpParent.map((item) => (
-              <Option key={item.value}>{item.text}</Option>
-            ))}
-          </Select>
+          <div style={{ marginBottom: 15, width: "100%" }}>
+            <Select
+              showSearch
+              name="op_parent"
+              style={{ width: "100%" }}
+              placeholder="Pilih Operator"
+              optionFilterProp="children"
+              onChange={onChangeSelectGeneral}
+              defaultValue={
+                store.getState().gen_hp_data.data.op_parent === ""
+                  ? undefined
+                  : store.getState().gen_hp_data.data.op_parent + "--op_parent"
+              }
+              onSearch={onSearchSelect}
+              filterOption={(input, option) =>
+                option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+              }
+            >
+              {dataOpParent.map((item) => (
+                <Option key={item.value}>{item.text}</Option>
+              ))}
+            </Select>
+          </div>
           <Input
+            name="nm_op"
             placeholder="Contoh: Flip"
             allowClear
-            defaultValue={item_name}
+            defaultValue={items.nm_op}
             onChange={onChangeInput}
           />
         </div>
@@ -155,7 +159,8 @@ const MobileNumberOpProdIndex = () => {
         return new Promise((resolve, reject) => {
           putOprProduct(
             item_id,
-            store.getState().gen_hp_data.data.data_label
+            store.getState().gen_hp_data.data.nm_op,
+            store.getState().gen_hp_data.data.op_parent
           ).then((response) => {
             if (response.status === 200) {
               toast.success(response.data.message, {
@@ -191,8 +196,13 @@ const MobileNumberOpProdIndex = () => {
   };
 
   const onChangeInput = (e) => {
+    const stateName = e.target.name;
+    let stateValue = e.target.value;
+    if (stateValue === "") {
+      stateValue = null;
+    }
     setDataInput(e.target.value);
-    store.dispatch(HP_DATA_ACT("data_label", e.target.value));
+    store.dispatch(HP_DATA_ACT(stateName, e.target.value));
   };
 
   const showCreate = () => {
@@ -220,6 +230,8 @@ const MobileNumberOpProdIndex = () => {
             </Select>
           </div>
           <Input
+            style={{ marginTop: 10 }}
+            name="nm_op"
             placeholder="Contoh: Flip"
             allowClear
             onChange={onChangeInput}
@@ -230,46 +242,47 @@ const MobileNumberOpProdIndex = () => {
       ),
       async onOk() {
         return new Promise((resolve, reject) => {
-          postOprProduct(store.getState().gen_hp_data.data.data_label).then(
-            (response) => {
-              if (response.status === 201) {
-                toast.success(response.data.message, {
-                  position: "top-right",
-                  autoClose: true,
-                  hideProgressBar: false,
-                  closeOnClick: true,
-                  pauseOnHover: true,
-                  draggable: true,
-                  progress: undefined,
-                  theme: "colored",
-                });
-                resolve();
-                retrieveData(1, 10, "");
-              } else {
-                resolve();
-                toast.error(response.data.message, {
-                  position: "top-right",
-                  autoClose: true,
-                  hideProgressBar: false,
-                  closeOnClick: true,
-                  pauseOnHover: true,
-                  draggable: true,
-                  progress: undefined,
-                  theme: "colored",
-                });
-              }
+          postOprProduct(
+            store.getState().gen_hp_data.data.nm_op,
+            store.getState().gen_hp_data.data.op_parent
+          ).then((response) => {
+            if (response.status === 201) {
+              toast.success(response.data.message, {
+                position: "top-right",
+                autoClose: true,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+              });
+              resolve();
+              retrieveData(1, 10, "");
+            } else {
+              resolve();
+              toast.error(response.data.message, {
+                position: "top-right",
+                autoClose: true,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+              });
             }
-          );
+          });
         }).catch(() => console.log("Oops errors!"));
       },
       onCancel() {},
     });
   };
 
-  const showConfirm = (item_id, item_name) => {
+  const showConfirm = (item_id, items) => {
     confirm({
       title: "Do you want to delete these items?",
-      content: item_name,
+      content: items.nm_op,
       async onOk() {
         return new Promise((resolve, reject) => {
           //setTimeout(Math.random() > 0.5 ? resolve : reject, 1000);
@@ -306,12 +319,13 @@ const MobileNumberOpProdIndex = () => {
       onCancel() {},
     });
   };
-  const deleteItem = (item_id, item_name) => {
-    showConfirm(item_id, item_name);
+  const deleteItem = (item_id, items) => {
+    showConfirm(item_id, items);
   };
 
-  const updateItem = (item_id, item_name) => {
-    showUpdate(item_id, item_name);
+  const updateItem = (item_id, items) => {
+    store.dispatch(HP_DATA_ACT("op_parent", parseInt(items.op_parent)));
+    showUpdate(item_id, items);
   };
 
   const createItem = () => {
@@ -392,10 +406,11 @@ const MobileNumberOpProdIndex = () => {
               <ItemModel
                 id={items.id}
                 nm_op={items.nm_op}
+                items={items}
                 created={moment(items.created).format("MMMM Do YYYY, HH:mm")}
                 modified={moment(items.modified).format("MMMM Do YYYY, HH:mm")}
-                onDeleteItem={(id, nm_op) => deleteItem(id, nm_op)}
-                onUpdateItem={(id, nm_op) => updateItem(id, nm_op)}
+                onDeleteItem={(id, items) => deleteItem(id, items)}
+                onUpdateItem={(id, items) => updateItem(id, items)}
               />
             </div>
           ))}

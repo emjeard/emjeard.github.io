@@ -32,7 +32,7 @@ const ItemModel = (props) => {
       </div>
       <div style={{ padding: "5px 15px", display: "flex" }}>
         <div
-          onClick={() => updateItem(props.id, props.nm_op)}
+          onClick={() => updateItem(props.id, props.items)}
           style={{
             display: "flex",
             justifyContent: "center",
@@ -48,7 +48,7 @@ const ItemModel = (props) => {
           <EditOutlined style={{ color: "#fff" }} />
         </div>
         <div
-          onClick={() => deleteItem(props.id, props.nm_op)}
+          onClick={() => deleteItem(props.id, props.items)}
           style={{
             display: "flex",
             justifyContent: "center",

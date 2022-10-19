@@ -117,6 +117,10 @@ export {
   postOprProduct,
   putOprProduct,
   delOprProduct,
+  getListMediaPortal,
+  postMediaPortal,
+  putMediaPortal,
+  delMediaPortal,
 };
 
 const getToken = function () {
@@ -1076,7 +1080,6 @@ const delMemoryCap = async (id) => {
   }
 };
 
-
 const getListBattery = async (page, many, filter) => {
   const url = `${BASE_URL}master/battery/list?page=${page}&many=${many}&order=${filter}`;
   try {
@@ -1122,7 +1125,6 @@ const delBattery = async (id) => {
   }
 };
 
-
 const getListResolution = async (page, many, filter) => {
   const url = `${BASE_URL}master/resolution/list?page=${page}&many=${many}&order=${filter}`;
   try {
@@ -1167,7 +1169,6 @@ const delResolution = async (id) => {
     return err.response;
   }
 };
-
 
 const getListSimcard = async (page, many, filter) => {
   const url = `${BASE_URL}master/simcard/list?page=${page}&many=${many}&order=${filter}`;
@@ -1253,6 +1254,55 @@ const putOprProduct = async (id, nm_op, op_parent) => {
 
 const delOprProduct = async (id) => {
   const url = `${BASE_URL}master/operator-product/delete?id=${id}`;
+  try {
+    const response = await axios.delete(url, headerRequest);
+    return response;
+  } catch (err) {
+    return err.response;
+  }
+};
+
+const getListMediaPortal = async (page, many, filter) => {
+  const url = `${BASE_URL}master/rss-portal/list?page=${page}&many=${many}&order=${filter}`;
+  try {
+    const response = await axios.get(url, headerRequest);
+    return response;
+  } catch (err) {
+    return err.response;
+  }
+};
+
+const postMediaPortal = async (web_from, url_feed) => {
+  const url = `${BASE_URL}master/rss-portal/create`;
+  const formData = new FormData();
+  formData.append("web_from", web_from);
+  formData.append("url_feed", url_feed);
+  formData.append("img_portal", "");
+  formData.append("detail", "");
+  try {
+    const response = await axios.post(url, formData, headerRequest);
+    return response;
+  } catch (err) {
+    return err.response;
+  }
+};
+
+const putMediaPortal = async (id, web_from, url_feed) => {
+  const url = `${BASE_URL}master/rss-portal/update`;
+  const formData = new FormData();
+  formData.append("id", id);
+  formData.append("web_from", web_from);
+  formData.append("url_feed", url_feed);
+  try {
+    const response = await axios.put(url, formData, headerRequest);
+    return response;
+  } catch (err) {
+    return err.response;
+  }
+};
+
+const delMediaPortal = async (id) => {
+  const url = `${BASE_URL}master/rss-portal/delete?id=${id}`;
   try {
     const response = await axios.delete(url, headerRequest);
     return response;
