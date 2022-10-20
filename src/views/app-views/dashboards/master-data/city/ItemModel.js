@@ -2,12 +2,12 @@ import React from "react";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 
 const ItemModel = (props) => {
-  const deleteItem = (item_id, item_name) => {
-    props.onDeleteItem(item_id, item_name);
+  const deleteItem = (item_id, items) => {
+    props.onDeleteItem(item_id, items);
   };
 
-  const updateItem = (item_id, item_name) => {
-    props.onUpdateItem(item_id, item_name);
+  const updateItem = (item_id, items) => {
+    props.onUpdateItem(item_id, items);
   };
   return (
     <div style={{ display: "flex" }}>
@@ -22,7 +22,7 @@ const ItemModel = (props) => {
         {props.id}
       </div>
       <div style={{ padding: "5px 15px", maxWidth: 250, width: 250 }}>
-        {props.model}
+        {props.kota}
       </div>
       <div style={{ padding: "5px 15px", maxWidth: 250, width: 250 }}>
         {props.created}
@@ -32,7 +32,7 @@ const ItemModel = (props) => {
       </div>
       <div style={{ padding: "5px 15px", display: "flex" }}>
         <div
-          onClick={() => updateItem(props.id, props.model)}
+          onClick={() => updateItem(props.id, props.items)}
           style={{
             display: "flex",
             justifyContent: "center",
@@ -48,7 +48,7 @@ const ItemModel = (props) => {
           <EditOutlined style={{ color: "#fff" }} />
         </div>
         <div
-          onClick={() => deleteItem(props.id, props.model)}
+          onClick={() => deleteItem(props.id, props.items)}
           style={{
             display: "flex",
             justifyContent: "center",

@@ -46,7 +46,7 @@ const MobileNumberOpProdIndex = () => {
       keyword = "";
     }
     setCurrentPage(parseInt(page === null ? 1 : page));
-    getTagModelHp();
+    getTagOpr();
     retrieveData(page, 10, keyword);
   }, []);
 
@@ -71,7 +71,7 @@ const MobileNumberOpProdIndex = () => {
       });
   };
 
-  const getTagModelHp = () => {
+  const getTagOpr = () => {
     getListOperator().then((response) => {
       const data = response.data.map((item) => ({
         text: item.name,

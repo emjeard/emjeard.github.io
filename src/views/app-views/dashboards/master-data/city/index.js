@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { Card, Pagination, Input, Modal } from "antd";
 import {
-  getListUmuModel,
-  postUmuModel,
-  putUmuModel,
-  delUmuModel,
+  getListCityKota,
+  postCityKota,
+  putCityKota,
+  delCityKota,
+  getListProvinsi,
 } from "api/ApiData";
 import { Select, Button, Spin } from "antd";
 import moment from "moment";
@@ -23,6 +24,7 @@ import store from "redux/store";
 
 const { Search } = Input;
 const { confirm } = Modal;
+const { Option } = Select;
 
 const CityIndex = () => {
   const [dataInput, setDataInput] = useState("");
@@ -31,6 +33,7 @@ const CityIndex = () => {
   const [totalData, setTotalData] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
   const [firstLoading, setFirstLoading] = useState(true);
+  const [dataOpParent, setDataOpParent] = useState([]);
 
   useEffect(() => {
     const urlPath = new URL(window.location.href);
@@ -43,13 +46,14 @@ const CityIndex = () => {
       keyword = "";
     }
     setCurrentPage(parseInt(page === null ? 1 : page));
+    getTagProvince();
     retrieveData(page, 10, keyword);
   }, []);
 
   const retrieveData = (page, many, filter) => {
     setFirstLoading(true);
     page = page === null ? 1 : page;
-    getListUmuModel(page, many, filter)
+    getListCityKota(page, many, filter)
       .then((response) => {
         if (response.status === 200) {
           setDataItem(response.data.data);
@@ -66,6 +70,17 @@ const CityIndex = () => {
         setFirstLoading(false);
       });
   };
+
+  const getTagProvince = () => {
+    getListProvinsi(1, 100, "").then((response) => {
+      const data = response.data.data.map((item) => ({
+        text: item.provinsi,
+        value: item.id + "--province_id",
+      }));
+      setDataOpParent(data);
+    });
+  };
+
   const onChange = (pageNumber) => {
     const urlPath = new URL(window.location.href);
     let keyword = urlPath.searchParams.get("key");
@@ -93,24 +108,59 @@ const CityIndex = () => {
     setKeysearch(data.target.value);
   };
 
-  const showUpdate = (item_id, item_name) => {
+  const onChangeSelectGeneral = (selectedItems, option) => {
+    console.log();
+    const splitOptions = option.value.split("--");
+    const stateName = splitOptions[1];
+    const valueSelect = splitOptions[0];
+    store.dispatch(HP_DATA_ACT(stateName, parseInt(valueSelect)));
+  };
+  function onSearchSelect(val) {
+    console.log("search:", val);
+  }
+  const showUpdate = (item_id, items) => {
     confirm({
       title: "Do you want to update these items?",
       content: (
         <div>
+          <div style={{ marginBottom: 15, width: "100%" }}>
+            <Select
+              showSearch
+              name="province_id"
+              style={{ width: "100%" }}
+              placeholder="Pilih Propinsi"
+              optionFilterProp="children"
+              onChange={onChangeSelectGeneral}
+              defaultValue={
+                store.getState().gen_hp_data.data.province_id === ""
+                  ? undefined
+                  : store.getState().gen_hp_data.data.province_id +
+                    "--province_id"
+              }
+              onSearch={onSearchSelect}
+              filterOption={(input, option) =>
+                option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+              }
+            >
+              {dataOpParent.map((item) => (
+                <Option key={item.value}>{item.text}</Option>
+              ))}
+            </Select>
+          </div>
           <Input
             placeholder="Contoh: Flip"
             allowClear
-            defaultValue={item_name}
+            defaultValue={items.kota}
             onChange={onChangeInput}
           />
         </div>
       ),
       async onOk() {
         return new Promise((resolve, reject) => {
-          putUmuModel(
+          putCityKota(
             item_id,
-            store.getState().gen_hp_data.data.umu_model
+            store.getState().gen_hp_data.data.province_id,
+            store.getState().gen_hp_data.data.kota
           ).then((response) => {
             if (response.status === 200) {
               toast.success(response.data.message, {
@@ -147,14 +197,33 @@ const CityIndex = () => {
 
   const onChangeInput = (e) => {
     setDataInput(e.target.value);
-    store.dispatch(HP_DATA_ACT("umu_model", e.target.value));
+    store.dispatch(HP_DATA_ACT("kota", e.target.value));
   };
 
   const showCreate = () => {
     confirm({
-      title: "Create model handphone",
+      title: "Create City",
       content: (
         <div>
+          <div style={{ marginBottom: 15, width: "100%" }}>
+            <Select
+              showSearch
+              name="province_id"
+              style={{ width: "100%" }}
+              placeholder="Pilih Propinsi"
+              optionFilterProp="children"
+              onChange={onChangeSelectGeneral}
+              defaultValue={undefined}
+              onSearch={onSearchSelect}
+              filterOption={(input, option) =>
+                option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+              }
+            >
+              {dataOpParent.map((item) => (
+                <Option key={item.value}>{item.text}</Option>
+              ))}
+            </Select>
+          </div>
           <Input
             placeholder="Contoh: Flip"
             allowClear
@@ -166,50 +235,51 @@ const CityIndex = () => {
       ),
       async onOk() {
         return new Promise((resolve, reject) => {
-          postUmuModel(store.getState().gen_hp_data.data.umu_model).then(
-            (response) => {
-              if (response.status === 201) {
-                toast.success(response.data.message, {
-                  position: "top-right",
-                  autoClose: true,
-                  hideProgressBar: false,
-                  closeOnClick: true,
-                  pauseOnHover: true,
-                  draggable: true,
-                  progress: undefined,
-                  theme: "colored",
-                });
-                resolve();
-                retrieveData(1, 10, "");
-              } else {
-                resolve();
-                toast.error(response.data.message, {
-                  position: "top-right",
-                  autoClose: true,
-                  hideProgressBar: false,
-                  closeOnClick: true,
-                  pauseOnHover: true,
-                  draggable: true,
-                  progress: undefined,
-                  theme: "colored",
-                });
-              }
+          postCityKota(
+            store.getState().gen_hp_data.data.province_id,
+            store.getState().gen_hp_data.data.kota
+          ).then((response) => {
+            if (response.status === 201) {
+              toast.success(response.data.message, {
+                position: "top-right",
+                autoClose: true,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+              });
+              resolve();
+              retrieveData(1, 10, "");
+            } else {
+              resolve();
+              toast.error(response.data.message, {
+                position: "top-right",
+                autoClose: true,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+              });
             }
-          );
+          });
         }).catch(() => console.log("Oops errors!"));
       },
       onCancel() {},
     });
   };
 
-  const showConfirm = (item_id, item_name) => {
+  const showConfirm = (item_id, items) => {
     confirm({
       title: "Do you want to delete these items?",
-      content: item_name,
+      content: items.kota,
       async onOk() {
         return new Promise((resolve, reject) => {
           //setTimeout(Math.random() > 0.5 ? resolve : reject, 1000);
-          delUmuModel(item_id).then((response) => {
+          delCityKota(item_id).then((response) => {
             if (response.status === 200) {
               toast.success(response.data.message, {
                 position: "top-right",
@@ -242,12 +312,12 @@ const CityIndex = () => {
       onCancel() {},
     });
   };
-  const deleteItem = (item_id, item_name) => {
-    showConfirm(item_id, item_name);
+  const deleteItem = (item_id, items) => {
+    showConfirm(item_id, items);
   };
 
-  const updateItem = (item_id, item_name) => {
-    showUpdate(item_id, item_name);
+  const updateItem = (item_id, items) => {
+    showUpdate(item_id, items);
   };
 
   const createItem = () => {
@@ -259,7 +329,7 @@ const CityIndex = () => {
         <div style={{ margin: "10px 0px 20px", display: "flex" }}>
           <Search
             value={keysearch}
-            placeholder="Cari model..."
+            placeholder="Cari City..."
             onSearch={(value) => searchData(value)}
             onChange={onChangeSearch}
             enterButton
@@ -270,7 +340,7 @@ const CityIndex = () => {
             style={{ margin: "0px 0px 0px 20px" }}
             onClick={createItem}
           >
-            Create Model
+            Create City
           </Button>
         </div>
         <Sticky enabled={true} top={70} innerZ={1}>
@@ -327,11 +397,12 @@ const CityIndex = () => {
             >
               <ItemModel
                 id={items.id}
-                model={items.model}
+                kota={items.kota}
+                items={items}
                 created={moment(items.created).format("MMMM Do YYYY, HH:mm")}
                 modified={moment(items.modified).format("MMMM Do YYYY, HH:mm")}
-                onDeleteItem={(id, model) => deleteItem(id, model)}
-                onUpdateItem={(id, model) => updateItem(id, model)}
+                onDeleteItem={(id, items) => deleteItem(id, items)}
+                onUpdateItem={(id, items) => updateItem(id, items)}
               />
             </div>
           ))}

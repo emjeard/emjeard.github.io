@@ -121,6 +121,14 @@ export {
   postMediaPortal,
   putMediaPortal,
   delMediaPortal,
+  getListProvinsi,
+  postProvinsi,
+  putProvinsi,
+  delProvinsi,
+  getListCityKota,
+  postCityKota,
+  putCityKota,
+  delCityKota,
 };
 
 const getToken = function () {
@@ -1303,6 +1311,100 @@ const putMediaPortal = async (id, web_from, url_feed) => {
 
 const delMediaPortal = async (id) => {
   const url = `${BASE_URL}master/rss-portal/delete?id=${id}`;
+  try {
+    const response = await axios.delete(url, headerRequest);
+    return response;
+  } catch (err) {
+    return err.response;
+  }
+};
+
+const getListProvinsi = async (page, many, filter) => {
+  const url = `${BASE_URL}master/province/list?page=${page}&many=${many}&order=${filter}`;
+  try {
+    const response = await axios.get(url, headerRequest);
+    return response;
+  } catch (err) {
+    return err.response;
+  }
+};
+
+const postProvinsi = async (provinsi) => {
+  const url = `${BASE_URL}master/province/create`;
+  const formData = new FormData();
+  formData.append("provinsi", provinsi);
+
+  try {
+    const response = await axios.post(url, formData, headerRequest);
+    return response;
+  } catch (err) {
+    return err.response;
+  }
+};
+
+const putProvinsi = async (id, provinsi) => {
+  const url = `${BASE_URL}master/province/update`;
+  const formData = new FormData();
+  formData.append("id", id);
+  formData.append("provinsi", provinsi);
+  try {
+    const response = await axios.put(url, formData, headerRequest);
+    return response;
+  } catch (err) {
+    return err.response;
+  }
+};
+
+const delProvinsi = async (id) => {
+  const url = `${BASE_URL}master/province/delete?id=${id}`;
+  try {
+    const response = await axios.delete(url, headerRequest);
+    return response;
+  } catch (err) {
+    return err.response;
+  }
+};
+
+const getListCityKota = async (page, many, filter) => {
+  const url = `${BASE_URL}master/city/list?page=${page}&many=${many}&order=${filter}`;
+  try {
+    const response = await axios.get(url, headerRequest);
+    return response;
+  } catch (err) {
+    return err.response;
+  }
+};
+
+const postCityKota = async (provinsi_id, kota) => {
+  const url = `${BASE_URL}master/city/create`;
+  const formData = new FormData();
+  formData.append("provinsi_id", provinsi_id);
+  formData.append("kota", kota);
+
+  try {
+    const response = await axios.post(url, formData, headerRequest);
+    return response;
+  } catch (err) {
+    return err.response;
+  }
+};
+
+const putCityKota = async (id, provinsi_id, kota) => {
+  const url = `${BASE_URL}master/city/update`;
+  const formData = new FormData();
+  formData.append("id", id);
+  formData.append("provinsi_id", provinsi_id);
+  formData.append("kota", kota);
+  try {
+    const response = await axios.put(url, formData, headerRequest);
+    return response;
+  } catch (err) {
+    return err.response;
+  }
+};
+
+const delCityKota = async (id) => {
+  const url = `${BASE_URL}master/city/delete?id=${id}`;
   try {
     const response = await axios.delete(url, headerRequest);
     return response;
