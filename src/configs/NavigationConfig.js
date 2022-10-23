@@ -171,22 +171,6 @@ const dashBoardNavTree = [
             breadcrumb: false,
             submenu: [],
           },
-          {
-            key: "dashboards-master-data-district",
-            path: `${APP_PREFIX_PATH}/dashboards/master-data/district`,
-            title: "sidenav.dashboard.master_data.district",
-            icon: "",
-            breadcrumb: false,
-            submenu: [],
-          },
-          {
-            key: "dashboards-master-data-sub-district",
-            path: `${APP_PREFIX_PATH}/dashboards/master-data/sub-district`,
-            title: "sidenav.dashboard.master_data.sub_district",
-            icon: "",
-            breadcrumb: false,
-            submenu: [],
-          },
         ],
       },
       {

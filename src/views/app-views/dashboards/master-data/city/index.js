@@ -132,10 +132,9 @@ const CityIndex = () => {
               optionFilterProp="children"
               onChange={onChangeSelectGeneral}
               defaultValue={
-                store.getState().gen_hp_data.data.province_id === ""
+                items.provinsi_id === ""
                   ? undefined
-                  : store.getState().gen_hp_data.data.province_id +
-                    "--province_id"
+                  : items.provinsi_id + "--province_id"
               }
               onSearch={onSearchSelect}
               filterOption={(input, option) =>
