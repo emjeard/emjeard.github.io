@@ -430,7 +430,13 @@ const RSSApp = (props) => {
               Header Image *
             </div>
             <div style={{ position: "relative" }}>
-              <Drag parentCallback={callback} image={dataNews.meta_image} />
+              <Drag
+                parentCallback={callback}
+                image={dataNews.meta_image.replace(
+                  "https://static.inponsel.com/",
+                  "https://is3.cloudhost.id/inps/"
+                )}
+              />
             </div>
           </div>
           <div>
