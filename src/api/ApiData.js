@@ -129,6 +129,7 @@ export {
   postCityKota,
   putCityKota,
   delCityKota,
+  putUpdateSHortHp,
 };
 
 const getToken = function () {
@@ -1407,6 +1408,16 @@ const delCityKota = async (id) => {
   const url = `${BASE_URL}master/city/delete?id=${id}`;
   try {
     const response = await axios.delete(url, headerRequest);
+    return response;
+  } catch (err) {
+    return err.response;
+  }
+};
+
+const putUpdateSHortHp = async (id_hp) => {
+  const url = `https://apiv3.inponsel.com/hp/update/short?id_hp=${id_hp}`;
+  try {
+    const response = await axios.get(url);
     return response;
   } catch (err) {
     return err.response;

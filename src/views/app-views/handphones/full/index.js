@@ -3,7 +3,12 @@ import { Button, Select, Spin, Card, Anchor, Affix } from "antd";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { SaveOutlined } from "@ant-design/icons";
-import { getSearchHp, getDetailHp, postEditHp } from "api/ApiData";
+import {
+  getSearchHp,
+  getDetailHp,
+  postEditHp,
+  putUpdateSHortHp,
+} from "api/ApiData";
 import { HP_PROS, HP_CONS } from "redux/actions/Handphone";
 import store from "redux/store";
 import { GEN_INPUT_ACT } from "redux/actions/General";
@@ -127,6 +132,13 @@ const EditHpFullApp = (props) => {
           progress: undefined,
           theme: "colored",
         });
+        const pros_hp = store.getState().gen_hp_data.HP_PROS_DATA;
+        const cons_hp = store.getState().gen_hp_data.HP_CONS_DATA;
+        if (pros_hp.length > 10 && cons_hp.length > 10) {
+          console.log("proscons", "update short fs");
+          putUpdateSHortHp(id_hp).then(() => {});
+        } else {
+        }
         setTimeout(() => (window.location.href = "/handphones/list"), 3000);
       } else {
         toast.error("Gagal update data", {
