@@ -132,9 +132,8 @@ const EditHpFullApp = (props) => {
           progress: undefined,
           theme: "colored",
         });
-        const pros_hp = store.getState().gen_hp_data.HP_PROS_DATA;
-        const cons_hp = store.getState().gen_hp_data.HP_CONS_DATA;
-        if (pros_hp.length > 10 && cons_hp.length > 10) {
+        
+        if (hp_pros.length > 10 && hp_cons.length > 10) {
           console.log("proscons", "update short fs");
           putUpdateSHortHp(id_hp).then(() => {});
         } else {
