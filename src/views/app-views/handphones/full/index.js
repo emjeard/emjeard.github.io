@@ -132,13 +132,11 @@ const EditHpFullApp = (props) => {
           progress: undefined,
           theme: "colored",
         });
+
+        putUpdateSHortHp(id_hp).then(() => {
+          setTimeout(() => (window.location.href = "/handphones/list"), 3000);
+        });
         
-        if (hp_pros.length > 10 && hp_cons.length > 10) {
-          console.log("proscons", "update short fs");
-          putUpdateSHortHp(id_hp).then(() => {});
-        } else {
-        }
-        setTimeout(() => (window.location.href = "/handphones/list"), 3000);
       } else {
         toast.error("Gagal update data", {
           position: "top-right",
