@@ -8,6 +8,7 @@ import {
   getDetailHp,
   postEditHp,
   putUpdateSHortHp,
+  putUpdateStatsHp,
 } from "api/ApiData";
 import { HP_PROS, HP_CONS } from "redux/actions/Handphone";
 import store from "redux/store";
@@ -134,9 +135,9 @@ const EditHpFullApp = (props) => {
         });
 
         putUpdateSHortHp(id_hp).then(() => {
+          putUpdateStatsHp(id_hp).then(() => {});
           setTimeout(() => (window.location.href = "/handphones/list"), 3000);
         });
-        
       } else {
         toast.error("Gagal update data", {
           position: "top-right",

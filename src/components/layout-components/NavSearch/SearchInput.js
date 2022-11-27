@@ -61,7 +61,7 @@ const SearchInput = (props) => {
           className="link-edit"
           href={
             type === "hp"
-              ? `/handphones/edit/${id}`
+              ? `/handphones/full/${id}`
               : `/dashboards/rss/edit/${id}`
           }
         >
