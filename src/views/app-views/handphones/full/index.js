@@ -7,7 +7,8 @@ import {
   getSearchHp,
   getDetailHp,
   postEditHp,
-  putUpdateSHortHp,
+  putUpdateShortHp,
+  putUpdateTagESHp,
   putUpdateStatsHp,
 } from "api/ApiData";
 import { HP_PROS, HP_CONS } from "redux/actions/Handphone";
@@ -123,20 +124,25 @@ const EditHpFullApp = (props) => {
     postEditHp(final_update).then((resp) => {
       console.log(resp);
       if (resp.data.status === true) {
-        toast.success(resp.data.message, {
-          position: "top-right",
-          autoClose: true,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "colored",
-        });
-
-        putUpdateSHortHp(id_hp).then(() => {
-          putUpdateStatsHp(id_hp).then(() => {});
-          setTimeout(() => (window.location.href = "/handphones/list"), 3000);
+        putUpdateTagESHp(id_hp).then(() => {
+          putUpdateShortHp(id_hp).then(() => {
+            putUpdateStatsHp(id_hp).then(() => {
+              toast.success(resp.data.message, {
+                position: "top-right",
+                autoClose: true,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+              });
+              setTimeout(
+                () => (window.location.href = "/handphones/list"),
+                3000
+              );
+            });
+          });
         });
       } else {
         toast.error("Gagal update data", {
