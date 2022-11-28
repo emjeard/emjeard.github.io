@@ -137,6 +137,7 @@ const EditHpFullApp = (props) => {
                 progress: undefined,
                 theme: "colored",
               });
+              setUpdateLoading(false);
               setTimeout(
                 () => (window.location.href = "/handphones/list"),
                 3000
@@ -145,6 +146,7 @@ const EditHpFullApp = (props) => {
           });
         });
       } else {
+        setUpdateLoading(false);
         toast.error("Gagal update data", {
           position: "top-right",
           autoClose: true,
@@ -156,7 +158,6 @@ const EditHpFullApp = (props) => {
           theme: "colored",
         });
       }
-      setUpdateLoading(false);
     });
   };
   function scrollToTargetAdjusted(id_element) {
