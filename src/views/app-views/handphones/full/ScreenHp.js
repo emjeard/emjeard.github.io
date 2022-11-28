@@ -47,6 +47,7 @@ const ScreenHp = () => {
         store.getState().gen_hp_data.data.lay_size_vertikal,
         store.getState().gen_hp_data.data.lay_size_diagonal
       );
+      store.dispatch(HP_DATA_ACT(stateName, parseFloat(stateValue)));
     }
   };
 
@@ -133,7 +134,7 @@ const ScreenHp = () => {
       };
       const final_ppi = result.xppi.toFixed(2);
       console.log(final_ppi);
-      store.dispatch(HP_DATA_ACT("lay_size_ppi", final_ppi));
+      store.dispatch(HP_DATA_ACT("lay_size_ppi", parseFloat(final_ppi)));
       setDataLayPPI(final_ppi);
 
       return result;
