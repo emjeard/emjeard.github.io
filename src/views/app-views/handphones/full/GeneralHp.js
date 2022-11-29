@@ -88,6 +88,15 @@ const GeneralHp = () => {
       store.dispatch(HP_DATA_ACT("namalengkap", namalengkap));
     }
     store.dispatch(HP_DATA_ACT(stateName, stateValue));
+
+    if (
+      stateName.includes("umu_dim_panjang") ||
+      stateName.includes("umu_dim_lebar") ||
+      stateName.includes("umu_dim_tebal") ||
+      stateName.includes("umu_bobot")
+    ) {
+      store.dispatch(HP_DATA_ACT(stateName, parseFloat(stateValue)));
+    }
   };
 
   const onChangeGenDiumumkan = (date, dateString) => {
