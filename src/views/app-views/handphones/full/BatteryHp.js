@@ -34,7 +34,15 @@ const BatteryHp = () => {
   const onChangeInputNumber = (e, name) => {
     const stateName = name;
     let stateValue = e;
-    store.dispatch(HP_DATA_ACT(stateName, stateValue === null ? 0 : stateValue));
+    store.dispatch(
+      HP_DATA_ACT(stateName, stateValue === null ? 0 : stateValue)
+    );
+    if (
+      stateName.includes("bat_fcharge_watt") ||
+      stateName.includes("bat_wcharge_watt")
+    ) {
+      store.dispatch(HP_DATA_ACT(stateName, parseFloat(stateValue)));
+    }
   };
 
   const onChangeSelectGeneral = (selectedItems, option) => {

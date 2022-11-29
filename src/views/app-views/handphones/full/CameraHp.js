@@ -31,6 +31,9 @@ const CameraHp = () => {
       stateValue = e.target.checked;
     }
     store.dispatch(HP_DATA_ACT(stateName, stateValue));
+    if (stateName.includes("kam_utama_total") || stateName.includes("kam_depan_total")) {
+      store.dispatch(HP_DATA_ACT(stateName, parseInt(stateValue)));
+    }
   };
 
   const onChangeSelectGeneral = (selectedItems, option) => {
