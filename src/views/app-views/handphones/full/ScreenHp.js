@@ -40,7 +40,7 @@ const ScreenHp = () => {
     if (
       stateName.includes("lay_size_horizontal") ||
       stateName.includes("lay_size_vertikal") ||
-      stateName.includes("lay_size_diagonal")
+      stateName === "lay_size_diagonal"
     ) {
       calc_dpi(
         store.getState().gen_hp_data.data.lay_size_horizontal,
