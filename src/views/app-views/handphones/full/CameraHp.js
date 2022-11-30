@@ -37,6 +37,12 @@ const CameraHp = () => {
     ) {
       store.dispatch(HP_DATA_ACT(stateName, parseInt(stateValue)));
     }
+
+    if (stateName.includes("_ket")) {
+      store.dispatch(
+        HP_DATA_ACT(stateName, stateValue.replace(/\n/g, "<br/>"))
+      );
+    }
   };
 
   const onChangeSelectGeneral = (selectedItems, option) => {
@@ -44,7 +50,10 @@ const CameraHp = () => {
     const stateName = splitOptions[1];
     const valueSelect = splitOptions[0];
     store.dispatch(HP_DATA_ACT(stateName, parseInt(valueSelect)));
-    if (stateName.includes("kam_video_status") || stateName.includes("kam_video_hd")) {
+    if (
+      stateName.includes("kam_video_status") ||
+      stateName.includes("kam_video_hd")
+    ) {
       store.dispatch(HP_DATA_ACT(stateName, String(valueSelect)));
     }
   };
