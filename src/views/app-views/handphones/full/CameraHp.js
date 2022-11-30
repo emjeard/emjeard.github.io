@@ -31,7 +31,10 @@ const CameraHp = () => {
       stateValue = e.target.checked;
     }
     store.dispatch(HP_DATA_ACT(stateName, stateValue));
-    if (stateName.includes("kam_utama_total") || stateName.includes("kam_depan_total")) {
+    if (
+      stateName.includes("kam_utama_total") ||
+      stateName.includes("kam_depan_total")
+    ) {
       store.dispatch(HP_DATA_ACT(stateName, parseInt(stateValue)));
     }
   };
@@ -41,6 +44,9 @@ const CameraHp = () => {
     const stateName = splitOptions[1];
     const valueSelect = splitOptions[0];
     store.dispatch(HP_DATA_ACT(stateName, parseInt(valueSelect)));
+    if (stateName.includes("kam_video_status") || stateName.includes("kam_video_hd")) {
+      store.dispatch(HP_DATA_ACT(stateName, String(valueSelect)));
+    }
   };
 
   const getListMemJen = () => {
