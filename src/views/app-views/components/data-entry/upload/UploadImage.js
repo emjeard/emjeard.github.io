@@ -5,6 +5,7 @@ import { CloudUploadOutlined } from "@ant-design/icons";
 import store from "redux/store";
 import { HP_DATA_ACT, GEN_INPUT_ACT } from "redux/actions/Handphone";
 import "./upload.css";
+import { uploadImgIdc } from "api/ApiData";
 
 const UploadImage = (props) => {
   const [defaultFileList, setDefaultFileList] = useState([]);
@@ -55,6 +56,8 @@ const UploadImage = (props) => {
         store.dispatch(
           GEN_INPUT_ACT("galeri", image_path.replace("undefined,", ""))
         );
+        console.log("image_path", res.data.url);
+        uploadImgIdc(res.data.url).then((resp) => {console.log(resp);})
       }
     } catch (err) {
       console.log("Eroor: ", err);

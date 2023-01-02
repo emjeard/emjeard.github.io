@@ -132,6 +132,7 @@ export {
   putUpdateShortHp,
   putUpdateStatsHp,
   putUpdateTagESHp,
+  uploadImgIdc,
 };
 
 const getToken = function () {
@@ -1438,6 +1439,16 @@ const putUpdateStatsHp = async (id_hp) => {
 
 const putUpdateTagESHp = async (id_hp) => {
   const url = `https://apiv3.inponsel.com/hp/update/tages?id_hp=${id_hp}`;
+  try {
+    const response = await axios.get(url);
+    return response;
+  } catch (err) {
+    return err.response;
+  }
+};
+
+const uploadImgIdc = async (img_url) => {
+  const url = `https://apies.inponsel.com/hp/upload/gallery?image_url=${img_url}`;
   try {
     const response = await axios.get(url);
     return response;
