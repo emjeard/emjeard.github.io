@@ -30,10 +30,15 @@ class CKEditorCustomS3 extends Component {
 
     if (data_content !== undefined) {
       data_content = data_content.replace(/\\\\n/g, "");
-      data_content = data_content.replace(/\\u201c/g, `"`)
-      data_content = data_content.replace(/\\u201d/g, `"`)
-      data_content = data_content.replace(/\\xa0/g, ` `)
-
+      // data_content = data_content.replace(/\\u201c/g, `"`);
+      // data_content = data_content.replace(/\\u201d/g, `"`);
+      data_content = data_content.replace(/\\xa0/g, ` `);
+      data_content = data_content.replace(/\\u([\d\w]{4})/gi, function (
+        match,
+        grp
+      ) {
+        return String.fromCharCode(parseInt(grp, 16));
+      });
     }
     return (
       <div className="App">
